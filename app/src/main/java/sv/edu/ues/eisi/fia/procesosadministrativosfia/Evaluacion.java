@@ -8,13 +8,13 @@ class Evaluacion {
     private String codAsignatura;
     private String codTipoEval;
     private String codCiclo;
-    private Date fechaEvaluacion;
+    private String fechaEvaluacion;
     private int numeroEvaluacion;
 
     public Evaluacion() {
     }
 
-    public Evaluacion(String idEvaluacion, String codAsignatura, String codTipoEval, String codCiclo, Date fechaEvaluacion, int numeroEvaluacion) {
+    public Evaluacion(String idEvaluacion, String codAsignatura, String codTipoEval, String codCiclo, String fechaEvaluacion, int numeroEvaluacion) {
         this.idEvaluacion = idEvaluacion;
         this.codAsignatura = codAsignatura;
         this.codTipoEval = codTipoEval;
@@ -39,7 +39,7 @@ class Evaluacion {
         return codCiclo;
     }
 
-    public Date getFechaEvaluacion() {
+    public String getFechaEvaluacion() {
         return fechaEvaluacion;
     }
 
@@ -63,7 +63,7 @@ class Evaluacion {
         this.codCiclo = codCiclo;
     }
 
-    public void setFechaEvaluacion(Date fechaEvaluacion) {
+    public void setFechaEvaluacion(String fechaEvaluacion) {
         this.fechaEvaluacion = fechaEvaluacion;
     }
 

@@ -72,7 +72,7 @@ public class Evaluacion_insertar extends Activity {
         String ciclo = editCiclo.getText().toString();
         String tipoEval = editTipoEvaluacion.getText().toString();
         String evaluacion = editEvaluacion.getText().toString();
-        Date fecha = Date.valueOf(editFecha.getText().toString());
+        String fecha = editFecha.getText().toString();
         Integer numero = Integer.valueOf(editNumero.getText().toString());
         String regInsertados;
 

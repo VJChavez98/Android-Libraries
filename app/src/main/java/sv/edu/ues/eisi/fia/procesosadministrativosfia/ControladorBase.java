@@ -159,8 +159,8 @@ public class ControladorBase {
             evaluaciones.put("codciclo", evaluacion.getCodCiclo());
             evaluaciones.put("codtipoeval", evaluacion.getCodTipoEval());
             evaluaciones.put("codevaluacion", evaluacion.getIdEvaluacion());
-            evaluaciones.put("fechaevaluacion", String.valueOf(evaluacion.getFechaEvaluacion()));
-            evaluaciones.put("numeroevaluacion", evaluacion.getNumeroEvaluacion());
+            evaluaciones.put("fechaevaluacion", evaluacion.getFechaEvaluacion());
+            evaluaciones.put("numeroeval", evaluacion.getNumeroEvaluacion());
             contador = db.insert("evaluacion", null, evaluaciones);
         }
         if(contador == -1 || contador == 0){
