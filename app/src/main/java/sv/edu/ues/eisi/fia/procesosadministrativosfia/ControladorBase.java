@@ -37,13 +37,34 @@ public class ControladorBase {
         @Override
         public void onCreate(SQLiteDatabase db) {
             try {
+                /*
+                *
+                * Sector de creacion de tablas sin llaves foraneas
+                *
+                 */
                 db.execSQL("CREATE TABLE Usuario(username VARCHAR(7) NOT NULL PRIMARY KEY, password VARCHAR(10), nombre_usuario VARCHAR (256));");
-                db.execSQL("CREATE TABLE Estudiante(carnet VARCHAR(7) NOT NULL PRIMARY KEY, NombreEstudiante VARCHAR(50), ApellidoEstudiante VARCHAR(50), carrera VARCHAR(50))");
-                db.execSQL("CREATE TABLE Docente(idDocente CHARACTER(10) NOT NULL PRIMARY KEY, NombreDocente VARCHAR(50), ApellidoDocente VARCHAR(50));");
-                db.execSQL("CREATE TABLE DetalleDiferidoRepetido(idDetalle CHARACTER(10) NOT NULL PRIMARY KEY, FechaDesde Date, FechaHasta Date, FechaRealizacion Date, HoraRealizacion Time);");
-                db.execSQL("CREATE TABLE TipoDiferidoRepetido(idTipo CHARACTER(10) NOT NULL PRIMARY KEY, NombreTipo VARCHAR(50));");
-                db.execSQL("CREATE TABLE Escuela(IdEscuela CHARACTERS(10) NOT NULL PRIMARY KEY, NombreEscuela VARCHAR(50), Facultad VARCHAR(50))");
-                db.execSQL("CREATE");
+                db.execSQL("CREATE TABLE Estudiante(carnet VARCHAR(7) NOT NULL PRIMARY KEY, nombreEstudiante VARCHAR(50), apellidoEstudiante VARCHAR(50), carrera VARCHAR(50))");
+                db.execSQL("CREATE TABLE Ciclo(idCiclo CHARACTER(5) NOT NULL PRIMARY KEY, fechaDesde DATE NOT NULL, fechaHasta DATE NOT NULL )");
+                db.execSQL("CREATE TABLE Docente(idDocente CHARACTER(10) NOT NULL PRIMARY KEY, nombreDocente VARCHAR(50) NOT NULL, apellidoDocente VARCHAR(50) NOT NULL)");
+                db.execSQL("CREATE TABLE TipoEval(idTipoEval CHARACTER(2) NOT NULL PRIMARY KEY, nombreTipoEval VARCHAR(20) NOT NULL)");
+                db.execSQL("CREATE TABLE Local(idLocal CHARACTER(10) NOT NULL PRIMARY KEY, nombreLocal VARCHAR(50) NOT NULL, ubicacion VARCHAR(50))");
+                db.execSQL("CREATE TABLE TipoDiferidoRepetido(idTipoDiferidoRepetido CHARACTER(10) NOT NULL PRIMARY KEY, nombreTipo VARCHAR(50));");
+                db.execSQL("CREATE TABLE Asignatura(idAsignatura CHARACTER(6) NOT NULL PRIMARY KEY, nombreAsignatura VARCHAR(50) NOT NULL)");
+                //Finaliza sector de tablas sin llaves foraneas
+
+                /*
+                 *
+                 * Sector de creacion de tablas con llaves foraneas
+                 *
+                 */
+
+
+                db.execSQL("CREATE TABLE Evaluacion(idEvaluacion CHARACTER(10) NOT NULL PRIMARY KEY, idTipoEval CHARACTER(2) NOT NULL, idCiclo CHARACTER(5) NOT NULL, idAsignatura CHARACTER(6) NOT NULL, numeroEvaluacion NUMBER(12,2) NOT NULL, fechaEvaluacion DATE NOT NULL, FOREIGN KEY (idTipoEval) REFERENCES TipoEval(idTipoEval), FOREIGN KEY (idCiclo) REFERENCES Ciclo(idCiclo), FOREIGN KEY (idAsignatura) REFERENCES Asignatura(idAsignatura) ON DELETE NO ACTION)");
+                db.execSQL("CREATE TABLE DetalleDiferidoRepetido(idDetalleDiferidoRepetido CHARACTER(10) NOT NULL PRIMARY KEY,idLocal CHARACTER(10) NOT NULL, idEvaluacion CHARACTER(10) NOT NULL, idDocente CHARACTER(10) NOT NULL, idTipoDiferidoRepetido CHARACTER(10) NOT NULL,idTipo CHARACTER(10) NOT NULL, fechaDesde DATE NOT NULL, fechaHasta DATE NOT NULL, fechaRealizacion DATE NOT NULL, horaRealizacion TIME NOT NULL, FOREIGN KEY (idLocal) REFERENCES Local(idLocal),  FOREIGN KEY (idEvaluacion) REFERENCES Evaluacion(idEvaluacion),  FOREIGN KEY (idDocente) REFERENCES Docente(idDocente),  FOREIGN KEY (idTipoDiferidoRepetido) REFERENCES TipoDiferidoRepetido (idTipoDiferidoRepetido) ON DELETE NO ACTION);");
+                db.execSQL("CREATE TABLE DetalleEstudianteDiferido(idEstudianteDiferido CHARACTER(10) NOT NULL PRIMARY KEY, carnet CHARACTER(7) NOT NULL, idDetalleDiferidoRepetido CHARACTER(10) NOT NULL,FechaInscripcionDiferido DATE NOT NULL ,FOREIGN KEY (carnet) REFERENCES Estudiante(carnet),FOREIGN KEY (idDetalleDiferidoRepetido) REFERENCES DetalleDiferidoRepedito(idDetalleDiferidoRepetido), FOREIGN KEY ())");
+
+
+                //Finaliza sector de tablas con llaves foraneas
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -57,7 +78,6 @@ public class ControladorBase {
 
     public void abrir() throws SQLException {
         db = DBHelper.getWritableDatabase();
-        return;
     }
 
     public void cerrar() {
