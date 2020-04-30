@@ -1,9 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="sv.edu.ues.eisi.fia.procesosadministrativosfia.Diferido_insertar">
+    <TableRow>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/carnet"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/editCarnet"
+            android:layout_width="200dip"
+            android:inputType="text"
+            android:maxLength="7"
+            android:layout_height="wrap_content"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/codAsignatura"/>
+        <EditText android:id="@+id/editAsignatura"
+            android:inputType="text"
+            android:maxLength="6"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/GrupoTeorico"/>
+        <EditText android:id="@+id/editGrupoTeorico"
+            android:inputType="number"
+            android:maxLength="2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/grupoDiscusion"/>
+        <EditText android:id="@+id/editGrupoDiscusion"
+            android:inputType="number"
+            android:maxLength="2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/grupoLab"/>
+        <EditText android:id="@+id/editGrupoLab"
+            android:inputType="number"
+            android:maxLength="2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tipoEval"/>
+        <Spinner android:id="@+id/spinTipoEval"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:entries="@array/tipo"
+            android:textAlignment="center"
+            android:gravity="center_horizontal" />
+    </TableRow>
+    <TableRow>
+        <TextView android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/evaluacion"/>
+        <EditText android:id="@+id/editCodEva"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLength="10"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fechaRealizada"/>
+        <EditText android:id="@+id/editFechaRealizada"
+            android:inputType="text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/horaRealizada"/>
+        <EditText android:id="@+id/editHoraRealizada"
+            android:inputType="text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/motivos"/>
+        <Spinner android:id="@+id/spinMotivos"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:entries="@array/motivos"
+            android:textAlignment="center"
+            android:gravity="center_horizontal" />
+
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:id="@+id/lblOtro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/motivosOtro"/>
+        <EditText android:id="@+id/editMotivo"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:layout_width="fill_parent"/>
+    </TableRow>
+    <TableRow>
+        <Button android:id="@+id/cancelarBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cancelarBtn"/>
+        <Button android:id="@+id/ingresarBtn"
+        android:text="@string/ingresarBtn"
+        android:onClick="insertarDiferido"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent" />
+
+    </TableRow>
+
+</TableLayout>

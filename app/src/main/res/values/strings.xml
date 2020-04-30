@@ -1,4 +1,30 @@
 <resources>
-    <string name="app_name">Procesos Administrativos FIa</string>
+    <string name="app_name">Procesos Administrativos FIA</string>
     <string name="ingresarBtn">Ingresar</string>
+    <string name="carnet">Carnet</string>
+    <string name="codAsignatura">Codigo Materia</string>
+    <string name="GrupoTeorico">GT</string>
+    <string name="grupoDiscusion">GD</string>
+    <string name="grupoLab">GL</string>
+    <string name="tipoEval">Tipo Evaluacion</string>
+    <string name="fechaRealizada">Fecha Evaluacion</string>
+    <string name="horaRealizada">Hora Evaluacion</string>
+    <string name="motivos">Motivo</string>
+    <string name="cancelarBtn">Cancelar</string>
+    <string name="motivosOtro">Otro</string>
+    <string name="evaluacion">Evaluacion</string>
+    <string-array name="motivos">
+        <item>Selecciona un motivo</item>
+        <item>Salud</item>
+        <item>Trabajo</item>
+        <item>Interferencia</item>
+        <item>Viaje</item>
+        <item>Duelo</item>
+        <item>Otro</item>
+    </string-array>
+    <string-array name="tipo">
+        <item>EP</item>
+        <item>ED</item>
+        <item>EL</item>
+    </string-array>
 </resources>

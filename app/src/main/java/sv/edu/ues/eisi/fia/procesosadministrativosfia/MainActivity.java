@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -20,11 +21,16 @@ public class MainActivity extends AppCompatActivity {
         DBHelper.LlenarDatos();
         editUsername = (EditText) findViewById(R.id.editUser);
         editPassword = (EditText) findViewById(R.id.editPass);
+        editPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
     }
 
     public void login(View view) {
+        Usuario usuario = new Usuario();
+
         String username = editUsername.getText().toString();
         String password = editPassword.getText().toString();
+        usuario.setUsername(username);
+        usuario.setPassword(password);
         DBHelper.abrir();
         if (DBHelper.consultarUsuario(username, password)) {
             Intent intent = new Intent(this, MenuEstudiante.class);

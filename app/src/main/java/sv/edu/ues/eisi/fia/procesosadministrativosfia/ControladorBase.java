@@ -50,6 +50,7 @@ public class ControladorBase {
                 db.execSQL("CREATE TABLE Local(idLocal CHARACTER(10) NOT NULL PRIMARY KEY, nombreLocal VARCHAR(50) NOT NULL, ubicacion VARCHAR(50))");
                 db.execSQL("CREATE TABLE TipoDiferidoRepetido(idTipoDiferidoRepetido CHARACTER(10) NOT NULL PRIMARY KEY, nombreTipo VARCHAR(50));");
                 db.execSQL("CREATE TABLE Asignatura(idAsignatura CHARACTER(6) NOT NULL PRIMARY KEY, nombreAsignatura VARCHAR(50) NOT NULL)");
+                db.execSQL("CREATE TABLE MotivoDiferido(nombreMotivo CHARACTER(13) NOT NULL PRIMARY KEY)");
                 //Finaliza sector de tablas sin llaves foraneas
 
                 /*
@@ -63,7 +64,7 @@ public class ControladorBase {
                 db.execSQL("CREATE TABLE DetalleDiferidoRepetido(idDetalleDiferidoRepetido CHARACTER(10) NOT NULL PRIMARY KEY,idLocal CHARACTER(10) NOT NULL, idEvaluacion CHARACTER(10) NOT NULL, idDocente CHARACTER(10) NOT NULL, idTipoDiferidoRepetido CHARACTER(10) NOT NULL,idTipo CHARACTER(10) NOT NULL, fechaDesde DATE NOT NULL, fechaHasta DATE NOT NULL, fechaRealizacion DATE NOT NULL, horaRealizacion TIME NOT NULL, FOREIGN KEY (idLocal) REFERENCES Local(idLocal),  FOREIGN KEY (idEvaluacion) REFERENCES Evaluacion(idEvaluacion),  FOREIGN KEY (idDocente) REFERENCES Docente(idDocente),  FOREIGN KEY (idTipoDiferidoRepetido) REFERENCES TipoDiferidoRepetido (idTipoDiferidoRepetido));");
                 db.execSQL("CREATE TABLE DetalleEstudianteDiferido(idEstudianteDiferido CHARACTER(10) NOT NULL PRIMARY KEY, carnet CHARACTER(7) NOT NULL, idDetalleDiferidoRepetido CHARACTER(10) NOT NULL,FechaInscripcionDiferido DATE NOT NULL ,FOREIGN KEY (carnet) REFERENCES Estudiante(carnet),FOREIGN KEY (idDetalleDiferidoRepetido) REFERENCES DetalleDiferidoRepedito(idDetalleDiferidoRepetido))");
                 db.execSQL("CREATE TABLE DetalleEstudianteRepetido(idDetalleEstudianteRepetido CHARACTER(10) NOT NULL PRIMARY KEY, carnet CHARACTER(7) NOT NULL, idDetalleDiferidoRepetido CHARACTER(10) NOT NULL, fechaInscripcionRepetido DATE NOT NULL, FOREIGN KEY (carnet) REFERENCES Estudiante(carnet), FOREIGN KEY (idDetalleDiferidoRepetido) REFERENCES DetalleDiferidoRepetido(idDetalleDiferidoRepetido))");
-
+                db.execSQL("CREATE TABLE SolicitudDiferido(idSolicitudDiferido NOT NULL  PRIMARY KEY  UNIQUE, carnet VARCHAR(7) NOT NULL, idEvaluacion CHARACTER(10) NOT NULL, idMotivoDiferido CHARACTER(13) NOT NULL, fechaEvaluacion DATE NOT NULL,  horaEvaluacion TIME NOT NULL, descripcionMotivo VARCHAR(256), GT NUMERIC(2,0) NOT NULL, GD NUMERIC(2,0) NOT NULL, GL NUMERIC(2,0) )");
 
                 //Finaliza sector de tablas con llaves foraneas
             } catch (SQLException e) {
@@ -118,19 +119,63 @@ public class ControladorBase {
     public String insertar(Estudiante estudiante){
         return "";
     }
+    public String insertar(SolicitudDiferido solicitudDiferido){
+        String regAfectados = "Registro insertado Nª= ";
+        long contador = 0;
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("idSolicitudDiferido", solicitudDiferido.getIdSolicitud());
+        contentValues.put("carnet",solicitudDiferido.getCarnet());
+        contentValues.put("idEvaluacion",solicitudDiferido.getCodEva());
+        contentValues.put("idMotivoDiferido", solicitudDiferido.getMotivo());
+        contentValues.put("fechaEvaluacion", solicitudDiferido.getFechaEva());
+        contentValues.put("horaEvaluacion", solicitudDiferido.getHoraEva());
+        contentValues.put("descripcionMotivo", solicitudDiferido.getOtroMotivo());
+        contentValues.put("GT", solicitudDiferido.getGT());
+        contentValues.put("GD",solicitudDiferido.getGD());
+        contentValues.put("GL",solicitudDiferido.getGL());
+
+        contador=db.insert("SolicitudDiferido",null,contentValues);
+        if (contador == -1 || contador==0){
+            regAfectados = "Error al Insertar el registro, Registro duplicado. Verificar inserción";
+        }else {
+            regAfectados=regAfectados+contador;
+        }
+        return regAfectados;
+    }
+    public String insertar(MotivoDiferido motivoDiferido){
+        String regAfectados = "Registro insertado Nª= ";
+        long contador = 0;
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("nombreMotivo", motivoDiferido.getNombreMotivoDiferido());
+        contador=db.insert("MotivoDiferido",null,contentValues);
+        if (contador == -1 || contador==0){
+            regAfectados = "Error al Insertar el registro, Registro duplicado. Verificar inserción";
+        }else {
+            regAfectados=regAfectados+contador;
+        }
+        return regAfectados;
+    }
     public String LlenarDatos(){
         final String[] usersId = {"CM17048","RM17039","AG17023","MM14030","PR17017"};
         final String[] names = {"Victor","Shaky","Daniel","Cristian","Roberto"};
         final String[] userPass = {"0123456789","0123456789","0123456789","0123456789","0123456789"};
-
+        final String[] motivos = {"Salud", "Trabajo", "Interferencia","Viaje","Duelo","Otro"};
         abrir();
         db.execSQL("DELETE FROM usuario;");
         Usuario user = new Usuario();
-        for (int i = 0; i<5; i++){
+        for (int i = 0; i<usersId.length; i++){
             user.setUsername(usersId[i]);
             user.setNombreUsuario(names[i]);
             user.setPassword(userPass[i]);
             insertar(user);
+        }
+
+        MotivoDiferido motivoDiferido = new MotivoDiferido();
+        for (int i =0;i<motivos.length;i++){
+            motivoDiferido.setNombreMotivoDiferido(motivos[i]);
+            insertar(motivoDiferido);
         }
         cerrar();
         return "Guardado correctamente";
