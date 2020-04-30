@@ -180,23 +180,44 @@ public class ControladorBase {
         cerrar();
         return "Guardado correctamente";
     }
-
-    /*public boolean verificarIntegridadReferencial(Object object, int relacion) throws SQLException{
+    public SolicitudDiferido consultarSolicitudDiferido(String carnet, String codEvaluacion){
+        String[] id = {carnet+codEvaluacion};
+        Cursor cursor = db.query("SolicitudDiferido",null,"idSolicitudDiferido = ?",id,null,null,null );
+        if (cursor.moveToFirst()){
+            SolicitudDiferido solicitudDiferido = new SolicitudDiferido();
+            solicitudDiferido.setIdSolicitud(cursor.getString(0));
+            solicitudDiferido.setCarnet(cursor.getString(1));
+            solicitudDiferido.setCodEva(cursor.getString(2));
+            solicitudDiferido.setMotivo(cursor.getString(3));
+            solicitudDiferido.setFechaEva(cursor.getString(4));
+            solicitudDiferido.setHoraEva(cursor.getString(5));
+            solicitudDiferido.setOtroMotivo(cursor.getString(6));
+            solicitudDiferido.setGT(cursor.getString(7));
+            solicitudDiferido.setGD(cursor.getString(8));
+            solicitudDiferido.setGL(cursor.getString(9));
+            return solicitudDiferido;
+        }else return null;
+    }
+    public boolean verificarIntegridadReferencial(Object object, int relacion) throws SQLException{
 
         switch (relacion){
+            //verificar que exista alumno
             case 1:
-                Usuario user = (Usuario)object;
-                String [] id = {user.getUsername()};
-                Cursor cursor = db.query("usuario",null,"username = ?", id,null,null,null);
-                if(cursor.moveToFirst()){
-                    return true;
-                }
-                else return false;
+            SolicitudDiferido soli = (SolicitudDiferido) object;
+            String[] id = {soli.getIdSolicitud()};
+            abrir();
+            Cursor c2 = db.query("SolicitudDiferido", null, "idSolicitudDiferudi = ?", id, null, null,
+                    null);
+            if(c2.moveToFirst()){
+                //Se encontro el registro
+                return true;
+            }
+            return false;
 
 
             default: return false;
         }
 
-    }*/
+    }
 
 }

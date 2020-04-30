@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -41,6 +42,8 @@ public class Diferido_insertar extends AppCompatActivity {
         editHoraEval = (EditText) findViewById(R.id.editHoraRealizada);
         editMotivo = (EditText) findViewById(R.id.editMotivo);
         motivos = (Spinner) findViewById(R.id.spinMotivos);
+        editFechaEval.setInputType(InputType.TYPE_NULL);
+        editHoraEval.setInputType(InputType.TYPE_NULL);
 
 
         sMonthIni = c.get(Calendar.MONTH);

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="20dip"
     tools:context="sv.edu.ues.eisi.fia.procesosadministrativosfia.Diferido_insertar">
     <TableRow>
     <TextView
@@ -110,8 +111,8 @@
             android:layout_height="wrap_content"
             android:text="@string/motivos"/>
         <Spinner android:id="@+id/spinMotivos"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_width="250dip"
             android:entries="@array/motivos"
             android:textAlignment="center"
             android:gravity="center_horizontal" />
