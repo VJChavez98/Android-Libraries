@@ -3,16 +3,23 @@ package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.widget.DatePicker;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import java.sql.Date;
+import java.util.Calendar;
 
 public class Evaluacion_insertar extends Activity {
     ControladorBase helper;
-    EditText editAsignatura, editCiclo, editTipoEvaluacion, editFecha, editNumero, editEvaluacion;
+    EditText editAsignatura, editCiclo, editNumero, editTipoEvaluacion, editEvaluacion, editFecha;
+    private int nYearIni, nMonthIni, nDayIni, sYearIni, sMonthIni, sDayIni;
+    static final int DATE_ID = 0;
+    Calendar c = Calendar.getInstance();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,6 +32,39 @@ public class Evaluacion_insertar extends Activity {
         editEvaluacion = (EditText) findViewById(R.id.editCodigo);
         editFecha = (EditText) findViewById(R.id.editFechaeval);
         editNumero = (EditText) findViewById(R.id.editNumeval);
+
+        sMonthIni = c.get(Calendar.MONTH);
+        sDayIni = c.get(Calendar.DAY_OF_MONTH);
+        sYearIni = c.get(Calendar.YEAR);
+
+        editFecha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                showDialog(DATE_ID);
+            }
+        });
+    }
+
+    private void colocar_fecha() {
+        editFecha.setText( nDayIni + "-" + (nMonthIni + 1) + "-" + nYearIni );
+    }
+    private DatePickerDialog.OnDateSetListener mDateSetListener =
+            new DatePickerDialog.OnDateSetListener() {
+                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                    nYearIni = year;
+                    nMonthIni = monthOfYear;
+                    nDayIni = dayOfMonth;
+                    colocar_fecha();
+                }
+            };
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+            case DATE_ID:
+                return new DatePickerDialog(this, mDateSetListener, sYearIni, sMonthIni, sDayIni);
+        }
+        return null;
     }
 
     public void insertarEvaluacion(View v){

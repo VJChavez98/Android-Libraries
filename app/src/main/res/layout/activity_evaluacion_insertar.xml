@@ -2,6 +2,7 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:paddingTop="10dip"
     android:stretchColumns="1">
 
@@ -54,7 +55,11 @@
             android:text="@string/fecha" />
         <EditText
             android:id="@+id/editFechaeval"
-            android:inputType="date"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:hint="fecha"/>
     </TableRow>
 
     <TableRow>

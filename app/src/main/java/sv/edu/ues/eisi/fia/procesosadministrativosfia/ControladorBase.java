@@ -41,7 +41,7 @@ public class ControladorBase {
                 db.execSQL("CREATE TABLE asignatura(codasignatura VARCHAR(6) NOT NULL PRIMARY KEY, nomasignatura VARCHAR(30), unidadesval VARCHAR(1));");
                 db.execSQL("CREATE TABLE ciclo(codciclo VARCHAR(5) NOT NULL PRIMARY KEY, fechadesde DATE, fechahasta DATE);");
                 db.execSQL("CREATE TABLE tipoevaluacion(codtipoeval VARCHAR(2) NOT NULL PRIMARY KEY, nomtipoeval VARCHAR(20));");
-                db.execSQL("CREATE TABLE evaluacion(codevaluacion VARCHAR(10) NOT NULL, codasignatura VARCHAR(6) NOT NULL, codciclo VARCHAR(5) NOT NULL, codtipoeval VARCHAR(2) NOT NULL, numeroevaluacion INTEGER, fechaevaluacion DATE, PRIMARY KEY(codasignatura, codciclo, codtipoeval, codevaluacion));");
+                db.execSQL("CREATE TABLE evaluacion(codevaluacion VARCHAR(10) NOT NULL, codasignatura VARCHAR(6) NOT NULL, codciclo VARCHAR(5) NOT NULL, codtipoeval VARCHAR(2) NOT NULL, numeroeval INTEGER, fechaevaluacion DATE, PRIMARY KEY(codasignatura, codciclo, codtipoeval, codevaluacion));");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -112,8 +112,41 @@ public class ControladorBase {
         return regInsertados;
     }
 
-    public String insertar(Estudiante estudiante){
-        return "";
+    public String insertar(Ciclo ciclo){
+        String regInsertados = "Registro Insertado No. = ";
+        long contador = 0;
+
+        ContentValues cic = new ContentValues();
+        cic.put("codciclo", ciclo.getCodciclo());
+        cic.put("fechadesde", String.valueOf(ciclo.getFechadesde()));
+        cic.put("fechahasta", String.valueOf(ciclo.getFechahasta()));
+        contador = db.insert("ciclo", null, cic);
+
+        if(contador == -1 || contador == 0){
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar Insercion";
+        }else{
+            regInsertados = regInsertados + contador;
+        }
+
+        return regInsertados;
+    }
+
+    public String insertar(TipoEvaluacion tipoEval){
+        String regInsertados = "Registro Insertado No. = ";
+        long contador = 0;
+
+        ContentValues teval = new ContentValues();
+        teval.put("codtipoeval", tipoEval.getCodTipoEval());
+        teval.put("nomtipoeval", tipoEval.getNomTipoEval());
+        contador = db.insert("tipoevaluacion", null, teval);
+
+        if(contador == -1 || contador == 0){
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar Insercion";
+        }else{
+            regInsertados = regInsertados + contador;
+        }
+
+        return regInsertados;
     }
 
     public String insertar(Evaluacion evaluacion){
@@ -125,6 +158,7 @@ public class ControladorBase {
             evaluaciones.put("codasignatura", evaluacion.getCodAsignatura());
             evaluaciones.put("codciclo", evaluacion.getCodCiclo());
             evaluaciones.put("codtipoeval", evaluacion.getCodTipoEval());
+            evaluaciones.put("codevaluacion", evaluacion.getIdEvaluacion());
             evaluaciones.put("fechaevaluacion", String.valueOf(evaluacion.getFechaEvaluacion()));
             evaluaciones.put("numeroevaluacion", evaluacion.getNumeroEvaluacion());
             contador = db.insert("evaluacion", null, evaluaciones);
@@ -138,23 +172,16 @@ public class ControladorBase {
         return regInsertados;
     }
 
-    public boolean verificarIntegridadReferencial(Object object, int relacion) throws SQLException{
+    public boolean verificarIntegridadReferencial(Object dato, int relacion) throws SQLException{
         switch (relacion){
-            /*case 1: {
-                Usuario user = (Usuario) object;
-                String[] id = {user.getUsername()};
-                Cursor cursor = db.query("usuario", null, "username = ?", id, null, null, null);
-                if (cursor.moveToFirst()) {
-                    return true;
-                } else return false;
-            }*/
             case 1:
             {
                 //Verificar que al ingresar Evaluacion exista el TipoEvaluacion, Asignatura y Ciclo
-                Evaluacion evaluacion = (Evaluacion) object;
+                Evaluacion evaluacion = (Evaluacion) dato;
                 String[] id1 = {evaluacion.getCodAsignatura()};
                 String[] id2 = {evaluacion.getCodCiclo()};
                 String[] id3 = {evaluacion.getCodTipoEval()};
+                abrir();
 
                 Cursor cursor1 = db.query("asignatura", null, "codasignatura = ?", id1, null, null, null);
                 Cursor cursor2 = db.query("ciclo", null, "codciclo = ?", id2, null, null, null);
@@ -179,22 +206,22 @@ public class ControladorBase {
         final String[] TAnomasignatura = {"Matematicas I", "Fisicas I"};
         final String[] TAunidadesval = {"4", "4"};
 
-        /*final String[] TCcodciclo = {"12020", "22020"};
+        final String[] TCcodciclo = {"12020", "22020"};
         final Date[] TCfechadesde = {Date.valueOf("2020-02-20"), Date.valueOf("2020-10-08")};
-        final Date[] TCfechahasta = {Date.valueOf("2020-20-06"), Date.valueOf("2020-20-12")};
+        final Date[] TCfechahasta = {Date.valueOf("2020-06-20"), Date.valueOf("2020-12-20")};
 
         final String[] TTEcodtipoeval = {"EP", "ED", "EL"};
-        final String[] TTEnomtipoeval = {"Examen Parcial", "Examen Discusion", "Examen Laboratorio"};*/
+        final String[] TTEnomtipoeval = {"Examen Parcial", "Examen Discusion", "Examen Laboratorio"};
 
         abrir();
 
         db.execSQL("DELETE FROM usuario;");
         db.execSQL("DELETE FROM asignatura");
-        /*db.execSQL("DELETE FROM ciclo");
-        db.execSQL("DELETE FROM tipoevaluacion");*/
+        db.execSQL("DELETE FROM ciclo");
+        db.execSQL("DELETE FROM tipoevaluacion");
 
         Usuario user = new Usuario();
-        for (int i = 0; i<5; i++){
+        for (int i = 0; i<usersId.length; i++){
             user.setUsername(usersId[i]);
             user.setNombreUsuario(names[i]);
             user.setPassword(userPass[i]);
@@ -202,25 +229,27 @@ public class ControladorBase {
         }
 
         Asignatura asignatura = new Asignatura();
-        for (int i=0; i<2; i++){
+        for (int i=0; i<TAcodasignatura.length; i++){
             asignatura.setCodasignatura(TAcodasignatura[i]);
             asignatura.setNomasignatura(TAnomasignatura[i]);
             asignatura.setUnidadesval(TAunidadesval[i]);
             insertar(asignatura);
         }
 
-        /*Ciclo ciclo = new Ciclo();
-        for( int i=0; i<2; i++){
+        Ciclo ciclo = new Ciclo();
+        for( int i=0; i<TCcodciclo.length; i++){
             ciclo.setCodciclo(TCcodciclo[i]);
             ciclo.setFechadesde(TCfechadesde[i]);
             ciclo.setFechahasta(TCfechahasta[i]);
+            insertar(ciclo);
         }
 
         TipoEvaluacion tipoeval = new TipoEvaluacion();
-        for(int i=0; i<3; i++){
+        for(int i=0; i<TTEcodtipoeval.length; i++){
             tipoeval.setCodTipoEval(TTEcodtipoeval[i]);
             tipoeval.setNomTipoEval(TTEnomtipoeval[i]);
-        }*/
+            insertar(tipoeval);
+        }
 
         cerrar();
         return "Guardado correctamente";
