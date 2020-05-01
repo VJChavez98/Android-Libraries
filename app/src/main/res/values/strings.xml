@@ -13,6 +13,9 @@
     <string name="cancelarBtn">Cancelar</string>
     <string name="motivosOtro">Otro</string>
     <string name="evaluacion">Evaluacion</string>
+    <string name="codSolicitud">Codigo Solicitud</string>
+    <string name="hintCodigo">Codigo</string>
+    <string name="buscarBtn">Buscar</string>
     <string-array name="motivos">
         <item>Selecciona un motivo</item>
         <item>Salud</item>
