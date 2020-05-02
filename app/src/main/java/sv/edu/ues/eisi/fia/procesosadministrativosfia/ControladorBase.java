@@ -64,7 +64,7 @@ public class ControladorBase {
                 db.execSQL("CREATE TABLE DetalleDiferidoRepetido(idDetalleDiferidoRepetido CHARACTER(10) NOT NULL PRIMARY KEY,idLocal CHARACTER(10) NOT NULL, idEvaluacion CHARACTER(10) NOT NULL, idDocente CHARACTER(10) NOT NULL, idTipoDiferidoRepetido CHARACTER(10) NOT NULL,idTipo CHARACTER(10) NOT NULL, fechaDesde DATE NOT NULL, fechaHasta DATE NOT NULL, fechaRealizacion DATE NOT NULL, horaRealizacion TIME NOT NULL, FOREIGN KEY (idLocal) REFERENCES Local(idLocal),  FOREIGN KEY (idEvaluacion) REFERENCES Evaluacion(idEvaluacion),  FOREIGN KEY (idDocente) REFERENCES Docente(idDocente),  FOREIGN KEY (idTipoDiferidoRepetido) REFERENCES TipoDiferidoRepetido (idTipoDiferidoRepetido));");
                 db.execSQL("CREATE TABLE DetalleEstudianteDiferido(idEstudianteDiferido CHARACTER(10) NOT NULL PRIMARY KEY, carnet CHARACTER(7) NOT NULL, idDetalleDiferidoRepetido CHARACTER(10) NOT NULL,FechaInscripcionDiferido DATE NOT NULL ,FOREIGN KEY (carnet) REFERENCES Estudiante(carnet),FOREIGN KEY (idDetalleDiferidoRepetido) REFERENCES DetalleDiferidoRepedito(idDetalleDiferidoRepetido))");
                 db.execSQL("CREATE TABLE DetalleEstudianteRepetido(idDetalleEstudianteRepetido CHARACTER(10) NOT NULL PRIMARY KEY, carnet CHARACTER(7) NOT NULL, idDetalleDiferidoRepetido CHARACTER(10) NOT NULL, fechaInscripcionRepetido DATE NOT NULL, FOREIGN KEY (carnet) REFERENCES Estudiante(carnet), FOREIGN KEY (idDetalleDiferidoRepetido) REFERENCES DetalleDiferidoRepetido(idDetalleDiferidoRepetido))");
-                db.execSQL("CREATE TABLE SolicitudDiferido(idSolicitudDiferido NOT NULL  PRIMARY KEY  UNIQUE, carnet VARCHAR(7) NOT NULL, idEvaluacion CHARACTER(10) NOT NULL, idMotivoDiferido CHARACTER(13) NOT NULL, fechaEvaluacion DATE NOT NULL,  horaEvaluacion TIME NOT NULL, descripcionMotivo VARCHAR(256), idAsignatura CHARACTER(6) NOT NULL, GT NUMERIC(2,0) NOT NULL, GD NUMERIC(2,0) NOT NULL, GL NUMERIC(2,0) )");
+                db.execSQL("CREATE TABLE SolicitudDiferido(idSolicitudDiferido NOT NULL  PRIMARY KEY  UNIQUE, carnet VARCHAR(7) NOT NULL, idEvaluacion CHARACTER(10) NOT NULL, idMotivoDiferido CHARACTER(13) NOT NULL, fechaEvaluacion DATE NOT NULL,  horaEvaluacion TIME NOT NULL, descripcionMotivo VARCHAR(256), idAsignatura CHARACTER(6) NOT NULL, GT NUMERIC(2,0) NOT NULL, GD NUMERIC(2,0) NOT NULL, GL NUMERIC(2,0), tipoEvaluacion CHARACTER(2) )");
 
                 //Finaliza sector de tablas con llaves foraneas
             } catch (SQLException e) {
@@ -127,6 +127,7 @@ public class ControladorBase {
         contentValues.put("idSolicitudDiferido", solicitudDiferido.getIdSolicitud());
         contentValues.put("carnet",solicitudDiferido.getCarnet());
         contentValues.put("idEvaluacion",solicitudDiferido.getCodEva());
+        contentValues.put("tipoEvaluacion", solicitudDiferido.getTipoEva());
         contentValues.put("idMotivoDiferido", solicitudDiferido.getMotivo());
         contentValues.put("fechaEvaluacion", solicitudDiferido.getFechaEva());
         contentValues.put("horaEvaluacion", solicitudDiferido.getHoraEva());
@@ -198,6 +199,7 @@ public class ControladorBase {
             solicitudDiferido.setGT(cursor.getString(8));
             solicitudDiferido.setGD(cursor.getString(9));
             solicitudDiferido.setGL(cursor.getString(10));
+            solicitudDiferido.setTipoEva(cursor.getString(11));
             return solicitudDiferido;
         }else return null;
     }

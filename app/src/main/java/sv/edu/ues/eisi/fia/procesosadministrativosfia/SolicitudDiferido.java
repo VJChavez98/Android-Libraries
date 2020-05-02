@@ -62,17 +62,6 @@ public class SolicitudDiferido {
     public String getTipoEva() {
         return tipoEva;
     }
-    public int getTipoEva(String tipoEva){
-        switch (tipoEva){
-            case "EP":
-                return 1;
-            case"ED":
-                return 2;
-            case "EL":
-                return 3;
-            default: return 0;
-        }
-    }
 
     public void setTipoEva(String tipoEva) {
         this.tipoEva = tipoEva;
@@ -96,23 +85,6 @@ public class SolicitudDiferido {
 
     public String getMotivo() {
         return motivo;
-    }
-    public int getMotivo(String tipoEva){
-        switch (tipoEva){
-            case "Salud":
-                return 1;
-            case"Trabajo":
-                return 2;
-            case "Interferencia":
-                return 3;
-            case "Viaje":
-                return 4;
-            case "Duelo":
-                return 5;
-            case "Otro":
-                return 6;
-            default: return 0;
-        }
     }
 
     public void setMotivo(String motivo) {

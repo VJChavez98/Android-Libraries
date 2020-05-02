@@ -24,7 +24,6 @@
             android:text="@string/evaluacion"/>
         <EditText android:id="@+id/editCodEva"
             android:layout_width="200dip"
-            android:paddingLeft="50dip"
             android:layout_height="wrap_content"
             android:inputType="none"
             android:maxLength="18"/>
@@ -41,6 +40,7 @@
 
     <TableRow>
         <TextView
+            android:id="@+id/lblCodMat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/codAsignatura"/>
@@ -52,18 +52,18 @@
     </TableRow>
     <TableRow>
         <TextView
+            android:id="@+id/lblTipoEval"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tipoEval"/>
-        <Spinner android:id="@+id/spinTipoEval"
+        <EditText android:id="@+id/editTipoEvaluacion"
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
-            android:entries="@array/tipo"
-            android:textAlignment="center"
-            android:gravity="center_horizontal" />
+            />
     </TableRow>
     <TableRow>
         <TextView
+            android:id="@+id/lblGT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/GrupoTeorico"/>
@@ -75,6 +75,7 @@
     </TableRow>
     <TableRow>
         <TextView
+            android:id="@+id/lblGD"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/grupoDiscusion"/>
@@ -86,6 +87,7 @@
     </TableRow>
     <TableRow>
         <TextView
+            android:id="@+id/lblGL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/grupoLab"/>
@@ -97,6 +99,7 @@
     </TableRow>
     <TableRow>
         <TextView
+            android:id="@+id/lblFecha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/fechaRealizada"/>
@@ -107,6 +110,7 @@
     </TableRow>
     <TableRow>
         <TextView
+            android:id="@+id/lblHora"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/horaRealizada"/>
@@ -117,15 +121,13 @@
     </TableRow>
     <TableRow>
         <TextView
+            android:id="@+id/lblMotivo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/motivos"/>
-        <Spinner android:id="@+id/spinMotivos"
+        <EditText android:id="@+id/editMotivos"
             android:layout_height="wrap_content"
-            android:layout_width="250dip"
-            android:entries="@array/motivos"
-            android:textAlignment="center"
-            android:gravity="center_horizontal" />
+            android:layout_width="fill_parent" />
 
     </TableRow>
     <TableRow>
