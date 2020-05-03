@@ -16,6 +16,7 @@
     <string name="codSolicitud">Codigo Solicitud</string>
     <string name="hintCodigo">Codigo</string>
     <string name="buscarBtn">Buscar</string>
+    <string name="eliminarBtn">Eliminar</string>
     <string-array name="motivos">
         <item>Selecciona un motivo</item>
         <item>Salud</item>

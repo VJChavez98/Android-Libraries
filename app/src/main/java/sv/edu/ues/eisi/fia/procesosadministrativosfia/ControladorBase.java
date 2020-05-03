@@ -119,6 +119,8 @@ public class ControladorBase {
     public String insertar(Estudiante estudiante){
         return "";
     }
+
+
     public String insertar(SolicitudDiferido solicitudDiferido){
         String regAfectados = "Registro insertado Nª= ";
         long contador = 0;
@@ -146,6 +148,22 @@ public class ControladorBase {
         }
         return regAfectados;
     }
+    public String actualizar(SolicitudDiferido solicitudDiferido){
+        if(verificarIntegridadReferencial(solicitudDiferido, 1)){
+            String[] id = {solicitudDiferido.getIdSolicitud()};
+            ContentValues cv = new ContentValues();
+            cv.put("fechaEvaluacion", solicitudDiferido.getFechaEva());
+            cv.put("horaEvaluacion", solicitudDiferido.getHoraEva());
+            cv.put("motivo", solicitudDiferido.getMotivo());
+            cv.put("descripcionOtro",solicitudDiferido.getOtroMotivo());
+            db.update("SolicitudDiferido", cv, "idSolicitudDiferido = ?", id);
+            return "Registro Actualizado Correctamente";
+        }else{
+            return "Registro no existe";
+        }
+
+
+    }
     public String insertar(MotivoDiferido motivoDiferido){
         String regAfectados = "Registro insertado Nª= ";
         long contador = 0;
@@ -159,6 +177,55 @@ public class ControladorBase {
             regAfectados=regAfectados+contador;
         }
         return regAfectados;
+    }
+
+    public SolicitudDiferido consultarSolicitudDiferido(String carnet, String codEvaluacion){
+        String[] id = {carnet+codEvaluacion};
+        Cursor cursor = db.query("SolicitudDiferido",null,"idSolicitudDiferido = ?",id,null,null,null );
+        if (cursor.moveToFirst()){
+            SolicitudDiferido solicitudDiferido = new SolicitudDiferido();
+            solicitudDiferido.setIdSolicitud(cursor.getString(0));
+            solicitudDiferido.setCarnet(cursor.getString(1));
+            solicitudDiferido.setCodEva(cursor.getString(2));
+            solicitudDiferido.setMotivo(cursor.getString(3));
+            solicitudDiferido.setFechaEva(cursor.getString(4));
+            solicitudDiferido.setHoraEva(cursor.getString(5));
+            solicitudDiferido.setOtroMotivo(cursor.getString(6));
+            solicitudDiferido.setCodMateria(cursor.getString(7));
+            solicitudDiferido.setGT(cursor.getString(8));
+            solicitudDiferido.setGD(cursor.getString(9));
+            solicitudDiferido.setGL(cursor.getString(10));
+            solicitudDiferido.setTipoEva(cursor.getString(11));
+            return solicitudDiferido;
+        }else return null;
+    }
+    public String eliminar(SolicitudDiferido solicitudDiferido){
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        contador+=db.delete("SolicitudDiferido", "idSolicitudDiferido='"+solicitudDiferido.getIdSolicitud()+"'", null);
+        regAfectados+=contador;
+        return regAfectados;
+
+
+    }
+    public boolean verificarIntegridadReferencial(Object object, int relacion) throws SQLException{
+
+        switch (relacion){
+            case 1:
+            {
+                SolicitudDiferido solicitudDiferido = (SolicitudDiferido) object;
+                String[] id = {solicitudDiferido.getIdSolicitud()};
+                abrir();
+                Cursor cursor = db.query("SolicitudDiferido", null, "idSolicitudDiferido = ?", id, null, null,
+                        null);
+                if(cursor.moveToFirst()){
+                    return true;
+                }
+                return false;
+            }
+            default: return false;
+        }
+
     }
     public String LlenarDatos(){
         final String[] usersId = {"CM17048","RM17039","AG17023","MM14030","PR17017"};
@@ -182,47 +249,6 @@ public class ControladorBase {
         }
         cerrar();
         return "Guardado correctamente";
-    }
-    public SolicitudDiferido consultarSolicitudDiferido(String carnet, String codEvaluacion){
-        String[] id = {carnet+codEvaluacion};
-        Cursor cursor = db.query("SolicitudDiferido",null,"idSolicitudDiferido = ?",id,null,null,null );
-        if (cursor.moveToFirst()){
-            SolicitudDiferido solicitudDiferido = new SolicitudDiferido();
-            solicitudDiferido.setIdSolicitud(cursor.getString(0));
-            solicitudDiferido.setCarnet(cursor.getString(1));
-            solicitudDiferido.setCodEva(cursor.getString(2));
-            solicitudDiferido.setMotivo(cursor.getString(3));
-            solicitudDiferido.setFechaEva(cursor.getString(4));
-            solicitudDiferido.setHoraEva(cursor.getString(5));
-            solicitudDiferido.setOtroMotivo(cursor.getString(6));
-            solicitudDiferido.setCodMateria(cursor.getString(7));
-            solicitudDiferido.setGT(cursor.getString(8));
-            solicitudDiferido.setGD(cursor.getString(9));
-            solicitudDiferido.setGL(cursor.getString(10));
-            solicitudDiferido.setTipoEva(cursor.getString(11));
-            return solicitudDiferido;
-        }else return null;
-    }
-    public boolean verificarIntegridadReferencial(Object object, int relacion) throws SQLException{
-
-        switch (relacion){
-            //verificar que exista alumno
-            case 1:
-            SolicitudDiferido soli = (SolicitudDiferido) object;
-            String[] id = {soli.getIdSolicitud()};
-            abrir();
-            Cursor c2 = db.query("SolicitudDiferido", null, "idSolicitudDiferudi = ?", id, null, null,
-                    null);
-            if(c2.moveToFirst()){
-                //Se encontro el registro
-                return true;
-            }
-            return false;
-
-
-            default: return false;
-        }
-
     }
 
 }
