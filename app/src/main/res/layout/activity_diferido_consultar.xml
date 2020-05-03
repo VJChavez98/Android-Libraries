@@ -30,12 +30,12 @@
     </TableRow>
 
     <TableRow>
-        <Button android:id="@+id/BuscarBtn"
-            android:onClick="consultarSolicitudDiferido"
-            android:text="@string/buscarBtn"/>
         <Button android:id="@+id/cancelarBtn"
             android:onClick="limpiarTexto"
             android:text="@string/cancelarBtn"/>
+        <Button android:id="@+id/BuscarBtn"
+            android:onClick="consultarSolicitudDiferido"
+            android:text="@string/buscarBtn"/>
     </TableRow>
 
     <TableRow>
@@ -56,10 +56,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tipoEval"/>
-        <EditText android:id="@+id/editTipoEvaluacion"
-            android:layout_height="wrap_content"
+        <Spinner android:id="@+id/spinTipoEval"
             android:layout_width="fill_parent"
-            />
+            android:layout_height="wrap_content"
+            android:entries="@array/tipo"/>
     </TableRow>
     <TableRow>
         <TextView
@@ -125,9 +125,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/motivos"/>
-        <EditText android:id="@+id/editMotivos"
+        <Spinner android:id="@+id/spinMotivos"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_width="fill_parent" />
+            android:entries="@array/motivos"/>
 
     </TableRow>
     <TableRow>
@@ -140,6 +141,14 @@
             android:layout_height="wrap_content"
             android:inputType="none"
             android:layout_width="fill_parent"/>
+    </TableRow>
+    <TableRow>
+        <Button android:id="@+id/EliminarBtn"
+            android:onClick="EliminarSolicitud"
+            android:text="@string/eliminarBtn"/>
+        <Button android:id="@+id/ModificarBtn"
+            android:onClick="ModificarSolicitudDiferido"
+            android:text="@string/modificarBtn"/>
     </TableRow>
     
 </TableLayout>

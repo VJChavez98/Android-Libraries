@@ -8,6 +8,7 @@ import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -23,6 +24,7 @@ public class Diferido_insertar extends AppCompatActivity {
     Spinner motivos, spinTipo;
     private int nYearIni, nMonthIni, nDayIni, sYearIni, sMonthIni, sDayIni, sHour, nHour, sMinute, nMinute;
     static final int DATE_ID = 0, HOUR_ID=1;
+    String[] tipos ={"Seleccione el tipo de evaluacion","EP","ED","EL"};
     Calendar c = Calendar.getInstance();
 
 
@@ -44,6 +46,8 @@ public class Diferido_insertar extends AppCompatActivity {
         motivos = (Spinner) findViewById(R.id.spinMotivos);
         editFechaEval.setInputType(InputType.TYPE_NULL);
         editHoraEval.setInputType(InputType.TYPE_NULL);
+
+        spinTipo.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,tipos));
 
 
         sMonthIni = c.get(Calendar.MONTH);

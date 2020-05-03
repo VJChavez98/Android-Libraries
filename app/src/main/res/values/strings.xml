@@ -17,6 +17,7 @@
     <string name="hintCodigo">Codigo</string>
     <string name="buscarBtn">Buscar</string>
     <string name="eliminarBtn">Eliminar</string>
+    <string name="modificarBtn">Modificar</string>
     <string-array name="motivos">
         <item>Selecciona un motivo</item>
         <item>Salud</item>
@@ -27,6 +28,7 @@
         <item>Otro</item>
     </string-array>
     <string-array name="tipo">
+        <item>Seleccione el tipo de evaluación</item>
         <item>EP</item>
         <item>ED</item>
         <item>EL</item>

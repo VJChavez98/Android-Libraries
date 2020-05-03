@@ -149,18 +149,19 @@ public class ControladorBase {
         return regAfectados;
     }
     public String actualizar(SolicitudDiferido solicitudDiferido){
-        if(verificarIntegridadReferencial(solicitudDiferido, 1)){
+        if (verificarIntegridadReferencial(solicitudDiferido,1)){
             String[] id = {solicitudDiferido.getIdSolicitud()};
             ContentValues cv = new ContentValues();
+            cv.put("GT",solicitudDiferido.getGT());
+            cv.put("GD",solicitudDiferido.getGD());
+            cv.put("GL",solicitudDiferido.getGL());
             cv.put("fechaEvaluacion", solicitudDiferido.getFechaEva());
             cv.put("horaEvaluacion", solicitudDiferido.getHoraEva());
-            cv.put("motivo", solicitudDiferido.getMotivo());
-            cv.put("descripcionOtro",solicitudDiferido.getOtroMotivo());
+            cv.put("idMotivoDiferido", solicitudDiferido.getMotivo());
+            cv.put("descripcionMotivo",solicitudDiferido.getOtroMotivo());
             db.update("SolicitudDiferido", cv, "idSolicitudDiferido = ?", id);
             return "Registro Actualizado Correctamente";
-        }else{
-            return "Registro no existe";
-        }
+        }else return "Registro no existe";
 
 
     }
@@ -205,8 +206,6 @@ public class ControladorBase {
         contador+=db.delete("SolicitudDiferido", "idSolicitudDiferido='"+solicitudDiferido.getIdSolicitud()+"'", null);
         regAfectados+=contador;
         return regAfectados;
-
-
     }
     public boolean verificarIntegridadReferencial(Object object, int relacion) throws SQLException{
 

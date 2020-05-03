@@ -71,7 +71,6 @@
         <Spinner android:id="@+id/spinTipoEval"
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
-            android:entries="@array/tipo"
             android:textAlignment="center"
             android:gravity="center_horizontal" />
     </TableRow>
