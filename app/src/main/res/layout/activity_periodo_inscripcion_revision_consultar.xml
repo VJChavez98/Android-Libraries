@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/codtiporev"/>
+    <Spinner android:id="@+id/spinTipoRev"
+        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:entries="@array/tipoEval"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/codasignatura" />
+    <EditText
+        android:id="@+id/editCodasignatura"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:maxLength="6"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/codtipoeval"/>
+    <Spinner android:id="@+id/spinTipoEval"
+        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:entries="@array/tipoRevision"
+        android:textAlignment="center"
+        android:gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/codciclo" />
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editCodciclo"
+        android:inputType="number"
+        android:maxLength="5"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/evaluacion_numero" />
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editNumeval"
+        android:inputType="number"
+        android:maxLength="1"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="consultarPeriodoRevision"
+            android:text="@string/consultar" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="limpiarTexto"
+            android:text="Limpiar" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/codDocente" />
+    <EditText
+        android:id="@+id/editCoddocente"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:cursorVisible="false"
+        android:longClickable="false"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/codlocal" />
+    <EditText
+        android:id="@+id/editCodlocal"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:cursorVisible="false"
+        android:longClickable="false"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fechaDesde" />
+    <EditText
+        android:id="@+id/editFechaDesdeRev"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:cursorVisible="false"
+        android:longClickable="false"
+        android:inputType="textPersonName"
+        android:ems="10"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fechaHasta" />
+    <EditText
+        android:id="@+id/editFechaHastaRev"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:cursorVisible="false"
+        android:longClickable="false"
+        android:inputType="textPersonName"
+        android:ems="10"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fechaRevision" />
+    <EditText
+        android:id="@+id/editFechaRev"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:cursorVisible="false"
+        android:longClickable="false"
+        android:inputType="textPersonName"
+        android:ems="10"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/horaRevision"/>
+    <EditText android:id="@+id/editHoraRevision"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:cursorVisible="false"
+        android:longClickable="false"
+        android:inputType="text"/>
+
+</TableLayout>

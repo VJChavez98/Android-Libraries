@@ -9,14 +9,15 @@ import android.widget.DatePicker;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.sql.Date;
 import java.util.Calendar;
 
-public class Evaluacion_insertar extends Activity {
+public class Evaluacion_insertar extends Activity{
     ControladorBase helper;
-    EditText editAsignatura, editCiclo, editNumero, editTipoEvaluacion, editEvaluacion, editFecha;
+    EditText editAsignatura, editCiclo, editNumero, editFecha;
+    Spinner spinTipoeval;
     private int nYearIni, nMonthIni, nDayIni, sYearIni, sMonthIni, sDayIni;
     static final int DATE_ID = 0;
     Calendar c = Calendar.getInstance();
@@ -28,10 +29,9 @@ public class Evaluacion_insertar extends Activity {
         helper = new ControladorBase(this);
         editAsignatura = (EditText) findViewById(R.id.editCodasignatura);
         editCiclo = (EditText) findViewById(R.id.editCodciclo);
-        editTipoEvaluacion = (EditText) findViewById(R.id.editCodtipoeval);
-        editEvaluacion = (EditText) findViewById(R.id.editCodigo);
         editFecha = (EditText) findViewById(R.id.editFechaeval);
         editNumero = (EditText) findViewById(R.id.editNumeval);
+        spinTipoeval = (Spinner) findViewById(R.id.spinTipoEval);
 
         sMonthIni = c.get(Calendar.MONTH);
         sDayIni = c.get(Calendar.DAY_OF_MONTH);
@@ -47,7 +47,15 @@ public class Evaluacion_insertar extends Activity {
     }
 
     private void colocar_fecha() {
-        editFecha.setText( nDayIni + "-" + (nMonthIni + 1) + "-" + nYearIni );
+        if(String.valueOf(nMonthIni).length() == 1 && String.valueOf(nDayIni).length() == 1){
+            editFecha.setText( nYearIni + "-0" + (nMonthIni + 1) + "-0" +  nDayIni );
+        }else if(String.valueOf(nMonthIni).length() == 1){
+            editFecha.setText( nYearIni + "-0" + (nMonthIni + 1) + "-" +  nDayIni );
+        }else if(String.valueOf(nDayIni).length() == 1){
+            editFecha.setText( nYearIni + "-" + (nMonthIni + 1) + "-0" +  nDayIni );
+        }else{
+            editFecha.setText( nYearIni + "-" + (nMonthIni + 1) + "-" +  nDayIni );
+        }
     }
     private DatePickerDialog.OnDateSetListener mDateSetListener =
             new DatePickerDialog.OnDateSetListener() {
@@ -70,17 +78,23 @@ public class Evaluacion_insertar extends Activity {
     public void insertarEvaluacion(View v){
         String asignatura = editAsignatura.getText().toString();
         String ciclo = editCiclo.getText().toString();
-        String tipoEval = editTipoEvaluacion.getText().toString();
-        String evaluacion = editEvaluacion.getText().toString();
         String fecha = editFecha.getText().toString();
         Integer numero = Integer.valueOf(editNumero.getText().toString());
+        String tipoEval = spinTipoeval.getSelectedItem().toString();
         String regInsertados;
+
+        if(tipoEval == "Examen Parcial"){
+            tipoEval = "EP";
+        }else if(tipoEval == "Examen Discusion"){
+            tipoEval = "ED";
+        }else{
+            tipoEval = "EL";
+        }
 
         Evaluacion eval = new Evaluacion();
         eval.setCodAsignatura(asignatura);
         eval.setCodCiclo(ciclo);
         eval.setCodTipoEval(tipoEval);
-        eval.setIdEvaluacion(evaluacion);
         eval.setFechaEvaluacion(fecha);
         eval.setNumeroEvaluacion(numero);
         helper.abrir();
@@ -92,8 +106,7 @@ public class Evaluacion_insertar extends Activity {
     public void limpiarTexto(View v){
         editAsignatura.setText("");
         editCiclo.setText("");
-        editTipoEvaluacion.setText("");
-        editEvaluacion.setText("");
+        spinTipoeval.setSelection(0);
         editFecha.setText("");
         editNumero.setText("");
     }

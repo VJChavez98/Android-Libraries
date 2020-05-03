@@ -1,78 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <TableRow>
-        <TextView
-            android:text="@string/codasignatura" />
-        <EditText
-            android:id="@+id/editCodasignatura"
-            android:layout_width="200dp"
-            android:inputType="text"
-            android:maxLength="6" />
-    </TableRow>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/codasignatura"/>
+    <EditText
+        android:id="@+id/editCodasignatura"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:maxLength="6" />
 
-    <TableRow>
-        <TextView
-            android:text="@string/codtipoeval" />
-        <EditText
-            android:id="@+id/editCodtipoeval"
-            android:layout_width="200dp"
-            android:inputType="text"
-            android:maxLength="2" />
-    </TableRow>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/codtipoeval"/>
+    <Spinner android:id="@+id/spinTipoEval"
+        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:entries="@array/tipoEval"
+        android:textAlignment="center"
+        android:gravity="center_horizontal" />
 
-    <TableRow>
-        <TextView
-            android:text="@string/codciclo" />
-        <EditText
-            android:id="@+id/editCodciclo"
-            android:layout_width="200dp"
-            android:inputType="text"
-            android:maxLength="5" />
-    </TableRow>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/codciclo" />
+    <EditText
+        android:id="@+id/editCodciclo"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:maxLength="5"/>
 
-    <TableRow>
-        <TextView
-            android:text="@string/evaluacion_codigo" />
-        <EditText
-            android:id="@+id/editCodigo"
-            android:inputType="text"
-            android:maxLength="10" />
-    </TableRow>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/evaluacion_numero" />
+    <EditText
+        android:id="@+id/editNumeval"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:maxLength="1"/>
 
-    <TableRow>
-        <TextView
-            android:text="@string/evaluacion_numero" />
-        <EditText
-            android:id="@+id/editNumeval"
-            android:inputType="number"/>
-    </TableRow>
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
 
-    <TableRow>
-        <TextView
-            android:text="@string/fecha" />
-        <EditText
-            android:id="@+id/editFechaeval"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="datetime"/>
-    </TableRow>
-
-    <TableRow>
         <Button
+            android:id="@+id/botonConsultar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="insertarEvaluacion"
-            android:text="@string/insertar" />
+            android:onClick="consultarEvaluacion"
+            android:text="@string/consultar" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="limpiarTexto"
             android:text="Limpiar" />
-    </TableRow>
+    </LinearLayout>
 
-</TableLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fecha" />
+    <EditText
+        android:id="@+id/editFechaeval"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:cursorVisible="false"
+        android:longClickable="false"
+        android:inputType="textPersonName"
+        android:ems="10"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/codasignatura" />
+    <EditText
+        android:id="@+id/editNomasignatura"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:cursorVisible="false"
+        android:longClickable="false" />
+
+
+</LinearLayout>
