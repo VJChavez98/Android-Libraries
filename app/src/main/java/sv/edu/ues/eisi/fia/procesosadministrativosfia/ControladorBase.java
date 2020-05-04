@@ -64,14 +64,8 @@ public class ControladorBase {
                 * Sector de creacion de tablas sin llaves foraneas
                 *
                  */
-                db.execSQL("CREATE TABLE Usuario(username VARCHAR(7) NOT NULL PRIMARY KEY, password VARCHAR(10), nombre_usuario VARCHAR (256));");
                 db.execSQL("CREATE TABLE Estudiante(carnet VARCHAR(7) NOT NULL PRIMARY KEY, nombreEstudiante VARCHAR(50), apellidoEstudiante VARCHAR(50), carrera VARCHAR(50))");
-                db.execSQL("CREATE TABLE Ciclo(idCiclo CHARACTER(5) NOT NULL PRIMARY KEY, fechaDesde DATE NOT NULL, fechaHasta DATE NOT NULL )");
-                db.execSQL("CREATE TABLE Docente(idDocente CHARACTER(10) NOT NULL PRIMARY KEY, nombreDocente VARCHAR(50) NOT NULL, apellidoDocente VARCHAR(50) NOT NULL)");
-                db.execSQL("CREATE TABLE TipoEval(idTipoEval CHARACTER(2) NOT NULL PRIMARY KEY, nombreTipoEval VARCHAR(20) NOT NULL)");
-                db.execSQL("CREATE TABLE Local(idLocal CHARACTER(10) NOT NULL PRIMARY KEY, nombreLocal VARCHAR(50) NOT NULL, ubicacion VARCHAR(50))");
                 db.execSQL("CREATE TABLE TipoDiferidoRepetido(idTipoDiferidoRepetido CHARACTER(10) NOT NULL PRIMARY KEY, nombreTipo VARCHAR(50));");
-                db.execSQL("CREATE TABLE Asignatura(idAsignatura CHARACTER(6) NOT NULL PRIMARY KEY, nombreAsignatura VARCHAR(50) NOT NULL)");
                 db.execSQL("CREATE TABLE MotivoDiferido(nombreMotivo CHARACTER(13) NOT NULL PRIMARY KEY)");
                 //Finaliza sector de tablas sin llaves foraneas
 
@@ -82,7 +76,6 @@ public class ControladorBase {
                  */
 
 
-                db.execSQL("CREATE TABLE Evaluacion(idEvaluacion CHARACTER(10) NOT NULL PRIMARY KEY, idTipoEval CHARACTER(2) NOT NULL, idCiclo CHARACTER(5) NOT NULL, idAsignatura CHARACTER(6) NOT NULL, numeroEvaluacion NUMBER(12,2) NOT NULL, fechaEvaluacion DATE NOT NULL, FOREIGN KEY (idTipoEval) REFERENCES TipoEval(idTipoEval), FOREIGN KEY (idCiclo) REFERENCES Ciclo(idCiclo), FOREIGN KEY (idAsignatura) REFERENCES Asignatura(idAsignatura))");
                 db.execSQL("CREATE TABLE DetalleDiferidoRepetido(idDetalleDiferidoRepetido CHARACTER(10) NOT NULL PRIMARY KEY,idLocal CHARACTER(10) NOT NULL, idEvaluacion CHARACTER(10) NOT NULL, idDocente CHARACTER(10) NOT NULL, idTipoDiferidoRepetido CHARACTER(10) NOT NULL,idTipo CHARACTER(10) NOT NULL, fechaDesde DATE NOT NULL, fechaHasta DATE NOT NULL, fechaRealizacion DATE NOT NULL, horaRealizacion TIME NOT NULL, FOREIGN KEY (idLocal) REFERENCES Local(idLocal),  FOREIGN KEY (idEvaluacion) REFERENCES Evaluacion(idEvaluacion),  FOREIGN KEY (idDocente) REFERENCES Docente(idDocente),  FOREIGN KEY (idTipoDiferidoRepetido) REFERENCES TipoDiferidoRepetido (idTipoDiferidoRepetido));");
                 db.execSQL("CREATE TABLE DetalleEstudianteDiferido(idEstudianteDiferido CHARACTER(10) NOT NULL PRIMARY KEY, carnet CHARACTER(7) NOT NULL, idDetalleDiferidoRepetido CHARACTER(10) NOT NULL,FechaInscripcionDiferido DATE NOT NULL ,FOREIGN KEY (carnet) REFERENCES Estudiante(carnet),FOREIGN KEY (idDetalleDiferidoRepetido) REFERENCES DetalleDiferidoRepedito(idDetalleDiferidoRepetido))");
                 db.execSQL("CREATE TABLE DetalleEstudianteRepetido(idDetalleEstudianteRepetido CHARACTER(10) NOT NULL PRIMARY KEY, carnet CHARACTER(7) NOT NULL, idDetalleDiferidoRepetido CHARACTER(10) NOT NULL, fechaInscripcionRepetido DATE NOT NULL, FOREIGN KEY (carnet) REFERENCES Estudiante(carnet), FOREIGN KEY (idDetalleDiferidoRepetido) REFERENCES DetalleDiferidoRepetido(idDetalleDiferidoRepetido))");
@@ -137,6 +130,92 @@ public class ControladorBase {
         }else {
             regAfectados=regAfectados+contador;
         }
+        return regAfectados;
+    }
+    public String insertar(SolicitudDiferido solicitudDiferido){
+        String regAfectados = "Registro insertado Nª= ";
+        long contador = 0;
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("idSolicitudDiferido", solicitudDiferido.getIdSolicitud());
+        contentValues.put("carnet",solicitudDiferido.getCarnet());
+        contentValues.put("idEvaluacion",solicitudDiferido.getCodEva());
+        contentValues.put("tipoEvaluacion", solicitudDiferido.getTipoEva());
+        contentValues.put("idMotivoDiferido", solicitudDiferido.getMotivo());
+        contentValues.put("fechaEvaluacion", solicitudDiferido.getFechaEva());
+        contentValues.put("horaEvaluacion", solicitudDiferido.getHoraEva());
+        contentValues.put("descripcionMotivo", solicitudDiferido.getOtroMotivo());
+        contentValues.put("GT", solicitudDiferido.getGT());
+        contentValues.put("GD",solicitudDiferido.getGD());
+        contentValues.put("GL",solicitudDiferido.getGL());
+        contentValues.put("idAsignatura",solicitudDiferido.getCodMateria());
+        contentValues.put("descripcionMotivo",solicitudDiferido.getOtroMotivo());
+
+        contador=db.insert("SolicitudDiferido",null,contentValues);
+        if (contador == -1 || contador==0){
+            regAfectados = "Error al Insertar el registro, Registro duplicado. Verificar inserción";
+        }else {
+            regAfectados=regAfectados+contador;
+        }
+        return regAfectados;
+    }
+    public String actualizar(SolicitudDiferido solicitudDiferido){
+        if (verificarIntegridadReferencial(solicitudDiferido,1)){
+            String[] id = {solicitudDiferido.getIdSolicitud()};
+            ContentValues cv = new ContentValues();
+            cv.put("GT",solicitudDiferido.getGT());
+            cv.put("GD",solicitudDiferido.getGD());
+            cv.put("GL",solicitudDiferido.getGL());
+            cv.put("fechaEvaluacion", solicitudDiferido.getFechaEva());
+            cv.put("horaEvaluacion", solicitudDiferido.getHoraEva());
+            cv.put("idMotivoDiferido", solicitudDiferido.getMotivo());
+            cv.put("descripcionMotivo",solicitudDiferido.getOtroMotivo());
+            db.update("SolicitudDiferido", cv, "idSolicitudDiferido = ?", id);
+            return "Registro Actualizado Correctamente";
+        }else return "Registro no existe";
+
+
+    }
+    public String insertar(MotivoDiferido motivoDiferido){
+        String regAfectados = "Registro insertado Nª= ";
+        long contador = 0;
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("nombreMotivo", motivoDiferido.getNombreMotivoDiferido());
+        contador=db.insert("MotivoDiferido",null,contentValues);
+        if (contador == -1 || contador==0){
+            regAfectados = "Error al Insertar el registro, Registro duplicado. Verificar inserción";
+        }else {
+            regAfectados=regAfectados+contador;
+        }
+        return regAfectados;
+    }
+
+    public SolicitudDiferido consultarSolicitudDiferido(String carnet, String codEvaluacion){
+        String[] id = {carnet+codEvaluacion};
+        Cursor cursor = db.query("SolicitudDiferido",null,"idSolicitudDiferido = ?",id,null,null,null );
+        if (cursor.moveToFirst()){
+            SolicitudDiferido solicitudDiferido = new SolicitudDiferido();
+            solicitudDiferido.setIdSolicitud(cursor.getString(0));
+            solicitudDiferido.setCarnet(cursor.getString(1));
+            solicitudDiferido.setCodEva(cursor.getString(2));
+            solicitudDiferido.setMotivo(cursor.getString(3));
+            solicitudDiferido.setFechaEva(cursor.getString(4));
+            solicitudDiferido.setHoraEva(cursor.getString(5));
+            solicitudDiferido.setOtroMotivo(cursor.getString(6));
+            solicitudDiferido.setCodMateria(cursor.getString(7));
+            solicitudDiferido.setGT(cursor.getString(8));
+            solicitudDiferido.setGD(cursor.getString(9));
+            solicitudDiferido.setGL(cursor.getString(10));
+            solicitudDiferido.setTipoEva(cursor.getString(11));
+            return solicitudDiferido;
+        }else return null;
+    }
+    public String eliminar(SolicitudDiferido solicitudDiferido){
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        contador+=db.delete("SolicitudDiferido", "idSolicitudDiferido='"+solicitudDiferido.getIdSolicitud()+"'", null);
+        regAfectados+=contador;
         return regAfectados;
     }
     public String insertar(Estudiante estudiante){

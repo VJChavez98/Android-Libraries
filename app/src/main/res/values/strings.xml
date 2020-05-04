@@ -52,4 +52,8 @@
     <string name="horaRevision">Hora Revision</string>
     <string name="codDocente">Codigo Docente</string>
     <string name="codtiporev">Tipo Revision</string>
+    <string name="actualizar">Actualizar</string>
+    <string name="consultar">Consultar</string>
+    <string name="insertar">Insertar</string>
+    <string name="limpiar">Limpiar</string>
 </resources>
