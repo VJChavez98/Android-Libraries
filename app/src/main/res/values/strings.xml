@@ -56,4 +56,7 @@
     <string name="consultar">Consultar</string>
     <string name="insertar">Insertar</string>
     <string name="limpiar">Limpiar</string>
+    <string name="estudianteNombre">Nombre</string>
+    <string name="estudianteApellido">Apellido</string>
+    <string name="estudianteCarrera">Carrera</string>
 </resources>

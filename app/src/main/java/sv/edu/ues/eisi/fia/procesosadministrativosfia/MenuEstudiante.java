@@ -10,8 +10,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 public class MenuEstudiante extends ListActivity {
-    String [] menu = {"Repetido", "Diferido", "Local", "Evaluacion",  "Inscripcion a Primera Revision", "Primera Revision"};
-    String [] activities = {"Repetido_menu", "Diferido_menu", "Local_menu", "Evaluacion_menu", "PeriodoInscripcionRevision_menu", "PrimeraRevision_menu"};
+    String [] menu = {"Estudiante","Repetido", "Diferido", "Local", "Evaluacion",  "Inscripcion a Primera Revision", "Primera Revision"};
+    String [] activities = {"Estudiante_menu","Repetido_menu", "Diferido_menu", "Local_menu", "Evaluacion_menu", "PeriodoInscripcionRevision_menu", "PrimeraRevision_menu"};
     ControladorBase DBHelper;
     boolean doubleBackToExitPressedOnce = false;
 
@@ -24,7 +24,6 @@ public class MenuEstudiante extends ListActivity {
 
     protected void onListItemClick(ListView listView, View view, int position, long id){
         super.onListItemClick(listView, view, position, id);
-        if(position != 5) {
         String nombreValue = activities[position];
         try {
             Class<?> clase = Class.forName("sv.edu.ues.eisi.fia.procesosadministrativosfia." + nombreValue);
@@ -32,12 +31,6 @@ public class MenuEstudiante extends ListActivity {
             this.startActivity(intent);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }
-        }else{
-            DBHelper.abrir();
-            String tost = DBHelper.LlenarDatos();
-            DBHelper.cerrar();
-            Toast.makeText(this, tost, Toast.LENGTH_SHORT).show();
         }
     }
 

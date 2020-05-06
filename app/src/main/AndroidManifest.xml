@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PeriodoInscripcionRevision_menu"></activity>
+        <activity android:name=".Estudiante_menu"></activity>
+        <activity android:name=".Estudiante_consultar" />
+        <activity android:name=".Estudiante_insertar" />
+        <activity android:name=".PeriodoInscripcionRevision_menu" />
         <activity android:name=".PeriodoInscripcionRevision_eliminar" />
         <activity android:name=".PeriodoInscripcionRevision_actualizar" />
         <activity android:name=".PeriodoInscripcionRevision_consultar" />

@@ -180,7 +180,7 @@ public class ControladorBase {
 
     }
     public String insertar(MotivoDiferido motivoDiferido){
-        String regAfectados = "Registro insertado Nª= ";
+        String regAfectados = "Registro insertado Nº= ";
         long contador = 0;
 
         ContentValues contentValues = new ContentValues();
@@ -222,7 +222,50 @@ public class ControladorBase {
         return regAfectados;
     }
     public String insertar(Estudiante estudiante){
-        return "";
+        String regAfectados = "Registro insertado Nº: ";
+        long contador =0;
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("carnet", estudiante.getCarnet());
+        contentValues.put("nombreEstudiante", estudiante.getNombre());
+        contentValues.put("apellidoEstudiante", estudiante.getApellido());
+        contentValues.put("carrera", estudiante.getCarrera());
+        contador = db.insert("Estudiante",null,contentValues);
+        if (contador == -1 || contador==0){
+            regAfectados = "Error al Insertar el registro, Registro duplicado. Verificar inserción";
+        }else {
+            regAfectados=regAfectados+contador;
+        }
+        return regAfectados;
+    }
+    public String actualizar(Estudiante estudiante){
+        if (verificarIntegridadReferencial(estudiante,6)){
+            String[] id = {estudiante.getCarnet()};
+            ContentValues cv = new ContentValues();
+            cv.put("nombreEstudiante",estudiante.getNombre());
+            cv.put("apellidoEstudiante",estudiante.getApellido());
+            cv.put("carrera",estudiante.getCarrera());
+            db.update("Estudiante", cv, "carnet = ?", id);
+            return "Registro Actualizado Correctamente";
+        }else return "Registro no existe";
+    }
+    public Estudiante consultarEstudiante(String carnet){
+        String[] id = {carnet};
+        Cursor cursor = db.query("Estudiante", null, "carnet = ?", id, null, null, null);
+        if(cursor.moveToFirst()) {
+            Estudiante estudiante = new Estudiante();
+            estudiante.setCarnet(cursor.getString(0));
+            estudiante.setNombre(cursor.getString(1));
+            estudiante.setApellido(cursor.getString(2));
+            estudiante.setCarrera(cursor.getString(3));
+            return estudiante;
+        }else return null;
+    }
+    public String eliminar(Estudiante estudiante){
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        contador+=db.delete("Estudiante", "carnet='"+estudiante.getCarnet()+"'", null);
+        regAfectados+=contador;
+        return regAfectados;
     }
     public String insertar(Asignatura asignatura){
         String regInsertados = "Registro Insertado No. = ";
@@ -592,8 +635,7 @@ public class ControladorBase {
                 }else return false;
 
             }
-            case 5:
-            {
+            case 5: {
                 SolicitudDiferido solicitudDiferido = (SolicitudDiferido) dato;
                 String[] id1 = {solicitudDiferido.getCodMateria()};
                 //String[] id3 = {solicitudDiferido.getCarnet()};
@@ -603,12 +645,21 @@ public class ControladorBase {
                 Cursor cursor1 = db.query("asignatura", null, "codasignatura = ?", id1, null, null, null);
                 //Cursor cursor3 = db.query("estudiante",null,"carnet = ?",id3,null,null,null);
                 Cursor cursor4 = db.query("MotivoDiferido", null, "nombreMotivo = ?", id4, null, null, null);
-                Cursor cursor5 = db.query("evaluacion",null,"codasignatura = ? AND codtipoeval = ?",id5,null,null,null);
+                Cursor cursor5 = db.query("evaluacion", null, "codasignatura = ? AND codtipoeval = ?", id5, null, null, null);
 
-                if(cursor1.moveToFirst() && /*cursor3.moveToFirst() &&*/  cursor4.moveToFirst() && cursor5.moveToFirst()){
+                if (cursor1.moveToFirst() && /*cursor3.moveToFirst() &&*/  cursor4.moveToFirst() && cursor5.moveToFirst()) {
+                    return true;
+                } else return false;
+            }
+            case 6:
+            {
+                Estudiante estudiante = (Estudiante) dato;
+                String[] id = {estudiante.getCarnet()};
+                abrir();
+                Cursor cursor = db.query("Estudiante",null,"carnet = ?",id, null,null,null);
+                if(cursor.moveToFirst()){
                     return true;
                 }else return false;
-
             }
             default:
                 return false;
