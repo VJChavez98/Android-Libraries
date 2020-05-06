@@ -2,6 +2,7 @@ package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
@@ -23,7 +24,8 @@ import sv.edu.ues.eisi.fia.procesosadministrativosfia.R;
 
 public class Diferido_consultar extends AppCompatActivity {
 
-    EditText editCodEval, editCarnet, editCodMateria, editGT, editGD, editGL, editFechaEval, editHoraEval, editOtroMotivo;
+    @SuppressLint("SetTextI18n")
+    EditText editNumEval, editCarnet, editCodMateria, editGT, editGD, editGL, editFechaEval, editHoraEval, editOtroMotivo;
     ControladorBase helper;
     TextView lblMateria, lblTipoEva, lblGT,lblGD,lblGL, lblFecha, lblHora, lblMotivo, lblOtro;
     Button eliminarBtn, modificarBtn;
@@ -31,13 +33,14 @@ public class Diferido_consultar extends AppCompatActivity {
     private int nYearIni, nMonthIni, nDayIni, sYearIni, sMonthIni, sDayIni, sHour, nHour, sMinute, nMinute;
     static final int DATE_ID = 0, HOUR_ID=1;
     Calendar c = Calendar.getInstance();
+    String[] tipos ={"Seleccione el tipo de evaluacion","EP","ED","EL"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diferido_consultar);
         helper = new ControladorBase(this);
-        editCodEval = (EditText) findViewById(R.id.editCodEva);
+        editNumEval = (EditText) findViewById(R.id.editNumeval);
         editCarnet = (EditText) findViewById(R.id.editCarnet);
         editCodMateria = (EditText) findViewById(R.id.editAsignatura);
         editGT = (EditText) findViewById(R.id.editGrupoTeorico);
@@ -67,8 +70,8 @@ public class Diferido_consultar extends AppCompatActivity {
         eliminarBtn.setVisibility(View.INVISIBLE);
         modificarBtn.setVisibility(View.INVISIBLE);
 
-        lblMateria.setVisibility(View.INVISIBLE);
-        lblTipoEva.setVisibility(View.INVISIBLE);
+        lblMateria.setVisibility(View.VISIBLE);
+        lblTipoEva.setVisibility(View.VISIBLE);
         lblGT.setVisibility(View.INVISIBLE);
         lblGD.setVisibility(View.INVISIBLE);
         lblGL.setVisibility(View.INVISIBLE);
@@ -76,8 +79,8 @@ public class Diferido_consultar extends AppCompatActivity {
         lblHora.setVisibility(View.INVISIBLE);
         lblMotivo.setVisibility(View.INVISIBLE);
         lblOtro.setVisibility(View.INVISIBLE);
-        editCodMateria.setVisibility(View.INVISIBLE);
-        editCodMateria.setEnabled(false);
+        editCodMateria.setVisibility(View.VISIBLE);
+        editCodMateria.setEnabled(true);
         editGT.setVisibility(View.INVISIBLE);
         editGT.setEnabled(false);
         editGD.setVisibility(View.INVISIBLE);
@@ -94,8 +97,9 @@ public class Diferido_consultar extends AppCompatActivity {
         editOtroMotivo.setEnabled(false);
         eliminarBtn.setEnabled(false);
         modificarBtn.setEnabled(false);
-        tipoEval.setVisibility(View.INVISIBLE);
-        tipoEval.setEnabled(false);
+        tipoEval.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,tipos));
+        tipoEval.setVisibility(View.VISIBLE);
+        tipoEval.setEnabled(true);
         motivos.setVisibility(View.INVISIBLE);
         motivos.setEnabled(false);
         sMonthIni = c.get(Calendar.MONTH);
@@ -119,33 +123,32 @@ public class Diferido_consultar extends AppCompatActivity {
             }
         });
 
+
     }
 
     public void consultarSolicitudDiferido(View view) {
         helper.abrir();
-        SolicitudDiferido solicitudDiferido = helper.consultarSolicitudDiferido(editCarnet.getText().toString(), editCodEval.getText().toString());
+        SolicitudDiferido solicitudDiferido = helper.consultarSolicitudDiferido(editCarnet.getText().toString(),editCodMateria.getText().toString(),tipoEval.getSelectedItem().toString(), editNumEval.getText().toString());
         helper.cerrar();
         if(solicitudDiferido == null)
             Toast.makeText(this, "Solicitud no encontrada", Toast.LENGTH_LONG).show();
         else{
             editCarnet.setEnabled(false);
-            editCodEval.setEnabled(false);
-            lblMateria.setVisibility(View.VISIBLE);
-            lblTipoEva.setVisibility(View.VISIBLE);
+            editNumEval.setEnabled(false);
+            editCodMateria.setEnabled(false);
+            tipoEval.setEnabled(false);
             lblGT.setVisibility(View.VISIBLE);
             lblGD.setVisibility(View.VISIBLE);
             lblGL.setVisibility(View.VISIBLE);
             lblFecha.setVisibility(View.VISIBLE);
             lblHora.setVisibility(View.VISIBLE);
             lblMotivo.setVisibility(View.VISIBLE);
-            editCodMateria.setVisibility(View.VISIBLE);
             editGT.setVisibility(View.VISIBLE);
             editGD.setVisibility(View.VISIBLE);
             editGL.setVisibility(View.VISIBLE);
             editFechaEval.setVisibility(View.VISIBLE);
             editHoraEval.setVisibility(View.VISIBLE);
             motivos.setVisibility(View.VISIBLE);
-            tipoEval.setVisibility(View.VISIBLE);
             editOtroMotivo.setText(solicitudDiferido.getOtroMotivo());
             lblOtro.setVisibility(View.VISIBLE);editOtroMotivo.setVisibility(View.VISIBLE);
             editCodMateria.setText(solicitudDiferido.getCodMateria());
@@ -184,6 +187,7 @@ public class Diferido_consultar extends AppCompatActivity {
             editFechaEval.setText( nYearIni + "-" + nMonthIni + "-" + nDayIni );
         }
     }
+
     private void colocarHora(){
         if (String.valueOf(nMinute).length() == 1 && String.valueOf(nHour).length() == 1){
             editHoraEval.setText("0"+nHour + ":0"+nMinute+":00");
@@ -224,7 +228,7 @@ public class Diferido_consultar extends AppCompatActivity {
 
     public void limpiarTexto(View view) {
         editCarnet.setText("");
-        editCodEval.setText("");
+        editNumEval.setText("");
         editCodMateria.setText("");
         editGT.setText("");
         editGD.setText("");
@@ -235,12 +239,11 @@ public class Diferido_consultar extends AppCompatActivity {
         tipoEval.setSelection(0);
         motivos.setSelection(0);
         editCarnet.setEnabled(true);
-        editCodEval.setEnabled(true);
+        editNumEval.setEnabled(true);
         eliminarBtn.setVisibility(View.INVISIBLE);
         modificarBtn.setVisibility(View.INVISIBLE);
-
-        lblMateria.setVisibility(View.INVISIBLE);
-        lblTipoEva.setVisibility(View.INVISIBLE);
+        editCodMateria.setEnabled(true);
+        tipoEval.setEnabled(true);
         lblGT.setVisibility(View.INVISIBLE);
         lblGD.setVisibility(View.INVISIBLE);
         lblGL.setVisibility(View.INVISIBLE);
@@ -248,8 +251,6 @@ public class Diferido_consultar extends AppCompatActivity {
         lblHora.setVisibility(View.INVISIBLE);
         lblMotivo.setVisibility(View.INVISIBLE);
         lblOtro.setVisibility(View.INVISIBLE);
-        editCodMateria.setVisibility(View.INVISIBLE);
-        editCodMateria.setEnabled(false);
         editGT.setVisibility(View.INVISIBLE);
         editGT.setEnabled(false);
         editGD.setVisibility(View.INVISIBLE);
@@ -266,15 +267,18 @@ public class Diferido_consultar extends AppCompatActivity {
         editOtroMotivo.setEnabled(false);
         eliminarBtn.setEnabled(false);
         modificarBtn.setEnabled(false);
-        tipoEval.setVisibility(View.INVISIBLE);
-        tipoEval.setEnabled(false);
         motivos.setVisibility(View.INVISIBLE);
         motivos.setEnabled(false);
     }
 
     public void EliminarSolicitud(View view) {
         SolicitudDiferido solicitudDiferido = new SolicitudDiferido();
-        solicitudDiferido.setIdSolicitud(editCarnet.getText().toString()+editCodEval.getText().toString());
+
+        solicitudDiferido.setCarnet(String.valueOf(editCarnet.getText()));
+        solicitudDiferido.setNumeroEval(Integer.parseInt(String.valueOf(editNumEval.getText())));
+        solicitudDiferido.setCodMateria(String.valueOf(editCodMateria.getText()));
+        solicitudDiferido.setTipoEva(String.valueOf(tipoEval.getSelectedItem()));
+        solicitudDiferido.setIdSolicitud();
         helper.abrir();
         String regAfectados = helper.eliminar(solicitudDiferido);
         helper.cerrar();
@@ -284,11 +288,10 @@ public class Diferido_consultar extends AppCompatActivity {
 
     public void ModificarSolicitudDiferido(View view) {
         SolicitudDiferido solicitudDiferido = new SolicitudDiferido();
-        solicitudDiferido.setIdSolicitud(editCarnet.getText().toString()+editCodEval.getText().toString());
-        solicitudDiferido.setCarnet(editCarnet.getText().toString());
-        solicitudDiferido.setCodMateria(editCodMateria.getText().toString());
-        solicitudDiferido.setCodEva(editCodEval.getText().toString());
-        solicitudDiferido.setTipoEva(tipoEval.getSelectedItem().toString());
+        solicitudDiferido.setCarnet(String.valueOf(editCarnet.getText()));
+        solicitudDiferido.setCodMateria(String.valueOf(editCodMateria.getText()));
+        solicitudDiferido.setNumeroEval(Integer.parseInt(String.valueOf(editNumEval.getText())));
+        solicitudDiferido.setTipoEva(String.valueOf(tipoEval.getSelectedItem()));
         solicitudDiferido.setGT(editGT.getText().toString());
         solicitudDiferido.setGD(editGD.getText().toString());
         solicitudDiferido.setGL(editGL.getText().toString());
@@ -296,6 +299,7 @@ public class Diferido_consultar extends AppCompatActivity {
         solicitudDiferido.setHoraEva(editHoraEval.getText().toString());
         solicitudDiferido.setMotivo(motivos.getSelectedItem().toString());
         solicitudDiferido.setOtroMotivo(editOtroMotivo.getText().toString());
+        solicitudDiferido.setIdSolicitud();
         helper.abrir();
         String regAfectados = helper.actualizar(solicitudDiferido);
         helper.cerrar();
@@ -330,4 +334,5 @@ public class Diferido_consultar extends AppCompatActivity {
             default: return 0;
         }
     }
+
 }

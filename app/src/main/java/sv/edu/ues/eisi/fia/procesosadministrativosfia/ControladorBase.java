@@ -79,7 +79,7 @@ public class ControladorBase {
                 db.execSQL("CREATE TABLE DetalleDiferidoRepetido(idDetalleDiferidoRepetido CHARACTER(10) NOT NULL PRIMARY KEY,idLocal CHARACTER(10) NOT NULL, idEvaluacion CHARACTER(10) NOT NULL, idDocente CHARACTER(10) NOT NULL, idTipoDiferidoRepetido CHARACTER(10) NOT NULL,idTipo CHARACTER(10) NOT NULL, fechaDesde DATE NOT NULL, fechaHasta DATE NOT NULL, fechaRealizacion DATE NOT NULL, horaRealizacion TIME NOT NULL, FOREIGN KEY (idLocal) REFERENCES Local(idLocal),  FOREIGN KEY (idEvaluacion) REFERENCES Evaluacion(idEvaluacion),  FOREIGN KEY (idDocente) REFERENCES Docente(idDocente),  FOREIGN KEY (idTipoDiferidoRepetido) REFERENCES TipoDiferidoRepetido (idTipoDiferidoRepetido));");
                 db.execSQL("CREATE TABLE DetalleEstudianteDiferido(idEstudianteDiferido CHARACTER(10) NOT NULL PRIMARY KEY, carnet CHARACTER(7) NOT NULL, idDetalleDiferidoRepetido CHARACTER(10) NOT NULL,FechaInscripcionDiferido DATE NOT NULL ,FOREIGN KEY (carnet) REFERENCES Estudiante(carnet),FOREIGN KEY (idDetalleDiferidoRepetido) REFERENCES DetalleDiferidoRepedito(idDetalleDiferidoRepetido))");
                 db.execSQL("CREATE TABLE DetalleEstudianteRepetido(idDetalleEstudianteRepetido CHARACTER(10) NOT NULL PRIMARY KEY, carnet CHARACTER(7) NOT NULL, idDetalleDiferidoRepetido CHARACTER(10) NOT NULL, fechaInscripcionRepetido DATE NOT NULL, FOREIGN KEY (carnet) REFERENCES Estudiante(carnet), FOREIGN KEY (idDetalleDiferidoRepetido) REFERENCES DetalleDiferidoRepetido(idDetalleDiferidoRepetido))");
-                db.execSQL("CREATE TABLE SolicitudDiferido(idSolicitudDiferido NOT NULL  PRIMARY KEY  UNIQUE, carnet VARCHAR(7) NOT NULL, idEvaluacion CHARACTER(10) NOT NULL, idMotivoDiferido CHARACTER(13) NOT NULL, fechaEvaluacion DATE NOT NULL,  horaEvaluacion TIME NOT NULL, descripcionMotivo VARCHAR(256), idAsignatura CHARACTER(6) NOT NULL, GT NUMERIC(2,0) NOT NULL, GD NUMERIC(2,0) NOT NULL, GL NUMERIC(2,0), tipoEvaluacion CHARACTER(2) )");
+                db.execSQL("CREATE TABLE SolicitudDiferido(idSolicitudDiferido NOT NULL, carnet VARCHAR(7) NOT NULL, numeroeval INTEGER NOT NULL, idMotivoDiferido CHARACTER(13) NOT NULL, fechaEvaluacion DATE NOT NULL,  horaEvaluacion TIME NOT NULL, descripcionMotivo VARCHAR(256), idAsignatura CHARACTER(6) NOT NULL, GT NUMERIC(2,0) NOT NULL, GD NUMERIC(2,0) NOT NULL, GL NUMERIC(2,0), tipoEvaluacion CHARACTER(2), PRIMARY KEY(idSolicitudDiferido, carnet, idAsignatura, tipoEvaluacion,numeroeval) )");
 
                 //Finaliza sector de tablas con llaves foraneas
             } catch (SQLException e) {
@@ -132,26 +132,29 @@ public class ControladorBase {
         }
         return regAfectados;
     }
-    public String insertar(SolicitudDiferido solicitudDiferido){
+    public String insertar(SolicitudDiferido solicitudDiferido) {
         String regAfectados = "Registro insertado Nª= ";
         long contador = 0;
+        if (verificarIntegridadReferencial(solicitudDiferido, 5)) {
 
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("idSolicitudDiferido", solicitudDiferido.getIdSolicitud());
-        contentValues.put("carnet",solicitudDiferido.getCarnet());
-        contentValues.put("idEvaluacion",solicitudDiferido.getCodEva());
-        contentValues.put("tipoEvaluacion", solicitudDiferido.getTipoEva());
-        contentValues.put("idMotivoDiferido", solicitudDiferido.getMotivo());
-        contentValues.put("fechaEvaluacion", solicitudDiferido.getFechaEva());
-        contentValues.put("horaEvaluacion", solicitudDiferido.getHoraEva());
-        contentValues.put("descripcionMotivo", solicitudDiferido.getOtroMotivo());
-        contentValues.put("GT", solicitudDiferido.getGT());
-        contentValues.put("GD",solicitudDiferido.getGD());
-        contentValues.put("GL",solicitudDiferido.getGL());
-        contentValues.put("idAsignatura",solicitudDiferido.getCodMateria());
-        contentValues.put("descripcionMotivo",solicitudDiferido.getOtroMotivo());
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("idSolicitudDiferido", solicitudDiferido.getIdSolicitud());
+            contentValues.put("carnet", solicitudDiferido.getCarnet());
+            contentValues.put("numeroeval", solicitudDiferido.getNumeroEval());
+            contentValues.put("tipoEvaluacion", solicitudDiferido.getTipoEva());
+            contentValues.put("idMotivoDiferido", solicitudDiferido.getMotivo());
+            contentValues.put("fechaEvaluacion", solicitudDiferido.getFechaEva());
+            contentValues.put("horaEvaluacion", solicitudDiferido.getHoraEva());
+            contentValues.put("descripcionMotivo", solicitudDiferido.getOtroMotivo());
+            contentValues.put("GT", solicitudDiferido.getGT());
+            contentValues.put("GD", solicitudDiferido.getGD());
+            contentValues.put("GL", solicitudDiferido.getGL());
+            contentValues.put("idAsignatura", solicitudDiferido.getCodMateria());
+            contentValues.put("descripcionMotivo", solicitudDiferido.getOtroMotivo());
+            contador=db.insert("SolicitudDiferido",null,contentValues);
+        }
 
-        contador=db.insert("SolicitudDiferido",null,contentValues);
+
         if (contador == -1 || contador==0){
             regAfectados = "Error al Insertar el registro, Registro duplicado. Verificar inserción";
         }else {
@@ -160,7 +163,7 @@ public class ControladorBase {
         return regAfectados;
     }
     public String actualizar(SolicitudDiferido solicitudDiferido){
-        if (verificarIntegridadReferencial(solicitudDiferido,1)){
+        if (verificarIntegridadReferencial(solicitudDiferido,5)){
             String[] id = {solicitudDiferido.getIdSolicitud()};
             ContentValues cv = new ContentValues();
             cv.put("GT",solicitudDiferido.getGT());
@@ -191,14 +194,14 @@ public class ControladorBase {
         return regAfectados;
     }
 
-    public SolicitudDiferido consultarSolicitudDiferido(String carnet, String codEvaluacion){
-        String[] id = {carnet+codEvaluacion};
+    public SolicitudDiferido consultarSolicitudDiferido(String carnet,String codMateria,String tipoEval, String numEval){
+        String[] id = {carnet+codMateria+tipoEval+numEval};
         Cursor cursor = db.query("SolicitudDiferido",null,"idSolicitudDiferido = ?",id,null,null,null );
         if (cursor.moveToFirst()){
             SolicitudDiferido solicitudDiferido = new SolicitudDiferido();
             solicitudDiferido.setIdSolicitud(cursor.getString(0));
             solicitudDiferido.setCarnet(cursor.getString(1));
-            solicitudDiferido.setCodEva(cursor.getString(2));
+            solicitudDiferido.setNumeroEval(cursor.getInt(2));
             solicitudDiferido.setMotivo(cursor.getString(3));
             solicitudDiferido.setFechaEva(cursor.getString(4));
             solicitudDiferido.setHoraEva(cursor.getString(5));
@@ -534,9 +537,7 @@ public class ControladorBase {
                 if(cursor1.moveToFirst() && cursor2.moveToFirst() && cursor3.moveToFirst()){
                     //Se encontraron los datos
                     return true;
-                }
-
-                return false;
+                }else return false;
             }
             case 2:
             {
@@ -549,8 +550,7 @@ public class ControladorBase {
 
                 if(c.moveToFirst()){
                     return true;
-                }
-                return false;
+                }else return false;
             }
             case 3:
             {
@@ -575,7 +575,7 @@ public class ControladorBase {
 
                 if(cursor1.moveToFirst() && cursor2.moveToFirst() && cursor3.moveToFirst() && cursor4.moveToFirst() && cursor5.moveToFirst() && cursor6.moveToFirst() && cursor7.moveToFirst()){
                     return true;
-                }
+                }else return false;
             }
             case 4:
             {
@@ -589,8 +589,26 @@ public class ControladorBase {
 
                 if(c.moveToFirst()){
                     return true;
-                }
-                return false;
+                }else return false;
+
+            }
+            case 5:
+            {
+                SolicitudDiferido solicitudDiferido = (SolicitudDiferido) dato;
+                String[] id1 = {solicitudDiferido.getCodMateria()};
+                //String[] id3 = {solicitudDiferido.getCarnet()};
+                String[] id4 = {solicitudDiferido.getMotivo()};
+                String[] id5 = {solicitudDiferido.getCodMateria(), solicitudDiferido.getTipoEva()};
+                abrir();
+                Cursor cursor1 = db.query("asignatura", null, "codasignatura = ?", id1, null, null, null);
+                //Cursor cursor3 = db.query("estudiante",null,"carnet = ?",id3,null,null,null);
+                Cursor cursor4 = db.query("MotivoDiferido", null, "nombreMotivo = ?", id4, null, null, null);
+                Cursor cursor5 = db.query("evaluacion",null,"codasignatura = ? AND codtipoeval = ?",id5,null,null,null);
+
+                if(cursor1.moveToFirst() && /*cursor3.moveToFirst() &&*/  cursor4.moveToFirst() && cursor5.moveToFirst()){
+                    return true;
+                }else return false;
+
             }
             default:
                 return false;

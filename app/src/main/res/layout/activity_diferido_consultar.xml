@@ -19,26 +19,6 @@
             android:layout_height="wrap_content"/>
     </TableRow>
     <TableRow>
-        <TextView android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/evaluacion"/>
-        <EditText android:id="@+id/editCodEva"
-            android:layout_width="200dip"
-            android:layout_height="wrap_content"
-            android:inputType="none"
-            android:maxLength="18"/>
-    </TableRow>
-
-    <TableRow>
-        <Button android:id="@+id/cancelarBtn"
-            android:onClick="limpiarTexto"
-            android:text="@string/cancelarBtn"/>
-        <Button android:id="@+id/BuscarBtn"
-            android:onClick="consultarSolicitudDiferido"
-            android:text="@string/buscarBtn"/>
-    </TableRow>
-
-    <TableRow>
         <TextView
             android:id="@+id/lblCodMat"
             android:layout_width="wrap_content"
@@ -58,9 +38,29 @@
             android:text="@string/tipoEval"/>
         <Spinner android:id="@+id/spinTipoEval"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:entries="@array/tipoEval"/>
+            android:layout_height="wrap_content"/>
     </TableRow>
+    <TableRow>
+        <TextView android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/evaluacion_numero"/>
+        <EditText android:id="@+id/editNumeval"
+            android:layout_width="200dip"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="2"/>
+    </TableRow>
+
+    <TableRow>
+        <Button android:id="@+id/cancelarBtn"
+            android:onClick="limpiarTexto"
+            android:text="@string/cancelarBtn"/>
+        <Button android:id="@+id/BuscarBtn"
+            android:onClick="consultarSolicitudDiferido"
+            android:text="@string/buscarBtn"/>
+    </TableRow>
+
+
     <TableRow>
         <TextView
             android:id="@+id/lblGT"
