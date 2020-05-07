@@ -37,6 +37,11 @@
         <item>Examen Discusion</item>
         <item>Examen Laboratorio</item>
     </string-array>
+    <string-array name="tipoDifRep">
+        <item>Seleccione tipo</item>
+        <item>Diferido</item>
+        <item>Repetido</item>
+    </string-array>
     <string name="evaluacion_codigo">Codigo Evaluacion</string>
     <string name="fecha">Fecha Evaluacion</string>
     <string name="evaluacion_numero">Numero Evaluacion</string>
@@ -59,4 +64,5 @@
     <string name="estudianteNombre">Nombre</string>
     <string name="estudianteApellido">Apellido</string>
     <string name="estudianteCarrera">Carrera</string>
+    <string name="tipo">Tipo</string>
 </resources>

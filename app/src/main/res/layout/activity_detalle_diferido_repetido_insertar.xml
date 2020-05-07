@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetalleDiferidoRepetido_insertar">
+
+    <TableRow>
+        <TextView android:text="@string/codAsignatura"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip" />
+        <EditText android:id="@+id/editAsignatura"
+            android:layout_width="280dip"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLength="6"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="@string/tipoEval"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_marginLeft="10dip"/>
+        <Spinner android:id="@+id/spinTipoEval"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="@string/evaluacion_numero"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"/>
+        <EditText android:id="@+id/editNumeval"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="2"/>
+    </TableRow>
+    <TableRow>
+        <TextView android:text="@string/codlocal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"/>
+        <EditText android:id="@+id/editCodlocal"
+            android:inputType="text"
+            android:maxLength="4"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+    </TableRow>
+    <TableRow>
+        <TextView android:text="@string/tipo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"/>
+        <Spinner android:id="@+id/spinTipoDifRep"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/tipoDifRep"
+            android:textAlignment="center"
+            android:gravity="center_horizontal" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="@string/codDocente"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"/>
+        <EditText android:id="@+id/editDocente"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLength="10"/>
+    </TableRow>
+    <TableRow>
+        <TextView android:text="@string/fechaDesde"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"/>
+        <EditText android:id="@+id/editFechaDesde"
+            android:inputType="text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+    </TableRow>
+    <TableRow>
+        <TextView android:text="@string/fechaHasta"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"/>
+        <EditText android:id="@+id/editFechaHasta"
+            android:inputType="text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+    </TableRow>
+    <TableRow>
+        <TextView android:text="@string/fecha"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"/>
+        <EditText android:id="@+id/editFechaeval"
+            android:inputType="text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+    </TableRow>
+    <TableRow>
+        <TextView android:text="@string/horaRealizada"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"/>
+        <EditText android:id="@+id/editHoraRealizada"
+            android:inputType="text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+    </TableRow>
+    <TableRow>
+        <Button android:id="@+id/cancelarBtn"
+            android:text="@string/cancelarBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="limpiarTexto"/>
+        <Button android:id="@+id/insertarBtn"
+            android:text="@string/insertar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="insertarDetalle"/>
+    </TableRow>
+</TableLayout>
