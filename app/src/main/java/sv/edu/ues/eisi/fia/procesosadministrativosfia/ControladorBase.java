@@ -6,8 +6,10 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.location.Criteria;
 
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.solver.widgets.ConstraintAnchor;
 
 import java.sql.Date;
 
@@ -76,7 +78,7 @@ public class ControladorBase {
                  */
 
 
-                db.execSQL("CREATE TABLE DetalleDiferidoRepetido(idDetalleDiferidoRepetido CHARACTER(10) NOT NULL PRIMARY KEY,idLocal CHARACTER(10) NOT NULL, numEval INTEGER NOT NULL,tipoEval CHARACTER(2) NOT NULL,codAsignatura CHARACTER(6), idDocente CHARACTER(10) NOT NULL, idTipoDiferidoRepetido CHARACTER(10) NOT NULL, fechaDesde DATE NOT NULL, fechaHasta DATE NOT NULL, fechaRealizacion DATE NOT NULL, horaRealizacion TIME NOT NULL);");
+                db.execSQL("CREATE TABLE DetalleDiferidoRepetido(idDetalleDiferidoRepetido CHARACTER(25) NOT NULL PRIMARY KEY,idLocal CHARACTER(10) NOT NULL, numEval INTEGER NOT NULL,tipoEval CHARACTER(2) NOT NULL,codAsignatura CHARACTER(6), idDocente CHARACTER(10) NOT NULL, idTipoDiferidoRepetido CHARACTER(10) NOT NULL, fechaDesde DATE NOT NULL, fechaHasta DATE NOT NULL, fechaRealizacion DATE NOT NULL, horaRealizacion TIME NOT NULL);");
                 db.execSQL("CREATE TABLE DetalleEstudianteDiferido(idEstudianteDiferido CHARACTER(10) NOT NULL PRIMARY KEY, carnet CHARACTER(7) NOT NULL, idDetalleDiferidoRepetido CHARACTER(10) NOT NULL,FechaInscripcionDiferido DATE NOT NULL ,FOREIGN KEY (carnet) REFERENCES Estudiante(carnet),FOREIGN KEY (idDetalleDiferidoRepetido) REFERENCES DetalleDiferidoRepedito(idDetalleDiferidoRepetido))");
                 db.execSQL("CREATE TABLE DetalleEstudianteRepetido(idDetalleEstudianteRepetido CHARACTER(10) NOT NULL PRIMARY KEY, carnet CHARACTER(7) NOT NULL, idDetalleDiferidoRepetido CHARACTER(10) NOT NULL, fechaInscripcionRepetido DATE NOT NULL, FOREIGN KEY (carnet) REFERENCES Estudiante(carnet), FOREIGN KEY (idDetalleDiferidoRepetido) REFERENCES DetalleDiferidoRepetido(idDetalleDiferidoRepetido))");
                 db.execSQL("CREATE TABLE SolicitudDiferido(idSolicitudDiferido NOT NULL, carnet VARCHAR(7) NOT NULL, numeroeval INTEGER NOT NULL, idMotivoDiferido CHARACTER(13) NOT NULL, fechaEvaluacion DATE NOT NULL,  horaEvaluacion TIME NOT NULL, descripcionMotivo VARCHAR(256), idAsignatura CHARACTER(6) NOT NULL, GT NUMERIC(2,0) NOT NULL, GD NUMERIC(2,0) NOT NULL, GL NUMERIC(2,0), tipoEvaluacion CHARACTER(2), PRIMARY KEY(idSolicitudDiferido, carnet, idAsignatura, tipoEvaluacion,numeroeval) )");
@@ -161,7 +163,7 @@ public class ControladorBase {
         return regAfectados;
     }
     public String insertar(DetalleDiferidoRepetido detalle) {
-        String regAfectados = "Registro insertado Nª= ";
+        String regAfectados = "Registro insertado Nº= ";
         long contador = 0;
         if (verificarIntegridadReferencial(detalle, 8)) {
 
@@ -177,7 +179,7 @@ public class ControladorBase {
             contentValues.put("fechaHasta",detalle.getFechaHasta());
             contentValues.put("fechaRealizacion",detalle.getFechaRealizacion());
             contentValues.put("horaRealizacion",detalle.getHoraRealizacion());
-            contador=db.insert("DetalleDiferidoRepetido",null,contentValues);
+            contador = db.insert("DetalleDiferidoRepetido",null,contentValues);
             if (contador == -1 || contador==0){
                 regAfectados = "Error al Insertar el registro, Registro duplicado. Verificar inserción";
             }else {
@@ -423,6 +425,18 @@ public class ControladorBase {
         }
 
         return regInsertados;
+    }
+    public void insertar(TipoDiferidoRepetido tipo){
+        try {
+            long counter = 0;
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("idTipoDiferidoRepetido", tipo.getIdTipo());
+            contentValues.put("nombreTipo", tipo.getNombreTipo());
+            counter = db.insert("TipoDiferidoRepetido", null, contentValues);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
     }
 
     public String insertar(PeriodoInscripcionRevision perInscRev){
@@ -705,7 +719,20 @@ public class ControladorBase {
                 String[] id1 = {detalle.getIdLocal()};
                 String[] id2 = {detalle.getIdAsignatura()};
                 String[] id3 = {detalle.getIdDocente()};
+                String[] id4 = {detalle.getIdTipoDifRep()};
+                String[] id5 = {detalle.getIdTipoEval(),String.valueOf(detalle.getNumEval()),detalle.getIdAsignatura()};
 
+
+                abrir();
+                Cursor cursor1 = db.query("local",null,"codlocal = ?",id1,null,null,null);
+                Cursor cursor2 = db.query("asignatura",null,"codasignatura = ?",id2,null,null,null);
+                Cursor cursor3 = db.query("docente", null,"coddocente = ?",id3, null,null,null);
+                Cursor cursor4 = db.query("TipoDiferidoRepetido",null,"idTipoDiferidoRepetido = ?",id4,null,null,null);
+                Cursor cursor5 = db.query("evaluacion",null,"codasignatura = ? AND codtipoeval",id5,null,null,null);
+
+                if (cursor1.moveToFirst() && cursor2.moveToFirst() && cursor3.moveToFirst() && cursor4.moveToFirst() && cursor5.moveToFirst()){
+                    return true;
+                }else return false;
             }
             default:
                 return false;
@@ -716,7 +743,8 @@ public class ControladorBase {
         final String[] names = {"Victor","Shaky","Daniel","Cristian","Roberto"};
         final String[] userPass = {"0123456789","0123456789","0123456789","0123456789","0123456789"};
         final String[] motivos = {"Salud", "Trabajo", "Interferencia","Viaje","Duelo","Otro"};
-
+        final String[] tipoDifRep = {"Diferido","Repetido"};
+        final String[] nombreTipoDifRep = {"Evaluacion diferida","Evaluacion repetida"};
         final String[] TTEcodtipoeval = {"EP", "ED", "EL"};
         final String[] TTEnomtipoeval = {"Examen Parcial", "Examen Discusion", "Examen Laboratorio"};
 
@@ -743,6 +771,7 @@ public class ControladorBase {
         db.execSQL("DELETE FROM tipoevaluacion");
         db.execSQL("DELETE FROM tiporevision");
         db.execSQL("DELETE FROM docente");;
+        db.execSQL("DELETE FROM TipoDiferidoRepetido");
 
         Usuario user = new Usuario();
         for (int i = 0; i<usersId.length; i++){
@@ -794,6 +823,12 @@ public class ControladorBase {
             docente.setNomdocente(TDnombredocente[i]);
             docente.setApellidodocente(TDapellidodocente[i]);
             insertar(docente);
+        }
+        TipoDiferidoRepetido tipo = new TipoDiferidoRepetido();
+        for (int i =0; i<tipoDifRep.length;i++){
+            tipo.setIdTipo(tipoDifRep[i]);
+            tipo.setNombreTipo(nombreTipoDifRep[i]);
+            insertar(tipo);
         }
 
         cerrar();

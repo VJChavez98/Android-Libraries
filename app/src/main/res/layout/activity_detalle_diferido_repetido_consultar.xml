@@ -1,9 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DetalleDiferidoRepetido_consultar">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TableRow>
+        <TextView android:id="@+id/lblCodMat"
+            android:text="@string/codAsignatura"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"/>
+        <EditText android:id="@+id/editCodasignatura"
+            android:inputType="text"
+            android:maxLength="6"
+            android:layout_width="290dip"
+            android:layout_height="wrap_content"/>
+        <EditText/>
+    </TableRow>
+    <TableRow>
+        <TextView android:id="@+id/lblTipoEval"
+            android:text="@string/tipoEval"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_marginLeft="10dip"/>
+        <Spinner android:id="@+id/spinTipoEval"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"/>
+    </TableRow>
+    <TableRow>
+        <TextView android:id="@+id/lblNumEval"
+            android:text="@string/evaluacion_numero"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"/>
+        <EditText android:id="@+id/editNumeval"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="2"/>
+    </TableRow>
+
+
+    <TableRow>
+        <TextView android:id="@+id/lblTipoDifRep"
+            android:text="@string/tipo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"/>
+        <Spinner android:id="@+id/spinTipoDifRep"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/tipoDifRep"
+            android:textAlignment="center"
+            android:gravity="center_horizontal" />
+    </TableRow>
+    <TableRow>
+        <Button android:id="@+id/cancelarBtn"
+            android:text="@string/cancelarBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="limpiarTexto"/>
+        <Button android:id="@+id/insertarBtn"
+            android:text="@string/insertar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="consultarDetalle"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:id="@+id/Local"
+            android:text="@string/codlocal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"/>
+        <EditText android:id="@+id/editCodlocal"
+            android:inputType="text"
+            android:maxLength="4"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+    </TableRow>
+    <TableRow>
+        <TextView android:id="@+id/lblDocente"
+            android:text="@string/codDocente"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"/>
+        <EditText android:id="@+id/editDocente"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLength="10"/>
+    </TableRow>
+    <TableRow>
+        <TextView android:text="@string/fechaDesde"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"/>
+        <EditText android:id="@+id/editFechaDesde"
+            android:inputType="text"
+            android:focusable="false"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+    </TableRow>
+    <TableRow>
+        <TextView android:id="@+id/lblFechaDesde" android:text="@string/fechaHasta"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"/>
+        <EditText android:id="@+id/editFechaHasta"
+            android:inputType="text"
+            android:focusable="false"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+    </TableRow>
+    <TableRow>
+        <TextView android:id="@+id/lblFechaHasta"
+            android:text="@string/fecha"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"/>
+        <EditText android:id="@+id/editFechaeval"
+            android:inputType="text"
+            android:focusable="false"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+    </TableRow>
+    <TableRow>
+        <TextView android:id="@+id/lblHora"
+            android:text="@string/horaRealizada"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"/>
+        <EditText android:id="@+id/editHoraRealizada"
+            android:inputType="text"
+            android:focusable="false"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+    </TableRow>
+    <TableRow>
+        <Button android:id="@+id/EliminarBtn"
+            android:text="@string/eliminarBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="eliminarDetalle"/>
+        <Button android:id="@+id/ModificarBtn"
+            android:text="@string/actualizar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="actualizarDetalle"/>
+    </TableRow>
+
+
+</TableLayout>

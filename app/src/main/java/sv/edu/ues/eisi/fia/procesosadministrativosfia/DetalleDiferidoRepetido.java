@@ -12,7 +12,7 @@ public class DetalleDiferidoRepetido {
         this.idDetalle = idDetalle;
     }
     public void setIdDetalle(){
-        this.idDetalle = idAsignatura+idTipoEval+idTipoEval+idTipoDifRep;
+        this.idDetalle = idAsignatura+idTipoEval+numEval+idTipoDifRep;
     }
 
     public String getIdLocal() {

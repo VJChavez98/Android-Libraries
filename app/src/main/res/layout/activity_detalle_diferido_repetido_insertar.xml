@@ -82,6 +82,7 @@
             android:layout_marginLeft="10dip"/>
         <EditText android:id="@+id/editFechaDesde"
             android:inputType="text"
+            android:focusable="false"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"/>
     </TableRow>
@@ -92,6 +93,7 @@
             android:layout_marginLeft="10dip"/>
         <EditText android:id="@+id/editFechaHasta"
             android:inputType="text"
+            android:focusable="false"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"/>
     </TableRow>
@@ -102,6 +104,7 @@
             android:layout_marginLeft="10dip"/>
         <EditText android:id="@+id/editFechaeval"
             android:inputType="text"
+            android:focusable="false"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"/>
     </TableRow>
@@ -112,6 +115,7 @@
             android:layout_marginLeft="10dip"/>
         <EditText android:id="@+id/editHoraRealizada"
             android:inputType="text"
+            android:focusable="false"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"/>
     </TableRow>
