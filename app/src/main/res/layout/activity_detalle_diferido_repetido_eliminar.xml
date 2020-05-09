@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetalleDiferidoRepetido_eliminar">
+    <TableRow>
+        <TextView android:text="@string/codAsignatura"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip" />
+        <EditText android:id="@+id/editAsignatura"
+            android:layout_width="280dip"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLength="6"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="@string/tipoEval"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_marginLeft="10dip"/>
+        <Spinner android:id="@+id/spinTipoEval"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="@string/evaluacion_numero"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"/>
+        <EditText android:id="@+id/editNumeval"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="2"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="@string/tipo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"/>
+        <Spinner android:id="@+id/spinTipoDifRep"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/tipoDifRep"
+            android:textAlignment="center"
+            android:gravity="center_horizontal" />
+    </TableRow>
+    <TableRow>
+        <Button android:id="@+id/cancelarBtn"
+            android:text="@string/cancelarBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="limpiarTexto"/>
+        <Button android:id="@+id/EliminarBtn"
+            android:text="@string/eliminarBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="eliminarDetalle"/>
+    </TableRow>
+
+</TableLayout>

@@ -42,17 +42,6 @@
             android:maxLength="2"/>
     </TableRow>
     <TableRow>
-        <TextView android:text="@string/codlocal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"/>
-        <EditText android:id="@+id/editCodlocal"
-            android:inputType="text"
-            android:maxLength="4"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
-    </TableRow>
-    <TableRow>
         <TextView android:text="@string/tipo"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -63,6 +52,17 @@
             android:entries="@array/tipoDifRep"
             android:textAlignment="center"
             android:gravity="center_horizontal" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="@string/codlocal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"/>
+        <EditText android:id="@+id/editCodlocal"
+            android:inputType="text"
+            android:maxLength="4"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
     </TableRow>
     <TableRow>
         <TextView android:text="@string/codDocente"

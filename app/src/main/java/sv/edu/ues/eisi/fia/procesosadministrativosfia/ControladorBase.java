@@ -188,6 +188,46 @@ public class ControladorBase {
         }
         return regAfectados;
     }
+    public DetalleDiferidoRepetido consultarDetalleDifRep(String materia, String tipoEval, Integer numeroEval, String tipoDifRep){
+        String[] id = {materia+tipoEval+numeroEval+tipoDifRep};
+        Cursor cursor = db.query("DetalleDiferidoRepetido",null,"idDetalleDiferidoRepetido = ?",id,null,null,null );
+        if (cursor.moveToFirst()){
+            DetalleDiferidoRepetido detalle = new DetalleDiferidoRepetido();
+            detalle.setIdDetalle(cursor.getString(0));
+            detalle.setIdLocal(cursor.getString(1));
+            detalle.setNumEval(cursor.getInt(2));
+            detalle.setIdTipoEval(cursor.getString(3));
+            detalle.setIdAsignatura(cursor.getString(4));
+            detalle.setIdDocente(cursor.getString(5));
+            detalle.setIdTipoDifRep(cursor.getString(6));
+            detalle.setFechaDesde(cursor.getString(7));
+            detalle.setFechaHasta(cursor.getString(8));
+            detalle.setFechaRealizacion(cursor.getString(9));
+            detalle.setHoraRealizacion(cursor.getString(10));
+            return detalle;
+        }else return null;
+    }
+    public String eliminar(DetalleDiferidoRepetido detalleDiferidoRepetido){
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        contador+=db.delete("DetalleDiferidoRepetido", "idDetalleDiferidoRepetido='"+detalleDiferidoRepetido.getIdDetalle()+"'", null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+    public String actualizar(DetalleDiferidoRepetido detalle) {
+        if (verificarIntegridadReferencial(detalle, 8)) {
+            String[] id = {detalle.getIdDetalle()};
+            ContentValues cv = new ContentValues();
+            cv.put("idLocal", detalle.getIdLocal());
+            cv.put("idDocente", detalle.getIdDocente());
+            cv.put("fechaDesde", detalle.getFechaDesde());
+            cv.put("fechaHasta", detalle.getFechaHasta());
+            cv.put("fechaRealizacion", detalle.getFechaRealizacion());
+            cv.put("horaRealizacion", detalle.getHoraRealizacion());
+            db.update("DetalleDiferidoRepetido", cv, "idDetalleDiferidoRepetido = ?", id);
+            return "Registro Actualizado Correctamente";
+        } else return "Registro no existe";
+    }
     public String actualizar(SolicitudDiferido solicitudDiferido){
         if (verificarIntegridadReferencial(solicitudDiferido,7)){
             String[] id = {solicitudDiferido.getIdSolicitud()};

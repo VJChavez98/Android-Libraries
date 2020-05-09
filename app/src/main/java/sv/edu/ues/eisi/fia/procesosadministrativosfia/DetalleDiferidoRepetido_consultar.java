@@ -1,18 +1,21 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Calendar;
 
@@ -21,46 +24,69 @@ public class DetalleDiferidoRepetido_consultar extends AppCompatActivity {
     Spinner spinTipoEval, spinTipoDifRep;
     TextView lblLocal, lblDocente, lblFechaDesde, lblFechaHasta, lblFechaEval, lblHora;
     ControladorBase helper;
+    Button modificar;
     private int nYearIni, nMonthIni, nDayIni,nYearIni2, nMonthIni2, nDayIni2,nYearIni3, nMonthIni3, nDayIni3;
     private int sYearIni, sMonthIni, sDayIni,sYearIni2, sMonthIni2, sDayIni2,sYearIni3, sMonthIni3, sDayIni3;
     private int sHour, nHour, sMinute, nMinute;
     static final int DATE_ID1 = 0, DATE_ID2 =1, DATE_ID3=2, HOUR_ID=3;
     Calendar c = Calendar.getInstance();
-    private final String[] TIPO_EVAL = {"Seleccione el tipo de evaluación","EP","ED","EL"};
+    String[] tipos ={"Seleccione el tipo de evaluacion","EP","ED","EL"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_diferido_repetido_consultar);
         helper = new ControladorBase(this);
-        editMateria = findViewById(R.id.editCodasignatura);
-        spinTipoEval = findViewById(R.id.spinTipoEval);
+        editMateria = findViewById(R.id.editAsignatura);
         editNumEval = findViewById(R.id.editNumeval);
-        lblLocal = findViewById(R.id.Local);
-        lblLocal.setVisibility(View.GONE);
         editLocal = findViewById(R.id.editCodlocal);
+        editDocente = findViewById(R.id.editDocente);
+        editFechaDesde = findViewById(R.id.editFechaDesde);
+        editFechaHasta = findViewById(R.id.editFechaHasta);
+        editFechaEval = findViewById(R.id.editFechaeval);
+        editHoraEval = findViewById(R.id.editHoraRealizada);
+        spinTipoEval = findViewById(R.id.spinTipoEval);
+        spinTipoDifRep = findViewById(R.id.spinTipoDifRep);
+        editFechaDesde.setInputType(InputType.TYPE_NULL);
+        editFechaHasta.setInputType(InputType.TYPE_NULL);
+        editFechaEval.setInputType(InputType.TYPE_NULL);
+        editHoraEval.setInputType(InputType.TYPE_NULL);
+        spinTipoEval.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, tipos));
+        lblLocal = findViewById(R.id.lblLocal);
+        lblLocal.setVisibility(View.GONE);
         editLocal.setVisibility(View.GONE);
         lblDocente = findViewById(R.id.lblDocente);
         lblDocente.setVisibility(View.GONE);
-        editDocente = findViewById(R.id.editDocente);
         editDocente.setVisibility(View.GONE);
         lblFechaDesde = findViewById(R.id.lblFechaDesde);
         lblFechaDesde.setVisibility(View.GONE);
-        editFechaDesde = findViewById(R.id.editFechaDesde);
         editFechaDesde.setVisibility(View.GONE);
         lblFechaHasta = findViewById(R.id.lblFechaHasta);
         lblFechaHasta.setVisibility(View.GONE);
-        editFechaHasta = findViewById(R.id.editFechaHasta);
         editFechaHasta.setVisibility(View.GONE);
         lblFechaEval = findViewById(R.id.lblFecha);
         lblFechaEval.setVisibility(View.GONE);
-        editFechaEval = findViewById(R.id.editFechaeval);
         editFechaEval.setVisibility(View.GONE);
         lblHora = findViewById(R.id.lblHora);
         lblHora.setVisibility(View.GONE);
-        editHoraEval = findViewById(R.id.editHoraRealizada);
         editHoraEval.setVisibility(View.GONE);
+        editFechaDesde.setInputType(InputType.TYPE_NULL);
+        editFechaHasta.setInputType(InputType.TYPE_NULL);
+        editFechaEval.setInputType(InputType.TYPE_NULL);
+        editHoraEval.setInputType(InputType.TYPE_NULL);
+        modificar=findViewById(R.id.ModificarBtn);
+        modificar.setVisibility(View.GONE);
 
-        spinTipoEval.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,TIPO_EVAL));
+        sMonthIni = c.get(Calendar.MONTH);
+        sDayIni = c.get(Calendar.DAY_OF_MONTH);
+        sYearIni = c.get(Calendar.YEAR);
+        sMonthIni2 = c.get(Calendar.MONTH);
+        sDayIni2 = c.get(Calendar.DAY_OF_MONTH);
+        sYearIni2 = c.get(Calendar.YEAR);
+        sMonthIni3 = c.get(Calendar.MONTH);
+        sDayIni3 = c.get(Calendar.DAY_OF_MONTH);
+        sYearIni3 = c.get(Calendar.YEAR);
+        sHour = c.get(Calendar.HOUR_OF_DAY);
+        sMinute = c.get(Calendar.MINUTE);
 
         editFechaEval.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -189,15 +215,85 @@ public class DetalleDiferidoRepetido_consultar extends AppCompatActivity {
         return null;
     }
     public void limpiarTexto(View view){
+        editMateria.setText("");
+        editNumEval.setText("");
+        spinTipoDifRep.setSelection(0);
+        spinTipoEval.setSelection(0);
+        lblLocal.setVisibility(View.GONE);
+        editLocal.setVisibility(View.GONE);
+        editLocal.setText("");
+        lblDocente.setVisibility(View.GONE);
+        editDocente.setVisibility(View.GONE);
+        editDocente.setText("");
+        lblFechaDesde.setVisibility(View.GONE);
+        editFechaDesde.setVisibility(View.GONE);
+        editFechaDesde.setText("");
+        lblFechaHasta.setVisibility(View.GONE);
+        editFechaHasta.setVisibility(View.GONE);
+        editFechaHasta.setText("");
+        lblFechaEval.setVisibility(View.GONE);
+        editFechaEval.setVisibility(View.GONE);
+        editFechaEval.setText("");
+        lblHora.setVisibility(View.GONE);
+        editHoraEval.setVisibility(View.GONE);
+        editHoraEval.setText("");
+        editMateria.setEnabled(true);
+        spinTipoEval.setEnabled(true);
+        editNumEval.setEnabled(true);
+        spinTipoDifRep.setEnabled(true);
+        modificar.setVisibility(View.GONE);
 
     }
     public void consultarDetalle(View view){
-
+        helper.abrir();
+        DetalleDiferidoRepetido detalle = helper.consultarDetalleDifRep(editMateria.getText().toString(), spinTipoEval.getSelectedItem().toString(), Integer.parseInt(editNumEval.getText().toString()),spinTipoDifRep.getSelectedItem().toString());
+        helper.cerrar();
+        if(detalle == null){
+            Toast.makeText(this,"Detalle no encontrado",Toast.LENGTH_SHORT).show();
+        }else {
+            lblLocal.setVisibility(View.VISIBLE);
+            editLocal.setText(detalle.getIdLocal());
+            editLocal.setVisibility(View.VISIBLE);
+            lblDocente.setVisibility(View.VISIBLE);
+            editDocente.setText(detalle.getIdDocente());
+            editDocente.setVisibility(View.VISIBLE);
+            lblFechaDesde.setVisibility(View.VISIBLE);
+            editFechaDesde.setText(detalle.getFechaDesde());
+            editFechaDesde.setVisibility(View.VISIBLE);
+            lblFechaHasta.setVisibility(View.VISIBLE);
+            editFechaHasta.setText(detalle.getFechaHasta());
+            editFechaHasta.setVisibility(View.VISIBLE);
+            lblFechaEval.setVisibility(View.VISIBLE);
+            editFechaEval.setText(detalle.getFechaRealizacion());
+            editFechaEval.setVisibility(View.VISIBLE);
+            lblHora.setVisibility(View.VISIBLE);
+            editHoraEval.setText(detalle.getHoraRealizacion());
+            editHoraEval.setVisibility(View.VISIBLE);
+            editMateria.setEnabled(false);
+            spinTipoEval.setEnabled(false);
+            editNumEval.setEnabled(false);
+            spinTipoDifRep.setEnabled(false);
+            modificar.setVisibility(View.VISIBLE);
+        }
     }
-    public void eliminarDetalle(View view){
 
-    }
-    public void actualizarDetalle(View view){
+    public void actualizarDetalle(View view) {
+        DetalleDiferidoRepetido detalle = new DetalleDiferidoRepetido();
+        detalle.setIdAsignatura(String.valueOf(editMateria.getText()));
+        detalle.setIdTipoEval(String.valueOf(spinTipoEval.getSelectedItem()));
+        detalle.setNumEval(Integer.parseInt(String.valueOf(editNumEval.getText())));
+        detalle.setIdTipoDifRep(String.valueOf(spinTipoDifRep.getSelectedItem()));
+        detalle.setIdDetalle();
+        detalle.setIdDocente(editDocente.getText().toString());
+        detalle.setIdLocal(editLocal.getText().toString());
+        detalle.setFechaDesde(editFechaDesde.getText().toString());
+        detalle.setFechaHasta(editFechaHasta.getText().toString());
+        detalle.setFechaRealizacion(editFechaEval.getText().toString());
+        detalle.setHoraRealizacion(editHoraEval.getText().toString());
+        helper.abrir();
+        String resultado = helper.actualizar(detalle);
+        helper.cerrar();
+        Toast.makeText(this,resultado,Toast.LENGTH_SHORT).show();
 
     }
 }

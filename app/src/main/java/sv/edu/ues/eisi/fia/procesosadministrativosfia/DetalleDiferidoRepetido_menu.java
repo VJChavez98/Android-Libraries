@@ -8,8 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class DetalleDiferidoRepetido_menu extends ListActivity {
-    private final String[] MENU = {"Insertar registro","Consultar Registro"};
-    private final String[] ACTIVITIES = {"DetalleDiferidoRepetido_insertar","DetalleDiferidoRepetido_consultar"};
+    private final String[] MENU = {"Insertar registro","Consultar Registro","Eliminar Registro"};
+    private final String[] ACTIVITIES = {"DetalleDiferidoRepetido_insertar","DetalleDiferidoRepetido_consultar","DetalleDiferidoRepetido_eliminar"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

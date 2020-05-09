@@ -7,21 +7,19 @@
     tools:context=".DetalleDiferidoRepetido_consultar">
 
     <TableRow>
-        <TextView android:id="@+id/lblCodMat"
-            android:text="@string/codAsignatura"
+        <TextView android:text="@string/codAsignatura"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"/>
-        <EditText android:id="@+id/editCodasignatura"
+            android:layout_marginLeft="10dip" />
+        <EditText android:id="@+id/editAsignatura"
+            android:layout_width="280dip"
+            android:layout_height="wrap_content"
             android:inputType="text"
-            android:maxLength="6"
-            android:layout_width="290dip"
-            android:layout_height="wrap_content"/>
-        <EditText/>
+            android:maxLength="6"/>
     </TableRow>
+
     <TableRow>
-        <TextView android:id="@+id/lblTipoEval"
-            android:text="@string/tipoEval"
+        <TextView android:text="@string/tipoEval"
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
             android:layout_marginLeft="10dip"/>
@@ -31,9 +29,9 @@
             android:textAlignment="center"
             android:gravity="center_horizontal"/>
     </TableRow>
+
     <TableRow>
-        <TextView android:id="@+id/lblNumEval"
-            android:text="@string/evaluacion_numero"
+        <TextView android:text="@string/evaluacion_numero"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"/>
@@ -44,10 +42,8 @@
             android:maxLength="2"/>
     </TableRow>
 
-
     <TableRow>
-        <TextView android:id="@+id/lblTipoDifRep"
-            android:text="@string/tipo"
+        <TextView android:text="@string/tipo"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"/>
@@ -64,15 +60,14 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:onClick="limpiarTexto"/>
-        <Button android:id="@+id/insertarBtn"
-            android:text="@string/insertar"
+        <Button android:id="@+id/botonConsultar"
+            android:text="@string/consultar"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:onClick="consultarDetalle"/>
     </TableRow>
     <TableRow>
-        <TextView
-            android:id="@+id/Local"
+        <TextView android:id="@+id/lblLocal"
             android:text="@string/codlocal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -95,8 +90,10 @@
             android:inputType="text"
             android:maxLength="10"/>
     </TableRow>
+
     <TableRow>
-        <TextView android:text="@string/fechaDesde"
+        <TextView android:id="@+id/lblFechaDesde"
+            android:text="@string/fechaDesde"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"/>
@@ -107,7 +104,8 @@
             android:layout_height="wrap_content"/>
     </TableRow>
     <TableRow>
-        <TextView android:id="@+id/lblFechaDesde" android:text="@string/fechaHasta"
+        <TextView android:id="@+id/lblFechaHasta"
+            android:text="@string/fechaHasta"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"/>
@@ -118,7 +116,7 @@
             android:layout_height="wrap_content"/>
     </TableRow>
     <TableRow>
-        <TextView android:id="@+id/lblFechaHasta"
+        <TextView android:id="@+id/lblFecha"
             android:text="@string/fecha"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -141,18 +139,9 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"/>
     </TableRow>
-    <TableRow>
-        <Button android:id="@+id/EliminarBtn"
-            android:text="@string/eliminarBtn"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:onClick="eliminarDetalle"/>
         <Button android:id="@+id/ModificarBtn"
-            android:text="@string/actualizar"
+            android:text="@string/modificarBtn"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:onClick="actualizarDetalle"/>
-    </TableRow>
-
-
 </TableLayout>
