@@ -1,10 +1,13 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.database.SQLException;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
@@ -12,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -24,9 +28,10 @@ public class DetalleDiferidoRepetido_insertar extends AppCompatActivity {
     private int nYearIni, nMonthIni, nDayIni,nYearIni2, nMonthIni2, nDayIni2,nYearIni3, nMonthIni3, nDayIni3;
     private int sYearIni, sMonthIni, sDayIni,sYearIni2, sMonthIni2, sDayIni2,sYearIni3, sMonthIni3, sDayIni3;
     private int sHour, nHour, sMinute, nMinute;
+    TextView idDetalle;
     static final int DATE_ID1 = 0, DATE_ID2 =1, DATE_ID3=2, HOUR_ID=3;
     Calendar c = Calendar.getInstance();
-    private final String[] TIPO_EVAL = {"Seleccione el tipo de evaluación","EP","ED","EL"};
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +51,7 @@ public class DetalleDiferidoRepetido_insertar extends AppCompatActivity {
         editFechaHasta.setInputType(InputType.TYPE_NULL);
         editFechaEval.setInputType(InputType.TYPE_NULL);
         editHoraEval.setInputType(InputType.TYPE_NULL);
+        idDetalle = findViewById(R.id.lblIdDetalle);
 
         sMonthIni = c.get(Calendar.MONTH);
         sDayIni = c.get(Calendar.DAY_OF_MONTH);
@@ -59,7 +65,6 @@ public class DetalleDiferidoRepetido_insertar extends AppCompatActivity {
         sHour = c.get(Calendar.HOUR_OF_DAY);
         sMinute = c.get(Calendar.MINUTE);
 
-        spinTipoEval.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,TIPO_EVAL));
 
         editFechaEval.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,9 +195,14 @@ public class DetalleDiferidoRepetido_insertar extends AppCompatActivity {
 
     public void insertarDetalle(View view) {
         DetalleDiferidoRepetido detalle = new DetalleDiferidoRepetido();
+        idDetalle.setText(editMateria.getText()+spinTipoEval.getSelectedItem().toString()+editNumEval.getText()+spinTipoDetalle.getSelectedItem().toString());
         detalle.setIdAsignatura(editMateria.getText().toString());
         detalle.setIdTipoEval(spinTipoEval.getSelectedItem().toString());
-        detalle.setNumEval(Integer.parseInt(editNumEval.getText().toString()));
+        if (!editNumEval.getText().toString().isEmpty()){
+            detalle.setNumEval(Integer.parseInt(editNumEval.getText().toString()));
+        }else {
+            detalle.setNumEval(0);
+        }
         detalle.setIdLocal(editLocal.getText().toString());
         detalle.setIdTipoDifRep(spinTipoDetalle.getSelectedItem().toString());
         detalle.setIdDocente(editDocente.getText().toString());
@@ -201,12 +211,29 @@ public class DetalleDiferidoRepetido_insertar extends AppCompatActivity {
         detalle.setFechaRealizacion(editFechaEval.getText().toString());
         detalle.setHoraRealizacion(editHoraEval.getText().toString());
         detalle.setIdDetalle();
-        helper.abrir();
-        String result = helper.insertar(detalle);
-        helper.cerrar();
-        Toast.makeText(this,result,Toast.LENGTH_SHORT).show();
+
+        try {
+            helper.abrir();
+            String result = helper.insertar(detalle);
+            helper.cerrar();
+            Toast.makeText(this,result,Toast.LENGTH_SHORT).show();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+
     }
 
     public void limpiarTexto(View view) {
+        editMateria.setText("");
+        editNumEval.setText("");
+        editLocal.setText("");
+        editDocente .setText("");
+        editFechaDesde.setText("");
+        editFechaHasta.setText("");
+        editFechaEval.setText("");
+        editHoraEval.setText("");
+        spinTipoEval.setSelection(0);
+        spinTipoDetalle.setSelection(0);
     }
 }

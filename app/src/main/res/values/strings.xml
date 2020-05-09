@@ -31,7 +31,12 @@
         <item>Primera Revision</item>
         <item>Segunda Revision</item>
     </string-array>
-
+    <string-array name="codTipoEval">
+        <item>Seleccione el tipo de evaluación</item>
+        <item>EP</item>
+        <item>ED</item>
+        <item>EL</item>
+    </string-array>
     <string-array name="tipoEval">
         <item>Examen Parcial</item>
         <item>Examen Discusion</item>

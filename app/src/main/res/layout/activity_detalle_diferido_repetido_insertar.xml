@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetalleDiferidoRepetido_insertar">
 
+    tools:context=".DetalleDiferidoRepetido_insertar">
     <TableRow>
         <TextView android:text="@string/codAsignatura"
             android:layout_width="fill_parent"
@@ -15,7 +15,9 @@
             android:layout_width="280dip"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:maxLength="6"/>
+            android:maxLength="6"
+            android:textAlignment="center"
+            android:gravity="center_horizontal" />
     </TableRow>
 
     <TableRow>
@@ -26,6 +28,7 @@
         <Spinner android:id="@+id/spinTipoEval"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:entries="@array/codTipoEval"
             android:textAlignment="center"
             android:gravity="center_horizontal"/>
     </TableRow>
@@ -39,7 +42,9 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:maxLength="2"/>
+            android:maxLength="2"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"/>
     </TableRow>
     <TableRow>
         <TextView android:text="@string/tipo"
@@ -62,7 +67,9 @@
             android:inputType="text"
             android:maxLength="4"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"/>
     </TableRow>
     <TableRow>
         <TextView android:text="@string/codDocente"
@@ -73,7 +80,9 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:maxLength="10"/>
+            android:maxLength="10"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"/>
     </TableRow>
     <TableRow>
         <TextView android:text="@string/fechaDesde"
@@ -84,7 +93,9 @@
             android:inputType="text"
             android:focusable="false"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"/>
     </TableRow>
     <TableRow>
         <TextView android:text="@string/fechaHasta"
@@ -95,7 +106,9 @@
             android:inputType="text"
             android:focusable="false"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"/>
     </TableRow>
     <TableRow>
         <TextView android:text="@string/fecha"
@@ -106,7 +119,9 @@
             android:inputType="text"
             android:focusable="false"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"/>
     </TableRow>
     <TableRow>
         <TextView android:text="@string/horaRealizada"
@@ -117,18 +132,23 @@
             android:inputType="text"
             android:focusable="false"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"/>
     </TableRow>
     <TableRow>
         <Button android:id="@+id/cancelarBtn"
             android:text="@string/cancelarBtn"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
             android:onClick="limpiarTexto"/>
         <Button android:id="@+id/insertarBtn"
             android:text="@string/insertar"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:onClick="insertarDetalle"/>
+            android:onClick="insertarDetalle"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"/>
     </TableRow>
 </TableLayout>

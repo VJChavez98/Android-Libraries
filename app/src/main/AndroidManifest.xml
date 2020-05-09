@@ -35,8 +35,6 @@
         <activity android:name=".PerInscPrimRev_menu" />
         <activity android:name=".Evaluacion_menu" />
         <activity android:name=".MenuEstudiante" />
-        <activity android:name=".Diferido_eliminar" />
-        <activity android:name=".Diferido_actualizar" />
         <activity android:name=".Diferido_insertar" />
         <activity android:name=".Diferido_consultar" />
         <activity android:name=".Diferido_menu" />

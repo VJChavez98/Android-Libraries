@@ -7,6 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.location.Criteria;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.solver.widgets.ConstraintAnchor;
@@ -165,27 +166,27 @@ public class ControladorBase {
     public String insertar(DetalleDiferidoRepetido detalle) {
         String regAfectados = "Registro insertado Nº= ";
         long contador = 0;
-        if (verificarIntegridadReferencial(detalle, 8)) {
+            if (verificarIntegridadReferencial(detalle, 8)) {
 
-            ContentValues contentValues = new ContentValues();
-            contentValues.put("idDetalleDiferidoRepetido", detalle.getIdDetalle());
-            contentValues.put("idLocal", detalle.getIdLocal());
-            contentValues.put("numEval",detalle.getNumEval());
-            contentValues.put("tipoEval",detalle.getIdTipoEval());
-            contentValues.put("codAsignatura", detalle.getIdAsignatura());
-            contentValues.put("idDocente",detalle.getIdDocente());
-            contentValues.put("idTipoDiferidoRepetido",detalle.getIdTipoDifRep());
-            contentValues.put("fechaDesde",detalle.getFechaDesde());
-            contentValues.put("fechaHasta",detalle.getFechaHasta());
-            contentValues.put("fechaRealizacion",detalle.getFechaRealizacion());
-            contentValues.put("horaRealizacion",detalle.getHoraRealizacion());
-            contador = db.insert("DetalleDiferidoRepetido",null,contentValues);
+                ContentValues contentValues = new ContentValues();
+                contentValues.put("idDetalleDiferidoRepetido", detalle.getIdDetalle());
+                contentValues.put("idLocal", detalle.getIdLocal());
+                contentValues.put("numEval", detalle.getNumEval());
+                contentValues.put("tipoEval", detalle.getIdTipoEval());
+                contentValues.put("codAsignatura", detalle.getIdAsignatura());
+                contentValues.put("idDocente", detalle.getIdDocente());
+                contentValues.put("idTipoDiferidoRepetido", detalle.getIdTipoDifRep());
+                contentValues.put("fechaDesde", detalle.getFechaDesde());
+                contentValues.put("fechaHasta", detalle.getFechaHasta());
+                contentValues.put("fechaRealizacion", detalle.getFechaRealizacion());
+                contentValues.put("horaRealizacion", detalle.getHoraRealizacion());
+                contador = db.insert("DetalleDiferidoRepetido", null, contentValues);
+            }
             if (contador == -1 || contador==0){
                 regAfectados = "Error al Insertar el registro, Registro duplicado. Verificar inserción";
             }else {
                 regAfectados=regAfectados+contador;
             }
-        }
         return regAfectados;
     }
     public DetalleDiferidoRepetido consultarDetalleDifRep(String materia, String tipoEval, Integer numeroEval, String tipoDifRep){
@@ -751,7 +752,8 @@ public class ControladorBase {
 
                 if (cursor1.moveToFirst() && cursor3.moveToFirst() && cursor5.moveToFirst()) {
                     return true;
-                } else return false;
+                }
+                return false;
             }
             case 8:
             {
@@ -763,16 +765,16 @@ public class ControladorBase {
                 String[] id5 = {detalle.getIdTipoEval(),String.valueOf(detalle.getNumEval()),detalle.getIdAsignatura()};
 
 
-                abrir();
                 Cursor cursor1 = db.query("local",null,"codlocal = ?",id1,null,null,null);
                 Cursor cursor2 = db.query("asignatura",null,"codasignatura = ?",id2,null,null,null);
                 Cursor cursor3 = db.query("docente", null,"coddocente = ?",id3, null,null,null);
                 Cursor cursor4 = db.query("TipoDiferidoRepetido",null,"idTipoDiferidoRepetido = ?",id4,null,null,null);
-                Cursor cursor5 = db.query("evaluacion",null,"codasignatura = ? AND codtipoeval",id5,null,null,null);
+                Cursor cursor5 = db.query("evaluacion",null,"codtipoeval = ? AND numeroeval = ? AND codasignatura = ?",id5,null,null,null);
 
                 if (cursor1.moveToFirst() && cursor2.moveToFirst() && cursor3.moveToFirst() && cursor4.moveToFirst() && cursor5.moveToFirst()){
                     return true;
-                }else return false;
+                }
+                return false;
             }
             default:
                 return false;
