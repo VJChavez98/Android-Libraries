@@ -10,16 +10,13 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 public class MenuEstudiante extends ListActivity {
-    String [] menu = {"Estudiante","Solicitud Repetido", "Solicitud Diferido","Detalle Diferido/Repetido", "Local", "Evaluacion",  "Inscripcion a Primera Revision", "Primera Revision"};
-    String [] activities = {"Estudiante_menu","Repetido_menu", "Diferido_menu","DetalleDiferidoRepetido_menu", "Local_menu", "Evaluacion_menu", "PeriodoInscripcionRevision_menu", "PrimeraRevision_menu"};
-    ControladorBase DBHelper;
-    boolean doubleBackToExitPressedOnce = false;
+    String [] menu = {"Estudiante","Solicitud Repetido", "Solicitud Diferido","Detalle Diferido/Repetido","Detalle Estudiante-Diferido", "Local", "Evaluacion",  "Inscripcion a Primera Revision", "Primera Revision"};
+    String [] activities = {"Estudiante_menu","Repetido_menu", "Diferido_menu","DetalleDiferidoRepetido_menu","DetalleEstudianteDiferido_menu", "Local_menu", "Evaluacion_menu", "PeriodoInscripcionRevision_menu", "PrimeraRevision_menu"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menu));
-        DBHelper = new ControladorBase(this);
     }
 
     protected void onListItemClick(ListView listView, View view, int position, long id){
@@ -34,22 +31,4 @@ public class MenuEstudiante extends ListActivity {
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
-            super.onBackPressed();
-            return;
-        }
-
-        this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Presione de nuevo para salir", Toast.LENGTH_SHORT).show();
-
-        new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce=false;
-            }
-        }, 2000);
-    }
 }

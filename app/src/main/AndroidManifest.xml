@@ -9,7 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DetalleDiferidoRepetido_eliminar"></activity>
+        <activity android:name=".DetalleEstudianteRepetido_eliminar"></activity>
+        <activity android:name=".DetalleEstudianteRepetido_consultar" />
+        <activity android:name=".DetalleEstudianteRepetido_menu" />
+        <activity android:name=".DetalleEstudianteRepetido_insertar" />
+        <activity android:name=".DetalleEstudianteDiferido_insertar" />
+        <activity android:name=".DetalleEstudianteDiferido_menu" />
+        <activity android:name=".DetalleDiferidoRepetido_eliminar" />
         <activity android:name=".DetalleDiferidoRepetido_consultar" />
         <activity android:name=".DetalleDiferidoRepetido_insertar" />
         <activity android:name=".DetalleDiferidoRepetido_menu" />

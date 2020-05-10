@@ -30,7 +30,11 @@ public class DetalleDiferidoRepetido_eliminar extends AppCompatActivity {
     public void eliminarDetalle(View view) {
         DetalleDiferidoRepetido detalle = new DetalleDiferidoRepetido();
         detalle.setIdAsignatura(editMateria.getText().toString());
-        detalle.setNumEval(Integer.parseInt(editNumEval.getText().toString()));
+        if (!editNumEval.getText().toString().isEmpty()){
+            detalle.setNumEval(Integer.parseInt(editNumEval.getText().toString()));
+        }else{
+            detalle.setNumEval(0);
+        }
         detalle.setIdTipoEval(spinTipoEval.getSelectedItem().toString());
         detalle.setIdTipoDifRep(spinTipoDifRep.getSelectedItem().toString());
         detalle.setIdDetalle();

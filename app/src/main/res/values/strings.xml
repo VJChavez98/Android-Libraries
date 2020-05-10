@@ -70,4 +70,6 @@
     <string name="estudianteApellido">Apellido</string>
     <string name="estudianteCarrera">Carrera</string>
     <string name="tipo">Tipo</string>
+    <string name="codDetalle">Código detalle</string>
+    <string name="fechaInscripcion">Fecha inscripcion</string>
 </resources>

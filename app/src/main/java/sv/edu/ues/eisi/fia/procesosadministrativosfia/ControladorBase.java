@@ -229,6 +229,25 @@ public class ControladorBase {
             return "Registro Actualizado Correctamente";
         } else return "Registro no existe";
     }
+    public String insertar(DetalleEstudianteDiferido detalle){
+        String regAfectados = "Registro insertado Nº= ";
+        long contador = 0;
+        if (verificarIntegridadReferencial(detalle, 9)) {
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("idEstudianteDiferido", detalle.getIdDetalleEstudianteDif());
+            contentValues.put("carnet", detalle.getCarnet());
+            contentValues.put("idDetalleDiferidoRepetido", detalle.getIdDetalleDifeRep());
+            contentValues.put("FechaInscripcionDiferido",detalle.getFechaInscripcionDiferido());
+            contador = db.insert("DetalleEstudianteDiferido", null, contentValues);
+        }
+        if (contador == -1 || contador==0){
+            regAfectados = "Error al Insertar el registro, Registro duplicado. Verificar inserción";
+        }else {
+            regAfectados=regAfectados+contador;
+        }
+        return regAfectados;
+    }
     public String actualizar(SolicitudDiferido solicitudDiferido){
         if (verificarIntegridadReferencial(solicitudDiferido,7)){
             String[] id = {solicitudDiferido.getIdSolicitud()};
@@ -772,6 +791,20 @@ public class ControladorBase {
                 Cursor cursor5 = db.query("evaluacion",null,"codtipoeval = ? AND numeroeval = ? AND codasignatura = ?",id5,null,null,null);
 
                 if (cursor1.moveToFirst() && cursor2.moveToFirst() && cursor3.moveToFirst() && cursor4.moveToFirst() && cursor5.moveToFirst()){
+                    return true;
+                }
+                return false;
+            }
+            case 9:
+            {
+                DetalleEstudianteDiferido detalle = (DetalleEstudianteDiferido) dato;
+                String [] id1 = {detalle.getCarnet()};
+                String[] id2 = {detalle.getIdDetalleDifeRep()};
+
+                Cursor cursor1 = db.query("Estudiante",null,"carnet = ?",id1,null,null,null);
+                Cursor cursor2 = db.query("DetalleDiferidoRepetido", null, "idDetalleDiferidoRepetido = ?",id2,null,null,null);
+
+                if (cursor1.moveToFirst() && cursor2.moveToFirst()){
                     return true;
                 }
                 return false;
