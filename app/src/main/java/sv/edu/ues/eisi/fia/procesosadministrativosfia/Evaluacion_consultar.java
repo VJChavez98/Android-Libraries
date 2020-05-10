@@ -29,17 +29,15 @@ public class Evaluacion_consultar extends Activity {
     }
 
     public void consultarEvaluacion(View v){
-        String tipoEval = spinTipoeval.getSelectedItem().toString();
-        if(tipoEval == "Examen Parcial"){
-            tipoEval = "EP";
-        }else if(tipoEval == "Examen Discusion"){
-            tipoEval = "ED";
+        Evaluacion eval = new Evaluacion();
+        if(!editNumeval.getText().toString().isEmpty()){
+            eval.setNumeroEvaluacion(Integer.parseInt(editNumeval.getText().toString()));
         }else{
-            tipoEval = "EL";
+            eval.setNumeroEvaluacion(0);
         }
 
         helper.abrir();
-        Evaluacion evaluacion = helper.consultarEvaluacion(editCodasignatura.getText().toString(), editCodciclo.getText().toString(), tipoEval, Integer.parseInt(editNumeval.getText().toString()));
+        Evaluacion evaluacion = helper.consultarEvaluacion(editCodasignatura.getText().toString(), editCodciclo.getText().toString(), spinTipoeval.getSelectedItem().toString(), eval.getNumeroEvaluacion());
         Asignatura asignatura = helper.consultarNomAsignatura(editCodasignatura.getText().toString());
         helper.cerrar();
         if(evaluacion == null){

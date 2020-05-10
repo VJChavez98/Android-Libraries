@@ -79,18 +79,13 @@ public class Evaluacion_actualizar extends Activity {
         Evaluacion evaluacion = new Evaluacion();
         evaluacion.setCodAsignatura(editCodasignatura.getText().toString());
         evaluacion.setCodCiclo(editCodcilo.getText().toString());
-        evaluacion.setNumeroEvaluacion(Integer.parseInt(editNumeval.getText().toString()));
         evaluacion.setFechaEvaluacion(editFechaeval.getText().toString());
-
-        String tipoEval = spinTipoeval.getSelectedItem().toString();
-        if(tipoEval == "Examen Parcial"){
-            tipoEval = "EP";
-        }else if(tipoEval == "Examen Discusion"){
-            tipoEval = "ED";
+        evaluacion.setCodTipoEval(spinTipoeval.getSelectedItem().toString());
+        if(!editNumeval.getText().toString().isEmpty()){
+            evaluacion.setNumeroEvaluacion(Integer.parseInt(editNumeval.getText().toString()));
         }else{
-            tipoEval = "EL";
+            evaluacion.setNumeroEvaluacion(0);
         }
-        evaluacion.setCodTipoEval(tipoEval);
 
         helper.abrir();
         String estado = helper.actualizar(evaluacion);

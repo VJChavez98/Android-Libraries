@@ -85,7 +85,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
-            android:hint="Presione 2 veces para seleccionar fecha"/>
+            android:focusable="false"/>
     </TableRow>
 
     <TableRow>
@@ -97,7 +97,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
-            android:hint="Presione 2 veces para seleccionar fecha"/>
+            android:focusable="false"/>
     </TableRow>
 
     <TableRow>
@@ -109,7 +109,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
-            android:hint="Presione 2 veces para seleccionar fecha"/>
+            android:focusable="false"/>
     </TableRow>
 
     <TableRow>
@@ -117,7 +117,7 @@
             android:text="@string/horaRevision"/>
         <EditText android:id="@+id/editHoraRevision"
             android:inputType="text"
-            android:hint="Presione 2 veces para seleccionar hora"/>
+            android:focusable="false"/>
     </TableRow>
 
     <TableRow>

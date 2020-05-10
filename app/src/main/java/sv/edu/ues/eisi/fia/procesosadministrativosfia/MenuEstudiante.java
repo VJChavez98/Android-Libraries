@@ -24,7 +24,7 @@ public class MenuEstudiante extends ListActivity {
 
     protected void onListItemClick(ListView listView, View view, int position, long id){
         super.onListItemClick(listView, view, position, id);
-        if(position != 5) {
+        if(position != 6) {
         String nombreValue = activities[position];
         try {
             Class<?> clase = Class.forName("sv.edu.ues.eisi.fia.procesosadministrativosfia." + nombreValue);

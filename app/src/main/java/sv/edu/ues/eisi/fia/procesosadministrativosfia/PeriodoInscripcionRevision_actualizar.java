@@ -185,32 +185,22 @@ public class PeriodoInscripcionRevision_actualizar extends Activity {
         tipoEval = spinTipoeval.getSelectedItem().toString();
         tipoRev = spinTiporev.getSelectedItem().toString();
 
-        if(tipoEval == "Examen Parcial"){
-            tipoEval = "EP";
-        }else if(tipoEval == "Examen Discusion"){
-            tipoEval = "ED";
-        }else{
-            tipoEval = "EL";
-        }
-
-        if(tipoRev == "Primera Revision"){
-            tipoRev = "PR";
-        }else{
-            tipoRev = "SR";
-        }
-
         PeriodoInscripcionRevision perInscRev = new PeriodoInscripcionRevision();
         perInscRev.setCodAsignatura(editCodasignatura.getText().toString());
         perInscRev.setCodCiclo(editCodciclo.getText().toString());
         perInscRev.setCodDocente(editCoddocente.getText().toString());
         perInscRev.setCodLocal(editCodlocal.getText().toString());
-        perInscRev.setNumeroEval(Integer.parseInt(editNumeval.getText().toString()));
         perInscRev.setFechaDesde(editFechadesde.getText().toString());
         perInscRev.setFechaHasta(editFechahasta.getText().toString());
         perInscRev.setFechaRevision(editFecharev.getText().toString());
         perInscRev.setHoraRevision(editHorarev.getText().toString());
         perInscRev.setCodTipoEval(tipoEval);
         perInscRev.setTipoRevision(tipoRev);
+        if(!editNumeval.getText().toString().isEmpty()){
+            perInscRev.setNumeroEval(Integer.parseInt(editNumeval.getText().toString()));
+        }else{
+            perInscRev.setNumeroEval(0);
+        }
 
         helper.abrir();
         regInsertados = helper.actualizar(perInscRev);

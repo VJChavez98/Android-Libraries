@@ -13,8 +13,8 @@ import android.widget.ListView;
 import java.util.List;
 
 public class Evaluacion_menu extends ListActivity {
-    String[] menu = {"Insertar Registro", "Eliminar Registro", "Consultar Registro", "Actualizar Registro"};
-    String[] activities = {"Evaluacion_insertar", "Evaluacion_eliminar", "Evaluacion_consultar", "Evaluacion_actualizar"};
+    String[] menu = {"Insertar Registro", "Consultar Registro", "Actualizar Registro", "Eliminar Registro"};
+    String[] activities = {"Evaluacion_insertar", "Evaluacion_consultar", "Evaluacion_actualizar", "Evaluacion_eliminar"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

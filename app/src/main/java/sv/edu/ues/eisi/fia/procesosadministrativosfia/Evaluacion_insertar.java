@@ -79,24 +79,20 @@ public class Evaluacion_insertar extends Activity{
         String asignatura = editAsignatura.getText().toString();
         String ciclo = editCiclo.getText().toString();
         String fecha = editFecha.getText().toString();
-        Integer numero = Integer.valueOf(editNumero.getText().toString());
         String tipoEval = spinTipoeval.getSelectedItem().toString();
         String regInsertados;
-
-        if(tipoEval == "Examen Parcial"){
-            tipoEval = "EP";
-        }else if(tipoEval == "Examen Discusion"){
-            tipoEval = "ED";
-        }else{
-            tipoEval = "EL";
-        }
 
         Evaluacion eval = new Evaluacion();
         eval.setCodAsignatura(asignatura);
         eval.setCodCiclo(ciclo);
         eval.setCodTipoEval(tipoEval);
         eval.setFechaEvaluacion(fecha);
-        eval.setNumeroEvaluacion(numero);
+        if(!editNumero.getText().toString().isEmpty()){
+            eval.setNumeroEvaluacion(Integer.parseInt(editNumero.getText().toString()));
+        }else{
+            eval.setNumeroEvaluacion(0);
+        }
+
         helper.abrir();
         regInsertados = helper.insertar(eval);
         helper.cerrar();

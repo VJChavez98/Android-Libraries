@@ -36,23 +36,15 @@ public class PeriodoInscripcionRevision_consultar extends Activity {
     public void consultarPeriodoRevision(View v){
         String tipoEval = spinTipoeval.getSelectedItem().toString();
         String tipoRev = spinTiporev.getSelectedItem().toString();
-
-        if(tipoEval == "Examen Parcial"){
-            tipoEval = "EP";
-        }else if(tipoEval == "Examen Discusion"){
-            tipoEval = "ED";
+        PeriodoInscripcionRevision perIns = new PeriodoInscripcionRevision();
+        if(!editNumeval.getText().toString().isEmpty()){
+            perIns.setNumeroEval(Integer.parseInt(editNumeval.getText().toString()));
         }else{
-            tipoEval = "EL";
-        }
-
-        if(tipoRev == "Primera Revision"){
-            tipoRev = "PR";
-        }else{
-            tipoRev = "SR";
+            perIns.setNumeroEval(0);
         }
 
         helper.abrir();
-        PeriodoInscripcionRevision perInscRev = helper.consultarPeriodoInscripcion(tipoRev, editCodasignatura.getText().toString(), tipoEval, editCodciclo.getText().toString(), Integer.parseInt(editNumeval.getText().toString()));
+        PeriodoInscripcionRevision perInscRev = helper.consultarPeriodoInscripcion(tipoRev, editCodasignatura.getText().toString(), tipoEval, editCodciclo.getText().toString(), perIns.getNumeroEval());
         helper.cerrar();
         if(perInscRev == null){
             Toast.makeText(this, "Periodo de Inscripcion no registrado", Toast.LENGTH_LONG).show();

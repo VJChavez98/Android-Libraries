@@ -31,17 +31,12 @@ public class Evaluacion_eliminar extends Activity {
         Evaluacion evaluacion = new Evaluacion();
         evaluacion.setCodAsignatura(editCodAsignatura.getText().toString());
         evaluacion.setCodCiclo(editCodciclo.getText().toString());
-        evaluacion.setNumeroEvaluacion(Integer.parseInt(editNumeval.getText().toString()));
-
-        String tipoEval = spinTipoeval.getSelectedItem().toString();
-        if(tipoEval == "Examen Parcial"){
-            tipoEval = "EP";
-        }else if(tipoEval == "Examen Discusion"){
-            tipoEval = "ED";
+        evaluacion.setCodTipoEval(spinTipoeval.getSelectedItem().toString());
+        if(!editNumeval.getText().toString().isEmpty()){
+            evaluacion.setNumeroEvaluacion(Integer.parseInt(editNumeval.getText().toString()));
         }else{
-            tipoEval = "EL";
+            evaluacion.setNumeroEvaluacion(0);
         }
-        evaluacion.setCodTipoEval(tipoEval);
 
         helper.abrir();
         regEliminados = helper.eliminar(evaluacion);

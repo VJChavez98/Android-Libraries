@@ -6,30 +6,49 @@
     <string name="limpiar">Limpiar</string>
     <string name="consultar">Consultar</string>
     <string name="ingresarBtn">Ingresar</string>
-    <string name="evaluacion_codigo">Codigo Evaluacion</string>
-    <string name="fecha">Fecha Evaluacion</string>
-    <string name="evaluacion_numero">Numero Evaluacion</string>
-    <string name="codasignatura">Codigo Asignatura</string>
-    <string name="codtipoeval">Tipo Evaluacion</string>
+    <string name="evaluacion_codigo">Código Evaluación</string>
+    <string name="fecha">Fecha Evaluación</string>
+    <string name="evaluacion_numero">Número Evaluación</string>
+    <string name="codasignatura">Código Asignatura</string>
+    <string name="codtipoeval">Tipo Evaluación</string>
     <string name="codciclo">Ciclo Lectivo</string>
     <string name="codlocal">Codigo Local</string>
     <string name="nomlocal">Nombre Local</string>
-    <string name="ubicacionLocal">Ubicacion Local</string>
+    <string name="ubicacionLocal">Ubicación Local</string>
     <string name="fechaDesde">Fecha Desde</string>
     <string name="fechaHasta">Fecha Hasta</string>
-    <string name="fechaRevision">Fecha Revision</string>
-    <string name="horaRevision">Hora Revision</string>
-    <string name="codDocente">Codigo Docente</string>
-    <string name="codtiporev">Tipo Revision</string>
-    
+    <string name="fechaRevision">Fecha Revisión</string>
+    <string name="horaRevision">Hora Revisión</string>
+    <string name="codDocente">Código Docente</string>
+    <string name="codtiporev">Tipo Revisión</string>
+    <string name="carnet">Carnet</string>
+    <string name="estadoPrimRev">Estado</string>
+    <string name="asistio">Asistio</string>
+    <string name="notaDespRev">Nota Final</string>
+    <string name="observaciones">Observaciones</string>
+
     <string-array name="tipoRevision">
-        <item>Primera Revision</item>
-        <item>Segunda Revision</item>
+        <item>Seleccione el Tipo de Revisión</item>
+        <item>PR</item>
+        <item>SR</item>
     </string-array>
 
     <string-array name="tipoEval">
-        <item>Examen Parcial</item>
-        <item>Examen Discusion</item>
-        <item>Examen Laboratorio</item>
+        <item>Seleccione el Tipo de Evaluación</item>
+        <item>EP</item>
+        <item>ED</item>
+        <item>EL</item>
+    </string-array>
+
+    <string-array name="estadoPrimRev">
+        <item>Seleccione el Estado de la Revision</item>
+        <item>Aprobada</item>
+        <item>Reprobada</item>
+    </string-array>
+
+    <string-array name="asistPrimRev">
+        <item>Seleccione la Asistencia</item>
+        <item>SI</item>
+        <item>NO</item>
     </string-array>
 </resources>
