@@ -14,6 +14,8 @@ public class DetalleEstudianteRepetido_insertar extends AppCompatActivity {
     }
 
     public void insertarDetalle(View view) {
+        DetalleEstudianteRepetido detalleEst = new DetalleEstudianteRepetido();
+        detalleEst.
     }
     public void limpiarTexto(View view){
 
