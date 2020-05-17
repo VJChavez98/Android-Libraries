@@ -30,14 +30,29 @@ public class Evaluacion_consultar extends Activity {
 
     public void consultarEvaluacion(View v){
         Evaluacion eval = new Evaluacion();
+
         if(!editNumeval.getText().toString().isEmpty()){
             eval.setNumeroEvaluacion(Integer.parseInt(editNumeval.getText().toString()));
         }else{
             eval.setNumeroEvaluacion(0);
         }
 
+        //Validacion de los Spinner para guardar los codigos.
+        if(spinTipoeval.getSelectedItem().toString().equals("Examen Parcial")){
+            String tipoEval = "EP";
+            eval.setCodTipoEval(tipoEval);
+        }else if(spinTipoeval.getSelectedItem().toString().equals("Examen Discusion")){
+            String tipoEval = "ED";
+            eval.setCodTipoEval(tipoEval);
+        }else if(spinTipoeval.getSelectedItem().toString().equals("Examen Laboratorio")){
+            String tipoEval = "EL";
+            eval.setCodTipoEval(tipoEval);
+        }else{
+            eval.setCodTipoEval("");
+        }
+
         helper.abrir();
-        Evaluacion evaluacion = helper.consultarEvaluacion(editCodasignatura.getText().toString(), editCodciclo.getText().toString(), spinTipoeval.getSelectedItem().toString(), eval.getNumeroEvaluacion());
+        Evaluacion evaluacion = helper.consultarEvaluacion(editCodasignatura.getText().toString(), editCodciclo.getText().toString(), eval.getCodTipoEval(), eval.getNumeroEvaluacion());
         Asignatura asignatura = helper.consultarNomAsignatura(editCodasignatura.getText().toString());
         helper.cerrar();
         if(evaluacion == null){

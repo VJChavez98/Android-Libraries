@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         } else {
 
-            Toast.makeText(this, "Error, usuario o contra no encontrados", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error, usuario o contraseña no encontrados", Toast.LENGTH_SHORT).show();
         }
     }
 }

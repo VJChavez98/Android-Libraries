@@ -12,8 +12,14 @@ public class PrimeraRevision {
     private String codtipoeval;
     private int numeroeval;
     private String codtiporevision;
+    private String motivoCambioNota;
 
-    public PrimeraRevision(String estadoprimerrevision, float notadespuesprimerarevision, String asistio, String observacionesprimerarev, String coddocente, String carnet, String codasignatura, String codciclo, String codtipoeval, int numeroeval, String codtiporevision) {
+
+
+    public PrimeraRevision() {
+    }
+
+    public PrimeraRevision(String estadoprimerrevision, float notadespuesprimerarevision, String asistio, String observacionesprimerarev, String coddocente, String carnet, String codasignatura, String codciclo, String codtipoeval, int numeroeval, String codtiporevision, String motivoCambioNota) {
         this.estadoprimerrevision = estadoprimerrevision;
         this.notadespuesprimerarevision = notadespuesprimerarevision;
         this.asistio = asistio;
@@ -25,9 +31,7 @@ public class PrimeraRevision {
         this.codtipoeval = codtipoeval;
         this.numeroeval = numeroeval;
         this.codtiporevision = codtiporevision;
-    }
-
-    public PrimeraRevision() {
+        this.motivoCambioNota = motivoCambioNota;
     }
 
     public String getEstadoprimerrevision() {
@@ -116,5 +120,13 @@ public class PrimeraRevision {
 
     public void setCodtiporevision(String codtiporevision) {
         this.codtiporevision = codtiporevision;
+    }
+
+    public String getMotivoCambioNota() {
+        return motivoCambioNota;
+    }
+
+    public void setMotivoCambioNota(String motivoCambioNota) {
+        this.motivoCambioNota = motivoCambioNota;
     }
 }

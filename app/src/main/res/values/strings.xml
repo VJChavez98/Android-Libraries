@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Procesos Administrativos FIa</string>
+    <string name="app_name">Procesos Administrativos FIA</string>
     <string name="insertar">Insertar</string>
     <string name="eliminar">Eliminar</string>
     <string name="actualizar">Actualizar</string>
@@ -10,9 +10,10 @@
     <string name="fecha">Fecha Evaluación</string>
     <string name="evaluacion_numero">Número Evaluación</string>
     <string name="codasignatura">Código Asignatura</string>
+    <string name="nomasignatura">Nombre Asignatura</string>
     <string name="codtipoeval">Tipo Evaluación</string>
     <string name="codciclo">Ciclo Lectivo</string>
-    <string name="codlocal">Codigo Local</string>
+    <string name="codlocal">Código Local</string>
     <string name="nomlocal">Nombre Local</string>
     <string name="ubicacionLocal">Ubicación Local</string>
     <string name="fechaDesde">Fecha Desde</string>
@@ -22,33 +23,40 @@
     <string name="codDocente">Código Docente</string>
     <string name="codtiporev">Tipo Revisión</string>
     <string name="carnet">Carnet</string>
-    <string name="estadoPrimRev">Estado</string>
-    <string name="asistio">Asistio</string>
     <string name="notaDespRev">Nota Final</string>
     <string name="observaciones">Observaciones</string>
+    <string name="moCambioNota">Motivo Cambio Nota</string>
+    <string name="nomDocente">Nombre Docente</string>
+    <string name="estadoPrimRev">Estado Revisión</string>
+    <string name="estadoPendiente">Pendiente</string>
+    <string name="estadoTerminada">Terminada</string>
+    <string name="asistio">Asistencia</string>
+    <string name="asisSi">SI</string>
+    <string name="asisNo">NO</string>
 
     <string-array name="tipoRevision">
         <item>Seleccione el Tipo de Revisión</item>
-        <item>PR</item>
-        <item>SR</item>
+        <item>Primer Revisión</item>
+        <item>Segunda Revisión</item>
     </string-array>
 
     <string-array name="tipoEval">
         <item>Seleccione el Tipo de Evaluación</item>
-        <item>EP</item>
-        <item>ED</item>
-        <item>EL</item>
+        <item>Examen Parcial</item>
+        <item>Examen Discusion</item>
+        <item>Examen Laboratorio</item>
     </string-array>
 
     <string-array name="estadoPrimRev">
-        <item>Seleccione el Estado de la Revision</item>
+        <item>Seleccione el Estado de la Revisión</item>
         <item>Aprobada</item>
         <item>Reprobada</item>
     </string-array>
 
-    <string-array name="asistPrimRev">
-        <item>Seleccione la Asistencia</item>
-        <item>SI</item>
-        <item>NO</item>
+    <string-array name="motCambNot">
+        <item>Seleccione Motivo de Cambio de Nota</item>
+        <item>Error de suma</item>
+        <item>Error de elaboracion de preguntas</item>
+        <item>Error de calificacion</item>
     </string-array>
 </resources>

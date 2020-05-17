@@ -34,17 +34,40 @@ public class PeriodoInscripcionRevision_consultar extends Activity {
     }
 
     public void consultarPeriodoRevision(View v){
-        String tipoEval = spinTipoeval.getSelectedItem().toString();
-        String tipoRev = spinTiporev.getSelectedItem().toString();
         PeriodoInscripcionRevision perIns = new PeriodoInscripcionRevision();
+
         if(!editNumeval.getText().toString().isEmpty()){
             perIns.setNumeroEval(Integer.parseInt(editNumeval.getText().toString()));
         }else{
             perIns.setNumeroEval(0);
         }
 
+        //Validacion de los Spinner para guardar los codigos.
+        if(spinTipoeval.getSelectedItem().toString().equals("Examen Parcial")){
+            String tipoEval = "EP";
+            perIns.setCodTipoEval(tipoEval);
+        }else if(spinTipoeval.getSelectedItem().toString().equals("Examen Discusion")){
+            String tipoEval = "ED";
+            perIns.setCodTipoEval(tipoEval);
+        }else if(spinTipoeval.getSelectedItem().toString().equals("Examen Laboratorio")){
+            String tipoEval = "EL";
+            perIns.setCodTipoEval(tipoEval);
+        }else{
+            perIns.setCodTipoEval("");
+        }
+
+        if(spinTiporev.getSelectedItem().toString().equals("Primer Revisión")){
+            String tipoEval = "PR";
+            perIns.setTipoRevision(tipoEval);
+        }else if(spinTipoeval.getSelectedItem().toString().equals("Segunda Revisión")){
+            String tipoEval = "SR";
+            perIns.setTipoRevision(tipoEval);
+        }else{
+            perIns.setTipoRevision("");
+        }
+
         helper.abrir();
-        PeriodoInscripcionRevision perInscRev = helper.consultarPeriodoInscripcion(tipoRev, editCodasignatura.getText().toString(), tipoEval, editCodciclo.getText().toString(), perIns.getNumeroEval());
+        PeriodoInscripcionRevision perInscRev = helper.consultarPeriodoInscripcion(perIns.getTipoRevision(), editCodasignatura.getText().toString(), perIns.getCodTipoEval(), editCodciclo.getText().toString(), perIns.getNumeroEval());
         helper.cerrar();
         if(perInscRev == null){
             Toast.makeText(this, "Periodo de Inscripcion no registrado", Toast.LENGTH_LONG).show();

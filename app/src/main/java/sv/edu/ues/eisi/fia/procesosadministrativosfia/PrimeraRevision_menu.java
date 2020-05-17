@@ -22,7 +22,7 @@ public class PrimeraRevision_menu extends ListActivity {
         setListAdapter(adapter);
     }
 
-    protected void OnListItemClick(ListView l, View v, int position, long id){
+    protected void onListItemClick(ListView l, View v, int position, long id){
         super.onListItemClick(l, v, position, id);
         String nombreValues = activities[position];
         l.getChildAt(position).setBackgroundColor(Color.rgb(100, 100, 230));
