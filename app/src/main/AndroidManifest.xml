@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Diferido_actualizar"></activity>
+        <activity android:name=".Diferido_actualizar"
+            android:theme="@style/Theme.AppCompat.Dialog.Alert"/>
         <activity android:name=".SolicitudDiferido_consultarDocente" />
         <activity android:name=".DetalleEstudianteDiferido_consultar" />
         <activity android:name=".DetalleEstudianteRepetido_eliminar" />
@@ -45,7 +46,7 @@
         <activity android:name=".Evaluacion_menu" />
         <activity android:name=".MenuEstudiante" />
         <activity android:name=".Diferido_insertar" />
-        <activity android:name=".Diferido_consultar" />
+        <activity android:name=".Diferido_consultar"/>
         <activity android:name=".Diferido_menu" />
         <activity android:name=".Repetido_Eliminar" />
         <activity android:name=".Repetido_modificar" />
