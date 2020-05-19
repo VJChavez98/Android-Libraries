@@ -149,6 +149,7 @@ public class Diferido_insertar extends AppCompatActivity {
         solicitudDiferido.setHoraEva(hora);
         solicitudDiferido.setMotivo(motivoSpin);
         solicitudDiferido.setOtroMotivo(motivoEdit);
+        solicitudDiferido.setEstado("Pendiente");
         DBHelper.abrir();
         regInsertados=DBHelper.insertar(solicitudDiferido);
         DBHelper.cerrar();

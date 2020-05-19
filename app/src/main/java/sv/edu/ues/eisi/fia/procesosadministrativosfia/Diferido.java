@@ -37,6 +37,12 @@ public class Diferido {
     public void setEvaluacion(Evaluacion evaluacion) {
         this.evaluacion = evaluacion;
     }
-
+    public void llenarEvaluacion(String materia, String tipoEval, int numEval, String fechaEval, String ciclo){
+        evaluacion.setCodAsignatura(materia);
+        evaluacion.setCodTipoEval(tipoEval);
+        evaluacion.setNumeroEvaluacion(numEval);
+        evaluacion.setFechaEvaluacion(fechaEval);
+        evaluacion.setCodCiclo(ciclo);
+    }
 
 }

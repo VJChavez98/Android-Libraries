@@ -57,6 +57,11 @@ public class DetalleEstudianteDiferido_insertar extends AppCompatActivity {
         detalle.setIdDetalleDifeRep(idDetalleDifRep);
         detalle.setIdDetalleEstudianteDif(editCarnet.getText().toString() + idDetalleDifRep);
         detalle.setFechaInscripcionDiferido(editFecha.getText().toString());
+        //detalle.setAsignatura(editMateria.getText().toString());
+        //detalle.setTipoEval(spinTipoEval.getSelectedItem().toString());
+        //if(!editNumEval.getText().toString().isEmpty()) {
+         //   detalle.setNumEval(Integer.parseInt(editNumEval.getText().toString()));
+        //}else {detalle.setNumEval(0);}
         helper.abrir();
         String resultado = helper.insertar(detalle);
         helper.cerrar();

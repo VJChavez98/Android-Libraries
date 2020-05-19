@@ -47,6 +47,12 @@
         <item>Diferido</item>
         <item>Repetido</item>
     </string-array>
+    <string-array name="estadoSoli">
+        <item>Seleccione el estado de solicitud</item>
+        <item>Pendiente</item>
+        <item>Aprobada</item>
+        <item>Reprobada</item>
+    </string-array>
     <string name="evaluacion_codigo">Codigo Evaluacion</string>
     <string name="fecha">Fecha Evaluacion</string>
     <string name="evaluacion_numero">Numero Evaluacion</string>
@@ -72,4 +78,5 @@
     <string name="tipo">Tipo</string>
     <string name="codDetalle">Código detalle</string>
     <string name="fechaInscripcion">Fecha inscripcion</string>
+    <string name="estadoSolic">Estado solicitud</string>
 </resources>

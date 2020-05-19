@@ -2,7 +2,7 @@ package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
 public class DetalleEstudianteDiferido {
     private String carnet, idDetalleDifeRep, idDetalleEstudianteDif, fechaInscripcionDiferido;
-    DetalleDiferidoRepetido detalle;
+    Evaluacion evaluacion;
 
     public String getCarnet() {
         return carnet;
@@ -36,18 +36,11 @@ public class DetalleEstudianteDiferido {
         this.fechaInscripcionDiferido = fechaInscripcionDiferido;
     }
 
-    public DetalleDiferidoRepetido getDetalle() {
-        return detalle;
+    public Evaluacion getEvaluacion() {
+        return evaluacion;
     }
 
-    public void setDetalle(DetalleDiferidoRepetido detalle) {
-        this.detalle = detalle;
-    }
-    public void llenarDetalle(String materia, String tipoEval, int numEval){
-        detalle.setIdAsignatura(materia);
-        detalle.setNumEval(numEval);
-        detalle.setIdTipoEval(tipoEval);
-        detalle.setIdTipoDifRep("Repetido");
-        detalle.setIdDetalle();
+    public void setEvaluacion(Evaluacion evaluacion) {
+        this.evaluacion = evaluacion;
     }
 }

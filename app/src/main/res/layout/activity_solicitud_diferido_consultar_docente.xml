@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SolicitudDiferido_consultarDocente">
+
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/codAsignatura"/>
+        <EditText android:id="@+id/editAsignatura"
+            android:inputType="text"
+            android:maxLength="6"
+            android:textAlignment="center"
+            android:layout_width="290dip"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal" />
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tipoEval"/>
+        <Spinner android:id="@+id/spinTipoEval"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:entries="@array/codTipoEval"/>
+    </TableRow>
+    <TableRow>
+        <TextView android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/evaluacion"/>
+        <EditText android:id="@+id/editNumeval"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:maxLength="2"
+            android:gravity="center_horizontal" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="@string/estadoSolic"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+        <Spinner android:id="@+id/estadoSolicitud"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/estadoSoli"
+            android:textAlignment="center"
+            android:gravity="center_horizontal" />
+    </TableRow>
+    <TableRow>
+        <Button android:id="@+id/cancelarBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="limpiarTexto"
+            android:text="@string/cancelarBtn"/>
+        <Button android:id="@+id/botonConsultar"
+            android:text="@string/consultar"
+            android:onClick="consultarSolicitudes"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent" />
+
+    </TableRow>
+    <FrameLayout android:id="@+id/fragmentSolicitudes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:layout_gravity="bottom">
+    <ScrollView android:layout_height="match_parent"
+        android:layout_width="match_parent">
+        <ListView
+            android:textAlignment="center"
+            android:id="@+id/listaSolicitudes"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+        </ListView>
+    </ScrollView>
+    </FrameLayout>
+</TableLayout>
