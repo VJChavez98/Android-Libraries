@@ -25,9 +25,9 @@ import sv.edu.ues.eisi.fia.procesosadministrativosfia.R;
 public class Diferido_consultar extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
-    EditText editNumEval, editCarnet, editCodMateria, editGT, editGD, editGL, editFechaEval, editHoraEval, editOtroMotivo;
+    EditText editNumEval, editCarnet, editCodMateria, editGT, editGD, editGL, editFechaEval, editHoraEval, editOtroMotivo, estadoSoli;
     ControladorBase helper;
-    TextView lblMateria, lblTipoEva, lblGT,lblGD,lblGL, lblFecha, lblHora, lblMotivo, lblOtro;
+    TextView lblMateria, lblTipoEva, lblGT,lblGD,lblGL, lblFecha, lblHora, lblMotivo, lblOtro, lblEstado;
     Button eliminarBtn, modificarBtn;
     Spinner tipoEval, motivos;
     private int nYearIni, nMonthIni, nDayIni, sYearIni, sMonthIni, sDayIni, sHour, nHour, sMinute, nMinute;
@@ -49,7 +49,7 @@ public class Diferido_consultar extends AppCompatActivity {
         editFechaEval = (EditText) findViewById(R.id.editFechaRealizada);
         editHoraEval = (EditText) findViewById(R.id.editHoraRealizada);
         editOtroMotivo = (EditText) findViewById(R.id.editMotivo);
-
+        estadoSoli = findViewById(R.id.editEstadoSolicitud);
         tipoEval=(Spinner) findViewById(R.id.spinTipoEval);
         motivos = (Spinner) findViewById(R.id.spinMotivos);
 
@@ -63,45 +63,47 @@ public class Diferido_consultar extends AppCompatActivity {
         lblHora = (TextView) findViewById(R.id.lblHora);
         lblMotivo = (TextView) findViewById(R.id.lblMotivo);
         lblOtro = (TextView) findViewById(R.id.lblOtro);
-
+        lblEstado = findViewById(R.id.lblEstadoSoli);
         eliminarBtn = (Button) findViewById(R.id.EliminarBtn);
         modificarBtn = (Button) findViewById(R.id.ModificarBtn);
 
-        eliminarBtn.setVisibility(View.INVISIBLE);
-        modificarBtn.setVisibility(View.INVISIBLE);
+        eliminarBtn.setVisibility(View.GONE);
+        modificarBtn.setVisibility(View.GONE);
 
         lblMateria.setVisibility(View.VISIBLE);
         lblTipoEva.setVisibility(View.VISIBLE);
-        lblGT.setVisibility(View.INVISIBLE);
-        lblGD.setVisibility(View.INVISIBLE);
-        lblGL.setVisibility(View.INVISIBLE);
-        lblFecha.setVisibility(View.INVISIBLE);
-        lblHora.setVisibility(View.INVISIBLE);
-        lblMotivo.setVisibility(View.INVISIBLE);
-        lblOtro.setVisibility(View.INVISIBLE);
+        lblGT.setVisibility(View.GONE);
+        lblGD.setVisibility(View.GONE);
+        lblGL.setVisibility(View.GONE);
+        lblFecha.setVisibility(View.GONE);
+        lblHora.setVisibility(View.GONE);
+        lblMotivo.setVisibility(View.GONE);
+        lblOtro.setVisibility(View.GONE);
+        lblEstado.setVisibility(View.GONE);
         editCodMateria.setVisibility(View.VISIBLE);
         editCodMateria.setEnabled(true);
-        editGT.setVisibility(View.INVISIBLE);
+        editGT.setVisibility(View.GONE);
         editGT.setEnabled(false);
-        editGD.setVisibility(View.INVISIBLE);
+        editGD.setVisibility(View.GONE);
         editGD.setEnabled(false);
-        editGL.setVisibility(View.INVISIBLE);
+        editGL.setVisibility(View.GONE);
         editGL.setEnabled(false);
-        editFechaEval.setVisibility(View.INVISIBLE);
+        editFechaEval.setVisibility(View.GONE);
         editFechaEval.setInputType(InputType.TYPE_NULL);
         editFechaEval.setEnabled(false);
-        editHoraEval.setVisibility(View.INVISIBLE);
+        editHoraEval.setVisibility(View.GONE);
         editHoraEval.setInputType(InputType.TYPE_NULL);
         editHoraEval.setEnabled(false);
-        editOtroMotivo.setVisibility(View.INVISIBLE);
+        editOtroMotivo.setVisibility(View.GONE);
         editOtroMotivo.setEnabled(false);
         eliminarBtn.setEnabled(false);
         modificarBtn.setEnabled(false);
         tipoEval.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,tipos));
         tipoEval.setVisibility(View.VISIBLE);
         tipoEval.setEnabled(true);
-        motivos.setVisibility(View.INVISIBLE);
+        motivos.setVisibility(View.GONE);
         motivos.setEnabled(false);
+        estadoSoli.setVisibility(View.GONE);
         sMonthIni = c.get(Calendar.MONTH);
         sDayIni = c.get(Calendar.DAY_OF_MONTH);
         sYearIni = c.get(Calendar.YEAR);
@@ -143,6 +145,8 @@ public class Diferido_consultar extends AppCompatActivity {
             lblFecha.setVisibility(View.VISIBLE);
             lblHora.setVisibility(View.VISIBLE);
             lblMotivo.setVisibility(View.VISIBLE);
+            lblEstado.setVisibility(View.VISIBLE);
+            estadoSoli.setVisibility(View.VISIBLE);
             editGT.setVisibility(View.VISIBLE);
             editGD.setVisibility(View.VISIBLE);
             editGL.setVisibility(View.VISIBLE);
@@ -170,6 +174,11 @@ public class Diferido_consultar extends AppCompatActivity {
             motivos.setSelection(colocarMotivo(solicitudDiferido.getMotivo()));
             motivos.setEnabled(true);
             editOtroMotivo.setEnabled(true);
+            if (solicitudDiferido.getOtroMotivo().isEmpty()){
+                editOtroMotivo.setVisibility(View.GONE);
+                lblOtro.setVisibility(View.GONE);
+            }
+            estadoSoli.setText(solicitudDiferido.getEstado());
 
 
         }
@@ -240,35 +249,38 @@ public class Diferido_consultar extends AppCompatActivity {
         motivos.setSelection(0);
         editCarnet.setEnabled(true);
         editNumEval.setEnabled(true);
-        eliminarBtn.setVisibility(View.INVISIBLE);
-        modificarBtn.setVisibility(View.INVISIBLE);
+        eliminarBtn.setVisibility(View.GONE);
+        modificarBtn.setVisibility(View.GONE);
         editCodMateria.setEnabled(true);
         tipoEval.setEnabled(true);
-        lblGT.setVisibility(View.INVISIBLE);
-        lblGD.setVisibility(View.INVISIBLE);
-        lblGL.setVisibility(View.INVISIBLE);
-        lblFecha.setVisibility(View.INVISIBLE);
-        lblHora.setVisibility(View.INVISIBLE);
-        lblMotivo.setVisibility(View.INVISIBLE);
-        lblOtro.setVisibility(View.INVISIBLE);
-        editGT.setVisibility(View.INVISIBLE);
+        lblGT.setVisibility(View.GONE);
+        lblGD.setVisibility(View.GONE);
+        lblGL.setVisibility(View.GONE);
+        lblFecha.setVisibility(View.GONE);
+        lblHora.setVisibility(View.GONE);
+        lblMotivo.setVisibility(View.GONE);
+        lblOtro.setVisibility(View.GONE);
+        editGT.setVisibility(View.GONE);
         editGT.setEnabled(false);
-        editGD.setVisibility(View.INVISIBLE);
+        editGD.setVisibility(View.GONE);
         editGD.setEnabled(false);
-        editGL.setVisibility(View.INVISIBLE);
+        editGL.setVisibility(View.GONE);
         editGL.setEnabled(false);
-        editFechaEval.setVisibility(View.INVISIBLE);
+        editFechaEval.setVisibility(View.GONE);
         editFechaEval.setInputType(InputType.TYPE_NULL);
         editFechaEval.setEnabled(false);
-        editHoraEval.setVisibility(View.INVISIBLE);
+        editHoraEval.setVisibility(View.GONE);
         editHoraEval.setInputType(InputType.TYPE_NULL);
         editHoraEval.setEnabled(false);
-        editOtroMotivo.setVisibility(View.INVISIBLE);
+        editOtroMotivo.setVisibility(View.GONE);
         editOtroMotivo.setEnabled(false);
         eliminarBtn.setEnabled(false);
         modificarBtn.setEnabled(false);
-        motivos.setVisibility(View.INVISIBLE);
+        motivos.setVisibility(View.GONE);
         motivos.setEnabled(false);
+        estadoSoli.setText("");
+        estadoSoli.setVisibility(View.GONE);
+        lblEstado.setVisibility(View.GONE);
     }
 
     public void EliminarSolicitud(View view) {

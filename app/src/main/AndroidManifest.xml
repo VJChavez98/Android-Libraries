@@ -9,8 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Diferido_actualizar"
-            android:theme="@style/Theme.AppCompat.Dialog.Alert"/>
+        <activity android:name=".Diferido_actualizar"/>
         <activity android:name=".SolicitudDiferido_consultarDocente" />
         <activity android:name=".DetalleEstudianteDiferido_consultar" />
         <activity android:name=".DetalleEstudianteRepetido_eliminar" />

@@ -106,6 +106,7 @@
         <EditText android:id="@+id/editFechaRealizada"
             android:inputType="none"
             android:layout_width="fill_parent"
+            android:focusable="false"
             android:layout_height="wrap_content"/>
     </TableRow>
     <TableRow>
@@ -117,6 +118,7 @@
         <EditText android:id="@+id/editHoraRealizada"
             android:inputType="none"
             android:layout_width="fill_parent"
+            android:focusable="false"
             android:layout_height="wrap_content"/>
     </TableRow>
     <TableRow>
@@ -141,6 +143,18 @@
             android:layout_height="wrap_content"
             android:inputType="none"
             android:layout_width="fill_parent"/>
+    </TableRow>
+    <TableRow>
+        <TextView android:id="@+id/lblEstadoSoli"
+            android:text="@string/estadoSolic"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/editEstadoSolicitud"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:focusable="false"
+            android:gravity="center_horizontal"/>
     </TableRow>
     <TableRow>
         <Button android:id="@+id/EliminarBtn"

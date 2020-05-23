@@ -51,7 +51,7 @@
         <item>Seleccione el estado de solicitud</item>
         <item>Pendiente</item>
         <item>Aprobada</item>
-        <item>Reprobada</item>
+        <item>Denegada</item>
     </string-array>
     <string name="evaluacion_codigo">Codigo Evaluacion</string>
     <string name="fecha">Fecha Evaluacion</string>

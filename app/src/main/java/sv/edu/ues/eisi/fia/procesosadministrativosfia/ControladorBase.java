@@ -37,7 +37,7 @@ public class ControladorBase {
     private static class DatabaseHelper extends SQLiteOpenHelper {
 
         private static final String NOMBRE_BASE = "ProcesosAdmin.s3db";
-        private static final int VERSION = 2;
+        private static final int VERSION = 3;
 
         public DatabaseHelper(@Nullable Context context) {
             super(context, NOMBRE_BASE, null, VERSION);
@@ -85,7 +85,7 @@ public class ControladorBase {
                 db.execSQL("CREATE TABLE DetalleDiferidoRepetido(idDetalleDiferidoRepetido CHARACTER(25) NOT NULL PRIMARY KEY,idLocal CHARACTER(10) NOT NULL, numEval INTEGER NOT NULL,tipoEval CHARACTER(2) NOT NULL,codAsignatura CHARACTER(6), idDocente CHARACTER(10) NOT NULL, idTipoDiferidoRepetido CHARACTER(10) NOT NULL, fechaDesde DATE NOT NULL, fechaHasta DATE NOT NULL, fechaRealizacion DATE NOT NULL, horaRealizacion TIME NOT NULL);");
                 db.execSQL("CREATE TABLE DetalleEstudianteDiferido(idEstudianteDiferido CHARACTER(10) NOT NULL PRIMARY KEY, carnet CHARACTER(7) NOT NULL, idDetalleDiferidoRepetido CHARACTER(10) NOT NULL,FechaInscripcionDiferido DATE NOT NULL ,FOREIGN KEY (carnet) REFERENCES Estudiante(carnet),FOREIGN KEY (idDetalleDiferidoRepetido) REFERENCES DetalleDiferidoRepedito(idDetalleDiferidoRepetido))");
                 db.execSQL("CREATE TABLE DetalleEstudianteRepetido(idDetalleEstudianteRepetido CHARACTER(10) NOT NULL PRIMARY KEY, carnet CHARACTER(7) NOT NULL, idDetalleDiferidoRepetido CHARACTER(10) NOT NULL, fechaInscripcionRepetido DATE NOT NULL, FOREIGN KEY (carnet) REFERENCES Estudiante(carnet), FOREIGN KEY (idDetalleDiferidoRepetido) REFERENCES DetalleDiferidoRepetido(idDetalleDiferidoRepetido))");
-                db.execSQL("CREATE TABLE SolicitudDiferido(idSolicitudDiferido NOT NULL, carnet VARCHAR(7) NOT NULL, numeroeval INTEGER NOT NULL, idMotivoDiferido CHARACTER(13) NOT NULL, fechaEvaluacion DATE NOT NULL,  horaEvaluacion TIME NOT NULL, descripcionMotivo VARCHAR(256), idAsignatura CHARACTER(6) NOT NULL, GT NUMERIC(2,0) NOT NULL, GD NUMERIC(2,0) NOT NULL, GL NUMERIC(2,0), tipoEvaluacion CHARACTER(2), PRIMARY KEY(idSolicitudDiferido, carnet, idAsignatura, tipoEvaluacion,numeroeval) )");
+                db.execSQL("CREATE TABLE SolicitudDiferido(idSolicitudDiferido NOT NULL, carnet VARCHAR(7) NOT NULL, numeroeval INTEGER NOT NULL, idMotivoDiferido CHARACTER(13) NOT NULL, fechaEvaluacion DATE NOT NULL,  horaEvaluacion TIME NOT NULL, descripcionMotivo VARCHAR(256), idAsignatura CHARACTER(6) NOT NULL, GT NUMERIC(2,0) NOT NULL, GD NUMERIC(2,0) NOT NULL, GL NUMERIC(2,0), tipoEvaluacion CHARACTER(2), estadoSolicitud CHARACTER(10) NOT NULL, PRIMARY KEY(idSolicitudDiferido, carnet, idAsignatura, tipoEvaluacion,numeroeval) )");
 
                 //Finaliza sector de tablas con llaves foraneas
             } catch (SQLException e) {
@@ -96,7 +96,9 @@ public class ControladorBase {
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             //UPDATE DATABASE COMMANDS
-            db.execSQL("ALTER TABLE SolicitudDiferido ADD COLUMN estadoSolicitud BOOLEAN NOT NULL DEFAULT 'false'");
+            /*if (oldVersion <= VERSION2 && newVersion >= VERSION)
+            db.execSQL("DROP TABLE SolicitudDiferido");
+            db.execSQL("CREATE TABLE SolicitudDiferido(idSolicitudDiferido NOT NULL, carnet VARCHAR(7) NOT NULL, numeroeval INTEGER NOT NULL, idMotivoDiferido CHARACTER(13) NOT NULL, fechaEvaluacion DATE NOT NULL,  horaEvaluacion TIME NOT NULL, descripcionMotivo VARCHAR(256), idAsignatura CHARACTER(6) NOT NULL, GT NUMERIC(2,0) NOT NULL, GD NUMERIC(2,0) NOT NULL, GL NUMERIC(2,0), tipoEvaluacion CHARACTER(2), estadoSolicitud CHARACTER(10) NOT NULL, PRIMARY KEY(idSolicitudDiferido, carnet, idAsignatura, tipoEvaluacion,numeroeval) )");*/
         }
     }
 
@@ -267,7 +269,7 @@ public class ControladorBase {
         }
         return regAfectados;
     }
-    public String actualizarEstado(SolicitudDiferido solicitudDiferido){
+    public String actualizarEstado(SolicitudDiferido solicitudDiferido) throws SQLException{
         if (verificarIntegridadReferencial(solicitudDiferido, 5)) {
             String[] id = {solicitudDiferido.getIdSolicitud()};
             ContentValues contentValues = new ContentValues();
@@ -330,6 +332,7 @@ public class ControladorBase {
             solicitudDiferido.setGD(cursor.getString(9));
             solicitudDiferido.setGL(cursor.getString(10));
             solicitudDiferido.setTipoEva(cursor.getString(11));
+            solicitudDiferido.setEstado(cursor.getString(12));
             return solicitudDiferido;
         }else return null;
     }
