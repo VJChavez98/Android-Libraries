@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import sv.edu.ues.eisi.fia.procesosadministrativosfia.adaptadores.ListaPerInsRevAdapter;
@@ -20,7 +21,7 @@ public class ListaPerInsRevActivity extends Activity {
     ArrayList<PeriodoInscripcionRevision> listaPeriodos;
     RecyclerView recyclerViewPeriodos;
 
-    ArrayList<String> docente= null;
+    String[] docente= null;
 
     ControladorBase helper;
 
@@ -38,7 +39,7 @@ public class ListaPerInsRevActivity extends Activity {
 
         consultarPeriodosIncripcionRevision();
 
-        ListaPerInsRevAdapter adapter=new ListaPerInsRevAdapter(listaPeriodos, recuperarDocente());
+        ListaPerInsRevAdapter adapter=new ListaPerInsRevAdapter(listaPeriodos, docente[0], docente[1]);
 
 
         adapter.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +49,7 @@ public class ListaPerInsRevActivity extends Activity {
                 PeriodoInscripcionRevision periodoSeleccionado= null;
                 periodoSeleccionado= (PeriodoInscripcionRevision) listaPeriodos.get(recyclerViewPeriodos.getChildAdapterPosition(v));
 
+                //************************************************************************************************
                 //Muestro con un Toast el objeto seleccionado
                 //Toast.makeText(getApplicationContext(),periodo.getNombre(),Toast.LENGTH_SHORT).show();
 
@@ -60,6 +62,7 @@ public class ListaPerInsRevActivity extends Activity {
                 intent.putExtras(bundle);
                 //startActivity(intent);
                 startActivityForResult(intent,1);*/
+                //***************************************************************************************
 
                 Intent intent = new Intent(ListaPerInsRevActivity.this, SolicitudRevisionActivity.class);
                 intent.putExtra("periodo", periodoSeleccionado);
@@ -83,7 +86,7 @@ public class ListaPerInsRevActivity extends Activity {
         Cursor cursor = db.rawQuery(sql, null);
 
         while(cursor.moveToNext()){
-
+            int i =0;
             periodo = new PeriodoInscripcionRevision();
 
             periodo.setFechaDesde(cursor.getString(0));
@@ -98,66 +101,41 @@ public class ListaPerInsRevActivity extends Activity {
             periodo.setCodTipoEval(cursor.getString(9));
             periodo.setNumeroEval(cursor.getInt(10));
 
-            listaPeriodos.add(periodo);
-            //recuperarDocente(cursor.getString(5));
-        }
+            recuperarDocente(cursor.getString(5));
 
-        //recuperarDocente();
-        //cursor.close();
-        //db.close();
+            listaPeriodos.add(periodo);
+
+        }
 
     }
 
-    /*private String[] recuperarCodDocente(){
 
-        String[] coddoc = new String[listaPeriodos.size()];
 
-        for (int i=0; i<=listaPeriodos.size(); i++){
-
-            coddoc[i] = listaPeriodos.get(i).getCodDocente();
-
-        }
-
-        return coddoc;
-    }*/
-
-   private ArrayList<String> recuperarDocente(/*String s*/){
+   private void recuperarDocente(String s){
 
         SQLiteDatabase db = helper.abrirLeer();
 
-        //String[] parametros = {s};
-       Cursor cursor = null;
-       //String doc = null;
-       //String[] listaCodDocentes= recuperarCodDocente();
+        String[] parametros = {s};
 
        for (int i=0; i<=listaPeriodos.size(); i++){
 
-            cursor = db.rawQuery("SELECT nombredocente, apellidodocente FROM Docente WHERE coddocente = " + listaPeriodos.get(i).getCodDocente(), null);
+           Cursor cursor = db.rawQuery("SELECT nombredocente, apellidodocente FROM Docente WHERE coddocente = ?" , parametros);
 
             cursor.moveToFirst();
 
-            String doc= cursor.getString(0)+" "+ cursor.getString(1);
+            String[] doc= {cursor.getString(0), cursor.getString(1)};
 
-
-            docente.add(doc);
-
-           //asignarDocente(doc);
+           asignarDocente(doc);
 
        }
-
-       return docente;
-
-       //db.close();
 
     }
 
 
-
-
-    /*private void asignarDocente(String s){
+    private void asignarDocente(String[] s){
 
         docente=s;
-    }*/
+    }
 
 
 }

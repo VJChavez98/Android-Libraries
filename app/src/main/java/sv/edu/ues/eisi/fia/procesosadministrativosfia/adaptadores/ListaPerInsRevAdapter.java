@@ -24,13 +24,14 @@ public class ListaPerInsRevAdapter extends RecyclerView.Adapter<ListaPerInsRevAd
 
     ArrayList<PeriodoInscripcionRevision> listaPeriodos;
 
-    ArrayList<String> nomCompletoDocente;
+    String nomdocente, apellidodocente;
 
 
 
-    public ListaPerInsRevAdapter(ArrayList<PeriodoInscripcionRevision> listaPeriodos ,ArrayList<String> nomdocente) {
+    public ListaPerInsRevAdapter(ArrayList<PeriodoInscripcionRevision> listaPeriodos ,String nomdocente, String apellidodocente) {
         this.listaPeriodos = listaPeriodos;
-        this.nomCompletoDocente=nomdocente;
+        this.nomdocente=nomdocente;
+        this.apellidodocente = apellidodocente;
 
     }
 
@@ -45,17 +46,17 @@ public class ListaPerInsRevAdapter extends RecyclerView.Adapter<ListaPerInsRevAd
 
     @Override
     public void onBindViewHolder(PeriodosInscripcionViewHolder holder, int position) {
-        String doc = nomCompletoDocente.get(position);
-        //TRATARE DE HACERLO POR MEDIO DEL PARAMETRO position
+
         holder.tipoRevision.setText(listaPeriodos.get(position).getTipoRevision().toString());
         holder.codAsignatura.setText(listaPeriodos.get(position).getCodAsignatura().toString());
         holder.codTipoEval.setText(listaPeriodos.get(position).getCodTipoEval().toString());
         holder.codCiclo.setText(listaPeriodos.get(position).getCodCiclo().toString());
         holder.numeroEval.setText(Integer.toString(listaPeriodos.get(position).getNumeroEval()));
-        holder.nombreDocente.setText(doc);
+        holder.nombreDocente.setText(nomdocente+ " " +apellidodocente);
         holder.codLocal.setText(listaPeriodos.get(position).getCodLocal().toString());
         holder.fechaRevision.setText(listaPeriodos.get(position).getFechaRevision().toString());
         holder.horaRevision.setText(listaPeriodos.get(position).getHoraRevision().toString());
+
 
     }
 
