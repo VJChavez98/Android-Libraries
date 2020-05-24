@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class ControladorBase {
 
@@ -62,9 +63,14 @@ public class ControladorBase {
                         "PRIMARY KEY(coddocente, carnet, codtiporevision, codasignatura, codciclo, codtipoeval, numeroeval));");
 
                 db.execSQL("CREATE TABLE motivocambionota(codmotivocambionota VARCHAR(10) NOT NULL PRIMARY KEY, motivo VARCHAR(200) NOT NULL);");
-                db.execSQL("CREATE TABLE solicitudrevision(fechasolicitudrevision DATE, notaantesrevision REAL NOT NULL, numerogrupo INTEGER NOT NULL, motivorevision VARCHAR(200)," +
+                db.execSQL("CREATE TABLE solicitudrevision(fechasolicitudrevision DATE, notaantesrevision REAL NOT NULL, codtipogrupo VARCHA(2) NOT NULL,numerogrupo INTEGER NOT NULL, motivorevision VARCHAR(200)," +
                         "carnet VARCHAR(7) NOT NULL, codasignatura VARCHAR(6) NOT NULL, codciclo VARCHAR(5) NOT NULL, codtipoeval VARCHAR(2) NOT NULL, numeroeval INTEGER NOT NULL, codtiporevision VARCHAR(2) NOT NULL," +
                         "PRIMARY KEY(carnet, codtiporevision, codasignatura, codciclo, codtipoeval, numeroeval));");
+
+                db.execSQL("CREATE TABLE tipogrupo(codtipogrupo VARCHAR(2) NOT NULL PRIMARY KEY, nombretipogrupo VARCHAR(50) NOT NULL);");
+
+                db.execSQL("CREATE TABLE estudiante(carnet VARCHAR(7) NOT NULL PRIMARY KEY, nombreestudiante VARCHAR(50) NOT NULL, apellidoestudiante VARCHAR(50) NOT NULL, carrera VARCHAR(50) NOT NULL);");
+
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -80,6 +86,11 @@ public class ControladorBase {
     public void abrir() throws SQLException {
         db = DBHelper.getWritableDatabase();
         return;
+    }
+
+    public SQLiteDatabase abrirLeer() throws SQLException{
+        db = DBHelper.getReadableDatabase();
+        return db;
     }
 
     public void cerrar() {
@@ -178,6 +189,26 @@ public class ControladorBase {
         return regInsertados;
     }
 
+    public String insertar(Estudiante estudiante){
+        String regInsertados = "Regitro No. = ";
+        long contador = 0;
+
+        ContentValues est = new ContentValues();
+        est.put("carnet", estudiante.getCarnet());
+        est.put("nombreestudiante", estudiante.getNombre());
+        est.put("apellidoestudiante", estudiante.getApellido());
+        est.put("carrera", estudiante.getCarrera());
+        contador = db.insert("estudiante", null, est);
+
+        if(contador == -1 || contador == 0){
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar Insercion";
+        }else{
+            regInsertados = regInsertados + contador;
+        }
+
+        return regInsertados;
+    }
+
     public String insertar(MotivoCambioNota motivo){
         String regInsertados = "Registro No. = ";
         long contador = 0;
@@ -200,18 +231,23 @@ public class ControladorBase {
         String regInsertados = "Registro No. = ";
         long contador = 0;
 
-        ContentValues sol = new ContentValues();
-        sol.put("fechasolicitudrevision", String.valueOf(solicitud.getFechasolicitudrevision()));
-        sol.put("notaantesrevision", solicitud.getNotaantesrevision());
-        sol.put("numerogrupo", solicitud.getNumerogrupo());
-        sol.put("motivorevision", solicitud.getMotivorevision());
-        sol.put("carnet", solicitud.getCarnet());
-        sol.put("codasignatura", solicitud.getCodasignatura());
-        sol.put("codciclo", solicitud.getCodciclo());
-        sol.put("codtipoeval", solicitud.getCodtipoeval());
-        sol.put("numeroeval", solicitud.getNumeroeval());
-        sol.put("codtiporevision", solicitud.getCodtiporevision());
-        contador = db.insert("solicitudrevision", null, sol);
+        if(verificarIntegridadReferencial(solicitud, 5)){
+
+            ContentValues sol = new ContentValues();
+            sol.put("fechasolicitudrevision", solicitud.getFechasolicitudrevision());
+            sol.put("notaantesrevision", solicitud.getNotaantesrevision());
+            sol.put("numerogrupo", solicitud.getNumerogrupo());
+            sol.put("codtipogrupo", solicitud.getCodtipogrupo());
+            sol.put("motivorevision", solicitud.getMotivorevision());
+            sol.put("carnet", solicitud.getCarnet());
+            sol.put("codasignatura", solicitud.getCodasignatura());
+            sol.put("codciclo", solicitud.getCodciclo());
+            sol.put("codtipoeval", solicitud.getCodtipoeval());
+            sol.put("numeroeval", solicitud.getNumeroeval());
+            sol.put("codtiporevision", solicitud.getCodtiporevision());
+            contador = db.insert("solicitudrevision", null, sol);
+
+        }
 
         if (contador == -1 || contador == 0){
             regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar Insercion";
@@ -230,6 +266,24 @@ public class ControladorBase {
         tiprev.put("codtiporevision", tipoRevision.getCodTipoRev());
         tiprev.put("nomtiporevision", tipoRevision.getNomTipoRev());
         contador = db.insert("tiporevision", null, tiprev);
+
+        if(contador == -1 || contador == 0){
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar Isercion";
+        }else{
+            regInsertados = regInsertados + contador;
+        }
+
+        return regInsertados;
+    }
+//************************************************************************
+    public String insertar(TipoGrupo tipoGrupo){
+        String regInsertados = "Registro Insertado No. = ";
+        long contador = 0;
+
+        ContentValues tipgru = new ContentValues();
+        tipgru.put("codtipogrupo", tipoGrupo.getCodtipogrupo());
+        tipgru.put("nombretipogrupo", tipoGrupo.getNombreTipoGrupo());
+        contador = db.insert("tipogrupo", null, tipgru);
 
         if(contador == -1 || contador == 0){
             regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar Isercion";
@@ -553,6 +607,22 @@ public class ControladorBase {
                 }
                 return false;
             }
+            case 5:
+            {
+                //Verificar que al Insertar Solicitud exista el TipoGrupo y Estudiante
+                SolicitudRevision solicitud = (SolicitudRevision) dato;
+                String[] id1 = {solicitud.getCarnet()};
+                abrir();
+
+                Cursor cursor1 = db.query("estudiante", null, "carnet = ?", id1, null, null, null);
+
+                if(cursor1.moveToFirst()){
+                    //Se encontraron los datos
+                    return true;
+                }
+
+                return false;
+            }
             default:
                 return false;
         }
@@ -565,6 +635,9 @@ public class ControladorBase {
 
         final String[] TTEcodtipoeval = {"EP", "ED", "EL"};
         final String[] TTEnomtipoeval = {"Examen Parcial", "Examen Discusion", "Examen Laboratorio"};
+
+        final String[] TTGcodtipoGrupo = {"GT", "GD", "GL"};
+        final String[] TTGnomtipogrupo = {"Grupo Teorico", "Grupo de Discusion", "Grupo de Laboratorio"};
 
         final String[] TRcodrevision = {"PR", "SR"};
         final String[] TRnomrevision = {"Primera Revision", "Segunda Revision"};
@@ -582,11 +655,16 @@ public class ControladorBase {
         final String[] TDnombredocente = {"Rudy Wilfredo", "Boris Alexander"};
         final String[] TDapellidodocente = {"Chicas Villegas", "Montano Navarrete"};
 
+        final String[] TEcarnet = {"CM17048","RM17039","AG17023","MM14030","PR17017"};
+        final String[] TEnombreestudiante = {"Victor","Shaky","Daniel","Cristian","Roberto"};
+        final String[] TEapellidoestudiante = {"Lopes","Renderos","Amaya","Melendez","Paz"};
+        final String[] TEcarrera = {"Ingenieria de Sistemas Informaticos", "Ingenieria de Sistemas Informaticos", "Ingenieria de Sistemas Informaticos", "Ingenieria de Sistemas Informaticos", "Ingenieria de Sistemas Informaticos"};
+
 
         final String[] TMCNcodmotivocambnota = {"ERRSUM", "ERRELPR", "ERRCAL"};
         final String[] TMCNmotivo = {"Error de suma", "Error de elaboracion de preguntas", "Error de calificacion"};
 
-        final Date[] TSoRfechasolicitudrev = {Date.valueOf("2020-05-10"), Date.valueOf("2020-05-15")};
+        final String[] TSoRfechasolicitudrev = {"2020-05-10", "2020-05-15"};
         final String[] TSoRmotivorevision = {"Mal calculo en la suma", "Pregunta incoherente"};
         final String[] TSoRcarnet = {"RM17039", "PR17017"};
         final String[] TSoRcodasignatura = {"MAT115", "FIR115"};
@@ -605,8 +683,10 @@ public class ControladorBase {
         db.execSQL("DELETE FROM tipoevaluacion");
         db.execSQL("DELETE FROM tiporevision");
         db.execSQL("DELETE FROM docente");
+        db.execSQL("DELETE FROM estudiante");
         db.execSQL("DELETE FROM motivocambionota");
         db.execSQL("DELETE FROM solicitudrevision");
+        db.execSQL("DELETE FROM tipogrupo");
 
         Usuario user = new Usuario();
         for (int i = 0; i<usersId.length; i++){
@@ -654,6 +734,15 @@ public class ControladorBase {
             insertar(docente);
         }
 
+        Estudiante estudiante = new Estudiante();
+        for(int i=0; i<TEcarnet.length; i++){
+            estudiante.setCarnet(TEcarnet[i]);
+            estudiante.setNombre(TEnombreestudiante[i]);
+            estudiante.setApellido(TEapellidoestudiante[i]);
+            estudiante.setCarrera(TEcarrera[i]);
+            insertar(estudiante);
+        }
+
         MotivoCambioNota motivo = new MotivoCambioNota();
         for(int i=0; i<TMCNcodmotivocambnota.length; i++){
             motivo.setCodmotivocambionota(TMCNcodmotivocambnota[i]);
@@ -673,7 +762,15 @@ public class ControladorBase {
             solRev.setNotaantesrevision(TSoRnotaantesrev[i]);
             solRev.setNumeroeval(TSoRcodnumeroeval[i]);
             solRev.setNumerogrupo(TSoRnumerogrupo[i]);
+            solRev.setCodtipogrupo(TTGcodtipoGrupo[i]);
             insertar(solRev);
+        }
+
+        TipoGrupo tipogrupo = new TipoGrupo();
+        for(int i=0; i<TTGcodtipoGrupo.length; i++){
+            tipogrupo.setCodtipogrupo(TTGcodtipoGrupo[i]);
+            tipogrupo.setNombreTipoGrupo(TTGnomtipogrupo[i]);
+            insertar(tipogrupo);
         }
 
         cerrar();

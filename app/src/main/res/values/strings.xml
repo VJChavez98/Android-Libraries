@@ -11,21 +11,27 @@
     <string name="evaluacion_numero">Número Evaluación</string>
     <string name="codasignatura">Código Asignatura</string>
     <string name="codtipoeval">Tipo Evaluación</string>
+    <string name="codtipogrupo">Tipo Grupo</string>
     <string name="codciclo">Ciclo Lectivo</string>
     <string name="codlocal">Codigo Local</string>
     <string name="nomlocal">Nombre Local</string>
     <string name="ubicacionLocal">Ubicación Local</string>
     <string name="fechaDesde">Fecha Desde</string>
     <string name="fechaHasta">Fecha Hasta</string>
+    <string name="fechaSolicitud">Fecha Solicitud</string>
     <string name="fechaRevision">Fecha Revisión</string>
     <string name="horaRevision">Hora Revisión</string>
     <string name="codDocente">Código Docente</string>
+    <string name="nomDocente">Nombre Docente</string>
     <string name="codtiporev">Tipo Revisión</string>
     <string name="carnet">Carnet</string>
     <string name="estadoPrimRev">Estado</string>
     <string name="asistio">Asistio</string>
+    <string name="notaAntesRev">Nota Actual</string>
     <string name="notaDespRev">Nota Final</string>
     <string name="observaciones">Observaciones</string>
+    <string name="numerogrupo">Numero Grupo</string>
+    <string name="motivorev">Motivo Revision</string>
 
     <string-array name="tipoRevision">
         <item>Seleccione el Tipo de Revisión</item>
@@ -38,6 +44,13 @@
         <item>EP</item>
         <item>ED</item>
         <item>EL</item>
+    </string-array>
+
+    <string-array name="tipoGrupo">
+        <item>Seleccione el Tipo de Grupo</item>
+        <item>GT</item>
+        <item>GD</item>
+        <item>GL</item>
     </string-array>
 
     <string-array name="estadoPrimRev">

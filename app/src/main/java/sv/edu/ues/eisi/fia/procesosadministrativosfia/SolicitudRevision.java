@@ -3,9 +3,10 @@ package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 import java.sql.Date;
 
 public class SolicitudRevision {
-    private Date fechasolicitudrevision;
+    private String fechasolicitudrevision;
     private float notaantesrevision;
     private int numerogrupo;
+    private String codtipogrupo;
     private String motivorevision;
     private String carnet;
     private String codasignatura;
@@ -17,10 +18,11 @@ public class SolicitudRevision {
     public SolicitudRevision() {
     }
 
-    public SolicitudRevision(Date fechasolicitudrevision, float notaantesrevision, int numerogrupo, String motivorevision, String carnet, String codasignatura, String codciclo, String codtipoeval, int numeroeval, String codtiporevision) {
+    public SolicitudRevision(String fechasolicitudrevision, float notaantesrevision, int numerogrupo, String codtipogrupo, String motivorevision, String carnet, String codasignatura, String codciclo, String codtipoeval, int numeroeval, String codtiporevision) {
         this.fechasolicitudrevision = fechasolicitudrevision;
         this.notaantesrevision = notaantesrevision;
         this.numerogrupo = numerogrupo;
+        this.codtipogrupo = codtipogrupo;
         this.motivorevision = motivorevision;
         this.carnet = carnet;
         this.codasignatura = codasignatura;
@@ -44,6 +46,14 @@ public class SolicitudRevision {
 
     public void setNumerogrupo(int numerogrupo) {
         this.numerogrupo = numerogrupo;
+    }
+
+    public String getCodtipogrupo() {
+        return codtipogrupo;
+    }
+
+    public void setCodtipogrupo(String codtipogrupo) {
+        this.codtipogrupo = codtipogrupo;
     }
 
     public String getMotivorevision() {
@@ -102,11 +112,11 @@ public class SolicitudRevision {
         this.codtiporevision = codtiporevision;
     }
 
-    public Date getFechasolicitudrevision() {
+    public String getFechasolicitudrevision() {
         return fechasolicitudrevision;
     }
 
-    public void setFechasolicitudrevision(Date fechasolicitudrevision) {
+    public void setFechasolicitudrevision(String fechasolicitudrevision) {
         this.fechasolicitudrevision = fechasolicitudrevision;
     }
 }
