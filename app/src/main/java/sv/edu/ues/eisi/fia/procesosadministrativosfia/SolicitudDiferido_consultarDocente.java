@@ -54,9 +54,8 @@ public class SolicitudDiferido_consultarDocente extends AppCompatActivity {
             listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    String texto = (String) listView1.getItemAtPosition(position);
                     helper.abrir();
-                    final SolicitudDiferido solicitudDiferido = helper.consultarSolicitudDiferido(texto, editMateria.getText().toString(), spinTipoEval.getSelectedItem().toString(), editNumEval.getText().toString());
+                    final SolicitudDiferido solicitudDiferido = helper.consultarSolicitudDiferido(solicitudes.get(position), editMateria.getText().toString(), spinTipoEval.getSelectedItem().toString(), editNumEval.getText().toString());
                     helper.cerrar();
                     AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                     View dialogView = LayoutInflater.from(view.getContext()).inflate(R.layout.activity_diferido_actualizar, null, false);
@@ -86,6 +85,8 @@ public class SolicitudDiferido_consultarDocente extends AppCompatActivity {
                     motivo.setSelection(colocarMotivo(solicitudDiferido.getMotivo()));
                     descrip.setText(solicitudDiferido.getOtroMotivo());
                     estado.setSelection(colocarEstado(solicitudDiferido.getEstado()));
+                    tipoEval.setEnabled(false);
+                    motivo.setEnabled(false);
                     builder.setPositiveButton("Actualizar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

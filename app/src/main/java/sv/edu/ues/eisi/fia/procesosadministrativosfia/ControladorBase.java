@@ -34,10 +34,11 @@ public class ControladorBase {
 
 
 
+
     private static class DatabaseHelper extends SQLiteOpenHelper {
 
         private static final String NOMBRE_BASE = "ProcesosAdmin.s3db";
-        private static final int VERSION = 3;
+        private static final int VERSION = 4;
 
         public DatabaseHelper(@Nullable Context context) {
             super(context, NOMBRE_BASE, null, VERSION);
@@ -83,10 +84,13 @@ public class ControladorBase {
 
 
                 db.execSQL("CREATE TABLE DetalleDiferidoRepetido(idDetalleDiferidoRepetido CHARACTER(25) NOT NULL PRIMARY KEY,idLocal CHARACTER(10) NOT NULL, numEval INTEGER NOT NULL,tipoEval CHARACTER(2) NOT NULL,codAsignatura CHARACTER(6), idDocente CHARACTER(10) NOT NULL, idTipoDiferidoRepetido CHARACTER(10) NOT NULL, fechaDesde DATE NOT NULL, fechaHasta DATE NOT NULL, fechaRealizacion DATE NOT NULL, horaRealizacion TIME NOT NULL);");
-                db.execSQL("CREATE TABLE DetalleEstudianteDiferido(idEstudianteDiferido CHARACTER(10) NOT NULL PRIMARY KEY, carnet CHARACTER(7) NOT NULL, idDetalleDiferidoRepetido CHARACTER(10) NOT NULL,FechaInscripcionDiferido DATE NOT NULL ,FOREIGN KEY (carnet) REFERENCES Estudiante(carnet),FOREIGN KEY (idDetalleDiferidoRepetido) REFERENCES DetalleDiferidoRepedito(idDetalleDiferidoRepetido))");
-                db.execSQL("CREATE TABLE DetalleEstudianteRepetido(idDetalleEstudianteRepetido CHARACTER(10) NOT NULL PRIMARY KEY, carnet CHARACTER(7) NOT NULL, idDetalleDiferidoRepetido CHARACTER(10) NOT NULL, fechaInscripcionRepetido DATE NOT NULL, FOREIGN KEY (carnet) REFERENCES Estudiante(carnet), FOREIGN KEY (idDetalleDiferidoRepetido) REFERENCES DetalleDiferidoRepetido(idDetalleDiferidoRepetido))");
+                db.execSQL("CREATE TABLE DetalleEstudianteDiferido(carnet CHARACTER(7) NOT NULL, idDetalleDiferidoRepetido CHARACTER(10) NOT NULL,FechaInscripcionDiferido DATE NOT NULL ,PRIMARY KEY(carnet,idDetalleDiferidoRepetido))");
+                db.execSQL("CREATE TABLE DetalleEstudianteRepetido(carnet CHARACTER(7) NOT NULL, idDetalleDiferidoRepetido CHARACTER(10) NOT NULL, fechaInscripcionRepetido DATE NOT NULL, PRIMARY KEY(carnet, idDetalleDiferidoRepetido))");
                 db.execSQL("CREATE TABLE SolicitudDiferido(idSolicitudDiferido NOT NULL, carnet VARCHAR(7) NOT NULL, numeroeval INTEGER NOT NULL, idMotivoDiferido CHARACTER(13) NOT NULL, fechaEvaluacion DATE NOT NULL,  horaEvaluacion TIME NOT NULL, descripcionMotivo VARCHAR(256), idAsignatura CHARACTER(6) NOT NULL, GT NUMERIC(2,0) NOT NULL, GD NUMERIC(2,0) NOT NULL, GL NUMERIC(2,0), tipoEvaluacion CHARACTER(2), estadoSolicitud CHARACTER(10) NOT NULL, PRIMARY KEY(idSolicitudDiferido, carnet, idAsignatura, tipoEvaluacion,numeroeval) )");
-
+                db.execSQL("CREATE TRIGGER AprobarSolicitudDiferido AFTER UPDATE  ON SolicitudDiferido FOR EACH ROW WHEN NEW.estadoSolicitud = 'Aprobada'" +
+                        " AND OLD.estadoSolicitud = 'Pendiente' BEGIN " +
+                        "INSERT INTO DetalleEstudianteDiferido(carnet,idDetalleDiferidoRepetido,FechaInscripcionDiferido) " +
+                        "VALUES(OLD.carnet,OLD.idAsignatura||OLD.tipoEvaluacion||OLD.numeroeval||'Diferido',CURRENT_DATE ); END;");
                 //Finaliza sector de tablas con llaves foraneas
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -96,9 +100,7 @@ public class ControladorBase {
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             //UPDATE DATABASE COMMANDS
-            /*if (oldVersion <= VERSION2 && newVersion >= VERSION)
-            db.execSQL("DROP TABLE SolicitudDiferido");
-            db.execSQL("CREATE TABLE SolicitudDiferido(idSolicitudDiferido NOT NULL, carnet VARCHAR(7) NOT NULL, numeroeval INTEGER NOT NULL, idMotivoDiferido CHARACTER(13) NOT NULL, fechaEvaluacion DATE NOT NULL,  horaEvaluacion TIME NOT NULL, descripcionMotivo VARCHAR(256), idAsignatura CHARACTER(6) NOT NULL, GT NUMERIC(2,0) NOT NULL, GD NUMERIC(2,0) NOT NULL, GL NUMERIC(2,0), tipoEvaluacion CHARACTER(2), estadoSolicitud CHARACTER(10) NOT NULL, PRIMARY KEY(idSolicitudDiferido, carnet, idAsignatura, tipoEvaluacion,numeroeval) )");*/
+            //if (oldVersion <= VERSION2 && newVersion >= VERSION)
         }
     }
 
@@ -256,7 +258,6 @@ public class ControladorBase {
         long contador = 0;
         if (verificarIntegridadReferencial(detalle, 8)) {
             ContentValues contentValues = new ContentValues();
-            contentValues.put("idEstudianteDiferido", detalle.getIdDetalleEstudianteDif());
             contentValues.put("carnet", detalle.getCarnet());
             contentValues.put("idDetalleDiferidoRepetido", detalle.getIdDetalleDifeRep());
             contentValues.put("FechaInscripcionDiferido",detalle.getFechaInscripcionDiferido());
@@ -269,22 +270,75 @@ public class ControladorBase {
         }
         return regAfectados;
     }
+    public String insertar(DetalleEstudianteRepetido detalle) {
+        String regAfectados = "Registro insertado Nº= ";
+        long contador = 0;
+        if (verificarIntegridadReferencial(detalle, 9)) {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("carnet", detalle.getCarnet());
+            contentValues.put("idDetalleDiferidoRepetido", detalle.getIdDetalleDifRep());
+            contentValues.put("FechaInscripcionRepetido",detalle.getFechaInscripcion());
+            contador = db.insert("DetalleEstudianteRepetido", null, contentValues);
+        }
+        if (contador == -1 || contador==0){
+            regAfectados = "Error al Insertar el registro, Registro duplicado. Verificar inserción";
+        }else {
+            regAfectados=regAfectados+contador;
+        }
+        return regAfectados;
+    }
+    public DetalleEstudianteRepetido consultarDetallEstudRep(String carnet, String materia, String tipoEval, int numEval) {
+        String id = materia+tipoEval+numEval;
+        String idcarnet = carnet;
+        Cursor cursor = db.query("DetalleEstudianteRepetido", null, "carnet = '"+carnet+"' AND idDetalleDiferidoRepetido = '"+id+"Repetido'", null, null,null,null);
+        if (cursor.moveToFirst()){
+            DetalleEstudianteRepetido detalle = new DetalleEstudianteRepetido();
+            detalle.setCarnet(cursor.getString(0));
+            detalle.setIdDetalleDifRep(cursor.getString(1));
+            detalle.setFechaInscripcion(cursor.getString(2));
+            return detalle;
+        }else return null;
+    }
+    public String eliminar(DetalleEstudianteRepetido detalleRep) throws SQLException {
+        String regAfectados;
+        int contador=0;
+        String[] id = {detalleRep.getCarnet(), detalleRep.getIdDetalleDifRep()};
+        contador+=db.delete("DetalleEstudianteRepetido", "carnet = ? AND idDetalleDiferidoRepetido= ?", id);
+        if (!(contador==-1 || contador == 0)){
+                regAfectados = "Se eliminó el registro correctamente";
+        }else regAfectados = "No existen registros, revise los datos";
+        return regAfectados;
+    }
     public String actualizarEstado(SolicitudDiferido solicitudDiferido) throws SQLException{
         if (verificarIntegridadReferencial(solicitudDiferido, 5)) {
             String[] id = {solicitudDiferido.getIdSolicitud()};
             ContentValues contentValues = new ContentValues();
             contentValues.put("estadoSolicitud",solicitudDiferido.getEstado());
             db.update("SolicitudDiferido", contentValues, "idSolicitudDiferido = ?", id);
+
             return "Registro Actualizado Correctamente";
         } else return "Registro no existe";
     }
-    public DetalleEstudianteDiferido consultarDetallEstudDif(String idDetalle){
-        String[] id = {idDetalle};
-        Cursor cursor = db.query("DetalleEstudianteDiferido", null, "idDetalleEstudianteDiferido = ?", id, null,null,null);
+    public ArrayList<String> consultarEstudiantesInscritos(String materia, String tipoEval, int numEval, String tipo){
+        ArrayList<String> solicitudes = new ArrayList<>();
+        String[] id = {materia+tipoEval+numEval+tipo};
+            Cursor cursor = db.query("DetalleEstudiante"+tipo,null,"idDetalleDiferidoRepetido = ?",id,null,null,null);
+            if (cursor.moveToFirst()){
+                do {
+
+                    solicitudes.add(cursor.getString(0));
+                }while (cursor.moveToNext());
+            }
+        return solicitudes;
+    }
+    public DetalleEstudianteDiferido consultarDetallEstuDifIndividual (String carnet, String materia, String tipoEval, int numEval){
+        String[] id = {carnet, materia+tipoEval+numEval+"Diferido"};
+        DetalleEstudianteDiferido detalle = new DetalleEstudianteDiferido();
+        Cursor cursor = db.query("DetalleEstudianteDiferido", null, "carnet = ? AND idDetalleDiferidoRepetido = ?",id,null,null,null);
         if (cursor.moveToFirst()){
-            DetalleEstudianteDiferido detalle = new DetalleEstudianteDiferido();
-            detalle.setIdDetalleEstudianteDif(cursor.getString(0));
-            detalle.setCarnet(cursor.getString(1));
+            detalle.setCarnet(cursor.getString(0));
+            detalle.setIdDetalleDifeRep(cursor.getString(1));
+            detalle.setFechaInscripcionDiferido(cursor.getString(2));
             return detalle;
         }else return null;
     }
@@ -830,6 +884,20 @@ public class ControladorBase {
                 }
                 return false;
             }
+            case 9:
+            {
+                DetalleEstudianteRepetido detalle = (DetalleEstudianteRepetido) dato;
+                String [] id1 = {detalle.getCarnet()};
+                String[] id2 = {detalle.getIdDetalleDifRep()};
+
+                Cursor cursor1 = db.query("Estudiante",null,"carnet = ?",id1,null,null,null);
+                Cursor cursor2 = db.query("DetalleDiferidoRepetido", null, "idDetalleDiferidoRepetido = ?",id2,null,null,null);
+
+                if (cursor1.moveToFirst() && cursor2.moveToFirst()){
+                    return true;
+                }
+                return false;
+            }
             default:
                 return false;
         }
@@ -868,6 +936,8 @@ public class ControladorBase {
         db.execSQL("DELETE FROM tiporevision");
         db.execSQL("DELETE FROM docente");;
         db.execSQL("DELETE FROM TipoDiferidoRepetido");
+        db.execSQL("DELETE FROM MotivoDiferido");
+
 
         Usuario user = new Usuario();
         for (int i = 0; i<usersId.length; i++){
@@ -926,7 +996,6 @@ public class ControladorBase {
             tipo.setNombreTipo(nombreTipoDifRep[i]);
             insertar(tipo);
         }
-
         cerrar();
         return "Guardado correctamente";
     }
