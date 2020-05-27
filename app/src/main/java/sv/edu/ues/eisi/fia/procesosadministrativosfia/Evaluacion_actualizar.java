@@ -79,18 +79,27 @@ public class Evaluacion_actualizar extends Activity {
         Evaluacion evaluacion = new Evaluacion();
         evaluacion.setCodAsignatura(editCodasignatura.getText().toString());
         evaluacion.setCodCiclo(editCodcilo.getText().toString());
-        evaluacion.setNumeroEvaluacion(Integer.parseInt(editNumeval.getText().toString()));
         evaluacion.setFechaEvaluacion(editFechaeval.getText().toString());
 
-        String tipoEval = spinTipoeval.getSelectedItem().toString();
-        if(tipoEval == "Examen Parcial"){
-            tipoEval = "EP";
-        }else if(tipoEval == "Examen Discusion"){
-            tipoEval = "ED";
+        if(!editNumeval.getText().toString().isEmpty()){
+            evaluacion.setNumeroEvaluacion(Integer.parseInt(editNumeval.getText().toString()));
         }else{
-            tipoEval = "EL";
+            evaluacion.setNumeroEvaluacion(0);
         }
-        evaluacion.setCodTipoEval(tipoEval);
+
+        //Validacion de los Spinner para guardar los codigos.
+        if(spinTipoeval.getSelectedItem().toString().equals("Examen Parcial")){
+            String tipoEval = "EP";
+            evaluacion.setCodTipoEval(tipoEval);
+        }else if(spinTipoeval.getSelectedItem().toString().equals("Examen Discusion")){
+            String tipoEval = "ED";
+            evaluacion.setCodTipoEval(tipoEval);
+        }else if(spinTipoeval.getSelectedItem().toString().equals("Examen Laboratorio")){
+            String tipoEval = "EL";
+            evaluacion.setCodTipoEval(tipoEval);
+        }else{
+            evaluacion.setCodTipoEval("");
+        }
 
         helper.abrir();
         String estado = helper.actualizar(evaluacion);

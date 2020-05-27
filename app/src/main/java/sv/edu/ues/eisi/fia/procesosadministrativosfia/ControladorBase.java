@@ -6,14 +6,10 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.location.Criteria;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.solver.widgets.ConstraintAnchor;
 
 import java.sql.Date;
-import java.util.ArrayList;
 
 public class ControladorBase {
 
@@ -21,29 +17,25 @@ public class ControladorBase {
     private static final String[] camposEvaluacion = {"codasignatura", "codciclo", "codtipoeval", "numeroeval", "fechaevaluacion"};
     private static final String[] camposLocal = {"codlocal", "nomlocal", "ubicacionlocal"};
     private static final String[] camposPerInscRev = {"fechadesde", "fechahasta", "fecharevision", "horarevision", "codtiporevision", "coddocente", "codlocal", "codasignatura", "codtipoeval", "codciclo", "numeroeval"};
-    private static final String[] camposPrimerRevision = {"estadoprimerrevision", "notadespuesprimerarevision", "asistio", "observacionesprimerarev", "coddocente", "carnet", "codasignatura", "codciclo", "codtipoeval", "numeroeval", "codtiporevision", "codmotivocambionota"};
 
 
     private final Context context;
     private DatabaseHelper DBHelper;
     private SQLiteDatabase db;
 
-    public ControladorBase(Context context) {
-        this.context = context;
+    public ControladorBase(Context ctx) {
+        this.context = ctx;
         DBHelper = new DatabaseHelper(context);
     }
 
-
     private static class DatabaseHelper extends SQLiteOpenHelper {
-
         private static final String NOMBRE_BASE = "ProcesosAdmin.s3db";
-        private static final int VERSION = 4;
+        private static final int VERSION = 1;
 
         public DatabaseHelper(@Nullable Context context) {
             super(context, NOMBRE_BASE, null, VERSION);
 
         }
-
 
         @Override
         public void onCreate(SQLiteDatabase db) {
@@ -99,6 +91,15 @@ public class ControladorBase {
                         "INSERT INTO DetalleEstudianteDiferido(carnet,idDetalleDiferidoRepetido,FechaInscripcionDiferido) " +
                         "VALUES(OLD.carnet,OLD.idAsignatura||OLD.tipoEvaluacion||OLD.numeroeval||'Diferido',CURRENT_DATE ); END;");
                 //Finaliza sector de tablas con llaves foraneas
+                db.execSQL("CREATE TABLE primerrevision(estadoprimerrevision VARCHAR(15) NOT NULL, notadespuesprimerarevision REAL NOT NULL, asistio VARCHAR(2) NOT NULL, observacionesprimerarev VARCHAR(200), coddocente VARCHAR(10) NOT NULL," +
+                        "carnet VARCHAR(7) NOT NULL, codasignatura VARCHAR(6) NOT NULL, codciclo VARCHAR(5) NOT NULL, codtipoeval VARCHAR(2) NOT NULL, numeroeval INTEGER NOT NULL, codtiporevision VARCHAR(2) NOT NULL, codmotivocambionota VARCHAR(10) NOT NULL," +
+                        "PRIMARY KEY(coddocente, carnet, codtiporevision, codasignatura, codciclo, codtipoeval, numeroeval));");
+
+                db.execSQL("CREATE TABLE motivocambionota(codmotivocambionota VARCHAR(10) NOT NULL PRIMARY KEY, motivo VARCHAR(200) NOT NULL);");
+                db.execSQL("CREATE TABLE solicitudrevision(fechasolicitudrevision DATE, notaantesrevision REAL NOT NULL, codtipogrupo VARCHAR(2) NOT NULL, numerogrupo INTEGER NOT NULL, motivorevision VARCHAR(200)," +
+                        "carnet VARCHAR(7) NOT NULL, codasignatura VARCHAR(6) NOT NULL, codciclo VARCHAR(5) NOT NULL, codtipoeval VARCHAR(2) NOT NULL, numeroeval INTEGER NOT NULL, codtiporevision VARCHAR(2) NOT NULL," +
+                        "PRIMARY KEY(carnet, codtiporevision, codasignatura, codciclo, codtipoeval, numeroeval));");
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -107,7 +108,6 @@ public class ControladorBase {
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             //UPDATE DATABASE COMMANDS
-            //if (oldVersion <= VERSION2 && newVersion >= VERSION)
         }
     }
 
@@ -528,51 +528,6 @@ public class ControladorBase {
         return regInsertados;
     }
 
-    public String insertar(MotivoCambioNota motivo) {
-        String regInsertados = "Registro No. = ";
-        long contador = 0;
-
-        ContentValues mot = new ContentValues();
-        mot.put("codmotivocambionota", motivo.getCodmotivocambionota());
-        mot.put("motivo", motivo.getMotivo());
-        contador = db.insert("motivocambionota", null, mot);
-
-        if (contador == -1 || contador == 0) {
-            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar Insercion";
-        } else {
-            regInsertados = regInsertados + contador;
-        }
-
-        return regInsertados;
-    }
-
-    public String insertar(SolicitudRevision solicitud) {
-        String regInsertados = "Registro No. = ";
-        long contador = 0;
-
-        ContentValues sol = new ContentValues();
-        sol.put("fechasolicitudrevision", String.valueOf(solicitud.getFechasolicitudrevision()));
-        sol.put("notaantesrevision", solicitud.getNotaantesrevision());
-        sol.put("codtipogrupo", solicitud.getCodtipogrupo());
-        sol.put("numerogrupo", solicitud.getNumerogrupo());
-        sol.put("motivorevision", solicitud.getMotivorevision());
-        sol.put("carnet", solicitud.getCarnet());
-        sol.put("codasignatura", solicitud.getCodasignatura());
-        sol.put("codciclo", solicitud.getCodciclo());
-        sol.put("codtipoeval", solicitud.getCodtipoeval());
-        sol.put("numeroeval", solicitud.getNumeroeval());
-        sol.put("codtiporevision", solicitud.getCodtiporevision());
-        contador = db.insert("solicitudrevision", null, sol);
-
-        if (contador == -1 || contador == 0) {
-            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar Insercion";
-        } else {
-            regInsertados = regInsertados + contador;
-        }
-
-        return regInsertados;
-    }
-
     public String insertar(TipoRevision tipoRevision) {
         String regInsertados = "Registro Insertado No. = ";
         long contador = 0;
@@ -717,6 +672,7 @@ public class ControladorBase {
         }
         return regInsertados;
     }
+
 
     public Asignatura consultarNomAsignatura(String codAsignatura) {
         String[] id = {codAsignatura};
@@ -1007,7 +963,6 @@ public class ControladorBase {
                 String[] ids = {perInscRev.getCodAsignatura(), perInscRev.getCodCiclo(), perInscRev.getCodTipoEval(), String.valueOf(perInscRev.getNumeroEval()), perInscRev.getTipoRevision()};
                 abrir();
 
-
                 Cursor c = db.query("periodoinscripcionrevision", null, "codasignatura = ? AND codciclo = ? AND codtipoeval = ? AND numeroeval = ? AND codtiporevision = ?", ids, null, null, null);
 
                 if (c.moveToFirst()) {
@@ -1241,31 +1196,32 @@ public class ControladorBase {
             tipo.setIdTipo(tipoDifRep[i]);
             tipo.setNombreTipo(nombreTipoDifRep[i]);
             insertar(tipo);
-
-            MotivoCambioNota motivo = new MotivoCambioNota();
-            for (int i = 0; i < TMCNcodmotivocambnota.length; i++) {
-                motivo.setCodmotivocambionota(TMCNcodmotivocambnota[i]);
-                motivo.setMotivo(TMCNmotivo[i]);
-                insertar(motivo);
-            }
-
-            SolicitudRevision solRev = new SolicitudRevision();
-            for (int i = 0; i < TSoRcarnet.length; i++) {
-                solRev.setCarnet(TSoRcarnet[i]);
-                solRev.setCodasignatura(TSoRcodasignatura[i]);
-                solRev.setCodciclo(TSoRcodcilo[i]);
-                solRev.setCodtipoeval(TSoRcodtipoeval[i]);
-                solRev.setCodtiporevision(TSoRcodtiporev[i]);
-                solRev.setFechasolicitudrevision(String.valueOf(TSoRfechasolicitudrev[i]));
-                solRev.setMotivorevision(TSoRmotivorevision[i]);
-                solRev.setNotaantesrevision(TSoRnotaantesrev[i]);
-                solRev.setNumeroeval(TSoRcodnumeroeval[i]);
-                solRev.setNumerogrupo(TSoRnumerogrupo[i]);
-                solRev.setCodtipogrupo(TSoRcodtipogrupo[i]);
-                insertar(solRev);
-            }
-
-            cerrar();
-            return "Guardado correctamente";
         }
+
+        MotivoCambioNota motivo = new MotivoCambioNota();
+        for (int i = 0; i < TMCNcodmotivocambnota.length; i++) {
+            motivo.setCodmotivocambionota(TMCNcodmotivocambnota[i]);
+            motivo.setMotivo(TMCNmotivo[i]);
+            insertar(motivo);
+        }
+
+        SolicitudRevision solRev = new SolicitudRevision();
+        for (int i = 0; i < TSoRcarnet.length; i++) {
+            solRev.setCarnet(TSoRcarnet[i]);
+            solRev.setCodasignatura(TSoRcodasignatura[i]);
+            solRev.setCodciclo(TSoRcodcilo[i]);
+            solRev.setCodtipoeval(TSoRcodtipoeval[i]);
+            solRev.setCodtiporevision(TSoRcodtiporev[i]);
+            solRev.setFechasolicitudrevision(String.valueOf(TSoRfechasolicitudrev[i]));
+            solRev.setMotivorevision(TSoRmotivorevision[i]);
+            solRev.setNotaantesrevision(TSoRnotaantesrev[i]);
+            solRev.setNumeroeval(TSoRcodnumeroeval[i]);
+            solRev.setNumerogrupo(TSoRnumerogrupo[i]);
+            solRev.setCodtipogrupo(TSoRcodtipogrupo[i]);
+            insertar(solRev);
+        }
+
+        cerrar();
+        return "Guardado correctamente";
+    }
 }
