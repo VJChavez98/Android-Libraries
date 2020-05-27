@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dip"
+    android:stretchColumns="1">
+
+    <TableRow>
+        <TextView
+            android:text="@string/codasignatura" />
+        <EditText
+            android:id="@+id/editCodasignatura"
+            android:inputType="text"
+            android:maxLength="6"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/codtipoeval"/>
+        <Spinner android:id="@+id/spinTipoEval"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:entries="@array/tipoEval"
+            android:textAlignment="center"
+            android:gravity="center_horizontal" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="@string/codciclo" />
+        <EditText
+            android:id="@+id/editCodciclo"
+            android:inputType="number"
+            android:maxLength="5"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="@string/evaluacion_numero" />
+        <EditText
+            android:id="@+id/editNumeval"
+            android:inputType="number"
+            android:maxLength="1"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="@string/fecha" />
+        <EditText
+            android:id="@+id/editFechaeval"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:focusable="false"/>
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="actualizarEvaluacion"
+            android:text="@string/actualizar" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="limpiarTexto"
+            android:text="Limpiar" />
+    </TableRow>
+
+</TableLayout>
