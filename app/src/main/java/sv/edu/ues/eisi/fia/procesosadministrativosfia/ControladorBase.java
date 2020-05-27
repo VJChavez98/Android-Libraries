@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class ControladorBase {
 
@@ -17,6 +18,7 @@ public class ControladorBase {
     private static final String[] camposEvaluacion = {"codasignatura", "codciclo", "codtipoeval", "numeroeval", "fechaevaluacion"};
     private static final String[] camposLocal = {"codlocal", "nomlocal", "ubicacionlocal"};
     private static final String[] camposPerInscRev = {"fechadesde", "fechahasta", "fecharevision", "horarevision", "codtiporevision", "coddocente", "codlocal", "codasignatura", "codtipoeval", "codciclo", "numeroeval"};
+    private static final String[] camposPrimerRevision = {"estadoprimerrevision", "notadespuesprimerarevision", "asistio", "observacionesprimerarev", "coddocente", "carnet", "codasignatura", "codciclo", "codtipoeval", "numeroeval", "codtiporevision", "codmotivocambionota"};
 
 
     private final Context context;
@@ -40,7 +42,7 @@ public class ControladorBase {
         @Override
         public void onCreate(SQLiteDatabase db) {
             try {
-                db.execSQL("CREATE TABLE usuario(username VARCHAR(7) NOT NULL PRIMARY KEY, password VARCHAR(10), nombre_usuario VARCHAR (256));");
+
 
                 db.execSQL("CREATE TABLE asignatura(codasignatura VARCHAR(6) NOT NULL PRIMARY KEY, nomasignatura VARCHAR(30) NOT NULL, unidadesval VARCHAR(1));");
                 db.execSQL("CREATE TABLE docente(coddocente VARCHAR(10) NOT NULL PRIMARY KEY, nombredocente VARCHAR(50) NOT NULL, apellidodocente VARCHAR(50));");
@@ -56,6 +58,7 @@ public class ControladorBase {
                         "codtiporevision VARCHAR(2) NOT NULL, coddocente VARCHAR(10) NOT NULL, codlocal VARCHAR(10) NOT NULL, " +
                         "codasignatura VARCHAR(6) NOT NULL, codciclo VARCHAR(5) NOT NULL, codtipoeval VARCHAR(2) NOT NULL, numeroeval INTEGER NOT NULL, " +
                         "PRIMARY KEY(codtiporevision, codasignatura, codciclo, codtipoeval, numeroeval));");
+
                 db.execSQL("CREATE TABLE primerrevision(estadoprimerrevision VARCHAR(15) NOT NULL, notadespuesprimerarevision REAL NOT NULL, asistio VARCHAR(2) NOT NULL, observacionesprimerarev VARCHAR(200), coddocente VARCHAR(10) NOT NULL," +
                         "carnet VARCHAR(7) NOT NULL, codasignatura VARCHAR(6) NOT NULL, codciclo VARCHAR(5) NOT NULL, codtipoeval VARCHAR(2) NOT NULL, numeroeval INTEGER NOT NULL, codtiporevision VARCHAR(2) NOT NULL, codmotivocambionota VARCHAR(10) NOT NULL," +
                         "PRIMARY KEY(coddocente, carnet, codtiporevision, codasignatura, codciclo, codtipoeval, numeroeval));");
@@ -73,6 +76,9 @@ public class ControladorBase {
                 db.execSQL("CREATE TABLE Estudiante(carnet VARCHAR(7) NOT NULL PRIMARY KEY, nombreEstudiante VARCHAR(50), apellidoEstudiante VARCHAR(50), carrera VARCHAR(50))");
                 db.execSQL("CREATE TABLE TipoDiferidoRepetido(idTipoDiferidoRepetido CHARACTER(10) NOT NULL PRIMARY KEY, nombreTipo VARCHAR(50));");
                 db.execSQL("CREATE TABLE MotivoDiferido(nombreMotivo CHARACTER(13) NOT NULL PRIMARY KEY)");
+                db.execSQL("CREATE TABLE usuario(username VARCHAR(7) NOT NULL PRIMARY KEY, password VARCHAR(10), nombre_usuario VARCHAR (256));");
+                db.execSQL("CREATE TABLE opcionCrud(idOpcion CHARACTER(3) NOT NULL PRIMARY KEY, descOpcion VARCHAR(30), numCrud INTEGER);");
+                db.execSQL("CREATE TABLE accesoUsuario(idOpcion CHARACTER(3) NOT NULL, username CHARACTER(7) NOT NULL, PRIMARY KEY(idOpcion, username));");
                 //Finaliza sector de tablas sin llaves foraneas
 
                 /*
@@ -86,19 +92,19 @@ public class ControladorBase {
                 db.execSQL("CREATE TABLE DetalleEstudianteDiferido(carnet CHARACTER(7) NOT NULL, idDetalleDiferidoRepetido CHARACTER(10) NOT NULL,FechaInscripcionDiferido DATE NOT NULL ,PRIMARY KEY(carnet,idDetalleDiferidoRepetido))");
                 db.execSQL("CREATE TABLE DetalleEstudianteRepetido(carnet CHARACTER(7) NOT NULL, idDetalleDiferidoRepetido CHARACTER(10) NOT NULL, fechaInscripcionRepetido DATE NOT NULL, PRIMARY KEY(carnet, idDetalleDiferidoRepetido))");
                 db.execSQL("CREATE TABLE SolicitudDiferido(idSolicitudDiferido NOT NULL, carnet VARCHAR(7) NOT NULL, numeroeval INTEGER NOT NULL, idMotivoDiferido CHARACTER(13) NOT NULL, fechaEvaluacion DATE NOT NULL,  horaEvaluacion TIME NOT NULL, descripcionMotivo VARCHAR(256), idAsignatura CHARACTER(6) NOT NULL, GT NUMERIC(2,0) NOT NULL, GD NUMERIC(2,0) NOT NULL, GL NUMERIC(2,0), tipoEvaluacion CHARACTER(2), estadoSolicitud CHARACTER(10) NOT NULL, PRIMARY KEY(idSolicitudDiferido, carnet, idAsignatura, tipoEvaluacion,numeroeval) )");
-                db.execSQL("CREATE TRIGGER AprobarSolicitudDiferido AFTER UPDATE  ON SolicitudDiferido FOR EACH ROW WHEN NEW.estadoSolicitud = 'Aprobada'" +
-                        " AND OLD.estadoSolicitud = 'Pendiente' BEGIN " +
-                        "INSERT INTO DetalleEstudianteDiferido(carnet,idDetalleDiferidoRepetido,FechaInscripcionDiferido) " +
-                        "VALUES(OLD.carnet,OLD.idAsignatura||OLD.tipoEvaluacion||OLD.numeroeval||'Diferido',CURRENT_DATE ); END;");
                 //Finaliza sector de tablas con llaves foraneas
-                db.execSQL("CREATE TABLE primerrevision(estadoprimerrevision VARCHAR(15) NOT NULL, notadespuesprimerarevision REAL NOT NULL, asistio VARCHAR(2) NOT NULL, observacionesprimerarev VARCHAR(200), coddocente VARCHAR(10) NOT NULL," +
-                        "carnet VARCHAR(7) NOT NULL, codasignatura VARCHAR(6) NOT NULL, codciclo VARCHAR(5) NOT NULL, codtipoeval VARCHAR(2) NOT NULL, numeroeval INTEGER NOT NULL, codtiporevision VARCHAR(2) NOT NULL, codmotivocambionota VARCHAR(10) NOT NULL," +
-                        "PRIMARY KEY(coddocente, carnet, codtiporevision, codasignatura, codciclo, codtipoeval, numeroeval));");
+                /*
+                *
+                *
+                * TRIGGERS
+                *
+                *
+                */
+                db.execSQL("CREATE TRIGGER ActualizarSolDif AFTER UPDATE  ON SolicitudDiferido FOR EACH ROW WHEN NEW.estadoSolicitud <> 'Aprobada' AND OLD.estadoSolicitud = 'Aprobada' BEGIN DELETE FROM DetalleEstudianteDiferido WHERE DetalleEstudianteDiferido.carnet = OLD.carnet AND DetalleEstudianteDiferido.idDetalleDiferidoRepetido = (OLD.idAsignatura||OLD.tipoEvaluacion||OLD.numeroeval||'Diferido'); END");
+                db.execSQL("CREATE TRIGGER AfterDeleteSolDif AFTER DELETE ON SolicitudDiferido FOR EACH ROW BEGIN DELETE FROM DetalleEstudianteDiferido WHERE DetalleEstudianteDiferido.carnet = OLD.carnet AND DetalleEstudianteDiferido.idDetalleDiferidoRepetido = (OLD.idAsignatura||OLD.tipoEvaluacion||OLD.numeroeval||'Diferido'); END");
+                db.execSQL("CREATE TRIGGER AprobarSolicitudDiferido AFTER UPDATE  ON SolicitudDiferido FOR EACH ROW WHEN NEW.estadoSolicitud = 'Aprobada' AND (OLD.estadoSolicitud = 'Pendiente' OR OLD.estadoSolicitud = 'Denegada') BEGIN INSERT INTO DetalleEstudianteDiferido(carnet,idDetalleDiferidoRepetido,FechaInscripcionDiferido) VALUES(OLD.carnet,OLD.idAsignatura||OLD.tipoEvaluacion||OLD.numeroeval||'Diferido',CURRENT_DATE ); END");
 
-                db.execSQL("CREATE TABLE motivocambionota(codmotivocambionota VARCHAR(10) NOT NULL PRIMARY KEY, motivo VARCHAR(200) NOT NULL);");
-                db.execSQL("CREATE TABLE solicitudrevision(fechasolicitudrevision DATE, notaantesrevision REAL NOT NULL, codtipogrupo VARCHAR(2) NOT NULL, numerogrupo INTEGER NOT NULL, motivorevision VARCHAR(200)," +
-                        "carnet VARCHAR(7) NOT NULL, codasignatura VARCHAR(6) NOT NULL, codciclo VARCHAR(5) NOT NULL, codtipoeval VARCHAR(2) NOT NULL, numeroeval INTEGER NOT NULL, codtiporevision VARCHAR(2) NOT NULL," +
-                        "PRIMARY KEY(carnet, codtiporevision, codasignatura, codciclo, codtipoeval, numeroeval));");
+
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -528,7 +534,52 @@ public class ControladorBase {
         return regInsertados;
     }
 
-    public String insertar(TipoRevision tipoRevision) {
+    public String insertar(MotivoCambioNota motivo){
+        String regInsertados = "Registro No. = ";
+        long contador = 0;
+
+        ContentValues mot = new ContentValues();
+        mot.put("codmotivocambionota", motivo.getCodmotivocambionota());
+        mot.put("motivo", motivo.getMotivo());
+        contador = db.insert("motivocambionota", null, mot);
+
+        if (contador == -1 || contador == 0){
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar Insercion";
+        }else{
+            regInsertados = regInsertados + contador;
+        }
+
+        return regInsertados;
+    }
+
+    public String insertar(SolicitudRevision solicitud){
+        String regInsertados = "Registro No. = ";
+        long contador = 0;
+
+        ContentValues sol = new ContentValues();
+        sol.put("fechasolicitudrevision", String.valueOf(solicitud.getFechasolicitudrevision()));
+        sol.put("notaantesrevision", solicitud.getNotaantesrevision());
+        sol.put("codtipogrupo", solicitud.getCodtipogrupo());
+        sol.put("numerogrupo", solicitud.getNumerogrupo());
+        sol.put("motivorevision", solicitud.getMotivorevision());
+        sol.put("carnet", solicitud.getCarnet());
+        sol.put("codasignatura", solicitud.getCodasignatura());
+        sol.put("codciclo", solicitud.getCodciclo());
+        sol.put("codtipoeval", solicitud.getCodtipoeval());
+        sol.put("numeroeval", solicitud.getNumeroeval());
+        sol.put("codtiporevision", solicitud.getCodtiporevision());
+        contador = db.insert("solicitudrevision", null, sol);
+
+        if (contador == -1 || contador == 0){
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar Insercion";
+        }else{
+            regInsertados = regInsertados + contador;
+        }
+
+        return regInsertados;
+    }
+
+    public String insertar(TipoRevision tipoRevision){
         String regInsertados = "Registro Insertado No. = ";
         long contador = 0;
 
@@ -604,21 +655,20 @@ public class ControladorBase {
 
         return regInsertados;
     }
-
-    public void insertar(TipoDiferidoRepetido tipo) {
+    public void insertar(TipoDiferidoRepetido tipo){
         try {
             long counter = 0;
             ContentValues contentValues = new ContentValues();
             contentValues.put("idTipoDiferidoRepetido", tipo.getIdTipo());
             contentValues.put("nombreTipo", tipo.getNombreTipo());
             counter = db.insert("TipoDiferidoRepetido", null, contentValues);
-        } catch (SQLException e) {
+        }catch (SQLException e){
             e.printStackTrace();
         }
 
     }
 
-    public String insertar(PeriodoInscripcionRevision perInscRev) {
+    public String insertar(PeriodoInscripcionRevision perInscRev){
         String regInsertados = "Registro No. = ";
         long contador = 0;
 
@@ -649,7 +699,7 @@ public class ControladorBase {
         String regInsertados = "Registro No. = ";
         long contador = 0;
 
-        if (verificarIntegridadReferencial(primRev, 5)) {
+        if (verificarIntegridadReferencial(primRev, 10)) {
             ContentValues primerrevision = new ContentValues();
             primerrevision.put("estadoprimerrevision", primRev.getEstadoprimerrevision());
             primerrevision.put("notadespuesprimerarevision", primRev.getNotadespuesprimerarevision());
@@ -674,7 +724,8 @@ public class ControladorBase {
     }
 
 
-    public Asignatura consultarNomAsignatura(String codAsignatura) {
+
+    public Asignatura consultarNomAsignatura(String codAsignatura){
         String[] id = {codAsignatura};
         String[] camposAsigConsul = {"nomasignatura"};
         Cursor cursor = db.query("asignatura", camposAsigConsul, "codasignatura = ?", id, null, null, null);
@@ -803,7 +854,7 @@ public class ControladorBase {
     }
 
     public String actualizar(Local local) {
-        if (verificarIntegridadReferencial(local, 7)) {
+        if (verificarIntegridadReferencial(local, 12)) {
             String[] id = {local.getCodlocal()};
             ContentValues cv = new ContentValues();
             cv.put("nomlocal", local.getNomlocal());
@@ -833,7 +884,7 @@ public class ControladorBase {
     }
 
     public String actualizar(PrimeraRevision primRev) {
-        if (verificarIntegridadReferencial(primRev, 6)) {
+        if (verificarIntegridadReferencial(primRev, 11)) {
             String[] id = {primRev.getCoddocente(), primRev.getCarnet(), primRev.getCodasignatura(), primRev.getCodtiporevision(), primRev.getCodciclo(), primRev.getCodtipoeval(), String.valueOf(primRev.getNumeroeval())};
             ContentValues cv = new ContentValues();
             cv.put("estadoprimerrevision", primRev.getEstadoprimerrevision());
@@ -1041,7 +1092,7 @@ public class ControladorBase {
                 }
                 return false;
             }
-            case 5: {
+            case 10: {
                 //Verificar que al insertar  Primera Revision exista SolicitudRevision, Docente y Motivo Cambio Nota
                 PrimeraRevision primRev = (PrimeraRevision) dato;
                 String[] id1 = {primRev.getCarnet(), primRev.getCodtiporevision(), primRev.getCodasignatura(), primRev.getCodciclo(), primRev.getCodtipoeval(), String.valueOf(primRev.getNumeroeval())};
@@ -1057,7 +1108,7 @@ public class ControladorBase {
                     return true;
                 }
             }
-            case 6: {
+            case 11: {
                 //Verificar que al modificar la PrimerRevision exista la solicitud de revision Solicitud Revision
                 PrimeraRevision primRev = (PrimeraRevision) dato;
                 String[] ids = {primRev.getCoddocente(), primRev.getCarnet(), primRev.getCodasignatura(), primRev.getCodtiporevision(), primRev.getCodciclo(), primRev.getCodtipoeval(), String.valueOf(primRev.getNumeroeval())};
@@ -1069,7 +1120,7 @@ public class ControladorBase {
                 }
                 return false;
             }
-            case 7: {
+            case 12: {
                 //Verificar que al actualizar el local exista dich local
                 Local loc = (Local) dato;
                 String[] ids = {loc.getCodlocal()};
@@ -1139,7 +1190,6 @@ public class ControladorBase {
         db.execSQL("DELETE FROM MotivoDiferido");
         db.execSQL("DELETE FROM motivocambionota");
         db.execSQL("DELETE FROM solicitudrevision");
-
         Usuario user = new Usuario();
         for (int i = 0; i < usersId.length; i++) {
             user.setUsername(usersId[i]);

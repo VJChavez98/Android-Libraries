@@ -1,5 +1,8 @@
-
+<resources>
     <string name="app_name">Procesos Administrativos FIA</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="ingresarBtn">Ingresar</string>
+    <string name="nomasignatura">Nombre Asignatura</string>
     <string name="carnet">Carnet</string>
     <string name="codAsignatura">Codigo Materia</string>
     <string name="GrupoTeorico">GT</string>
@@ -26,20 +29,11 @@
         <item>Duelo</item>
         <item>Otro</item>
     </string-array>
-    <string-array name="tipoRevision">
-        <item>Primera Revision</item>
-        <item>Segunda Revision</item>
-    </string-array>
     <string-array name="codTipoEval">
         <item>Seleccione el tipo de evaluación</item>
         <item>EP</item>
         <item>ED</item>
         <item>EL</item>
-    </string-array>
-    <string-array name="tipoEval">
-        <item>Examen Parcial</item>
-        <item>Examen Discusion</item>
-        <item>Examen Laboratorio</item>
     </string-array>
     <string-array name="tipoDifRep">
         <item>Seleccione tipo</item>
@@ -57,6 +51,12 @@
     <string name="evaluacion_numero">Numero Evaluacion</string>
     <string name="codasignatura">Codigo Asignatura</string>
     <string name="codtipoeval">Tipo Evaluacion</string>
+    <string name="codciclo">Ciclo Lectivo</string>
+    <string name="codlocal">Codigo Local</string>
+    <string name="nomlocal">Nombre Local</string>
+    <string name="ubicacionLocal">Ubicacion Local</string>
+    <string name="fechaDesde">Fecha Desde</string>
+    <string name="fechaHasta">Fecha Hasta</string>
     <string name="fechaRevision">Fecha Revision</string>
     <string name="horaRevision">Hora Revision</string>
     <string name="codDocente">Codigo Docente</string>
@@ -72,11 +72,6 @@
     <string name="codDetalle">Código detalle</string>
     <string name="fechaInscripcion">Fecha inscripcion</string>
     <string name="estadoSolic">Estado solicitud</string>
-    <string name="fechaRevision">Fecha Revisión</string>
-    <string name="horaRevision">Hora Revisión</string>
-    <string name="codDocente">Código Docente</string>
-    <string name="codtiporev">Tipo Revisión</string>
-    <string name="carnet">Carnet</string>
     <string name="notaDespRev">Nota Final</string>
     <string name="observaciones">Observaciones</string>
     <string name="moCambioNota">Motivo Cambio Nota</string>
@@ -113,3 +108,4 @@
         <item>Error de elaboracion de preguntas</item>
         <item>Error de calificacion</item>
     </string-array>
+</resources>
