@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "364552890006",
+    "firebase_url": "https://procesos-administrativos-fia.firebaseio.com",
+    "project_id": "procesos-administrativos-fia",
+    "storage_bucket": "procesos-administrativos-fia.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:364552890006:android:23e2ca666ee2631f71c4b7",
+        "android_client_info": {
+          "package_name": "sv.edu.ues.eisi.fia.procesosadministrativosfia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "364552890006-ubqg7nv9ov7jjalvc1j6vjqrvs5epr5l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sv.edu.ues.eisi.fia.procesosadministrativosfia",
+            "certificate_hash": "64612111e8b62f2a226ba84099e094b110639720"
+          }
+        },
+        {
+          "client_id": "364552890006-bv9g5f7s8dvvi8odafp8d7mphvl1v489.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkdHND9Z_lNhooQC2w0iLAqB6-hdtuwt4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "364552890006-bv9g5f7s8dvvi8odafp8d7mphvl1v489.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

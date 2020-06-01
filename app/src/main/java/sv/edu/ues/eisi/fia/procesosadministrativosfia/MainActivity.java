@@ -1,5 +1,6 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,10 +10,16 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity {
     EditText editUsername, editPassword;
     ControladorBase DBHelper;
-
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         editUsername = (EditText) findViewById(R.id.editUser);
         editPassword = (EditText) findViewById(R.id.editPass);
         editPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        mAuth = FirebaseAuth.getInstance();
     }
 
     public void login(View view) {
