@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -16,8 +17,9 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.Date;
 
-public class Diferido_insertar extends AppCompatActivity {
+public class Diferido_insertar extends AppCompatActivity implements View.OnClickListener {
 
     ControladorBase DBHelper;
     EditText editCarnet, editMateria, editGrupoTeorico, editGrupoDiscusion, editGrupoLab, editFechaEval, editHoraEval, editMotivo, editEva;
@@ -26,7 +28,12 @@ public class Diferido_insertar extends AppCompatActivity {
     static final int DATE_ID = 0, HOUR_ID=1;
     String[] tipos ={"Seleccione el tipo de evaluacion","EP","ED","EL"};
     Calendar c = Calendar.getInstance();
-
+    private final String DIRECTORY  = "DCIM/";
+    private final String MEDIA_DIRECTORY = DIRECTORY+"SolicitudesDiferido";
+    private String TEMPORAL_PICTURE_NAME = "SolicDifer"+c.getTimeInMillis();
+    private final int PHOTO_CODE = 100;
+    private final int SELECT_PHOTO = 200;
+    Button mOptions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +55,8 @@ public class Diferido_insertar extends AppCompatActivity {
         editHoraEval.setInputType(InputType.TYPE_NULL);
 
         spinTipo.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,tipos));
-
+        mOptions = findViewById(R.id.option);
+        mOptions.setOnClickListener(this);
 
         sMonthIni = c.get(Calendar.MONTH);
         sDayIni = c.get(Calendar.DAY_OF_MONTH);
@@ -168,5 +176,10 @@ public class Diferido_insertar extends AppCompatActivity {
         editHoraEval.setText("");
         editMotivo.setText("");
         motivos.setSelection(0);
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

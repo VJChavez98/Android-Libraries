@@ -1,7 +1,5 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
-import java.sql.Date;
-
 public class SolicitudRevision {
     private String fechasolicitudrevision;
     private float notaantesrevision;

@@ -1,9 +1,6 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
-import android.content.ContentValues;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;

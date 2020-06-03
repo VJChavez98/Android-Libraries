@@ -129,6 +129,29 @@
             android:layout_width="fill_parent"/>
     </TableRow>
     <TableRow>
+
+    </TableRow>
+    <LinearLayout android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:text="@string/justificante" />
+
+        <TextView
+            android:id="@+id/rutaSolic"
+            android:text="@string/justificante"
+            android:visibility="gone"
+            android:layout_width="150dip"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/option"
+            android:layout_width="248dp"
+            android:layout_height="wrap_content"
+            android:text="@string/adjuntarFoto" />
+    </LinearLayout>
+    <TableRow>
         <Button android:id="@+id/cancelarBtn"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
