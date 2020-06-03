@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dip"
+    android:stretchColumns="1">
+    <TableRow>
+        <TextView
+            android:text="@string/codasignatura"/>
+        <EditText
+            android:id="@+id/editCodasignatura"
+            android:inputType="text"
+            android:maxLength="6"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:text="@string/nombreasignatura"/>
+        <EditText
+            android:id="@+id/editNombreasignatura"
+            android:inputType="text"
+            android:maxLength="30"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:text="@string/unidadesval"/>
+        <EditText
+            android:id="@+id/editUnidadesval"
+            android:inputType="text"
+            android:maxLength="1"/>
+    </TableRow>
+    <TableRow>
+        <Button
+            android:onClick="actualizarAsignatura"
+            android:text="@string/actualizar"/>
+    </TableRow>
+    <TableRow>
+        <Button
+            android:onClick="limpiarTexto"
+            android:text="@string/limpiar"/>
+    </TableRow>
+</TableLayout>

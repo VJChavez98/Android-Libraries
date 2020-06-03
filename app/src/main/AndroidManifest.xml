@@ -30,7 +30,6 @@
         <activity android:name=".PrimeraRevision_actualizar" />
         <activity android:name=".PrimeraRevision_consultar" />
         <activity android:name=".PrimeraRevision_insertar" />
-        <activity android:name=".PeriodoInscripcionRevision_menu" />
         <activity android:name=".PeriodoInscripcionRevision_eliminar" />
         <activity android:name=".PeriodoInscripcionRevision_actualizar" />
         <activity android:name=".PeriodoInscripcionRevision_consultar" />
@@ -40,7 +39,6 @@
         <activity android:name=".Local_eliminar" />
         <activity android:name=".Local_consultar" />
         <activity android:name=".Local_insertar" />
-        <activity android:name=".DatePickerFragment" />
         <activity android:name=".Evaluacion_actualizar" />
         <activity android:name=".Evaluacion_consultar" />
         <activity android:name=".Evaluacion_eliminar" />
@@ -57,6 +55,27 @@
         <activity android:name=".Repetido_Insertar" />
         <activity android:name=".Repetido_Consultar" />
         <activity android:name=".Repetido_menu" />
+        <activity android:name=".AsignaturaConsultarActivity"></activity>
+        <activity android:name=".AsignaturaActualizarActivity" />
+        <activity android:name=".AsignaturaEliminarActivity" />
+        <activity android:name=".AsignaturaInsertarActivity" />
+        <activity android:name=".DocenteConsultarActivity" />
+        <activity android:name=".DocenteActualizarActivity" />
+        <activity android:name=".DocenteEliminarActivity" />
+        <activity android:name=".DocenteInsertarActivity" />
+        <activity android:name=".CargaAcademicaConsultarActivity" />
+        <activity android:name=".CargaAcademicaActualizarActivity" />
+        <activity android:name=".CargaAcademicaEliminarActivity" />
+        <activity android:name=".CargaAcademicaInsertarActivity" />
+        <activity android:name=".CicloConsultarActivity" />
+        <activity android:name=".CicloActualizarActivity" />
+        <activity android:name=".CicloEliminarActivity" />
+        <activity android:name=".CicloInsertarActivity" />
+        <activity android:name=".TipoDocenteMenuActivity" />
+        <activity android:name=".AsignaturaMenuActivity" />
+        <activity android:name=".DocenteMenuActivity" />
+        <activity android:name=".CargaAcademicaMenuActivity" />
+        <activity android:name=".CicloMenuActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
