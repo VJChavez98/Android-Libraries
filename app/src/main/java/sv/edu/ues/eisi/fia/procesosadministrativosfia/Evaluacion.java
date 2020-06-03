@@ -1,8 +1,5 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
-import java.sql.Date;
-import java.sql.Time;
-
 class Evaluacion {
     private String codAsignatura;
     private String codTipoEval;

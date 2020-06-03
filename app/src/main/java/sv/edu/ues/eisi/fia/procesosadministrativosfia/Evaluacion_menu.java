@@ -1,7 +1,5 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,8 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import java.util.List;
 
 public class Evaluacion_menu extends ListActivity {
     String[] menu = {"Insertar Registro", "Consultar Registro", "Actualizar Registro", "Eliminar Registro"};

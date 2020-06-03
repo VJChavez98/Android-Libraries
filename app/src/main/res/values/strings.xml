@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Procesos Administrativos FIA</string>
+    <string name="app_name">Procesos Administrativos FIA Librerias</string>
     <string name="eliminar">Eliminar</string>
     <string name="ingresarBtn">Ingresar</string>
     <string name="nomasignatura">Nombre Asignatura</string>
@@ -82,6 +82,10 @@
     <string name="asistio">Asistencia</string>
     <string name="asisSi">SI</string>
     <string name="asisNo">NO</string>
+    <string name="signout">Cerrar Sesión</string>
+    <string name="iniciarSesion">Bienvenido, por favor inicie sesión con una cuenta institucional.</string>
+    <string name="justificante">Justificante</string>
+    <string name="adjuntarFoto">Adjuntar imagen</string>
 
     <string-array name="tipoRevision">
         <item>Seleccione el Tipo de Revisión</item>

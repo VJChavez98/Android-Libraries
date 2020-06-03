@@ -127,17 +127,13 @@ public class ControladorBase {
     }
 
 
-    public boolean consultarUsuario(String username, String password) {
+    public boolean consultarUsuario(String username) {
         String[] id = {username};
-        Cursor cursor = db.rawQuery("select * from usuario where username ='" + username + "' and password ='" + password + "';", null);
-        if (cursor.moveToFirst() == true) {
-            String user = cursor.getString(0);
-            String pass = cursor.getString(1);
-            cerrar();
-            if (user.equals(username) && pass.equals(password)) {
+        Cursor cursor = db.rawQuery("select * from usuario where username ='" + username + "'",null);
+                /*"' and password ='" + password + "';", null);*/
+        if (cursor.moveToFirst()) {
                 return true;
             } else return false;
-        } else return false;
     }
 
     public String insertar(Usuario user) {
@@ -1138,7 +1134,7 @@ public class ControladorBase {
     }
 
     public String LlenarDatos() {
-        final String[] usersId = {"CM17048", "RM17039", "AG17023", "MM14030", "PR17017"};
+        final String[] usersId = {"cm17048@ues.edu.sv", "rm17039@ues.edu.sv", "ag17023@ues.edu.sv", "mm14030@ues.edu.sv", "pr17017@ues.edu.sv"};
         final String[] names = {"Victor", "Shaky", "Daniel", "Cristian", "Roberto"};
         final String[] userPass = {"0123456789", "0123456789", "0123456789", "0123456789", "0123456789"};
         final String[] motivos = {"Salud", "Trabajo", "Interferencia", "Viaje", "Duelo", "Otro"};
