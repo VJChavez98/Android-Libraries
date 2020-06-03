@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         DBHelper = new ControladorBase(this);
-        DBHelper.LlenarDatos();
         mAuth = FirebaseAuth.getInstance();
         findViewById(R.id.ingresarBtn).setOnClickListener(this);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -172,5 +171,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             Toast.makeText(getApplicationContext(), "No ha iniciado sesión", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void llenar(View view) {
+        String resultado = DBHelper.LlenarDatos();
+        findViewById(R.id.relativeLayout).setVisibility(View.GONE);
+        Toast.makeText(this, resultado, Toast.LENGTH_SHORT).show();
     }
 }
