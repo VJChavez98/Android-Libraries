@@ -108,4 +108,25 @@
         <item>Error de elaboracion de preguntas</item>
         <item>Error de calificacion</item>
     </string-array>
+    <string name="ciclo_menu">Función a Ejecutar Ciclo</string>
+    <string name="carga_academica_menu">Función a Ejecutar Carga Académica</string>
+    <string name="docente_menu">Función a Ejecutar Docente</string>
+    <string name="asignatura_menu">Función a Ejecutar Asignatura</string>
+    <string name="tipo_docente_menu">Función a Ejecutar Tipo Docente Ciclo</string>
+    <string name="insertar_registro">Insertar Registro</string>
+    <string name="eliminar_registro">Eliminar Registro</string>
+    <string name="actualizar_registro">Actualizar Registro</string>
+    <string name="consultar_registro">Consultar Registro</string>
+    <string name="fechadesde">Fecha Desde</string>
+    <string name="fechahasta">Fecha Hasta</string>
+    <string name="idcargaacademica">ID Carga Académica</string>
+    <string name="coddocente">ID Docente</string>
+    <string name="nombredocente">Nombre Docente</string>
+    <string name="apellidodocente">Apellido Docente</string>
+    <string name="nombreasignatura">Nombre Asignatura</string>
+    <string name="unidadesval">Unidades Valorativas</string>
+    <string name="idtipodocenteciclo">ID Tipo Docente Ciclo</string>
+    <string name="nomtipodocenteciclo">Nombre Tipo Docente Ciclo</string>
+    <string name="opciones">Opciones:</string>
+    <string name="LlenarBase">Llenar Base de datos</string>
 </resources>

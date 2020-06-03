@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         DBHelper = new ControladorBase(this);
-        DBHelper.LlenarDatos();
         editUsername = (EditText) findViewById(R.id.editUser);
         editPassword = (EditText) findViewById(R.id.editPass);
         editPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
@@ -43,5 +42,11 @@ public class MainActivity extends AppCompatActivity {
 
             Toast.makeText(this, "Error, usuario o contraseña no encontrados", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void llenar(View view) {
+        String resultado = DBHelper.LlenarDatos();
+        findViewById(R.id.relativeLayout).setVisibility(View.GONE);
+        Toast.makeText(this, resultado, Toast.LENGTH_SHORT).show();
     }
 }

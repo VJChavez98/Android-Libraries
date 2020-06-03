@@ -44,4 +44,18 @@
         android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content"
         android:onClick="login"/>
+<RelativeLayout
+    android:id="@+id/relativeLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+    <Button
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:onClick="llenar"
+        android:text="@string/LlenarBase"
+        android:textColor="@color/colorPrimaryDark" />
+</RelativeLayout>
 </LinearLayout>
