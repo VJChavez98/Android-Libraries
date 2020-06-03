@@ -8,8 +8,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import sv.edu.ues.eisi.fia.procesosadministrativosfia.R;
-
 public class Repetido_Eliminar extends AppCompatActivity {
     EditText carnet, materia, numEval;
     Spinner tipoEval;

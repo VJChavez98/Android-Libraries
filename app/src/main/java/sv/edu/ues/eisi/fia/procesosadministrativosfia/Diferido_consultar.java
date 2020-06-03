@@ -20,8 +20,6 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
-import sv.edu.ues.eisi.fia.procesosadministrativosfia.R;
-
 public class Diferido_consultar extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")

@@ -4,16 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.Calendar;
-
-import sv.edu.ues.eisi.fia.procesosadministrativosfia.R;
 
 public class Repetido_Consultar extends AppCompatActivity {
     EditText carnet, materia, numEval, local, docente, fecha, hora;

@@ -19,6 +19,16 @@ public class ControladorBase {
     private static final String[] camposLocal = {"codlocal", "nomlocal", "ubicacionlocal"};
     private static final String[] camposPerInscRev = {"fechadesde", "fechahasta", "fecharevision", "horarevision", "codtiporevision", "coddocente", "codlocal", "codasignatura", "codtipoeval", "codciclo", "numeroeval"};
     private static final String[] camposPrimerRevision = {"estadoprimerrevision", "notadespuesprimerarevision", "asistio", "observacionesprimerarev", "coddocente", "carnet", "codasignatura", "codciclo", "codtipoeval", "numeroeval", "codtiporevision", "codmotivocambionota"};
+    private static final String[]camposCiclo = new String[]
+            {"codciclo", "fechadesde", "fechahasta"};
+    private static final String[]camposCargaAcademica = new String[]
+            {"idcargaacademica", "codciclo", "coddocente", "codasignatura", "idtipodocenteciclo"};
+    private static final String[]camposDocente = new String[]
+            {"coddocente", "nombredocente", "apellidodocente"};
+    private static final String[]camposAsignatura = new String[]
+            {"codasignatura", "nomasignatura", "unidadesval"};
+    private static final String[]camposTipoDocenteCiclo = new String[]
+            {"idtipodocenteciclo", "nomtipodocenteciclo"};
 
 
     private final Context context;
@@ -47,7 +57,8 @@ public class ControladorBase {
                 db.execSQL("CREATE TABLE asignatura(codasignatura VARCHAR(6) NOT NULL PRIMARY KEY, nomasignatura VARCHAR(30) NOT NULL, unidadesval VARCHAR(1));");
                 db.execSQL("CREATE TABLE docente(coddocente VARCHAR(10) NOT NULL PRIMARY KEY, nombredocente VARCHAR(50) NOT NULL, apellidodocente VARCHAR(50));");
                 db.execSQL("CREATE TABLE ciclo(codciclo VARCHAR(5) NOT NULL PRIMARY KEY, fechadesde DATE, fechahasta DATE);");
-
+                db.execSQL("CREATE TABLE tipodocenteciclo(idtipodocenteciclo VARCHAR(5) NOT NULL PRIMARY KEY, nomtipodocenteciclo VARCHAR(50));");
+                db.execSQL("CREATE TABLE cargaacademica(idcargaacademica VARCHAR(5) NOT NULL PRIMARY KEY, codciclo VARCHAR(5) NOT NULL, coddocente VARCHAR(6) NOT NULL, codasignatura VARCHAR(6) NOT NULL, idtipodocenteciclo VARCHAR(5) NOT NULL);");
                 db.execSQL("CREATE TABLE tipoevaluacion(codtipoeval VARCHAR(2) NOT NULL PRIMARY KEY, nomtipoeval VARCHAR(20) NOT NULL);");
                 db.execSQL("CREATE TABLE tiporevision(codtiporevision VARCHAR(2) PRIMARY KEY NOT NULL, nomtiporevision VARCHAR(30) NOT NULL);");
                 db.execSQL("CREATE TABLE local(codlocal VARCHAR(10) NOT NULL PRIMARY KEY, nomlocal VARCHAR(30) NOT NULL, ubicacionlocal VARCHAR(30));");
@@ -127,17 +138,13 @@ public class ControladorBase {
     }
 
 
-    public boolean consultarUsuario(String username, String password) {
+    public boolean consultarUsuario(String username) {
         String[] id = {username};
-        Cursor cursor = db.rawQuery("select * from usuario where username ='" + username + "' and password ='" + password + "';", null);
-        if (cursor.moveToFirst() == true) {
-            String user = cursor.getString(0);
-            String pass = cursor.getString(1);
-            cerrar();
-            if (user.equals(username) && pass.equals(password)) {
+        Cursor cursor = db.rawQuery("select * from usuario where username ='" + username + "'",null);
+                /*"' and password ='" + password + "';", null);*/
+        if (cursor.moveToFirst()) {
                 return true;
             } else return false;
-        } else return false;
     }
 
     public String insertar(Usuario user) {
@@ -475,63 +482,6 @@ public class ControladorBase {
         contador += db.delete("Estudiante", "carnet='" + estudiante.getCarnet() + "'", null);
         regAfectados += contador;
         return regAfectados;
-    }
-
-    public String insertar(Asignatura asignatura) {
-        String regInsertados = "Registro Insertado No. = ";
-        long contador = 0;
-
-        ContentValues asig = new ContentValues();
-        asig.put("codasignatura", asignatura.getCodasignatura());
-        asig.put("nomasignatura", asignatura.getNomasignatura());
-        asig.put("unidadesval", asignatura.getUnidadesval());
-        contador = db.insert("asignatura", null, asig);
-
-        if (contador == -1 || contador == 0) {
-            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar Insercion";
-        } else {
-            regInsertados = regInsertados + contador;
-        }
-
-        return regInsertados;
-    }
-
-    public String insertar(Ciclo ciclo) {
-        String regInsertados = "Registro Insertado No. = ";
-        long contador = 0;
-
-        ContentValues cic = new ContentValues();
-        cic.put("codciclo", ciclo.getCodciclo());
-        cic.put("fechadesde", String.valueOf(ciclo.getFechadesde()));
-        cic.put("fechahasta", String.valueOf(ciclo.getFechahasta()));
-        contador = db.insert("ciclo", null, cic);
-
-        if (contador == -1 || contador == 0) {
-            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar Insercion";
-        } else {
-            regInsertados = regInsertados + contador;
-        }
-
-        return regInsertados;
-    }
-
-    public String insertar(Docente docente) {
-        String regInsertados = "Regitro No. = ";
-        long contador = 0;
-
-        ContentValues doc = new ContentValues();
-        doc.put("coddocente", docente.getCoddocente());
-        doc.put("nombredocente", docente.getNomdocente());
-        doc.put("apellidodocente", docente.getApellidodocente());
-        contador = db.insert("docente", null, doc);
-
-        if (contador == -1 || contador == 0) {
-            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar Insercion";
-        } else {
-            regInsertados = regInsertados + contador;
-        }
-
-        return regInsertados;
     }
 
     public String insertar(MotivoCambioNota motivo){
@@ -952,7 +902,268 @@ public class ControladorBase {
         regAfectados += contador;
         return regAfectados;
     }
+    public String insertar(Ciclo ciclo){
+        String regInsertados="Registro Insertado N°=";
+        long contador=0;
 
+        ContentValues cic=new ContentValues();
+        cic.put("codciclo", ciclo.getCodciclo());
+        cic.put("fechadesde", ciclo.getFechadesde());
+        cic.put("fechahasta", ciclo.getFechahasta());
+        contador=db.insert("ciclo", null, cic);
+
+        if (contador==-1 || contador==0)
+        {
+            regInsertados="Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }else{
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
+    public String insertar(CargaAcademica cargaAcademica){
+
+        String regInsertados="Registro Insertado N°=";
+        long contador=0;
+        if(verificarIntegridadReferencial(cargaAcademica, 13)) {
+            ContentValues carga = new ContentValues();
+            carga.put("idcargaacademica", cargaAcademica.getIdcargaacademica());
+            carga.put("codciclo", cargaAcademica.getCodciclo());
+            carga.put("coddocente", cargaAcademica.getCoddocente());
+            carga.put("codasignatura", cargaAcademica.getCodasignatura());
+            carga.put("idtipodocenteciclo", cargaAcademica.getIdtipodocenteciclo());
+            contador = db.insert("cargaacademica", null, carga);
+        }
+        if (contador==-1 || contador==0)
+        {
+            regInsertados="Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }else{
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+
+    }
+    public String insertar(Docente docente){
+        String regInsertados="Registro Insertado N°=";
+        long contador=0;
+
+        ContentValues doc=new ContentValues();
+        doc.put("coddocente", docente.getCoddocente());
+        doc.put("nombredocente", docente.getNomdocente());
+        doc.put("apellidodocente", docente.getApellidodocente());
+        contador=db.insert("docente", null, doc);
+
+        if(contador==-1 || contador==0){
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }else{
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
+    public String insertar(Asignatura asignatura){
+        String regInsertados="Registro Insertado N°=";
+        long contador=0;
+
+        ContentValues as=new ContentValues();
+        as.put("codasignatura", asignatura.getCodasignatura());
+        as.put("nomasignatura", asignatura.getNomasignatura());
+        as.put("unidadesval", asignatura.getUnidadesval());
+        contador=db.insert("asignatura", null, as);
+
+        if(contador==-1 || contador==0){
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }else{
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
+    public String insertar(TipoDocenteCiclo tipoDocenteCiclo){
+        String regInsertados="Registro Insertado Nº= ";
+        long contador=0;
+        ContentValues tipo = new ContentValues();
+        tipo.put("idtipodocenteciclo", tipoDocenteCiclo.getIdtipodocenteciclo());
+        tipo.put("nomtipodocenteciclo", tipoDocenteCiclo.getNomtipodocenteciclo());
+        contador=db.insert("tipodocenteciclo", null, tipo);
+        if(contador==-1 || contador==0) {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
+    public String actualizar(Ciclo ciclo){
+
+        if(verificarIntegridadReferencial(ciclo, 20)){
+            String[] id = {ciclo.getCodciclo()};
+            ContentValues cv = new ContentValues();
+            cv.put("fechadesde", ciclo.getFechadesde());
+            cv.put("fechahasta", ciclo.getFechahasta());
+            db.update("ciclo", cv, "codciclo = ?", id);
+            return"Registro Actualizado Correctamente";
+
+        }else{
+            return "Registro con Código"+ciclo.getCodciclo()+"no existe";
+        }
+
+    }
+    public String actualizar(CargaAcademica cargaAcademica){
+
+        if(verificarIntegridadReferencial(cargaAcademica, 14)){
+            String[] id = {cargaAcademica.getIdcargaacademica()};
+            ContentValues cv = new ContentValues();
+
+            cv.put("codciclo", cargaAcademica.getCodciclo());
+            cv.put("coddocente", cargaAcademica.getCoddocente());
+            cv.put("codasignatura", cargaAcademica.getCodasignatura());
+            cv.put("idtipodocenteciclo", cargaAcademica.getIdtipodocenteciclo());
+            db.update("cargaacademica", cv, "idcargaacademica = ?", id);
+            return"Registro Actualizado Correctamente";
+
+        }else{
+            return "Registro con Código "+cargaAcademica.getIdcargaacademica()+"no existe";
+        }
+    }
+    public String actualizar(Docente docente){
+        if(verificarIntegridadReferencial(docente, 21)){
+            String[] id = {docente.getCoddocente()};
+            ContentValues cv = new ContentValues();
+
+            cv.put("nombredocente", docente.getNomdocente());
+            cv.put("apellidodocente", docente.getApellidodocente());
+            db.update("docente", cv, "coddocente = ?", id);
+            return"Registro Actualizado Correctamente";
+
+        }else{
+            return "Registro con Código"+docente.getCoddocente()+"no existe";
+        }
+    }
+    public String actualizar(Asignatura asignatura){
+        if(verificarIntegridadReferencial(asignatura, 19)){
+            String[] id = {asignatura.getCodasignatura()};
+            ContentValues cv = new ContentValues();
+            cv.put("codasignatura", asignatura.getCodasignatura());
+            cv.put("nomasignatura",asignatura.getNomasignatura());
+            cv.put("unidadesval", asignatura.getUnidadesval());
+            db.update("asignatura", cv, "codasignatura = ?", id);
+            return"Registro Actualizado Correctamente";
+
+        }else{
+            return "Registro con Código"+asignatura.getCodasignatura()+"no existe";
+        }
+    }
+    //public String actualizar(TipoDocenteCiclo tipoDocenteCiclo){
+    //  return null;
+    //}
+    public String eliminar(Ciclo ciclo){
+        String regAfectados="Filas afectadas= ";
+        int contador=0;
+        String where="codciclo='"+ciclo.getCodciclo()+"'";
+        where=where+" AND fechadesde='"+ciclo.getFechadesde()+"'";
+        where=where+" AND fechahasta='"+ciclo.getFechahasta()+"'";
+        contador+=db.delete("ciclo", where, null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+    public String eliminar(CargaAcademica cargaAcademica){
+
+        String regAfectados="Filas afectadas= ";
+        int contador=0;
+        String where="idcargaacademica='"+cargaAcademica.getIdcargaacademica()+"'";
+        where=where+" AND codciclo='"+cargaAcademica.getCodciclo()+"'";
+        where=where+" AND coddocente='"+cargaAcademica.getCoddocente()+"'";
+        where=where+" AND codasignatura='"+cargaAcademica.getCodasignatura()+"'";
+        where=where+" AND idtipodocenteciclo='"+cargaAcademica.getIdtipodocenteciclo()+"'";
+        contador+=db.delete("cargaacademica", where, null);
+        regAfectados+=contador;
+        return regAfectados;
+
+    }
+    public String eliminar(Docente docente){
+        String regAfectados="Filas afectadas= ";
+        int contador=0;
+        String where="coddocente='"+docente.getCoddocente()+"'";
+        where=where+" AND nombredocente='"+docente.getNomdocente()+"'";
+        where=where+" AND apellidodocente='"+docente.getApellidodocente()+"'";
+        contador+=db.delete("docente", where, null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+    public String eliminar(Asignatura asignatura){
+        String regAfectados="Filas afectadas= ";
+        int contador=0;
+        String where="codasignatura='"+asignatura.getCodasignatura()+"'";
+        where=where+" AND nomasignatura='"+asignatura.getNomasignatura()+"'";
+        where=where+" AND unidadesval="+asignatura.getUnidadesval();
+        contador+=db.delete("asignatura", where, null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+    /*public String eliminar(TipoDocenteCiclo tipoDocenteCiclo){
+
+    }*/
+    public Ciclo consultarCiclo(String codciclo){
+        String[] id = {codciclo};
+        Cursor cursor = db.query("ciclo", camposCiclo, "codciclo = ?", id, null, null, null);
+
+        if(cursor.moveToFirst()){
+            Ciclo ciclo = new Ciclo();
+            ciclo.setCodciclo(cursor.getString(0));
+            ciclo.setFechadesde(cursor.getString(1));
+            ciclo.setFechahasta(cursor.getString(2));
+            return ciclo;
+        }else{
+            return null;
+        }
+    }
+    public CargaAcademica consultarCargaAcademica(String idcargaacademica){
+        String[] id = {idcargaacademica};
+        Cursor cursor = db.query("cargaacademica", camposCargaAcademica, "idcargaacademica = ?",
+                id, null, null, null);
+
+        if(cursor.moveToFirst()){
+            CargaAcademica cargaAcademica = new CargaAcademica();
+            cargaAcademica.setIdcargaacademica(cursor.getString(0));
+            cargaAcademica.setCodciclo(cursor.getString(1));
+            cargaAcademica.setCoddocente(cursor.getString(2));
+            cargaAcademica.setCodasignatura(cursor.getString(3));
+            cargaAcademica.setIdtipodocenteciclo(cursor.getString(4));
+            return cargaAcademica;
+        }else{
+            return null;
+        }
+    }
+    public Docente consultarDocente(String coddocente){
+        String[] id = {coddocente};
+        Cursor cursor = db.query("docente", camposDocente, "coddocente = ?",
+                id, null, null, null);
+
+        if(cursor.moveToFirst()){
+            Docente docente = new Docente();
+            docente.setCoddocente(cursor.getString(0));
+            docente.setNomdocente(cursor.getString(1));
+            docente.setApellidodocente(cursor.getString(2));
+
+            return docente;
+        }else{
+            return null;
+        }
+    }
+    public Asignatura consultarAsignatura(String codasignatura){
+        String[] id = {codasignatura};
+        Cursor cursor = db.query("asignatura", camposAsignatura, "codasignatura = ?",
+                id, null, null, null);
+
+        if(cursor.moveToFirst()){
+            Asignatura asignatura = new Asignatura();
+            asignatura.setCodasignatura(cursor.getString(0));
+            asignatura.setNomasignatura(cursor.getString(1));
+            asignatura.setUnidadesval(cursor.getString(2));
+
+            return asignatura;
+        }else{
+            return null;
+        }
+    }
     public boolean verificarIntegridadReferencial(Object dato, int relacion) throws SQLException {
         switch (relacion) {
             case 1: {
@@ -1132,13 +1343,150 @@ public class ControladorBase {
                 }
                 return false;
             }
+            case 13: {
+                //verificar que al insertar carga academica existan las fk
+                CargaAcademica cargaAcademica = (CargaAcademica) dato;
+
+                String[] id1 = {cargaAcademica.getCodciclo()};
+                String[] id2 = {cargaAcademica.getCoddocente()};
+                String[] id3 = {cargaAcademica.getCodasignatura()};
+                String[] id4 = {cargaAcademica.getIdtipodocenteciclo()};
+
+                Cursor cursor1 = db.query("ciclo", null, "codciclo=?", id1,
+                        null, null, null);
+                Cursor cursor2 = db.query("docente", null, "coddocente=?", id2,
+                        null, null, null);
+                Cursor cursor3 = db.query("asignatura", null, "codasignatura=?", id3,
+                        null, null, null);
+                Cursor cursor4 = db.query("tipodocenteciclo", null, "idtipodocenteciclo=?", id4,
+                        null, null, null);
+                if (cursor1.moveToFirst() && cursor2.moveToFirst() && cursor3.moveToFirst() && cursor4.moveToFirst()) {
+                    return true;
+                }
+                return false;
+            }
+            case 14: {
+                //verificar que al modificar carga academica exista
+                CargaAcademica cargaAcademica = (CargaAcademica) dato;
+                String[] id1 = {cargaAcademica.getIdcargaacademica()};
+                String[] id2 = {cargaAcademica.getCodciclo()};
+                String[] id3 = {cargaAcademica.getCoddocente()};
+                String[] id4 = {cargaAcademica.getCodasignatura()};
+                String[] id5 = {cargaAcademica.getIdtipodocenteciclo()};
+                Cursor  cursor1 = db.query("cargaacademica", null, "idcargaacademica=?", id1,
+                        null,null, null);
+                Cursor cursor2 = db.query("ciclo", null, "codciclo=?", id2,
+                        null, null, null);
+                Cursor cursor3 = db.query("docente", null, "coddocente=?", id3,
+                        null, null, null);
+                Cursor cursor4 = db.query("asignatura", null, "codasignatura=?", id4,
+                        null, null, null);
+                Cursor cursor5 = db.query("tipodocenteciclo", null, "idtipodocenteciclo=?", id5,
+                        null, null, null);
+                if (cursor1.moveToFirst() && cursor2.moveToFirst() && cursor3.moveToFirst() && cursor4.moveToFirst() && cursor5.moveToFirst()) {
+                    return true;
+                }
+                return false;
+            }
+            case 15: {
+                Asignatura asignatura = (Asignatura) dato;
+                Cursor c = db.query(true, "cargaacademica", new String[]{"codasignatura"},
+                        "codasignatura='" + asignatura.getCodasignatura() + "'", null, null, null, null, null);
+                if (c.moveToFirst())
+                    return true;
+                else
+                    return false;
+            }
+            case 16: {
+                Ciclo ciclo = (Ciclo) dato;
+                Cursor cic = db.query(true, "cargaacademica", new String[]{"codciclo"},
+                        "codciclo='" + ciclo.getCodciclo() + "'", null, null, null, null, null);
+                if (cic.moveToFirst())
+                    return true;
+                else
+                    return false;
+            }
+            case 17: {
+                Docente docente = (Docente) dato;
+                Cursor doc = db.query(true, "cargaacademica", new String[]{"coddocente"},
+                        "coddocente='" + docente.getCoddocente() + "'", null, null, null, null, null);
+                if (doc.moveToFirst())
+                    return true;
+                else
+                    return false;
+
+            }
+            case 18: {
+                TipoDocenteCiclo tipoDocenteCiclo = (TipoDocenteCiclo) dato;
+                Cursor tip = db.query(true, "cargaacademica", new String[]{"idtipodocenteciclo"},
+                        "idtipodocenteciclo='" + tipoDocenteCiclo.getIdtipodocenteciclo() + "'", null, null, null, null, null);
+                if (tip.moveToFirst())
+                    return true;
+                else
+                    return false;
+
+            }
+            case 19:
+            {
+                //verificar que exista asignatura
+                Asignatura asignatura2=(Asignatura)dato;
+                String[] id={asignatura2.getCodasignatura()};
+                abrir();
+                Cursor as=db.query("asignatura", null, "codasignatura=?",id,
+                        null, null, null);
+                if(as.moveToFirst()){
+                    return true;
+                }
+                return  false;
+
+            }
+            case 20:
+            {
+                //verificar que exista ciclo
+                Ciclo ciclo2=(Ciclo) dato;
+                String[] ci={ciclo2.getCodciclo()};
+                abrir();
+                Cursor as=db.query("ciclo", null, "codciclo=?",ci,
+                        null, null, null);
+                if(as.moveToFirst()){
+                    return true;
+                }
+                return  false;
+
+            }
+            case 21: {
+                //verificar que exista docente
+
+                Docente docente2 = (Docente) dato;
+                String[] dc = {docente2.getCoddocente()};
+                abrir();
+                Cursor as = db.query("docente", null, "coddocente=?", dc,
+                        null, null, null);
+                if (as.moveToFirst()) {
+                    return true;
+                }
+                return false;
+            }
+            case 22:
+            {
+                //verificar que exista tipo docente ciclo
+                TipoDocenteCiclo tipoDocenteCiclo2=(TipoDocenteCiclo) dato;
+                String[] td={tipoDocenteCiclo2.getIdtipodocenteciclo()};
+                abrir();
+                Cursor as=db.query("tipodocenteciclo", null, "idtipodocenteciclo=?",td,
+                        null, null, null);
+                if(as.moveToFirst()){
+                    return true;
+                }
+                return  false;
+            }
             default:
                 return false;
         }
     }
 
     public String LlenarDatos() {
-        final String[] usersId = {"CM17048", "RM17039", "AG17023", "MM14030", "PR17017"};
+        final String[] usersId = {"cm17048@ues.edu.sv", "rm17039@ues.edu.sv", "ag17023@ues.edu.sv", "mm14030@ues.edu.sv", "pr17017@ues.edu.sv"};
         final String[] names = {"Victor", "Shaky", "Daniel", "Cristian", "Roberto"};
         final String[] userPass = {"0123456789", "0123456789", "0123456789", "0123456789", "0123456789"};
         final String[] motivos = {"Salud", "Trabajo", "Interferencia", "Viaje", "Duelo", "Otro"};
@@ -1156,8 +1504,8 @@ public class ControladorBase {
         final String[] TAunidadesval = {"4", "4"};
 
         final String[] TCcodciclo = {"12020", "22020"};
-        final Date[] TCfechadesde = {Date.valueOf("2020-02-20"), Date.valueOf("2020-10-08")};
-        final Date[] TCfechahasta = {Date.valueOf("2020-06-20"), Date.valueOf("2020-12-20")};
+        final String[] TCfechadesde = {"2020-02-20", "2020-10-08"};
+        final String[] TCfechahasta = {"2020-06-20", "2020-12-20"};
 
         final String[] TDcoddocente = {"CV00001", "MN00002"};
         final String[] TDnombredocente = {"Rudy Wilfredo", "Boris Alexander"};
@@ -1178,6 +1526,8 @@ public class ControladorBase {
         final String[] TSoRcodtipogrupo = {"GD", "GL"};
         final int[] TSoRnumerogrupo = {Integer.parseInt("1"), Integer.parseInt("3")};
         final int[] TSoRcodnumeroeval = {Integer.parseInt("1"), Integer.parseInt("2")};
+        final String[] VTidtipodocenteciclo = {"00001", "00002", "00003", "00004" };
+        final String[] VTnomtipodocenteciclo = {"Docente teórico", "Docente discusión", "Docente Laboratorio", "Tutot"};
 
         abrir();
         db.execSQL("DELETE FROM usuario;");
@@ -1190,6 +1540,8 @@ public class ControladorBase {
         db.execSQL("DELETE FROM MotivoDiferido");
         db.execSQL("DELETE FROM motivocambionota");
         db.execSQL("DELETE FROM solicitudrevision");
+        db.execSQL("DELETE FROM tipodocenteciclo");
+
         Usuario user = new Usuario();
         for (int i = 0; i < usersId.length; i++) {
             user.setUsername(usersId[i]);
@@ -1269,6 +1621,14 @@ public class ControladorBase {
             solRev.setNumerogrupo(TSoRnumerogrupo[i]);
             solRev.setCodtipogrupo(TSoRcodtipogrupo[i]);
             insertar(solRev);
+        }
+
+
+        TipoDocenteCiclo tipoDocenteCiclo = new TipoDocenteCiclo();
+        for (int i=0;i<4;i++){
+            tipoDocenteCiclo.setIdtipodocenteciclo(VTidtipodocenteciclo[i]);
+            tipoDocenteCiclo.setNomtipodocenteciclo(VTnomtipodocenteciclo[i]);
+            insertar(tipoDocenteCiclo);
         }
 
         cerrar();
