@@ -133,7 +133,7 @@ public class ControladorBase {
         contador = db.insert("asignatura", null, asig);
 
         if(contador == -1 || contador == 0){
-            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar Insercion";
+            regInsertados = "Error al Insertar la Asignatura, Registro Duplicado. Verificar Inserción.";
         }else{
             regInsertados = regInsertados + contador;
         }
@@ -152,7 +152,7 @@ public class ControladorBase {
         contador = db.insert("ciclo", null, cic);
 
         if(contador == -1 || contador == 0){
-            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar Insercion";
+            regInsertados = "Error al Insertar el Ciclo, Registro Duplicado. Verificar Insercion";
         }else{
             regInsertados = regInsertados + contador;
         }
@@ -171,7 +171,7 @@ public class ControladorBase {
         contador = db.insert("docente", null, doc);
 
         if(contador == -1 || contador == 0){
-            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar Insercion";
+            regInsertados = "Error al Insertar el Docente, Registro Duplicado. Verificar Insercion";
         }else{
             regInsertados = regInsertados + contador;
         }
@@ -198,7 +198,7 @@ public class ControladorBase {
     }
 
     public String insertar(SolicitudRevision solicitud){
-        String regInsertados = "Registro No. = ";
+        String regInsertados = "Solicitud Insertada con Exito, Registro No. = ";
         long contador = 0;
 
         ContentValues sol = new ContentValues();
@@ -216,7 +216,7 @@ public class ControladorBase {
         contador = db.insert("solicitudrevision", null, sol);
 
         if (contador == -1 || contador == 0){
-            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar Insercion";
+            regInsertados = "Error al Insertar la Solicitud, Registro Duplicado o Campos Incompletos. Verificar Inserción.";
         }else{
             regInsertados = regInsertados + contador;
         }
@@ -261,7 +261,7 @@ public class ControladorBase {
     }
 
     public String insertar(Evaluacion evaluacion){
-        String regInsertados = "Registro Insertado No. = ";
+        String regInsertados = "Evaluación Insertada con Exito, Registro No. = ";
         long contador = 0;
 
         if(verificarIntegridadReferencial(evaluacion, 1)){
@@ -275,7 +275,7 @@ public class ControladorBase {
         }
 
         if(contador == -1 || contador == 0){
-            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar Insercion";
+            regInsertados = "Error al Insertar la Evaluación, Registro Duplicado o Campos Incompletos. Verificar Inserción.";
         }else {
             regInsertados = regInsertados + contador;
         }
@@ -284,7 +284,7 @@ public class ControladorBase {
     }
 
     public String insertar(Local local){
-        String regInsertados = "Registro No. = ";
+        String regInsertados = "Local Insertado con Exito, Registro No. = ";
         long contador = 0;
 
         ContentValues locales = new ContentValues();
@@ -294,7 +294,7 @@ public class ControladorBase {
         contador = db.insert("local", null, locales);
 
         if(contador == -1 || contador == 0){
-            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar Insercion";
+            regInsertados = "Error al Insertar el Local, Registro Duplicado o Campos Incompletos. Verificar Inserción.";
         }else{
             regInsertados = regInsertados + contador;
         }
@@ -303,7 +303,7 @@ public class ControladorBase {
     }
 
     public String insertar(PeriodoInscripcionRevision perInscRev){
-        String regInsertados = "Registro No. = ";
+        String regInsertados = "Período Revisión Insertado con Exito, Registro No. = ";
         long contador = 0;
 
         if(verificarIntegridadReferencial(perInscRev, 3)){
@@ -322,7 +322,7 @@ public class ControladorBase {
             contador = db.insert("periodoinscripcionrevision", null, inscripciones);
         }
         if(contador == -1 || contador == 0){
-            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar Insercion";
+            regInsertados = "Error al Insertar el Período de Inscripción, Registro Duplicado o Campos Incompletos. Verificar Inserción.";
         }else{
             regInsertados = regInsertados + contador;
         }
@@ -331,7 +331,7 @@ public class ControladorBase {
     }
 
     public String insertar(PrimeraRevision primRev){
-        String regInsertados = "Registro No. = ";
+        String regInsertados = "Revisión Insertada con Exito, Registro No. = ";
         long contador = 0;
 
         if(verificarIntegridadReferencial(primRev, 5)){
@@ -351,7 +351,7 @@ public class ControladorBase {
             contador = db.insert("primerrevision", null, primerrevision);
         }
         if (contador == -1 || contador == 0){
-            regInsertados = "Error al insertar el registro, Registro Duplicado. Verificar Insercion";
+            regInsertados = "Error al insertar Primera Revisión, Registro Duplicado o Campos Incompletos. Verificar Inserción.";
         }else{
             regInsertados = regInsertados + contador;
         }
@@ -483,9 +483,9 @@ public class ControladorBase {
             ContentValues cv = new ContentValues();
             cv.put("fechaevaluacion", evaluacion.getFechaEvaluacion());
             db.update("evaluacion", cv, "codasignatura = ? AND codciclo = ? AND codtipoeval = ? AND numeroeval = ?",id);
-            return "Registro Actualizado Correctamente";
+            return "Evaluación Actualizada Correctamente";
         }else{
-            return "Registro no Existe";
+            return "Error, esta Evaluación No Existe";
         }
     }
 
@@ -496,9 +496,9 @@ public class ControladorBase {
             cv.put("nomlocal", local.getNomlocal());
             cv.put("ubicacionlocal", local.getUbicacionlocal());
             db.update("local", cv, "codlocal = ? ", id);
-            return "Registro Actualizado Correctamente";
+            return "Local Actualizado Correctamente";
         }else{
-            return "Registro no Existe";
+            return "Error, esté Local No Existe";
         }
     }
 
@@ -513,9 +513,9 @@ public class ControladorBase {
             cv.put("fecharevision", perInscRev.getFechaRevision());
             cv.put("horarevision", perInscRev.getHoraRevision());
             db.update("periodoinscripcionrevision", cv, "codtiporevision = ? AND codasignatura = ? AND codtipoeval = ? AND codciclo = ?  AND numeroeval = ?", id);
-            return "Registro Actualizado Correctamente";
+            return "Período Revisión Actualizado Correctamente";
         }else{
-            return "Registro no Existe";
+            return "Error, esté Perído Inscripción No Existe";
         }
     }
 
@@ -529,40 +529,60 @@ public class ControladorBase {
             cv.put("codmotivocambionota", primRev.getMotivoCambioNota());
             cv.put("observacionesprimerarev", primRev.getObservacionesprimerarev());
             db.update("primerrevision", cv, "coddocente = ? AND carnet = ? AND codasignatura = ? AND codtiporevision = ? AND codciclo = ? AND codtipoeval = ? AND numeroeval = ?", id);
-            return "Registro Actualizado Correctamente";
+            return "Revisión Actualizada Correctamente";
         }else{
-            return "Registro no Existe";
+            return "Error, está Revisión No Existe";
         }
     }
 
 
 
     public String eliminar(Evaluacion evaluacion){
-        String regAfectados = "Filas afectadas = ";
+        String regAfectados = "Evaluación Eliminada con exito, Filas afectadas = ";
         int contador = 0;
+
+        if(verificarIntegridadReferencial(evaluacion, 9)){
+            String nosepuede = "Error, No se puede eliminar, existen registros de esta Evaluación en otras Tablas.";
+            return nosepuede;
+        }
 
         String where = "codasignatura = '"+evaluacion.getCodAsignatura()+"'";
         where = where + "AND codciclo = '"+evaluacion.getCodCiclo()+"'";
         where = where + "AND codtipoeval = '"+evaluacion.getCodTipoEval()+"'";
         where = where + "AND numeroeval = '"+evaluacion.getNumeroEvaluacion()+"'";
         contador += db.delete("evaluacion", where, null);
+
+        if(contador == 0){
+            return "Está Evaluación No Existe o Campos Incompletos.";
+        }
+
         regAfectados += contador;
         return regAfectados;
     }
 
     public String eliminar(Local local){
-        String regAfectados = "Filas afectadas = ";
+        String regAfectados = "Local Eliminado con exito, Filas afectadas = ";
         int contador = 0;
+
+        if(verificarIntegridadReferencial(local, 8)){
+            String nosepuede = "Error, existen registros de este Local en otras Tablas.";
+            return nosepuede;
+        }
 
         String where = "codlocal = '"+local.getCodlocal()+"'";
         where = where + "AND nomlocal = '"+local.getNomlocal()+"'";
         contador += db.delete("local", where, null);
+
+        if(contador == 0){
+            return "Esté Local No Existe o Campos Incompletos.";
+        }
+
         regAfectados += contador;
         return regAfectados;
     }
 
     public String eliminar(PeriodoInscripcionRevision perInscRev){
-        String regAfectados = "Filas afectadas = ";
+        String regAfectados = "Período Revisión Eliminado con exito, Filas afectadas = ";
         int contador = 0;
 
         String where = "codtiporevision = '"+perInscRev.getTipoRevision()+"'";
@@ -571,12 +591,17 @@ public class ControladorBase {
         where = where + "AND codtipoeval = '"+perInscRev.getCodTipoEval()+"'";
         where = where + "AND numeroeval = '"+perInscRev.getNumeroEval()+"'";
         contador += db.delete("periodoinscripcionrevision", where, null);
+
+        if(contador == 0){
+            return "Período Revisión No Existe";
+        }
+
         regAfectados += contador;
         return regAfectados;
     }
 
     public String eliminar (PrimeraRevision primRev){
-        String regAfectados = "Filas afectadas = ";
+        String regAfectados = "Primera Revisión Eliminada con exito, Filas afectadas = ";
         int contador = 0;
 
         String where = "coddocente = '"+primRev.getCoddocente()+"'";
@@ -587,6 +612,11 @@ public class ControladorBase {
          where = where + "AND codtipoeval = '"+primRev.getCodtipoeval()+"'";
          where = where + "AND numeroeval = '"+primRev.getNumeroeval()+"'";
          contador += db.delete("primerrevision", where, null);
+
+        if(contador == 0){
+            return "Período Revisión No Existe";
+        }
+
          regAfectados += contador;
          return regAfectados;
     }
@@ -707,6 +737,26 @@ public class ControladorBase {
                     return true;
                 }
                 return false;
+            }
+            case 8:{
+                //Verificar que no haya registro de local en otras tablas antes de eliminar
+                Local local = (Local) dato;
+                Cursor c = db.query(true, "periodoinscripcionrevision", new String[]{"codlocal"}, "codlocal = '"+local.getCodlocal()+"'", null, null, null, null, null);
+                if(c.moveToFirst()){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+            case 9:{
+                //Verificar que no haya registro de local en otras tablas antes de eliminar
+                Evaluacion evaluacion = (Evaluacion) dato;
+                Cursor c = db.query(true, "periodoinscripcionrevision", new String[]{"codasignatura", "codciclo", "codtipoeval", "numeroeval"}, "codasignatura = '"+evaluacion.getCodAsignatura()+"' AND codciclo = '"+evaluacion.getCodCiclo()+"' AND codtipoeval = '"+evaluacion.getCodTipoEval()+"' AND numeroeval = '"+evaluacion.getNumeroEvaluacion()+"'", null, null, null, null, null);
+                if(c.moveToFirst()){
+                    return true;
+                }else{
+                    return false;
+                }
             }
             default:
                 return false;
