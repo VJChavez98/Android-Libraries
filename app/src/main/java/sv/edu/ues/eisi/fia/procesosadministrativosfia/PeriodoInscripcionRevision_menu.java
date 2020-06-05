@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class PeriodoInscripcionRevision_menu extends ListActivity {
-    String[] menu = {"Insertar Inscripcion a Primera Revision", "Consultar Inscripcion a Primera Revision", "Actualizar Inscripcion a Primera Revision", "Eliminar Inscripcion a Primera Revision"};
+    String[] menu = {"Insertar Inscripcion a Revision", "Consultar Inscripcion a Revision", "Actualizar Inscripcion a Revision", "Eliminar Inscripcion a Revision"};
     String[] activities = {"PeriodoInscripcionRevision_insertar", "PeriodoInscripcionRevision_consultar", "PeriodoInscripcionRevision_actualizar", "PeriodoInscripcionRevision_eliminar"};
 
     @Override

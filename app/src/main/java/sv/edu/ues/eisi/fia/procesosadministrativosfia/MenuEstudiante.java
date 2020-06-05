@@ -10,7 +10,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 public class MenuEstudiante extends ListActivity {
-    String [] menu = {"Repetido", "Diferido", "Local", "Evaluacion",  "Inscripcion a Primera Revision", "Primera Revision"};
+    String [] menu = {"Repetido", "Diferido", "Local", "Evaluacion",  "Inscripcion a Revision", "Primera Revision"};
     String [] activities = {"Repetido_menu", "Diferido_menu", "Local_menu", "Evaluacion_menu", "PeriodoInscripcionRevision_menu", "PrimeraRevision_menu"};
     ControladorBase DBHelper;
     boolean doubleBackToExitPressedOnce = false;
