@@ -82,6 +82,13 @@
     <string name="asistio">Asistencia</string>
     <string name="asisSi">SI</string>
     <string name="asisNo">NO</string>
+    <string name="ubicacion">Ubicación</string>
+    <string name="posicion">Posición</string>
+    <string name="latitud">Latitud</string>
+    <string name="longitud">Longitud</string>
+    <string name="altitud">Altitud</string>
+    <string name="direccion">Dirección</string>
+    <string name="exportar"><b>Exportar Tabla</b></string>
 
     <string-array name="tipoRevision">
         <item>Seleccione el Tipo de Revisión</item>

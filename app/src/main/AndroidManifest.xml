@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="sv.edu.ues.eisi.fia.procesosadministrativosfia">
+    <!-- Copied from Google Maps Library/AndroidManifest.xml. -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" /> <!-- External storage for caching. -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- My Location -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Maps API needs OpenGL ES 2.0. -->
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -9,7 +20,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Diferido_actualizar"/>
+        <activity android:name=".ExcelDocente"></activity>
+        <activity android:name=".ExcelEstudiante" />
+        <activity android:name=".MapaConsultarE" />
+        <activity android:name=".MapaConsultarBIB" />
+        <activity android:name=".MapaConsultarF" />
+        <activity android:name=".MapaConsultarB" />
+        <activity android:name=".MapaConsultarD" />
+        <activity android:name=".MapaConsultarC" />
+        <activity android:name=".Diferido_actualizar" />
         <activity android:name=".SolicitudDiferido_consultarDocente" />
         <activity android:name=".DetalleEstudianteDiferido_consultar" />
         <activity android:name=".DetalleEstudianteRepetido_eliminar" />
@@ -26,7 +45,7 @@
         <activity android:name=".Estudiante_consultar" />
         <activity android:name=".Estudiante_insertar" />
         <activity android:name=".PeriodoInscripcionRevision_menu" />
-        <activity android:name=".PrimeraRevision_eliminar"></activity>
+        <activity android:name=".PrimeraRevision_eliminar" />
         <activity android:name=".PrimeraRevision_actualizar" />
         <activity android:name=".PrimeraRevision_consultar" />
         <activity android:name=".PrimeraRevision_insertar" />
@@ -50,7 +69,7 @@
         <activity android:name=".Evaluacion_menu" />
         <activity android:name=".MenuEstudiante" />
         <activity android:name=".Diferido_insertar" />
-        <activity android:name=".Diferido_consultar"/>
+        <activity android:name=".Diferido_consultar" />
         <activity android:name=".Diferido_menu" />
         <activity android:name=".Repetido_Eliminar" />
         <activity android:name=".Repetido_modificar" />
@@ -64,6 +83,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCkdHND9Z_lNhooQC2w0iLAqB6-hdtuwt4" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>
