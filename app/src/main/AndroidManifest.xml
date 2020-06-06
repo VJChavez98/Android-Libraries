@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="sv.edu.ues.eisi.fia.procesosadministrativosfia">
-
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.Camera"/>
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -76,6 +81,26 @@
         <activity android:name=".DocenteMenuActivity" />
         <activity android:name=".CargaAcademicaMenuActivity" />
         <activity android:name=".CicloMenuActivity" />
+        <activity android:name=".EstadoImpresionInsertarActivity"></activity>
+        <activity android:name=".EstadoImpresionEliminarActivity" />
+        <activity android:name=".EstadoImpresionConsultarActivity" />
+        <activity android:name=".EstadoImpresionActualizarActivity" />
+        <activity android:name=".EstadoImpresionMenuActivity" />
+        <activity android:name=".EncarImpresionesInsertarActivity" />
+        <activity android:name=".EncarImpresionesEliminarActivity" />
+        <activity android:name=".EncarImpresionesConsultarActivity" />
+        <activity android:name=".EncarImpresionesActualizarActivity" />
+        <activity android:name=".EncarImpresionesMenuActivity" />
+        <activity android:name=".DocDirectorActualizarActivity" />
+        <activity android:name=".DocDirectorMenuActivity" />
+        <activity android:name=".DocDirectorInsertarActivity" />
+        <activity android:name=".DocDirectorEliminarActivity" />
+        <activity android:name=".DocDirectorConsultarActivity" />
+        <activity android:name=".SolImpresionConsultarActivity" />
+        <activity android:name=".SolImpresionActualizarActivity" />
+        <activity android:name=".SolImpresionEliminarActivity" />
+        <activity android:name=".SolImpresionInsertarActivity" />
+        <activity android:name=".SolImpresionMenuActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

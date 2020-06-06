@@ -1,7 +1,7 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
 public class SolicitudDiferido {
-    private String idSolicitud,carnet, codMateria, GT, GD, GL, tipoEva, fechaEva, horaEva, motivo, otroMotivo, estado;
+    private String idSolicitud,carnet, codMateria, GT, GD, GL, tipoEva, fechaEva, horaEva, motivo, otroMotivo, estado, rutaJustificante;
     private int numeroEval;
     public String getIdSolicitud() {
         return idSolicitud;
@@ -103,5 +103,13 @@ public class SolicitudDiferido {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String getRutaJustificante() {
+        return rutaJustificante;
+    }
+
+    public void setRutaJustificante(String rutaJustificante) {
+        this.rutaJustificante = rutaJustificante;
     }
 }

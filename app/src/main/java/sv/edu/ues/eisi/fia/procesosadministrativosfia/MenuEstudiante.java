@@ -20,8 +20,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MenuEstudiante extends ListActivity{
-    String [] menu = {"Estudiante","Solicitud Repetido", "Solicitud Diferido","Detalle Diferido/Repetido","Listado estudiantes-diferido","Listado estudiantes-repetido", "Local", "Evaluacion",  "Inscripcion a Primera Revision", "Primera Revision","Solicitudes Docente","Tabla Ciclo","Tabla Carga Académica","Tabla Docente","Tabla Asignatura", "Cerrar sesión"};
-    String [] activities = {"Estudiante_menu","Repetido_menu", "Diferido_menu","DetalleDiferidoRepetido_menu","DetalleEstudianteDiferido_consultar", "DetalleEstudianteRepetido_consultar","Local_menu", "Evaluacion_menu", "PeriodoInscripcionRevision_menu", "PrimeraRevision_menu","SolicitudDiferido_consultarDocente","CicloMenuActivity","CargaAcademicaMenuActivity","DocenteMenuActivity", "AsignaturaMenuActivity"};
+    String [] menu = {"Estudiante","Solicitud Repetido", "Solicitud Diferido","Detalle Diferido/Repetido","Listado estudiantes-diferido","Listado estudiantes-repetido", "Local", "Evaluacion",  "Inscripcion a Primera Revision", "Primera Revision","Solicitudes Docente","Tabla Ciclo","Tabla Carga Académica","Tabla Docente","Tabla Asignatura","Tabla SolImpresion", "Tabla DocDirector", "TablaEstadoImpresion", "TablaEncarImpresiones", "Cerrar sesión"};
+    String [] activities = {"Estudiante_menu","Repetido_menu", "Diferido_menu","DetalleDiferidoRepetido_menu","DetalleEstudianteDiferido_consultar", "DetalleEstudianteRepetido_consultar","Local_menu", "Evaluacion_menu", "PeriodoInscripcionRevision_menu", "PrimeraRevision_menu","SolicitudDiferido_consultarDocente","CicloMenuActivity","CargaAcademicaMenuActivity","DocenteMenuActivity", "AsignaturaMenuActivity","SolImpresionMenuActivity", "DocDirectorMenuActivity", "EstadoImpresionMenuActivity", "EncarImpresionesMenuActivity"};
     boolean doubleBackToExitPressedOnce = false;
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
@@ -39,7 +39,7 @@ public class MenuEstudiante extends ListActivity{
 
     protected void onListItemClick(ListView listView, View view, int position, long id){
         super.onListItemClick(listView, view, position, id);
-        if (position!=15) {
+        if (position!=19) {
             String nombreValue = activities[position];
             try {
                 Class<?> clase = Class.forName("sv.edu.ues.eisi.fia.procesosadministrativosfia." + nombreValue);
