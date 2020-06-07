@@ -48,20 +48,17 @@ public class ControladorBase {
         DBHelper = new DatabaseHelper(context);
     }
 
-    private static class DatabaseHelper extends SQLiteOpenHelper {
+    public static class DatabaseHelper extends SQLiteOpenHelper {
         private static final String NOMBRE_BASE = "ProcesosAdmin.s3db";
         private static final int VERSION = 1;
 
         public DatabaseHelper(@Nullable Context context) {
             super(context, NOMBRE_BASE, null, VERSION);
-
         }
 
         @Override
         public void onCreate(SQLiteDatabase db) {
             try {
-
-
                 db.execSQL("CREATE TABLE asignatura(codasignatura VARCHAR(6) NOT NULL PRIMARY KEY, nomasignatura VARCHAR(30) NOT NULL, unidadesval VARCHAR(1));");
                 db.execSQL("CREATE TABLE docente(coddocente VARCHAR(10) NOT NULL PRIMARY KEY, nombredocente VARCHAR(50) NOT NULL, apellidodocente VARCHAR(50));");
                 db.execSQL("CREATE TABLE ciclo(codciclo VARCHAR(5) NOT NULL PRIMARY KEY, fechadesde DATE, fechahasta DATE);");
@@ -130,8 +127,6 @@ public class ControladorBase {
                 db.execSQL("CREATE TRIGGER AfterDeleteSolDif AFTER DELETE ON SolicitudDiferido FOR EACH ROW BEGIN DELETE FROM DetalleEstudianteDiferido WHERE DetalleEstudianteDiferido.carnet = OLD.carnet AND DetalleEstudianteDiferido.idDetalleDiferidoRepetido = (OLD.idAsignatura||OLD.tipoEvaluacion||OLD.numeroeval||'Diferido'); END");
                 db.execSQL("CREATE TRIGGER AprobarSolicitudDiferido AFTER UPDATE  ON SolicitudDiferido FOR EACH ROW WHEN NEW.estadoSolicitud = 'Aprobada' AND (OLD.estadoSolicitud = 'Pendiente' OR OLD.estadoSolicitud = 'Denegada') BEGIN INSERT INTO DetalleEstudianteDiferido(carnet,idDetalleDiferidoRepetido,FechaInscripcionDiferido) VALUES(OLD.carnet,OLD.idAsignatura||OLD.tipoEvaluacion||OLD.numeroeval||'Diferido',CURRENT_DATE ); END");
 
-
-
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -140,6 +135,18 @@ public class ControladorBase {
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             //UPDATE DATABASE COMMANDS
+        }
+
+        public Cursor obtenerDocentes() {
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor doc = db.rawQuery("select * from docente",null);
+            return doc;
+        }
+
+        public Cursor obtenerEstudiantes() {
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor doc = db.rawQuery("select * from Estudiante",null);
+            return doc;
         }
     }
 
@@ -2130,7 +2137,7 @@ public class ControladorBase {
         db.execSQL("DELETE FROM encargadodeimpresiones");
         db.execSQL("DELETE FROM motivoimpresion");
         db.execSQL("DELETE FROM estadoimpresion");
-        
+
 
 
         Usuario user = new Usuario();
