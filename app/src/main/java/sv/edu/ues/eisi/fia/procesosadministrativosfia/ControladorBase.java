@@ -48,7 +48,7 @@ public class ControladorBase {
         DBHelper = new DatabaseHelper(context);
     }
 
-    private static class DatabaseHelper extends SQLiteOpenHelper {
+    public static class DatabaseHelper extends SQLiteOpenHelper {
         private static final String NOMBRE_BASE = "ProcesosAdmin.s3db";
         private static final int VERSION = 1;
 
