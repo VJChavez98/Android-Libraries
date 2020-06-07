@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dip"
+    android:stretchColumns="1" >
+    <TableRow>
+        <TextView android:text="ID Estado Impresion" />
+        <EditText
+            android:id="@+id/editIdEstadoImpresion"
+            android:inputType="text"
+            android:maxLength="10" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="ID Solicitud Impresion" />
+        <EditText
+            android:id="@+id/editIdSolicitudImpresion"
+            android:inputType="text"
+            android:maxLength="10" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="ID Encargado" />
+        <EditText
+            android:id="@+id/editIdEncargado"
+            android:inputType="text"
+            android:maxLength="10" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="ID Motivo Impresion" />
+        <EditText
+            android:id="@+id/editIdMotivoImpresion"
+            android:inputType="text"
+            android:maxLength="10" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="Realizado" />
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner4"
+            />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="Observaciones" />
+        <EditText
+            android:id="@+id/editObservaciones"
+            android:inputType="text"
+            android:maxLength="50" />
+    </TableRow>
+    <TableRow>
+        <Button
+            android:onClick="actualizarEstadoImpresion"
+            android:text="@string/actualizar" />
+    </TableRow>
+    <TableRow>
+        <Button
+            android:onClick="limpiarTexto"
+            android:text="@string/limpiar" />
+    </TableRow>
+</TableLayout>
