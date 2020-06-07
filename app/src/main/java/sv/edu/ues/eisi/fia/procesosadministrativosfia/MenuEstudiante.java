@@ -10,8 +10,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 public class MenuEstudiante extends ListActivity {
-    String [] menu = {"Estudiante","Solicitud Repetido", "Solicitud Diferido","Detalle Diferido/Repetido","Listado estudiantes-diferido","Listado estudiantes-repetido", "Local", "Evaluacion",  "Inscripcion a Primera Revision", "Primera Revision","Solicitudes Docente","Tabla Ciclo","Tabla Carga Académica","Tabla Docente","Tabla Asignatura"};
-    String [] activities = {"Estudiante_menu","Repetido_menu", "Diferido_menu","DetalleDiferidoRepetido_menu","DetalleEstudianteDiferido_consultar", "DetalleEstudianteRepetido_consultar","Local_menu", "Evaluacion_menu", "PeriodoInscripcionRevision_menu", "PrimeraRevision_menu","SolicitudDiferido_consultarDocente","CicloMenuActivity","CargaAcademicaMenuActivity","DocenteMenuActivity", "AsignaturaMenuActivity"};
+    String [] menu = {"Estudiante","Solicitud Repetido", "Solicitud Diferido","Detalle Diferido/Repetido","Listado estudiantes-diferido","Listado estudiantes-repetido", "Local", "Evaluacion",  "Inscripcion a Primera Revision", "Primera Revision","Solicitudes Docente","Tabla Ciclo","Tabla Carga Académica","Tabla Docente","Tabla Asignatura","Tabla SolImpresion", "Tabla DocDirector", "TablaEstadoImpresion", "TablaEncarImpresiones"};
+    String [] activities = {"Estudiante_menu","Repetido_menu", "Diferido_menu","DetalleDiferidoRepetido_menu","DetalleEstudianteDiferido_consultar", "DetalleEstudianteRepetido_consultar","Local_menu", "Evaluacion_menu", "PeriodoInscripcionRevision_menu", "PrimeraRevision_menu","SolicitudDiferido_consultarDocente","CicloMenuActivity","CargaAcademicaMenuActivity","DocenteMenuActivity", "AsignaturaMenuActivity","SolImpresionMenuActivity", "DocDirectorMenuActivity", "EstadoImpresionMenuActivity", "EncarImpresionesMenuActivity"};
     boolean doubleBackToExitPressedOnce = false;
 
     @Override
