@@ -15,6 +15,30 @@
       },
       "oauth_client": [
         {
+          "client_id": "364552890006-1mhilloup3too19e8okn6vck8uobp9i1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sv.edu.ues.eisi.fia.procesosadministrativosfia",
+            "certificate_hash": "4079ec80aa70b7ae564dcf67823147abbb5249a6"
+          }
+        },
+        {
+          "client_id": "364552890006-ug0acfnvlvei7okbo6f1qjokf28ru662.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sv.edu.ues.eisi.fia.procesosadministrativosfia",
+            "certificate_hash": "902df81342aee713fa3eac0f21fcf4f6504aef44"
+          }
+        },
+        {
+          "client_id": "364552890006-7ousvulh0ougi5corkp69du3je9alllk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sv.edu.ues.eisi.fia.procesosadministrativosfia",
+            "certificate_hash": "160742052b382e23c9ded7d2d0db6addcb5dcb6e"
+          }
+        },
+        {
           "client_id": "364552890006-e30ro1l3s979jacf057koo016hcivd91.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
