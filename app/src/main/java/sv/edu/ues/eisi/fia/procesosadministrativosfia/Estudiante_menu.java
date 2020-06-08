@@ -1,7 +1,5 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class Estudiante_menu extends ListActivity {
-    String[] menu = {"Insertar Registro", "Consultar Registro"};
-    String[] activities = {"Estudiante_insertar", "Estudiante_consultar"};
+    String[] menu = {"Insertar Registro", "Consultar Registro", "Exportar Registros"};
+    String[] activities = {"Estudiante_insertar", "Estudiante_consultar", "ExcelEstudiante"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

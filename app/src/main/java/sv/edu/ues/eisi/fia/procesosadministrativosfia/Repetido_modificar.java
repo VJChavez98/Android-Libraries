@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import sv.edu.ues.eisi.fia.procesosadministrativosfia.R;
-
 public class Repetido_modificar extends AppCompatActivity {
 
     @Override

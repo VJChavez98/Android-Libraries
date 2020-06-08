@@ -1,16 +1,39 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class Local_consultar extends Activity {
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import com.google.android.gms.maps.MapFragment;
+
+import java.util.List;
+
+public class Local_consultar extends Activity{
     EditText editCodlocal, editNomlocal, editUbicacionlocal;
     ControladorBase helper;
+    boolean resultado;
+
+    Button obtenerDir;
+    EditText edtLatitud, edtLongitud, edtAltitud;
+    TextView edtDireccion;
+    LocationManager locationManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -21,6 +44,14 @@ public class Local_consultar extends Activity {
         editCodlocal = (EditText) findViewById(R.id.editCodlocal);
         editNomlocal = (EditText) findViewById(R.id.editNomlocal);
         editUbicacionlocal = (EditText) findViewById(R.id.editUbicacionlocal);
+
+        //obtenerDir = (Button) findViewById(R.id.btnObtenerDatosPos);
+        edtLatitud = (EditText) findViewById(R.id.edtLatitud);
+        edtLongitud = (EditText) findViewById(R.id.edtLongitud);
+        edtAltitud= (EditText) findViewById(R.id.edtAltitud);
+        edtDireccion = (TextView) findViewById(R.id.edtDireccion);
+        //obtenerDir.setOnClickListener(onClickDireccion);
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
     }
 
     public void consultarLocal(View v){
@@ -28,16 +59,116 @@ public class Local_consultar extends Activity {
         Local local = helper.consultarLocal(editCodlocal.getText().toString());
         helper.cerrar();
         if(local == null){
-            Toast.makeText(this, "Local no registrado", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Local No Registrado.", Toast.LENGTH_SHORT).show();
+            this.resultado = false;
         }else{
             editNomlocal.setText(local.getNomlocal());
             editUbicacionlocal.setText(local.getUbicacionlocal());
+            this.resultado = true;
         }
+    }
+
+    public void consultarUbicacion(View v){
+        if(this.resultado == true){
+            String LcodLocal = editCodlocal.getText().toString();
+            char[] letLocal = LcodLocal.toCharArray();
+
+            if((letLocal[0] == 'B' || letLocal[0] == 'b') && (letLocal[1] == '1' || letLocal[1] == '2' || letLocal[1] == '3' || letLocal[1] == '4')){
+                Intent intent = new Intent(this, MapaConsultarB.class);
+                //intent.putExtra("codlocal", codlocal2);
+                startActivity(intent);
+            }else if((letLocal[0] == 'C' || letLocal[0] == 'c') && (letLocal[1] == '1' || letLocal[1] == '2' || letLocal[1] == '3' || letLocal[1] == '4')){
+                Intent intent = new Intent(this, MapaConsultarC.class);
+                startActivity(intent);
+            }else if((letLocal[0] == 'D' || letLocal[0] == 'd') && (letLocal[1] == '1' || letLocal[1] == '2' || letLocal[1] == '3' || letLocal[1] == '4')){
+                Intent intent = new Intent(this, MapaConsultarD.class);
+                startActivity(intent);
+            }else if((letLocal[0] == 'F' || letLocal[0] == 'f') && (letLocal[1] == '1') && (letLocal[2] == '3') && (letLocal[3] == '1') && (letLocal[4] == '2')){
+                Intent intent = new Intent(this, MapaConsultarF.class);
+                startActivity(intent);
+            }else if((letLocal[0] == 'B' || letLocal[0] == 'b') && (letLocal[1] == 'I' || letLocal[1] == 'i') && (letLocal[2] == 'B' || letLocal[2] == 'b')){
+                Intent intent = new Intent(this, MapaConsultarBIB.class);
+                startActivity(intent);
+            }else if((letLocal[0] == 'C' || letLocal[0] == 'c') && (letLocal[1] == 'U' || letLocal[1] == 'u')){
+                Intent intent = new Intent(this, MapaConsultarE.class);
+                startActivity(intent);
+            }else{
+                Toast.makeText(this, "No hay ubicación para este Local.", Toast.LENGTH_SHORT).show();
+            }
+        }else{
+            Toast.makeText(this, "Local No Registrado.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void consultarPosicion(View v){
+        // PERMISOS PARA ANDROID 6 O SUPERIOR
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                    0
+            );
+        }
+
+        Geocoder g = new Geocoder(getApplicationContext());
+        List<Address> ad = null;
+        try{
+            ad = g.getFromLocation(Double.valueOf(edtLatitud.getText().toString()), Double.valueOf(edtLongitud.getText().toString()), 1);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        if(ad != null && ad.isEmpty() == false){
+            edtDireccion.setText(ad.get(0).getThoroughfare() + ", " + ad.get(0).getSubAdminArea() + ", " + ad.get(0).getCountryName());
+        }
+    }
+
+    LocationListener locationListener = new LocationListener() {
+        @Override
+        public void onLocationChanged(Location location) {
+            edtLatitud.setText(String.valueOf(location.getLatitude()));
+            edtLongitud.setText(String.valueOf(location.getLongitude()));
+            edtAltitud.setText(String.valueOf(location.getAltitude()));
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+
+        }
+    };
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        locationManager.removeUpdates(locationListener);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            return;
+        }
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
     }
 
     public void limpiarTexto(View v){
         editCodlocal.setText("");
         editNomlocal.setText("");
         editUbicacionlocal.setText("");
+        edtLongitud.setText("");
+        edtLatitud.setText("");
+        edtAltitud.setText("");
     }
 }
