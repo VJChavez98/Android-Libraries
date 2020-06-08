@@ -16,6 +16,7 @@
             android:id="@+id/editCarnet"
             android:layout_height="wrap_content"
             android:layout_width="300dip"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="50"
             />
@@ -36,9 +37,6 @@
             android:layout_width="58dp"
             android:layout_height="23dp"
             android:text="@string/estudianteNombre"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:layout_constraintVertical_bias="0.262"
             tools:layout_editor_absoluteX="16dp" />
 
         <EditText
@@ -46,6 +44,7 @@
             android:layout_width="310dp"
             android:layout_height="43dp"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="50"
             tools:layout_editor_absoluteX="80dp"
             tools:layout_editor_absoluteY="94dp" />
@@ -62,6 +61,7 @@
             android:id="@+id/editApellidoEstudiante"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="50" />
     </TableRow>
@@ -78,6 +78,7 @@
             android:id="@+id/editCarreraEstudiante"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="50" />
     </TableRow>

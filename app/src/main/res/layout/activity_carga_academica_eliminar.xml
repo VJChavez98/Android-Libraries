@@ -14,6 +14,7 @@
             android:id="@+id/editIdcargaacademica"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="5"/>
     </TableRow>
@@ -27,6 +28,7 @@
             android:id="@+id/editCodciclo"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="5"/>
     </TableRow>
@@ -40,6 +42,7 @@
             android:id="@+id/editCoddocente"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="5"/>
 
@@ -53,6 +56,7 @@
             android:id="@+id/editCodasignatura"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="6"/>
     </TableRow>
@@ -64,6 +68,7 @@
         <EditText
             android:id="@+id/editIdtipodocenteciclo"
             android:layout_width="fill_parent"
+            android:gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:inputType="text"
             android:maxLength="6"/>

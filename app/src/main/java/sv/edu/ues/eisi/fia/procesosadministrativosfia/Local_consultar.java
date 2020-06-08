@@ -14,14 +14,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
-import com.google.android.gms.maps.MapFragment;
 
 import java.util.List;
 
@@ -62,6 +59,7 @@ public class Local_consultar extends Activity{
             Toast.makeText(this, "Local No Registrado.", Toast.LENGTH_SHORT).show();
             this.resultado = false;
         }else{
+            findViewById(R.id.detalle).setVisibility(View.VISIBLE);
             editNomlocal.setText(local.getNomlocal());
             editUbicacionlocal.setText(local.getUbicacionlocal());
             this.resultado = true;
@@ -170,5 +168,6 @@ public class Local_consultar extends Activity{
         edtLongitud.setText("");
         edtLatitud.setText("");
         edtAltitud.setText("");
+        findViewById(R.id.detalle).setVisibility(View.GONE);
     }
 }

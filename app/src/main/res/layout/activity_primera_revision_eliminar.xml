@@ -13,6 +13,7 @@
         <EditText
             android:id="@+id/editCodasignatura"
             android:layout_width="fill_parent"
+            android:gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:inputType="text"
             android:maxLength="6"/>
@@ -39,6 +40,7 @@
         <EditText
             android:id="@+id/editCodciclo"
             android:layout_width="fill_parent"
+            android:gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:maxLength="5"/>
@@ -53,6 +55,7 @@
             android:id="@+id/editNumeval"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:inputType="number"
             android:maxLength="1"/>
     </TableRow>
@@ -66,6 +69,7 @@
             android:id="@+id/editCoddocente"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="10"/>
     </TableRow>
@@ -79,6 +83,7 @@
             android:id="@+id/editCarnet"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="7"/>
     </TableRow>

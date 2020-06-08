@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingTop="10dip"
@@ -42,6 +42,7 @@
             <EditText
                 android:id="@+id/editCodasignatura"
                 android:inputType="text"
+                android:gravity="center_horizontal"
                 android:maxLength="6"/>
         </TableRow>
 
@@ -64,6 +65,7 @@
             <EditText
                 android:id="@+id/editCodciclo"
                 android:inputType="number"
+                android:gravity="center_horizontal"
                 android:maxLength="5"/>
         </TableRow>
 
@@ -73,6 +75,7 @@
             <EditText
                 android:id="@+id/editNumeval"
                 android:inputType="number"
+                android:gravity="center_horizontal"
                 android:maxLength="1"/>
         </TableRow>
 
@@ -82,6 +85,7 @@
             <EditText
                 android:id="@+id/editCoddocente"
                 android:inputType="text"
+                android:gravity="center_horizontal"
                 android:maxLength="10"/>
         </TableRow>
 
@@ -91,6 +95,7 @@
             <EditText
                 android:id="@+id/editCarnet"
                 android:inputType="text"
+                android:gravity="center_horizontal"
                 android:maxLength="7"/>
         </TableRow>
 
@@ -127,6 +132,7 @@
             <EditText
                 android:id="@+id/editNotaDespues"
                 android:inputType="numberDecimal"
+                android:gravity="center_horizontal"
                 android:maxLength="4" />
         </TableRow>
 
@@ -152,7 +158,7 @@
                 android:layout_width="230dp"
                 android:singleLine="false"
                 android:lines="5"
-                android:gravity="top|left"
+                android:gravity="top|start"
                 android:inputType="textMultiLine"
                 android:scrollHorizontally="false"
                 android:scrollbars="vertical"

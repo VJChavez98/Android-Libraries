@@ -43,6 +43,7 @@ public class EncarImpresionesConsultarActivity extends Activity {
             Toast.makeText(this, "Encargado con id " + editIdEncargado.getText().toString() +
                     " no encontrado", Toast.LENGTH_LONG).show();
         else{
+            findViewById(R.id.detalle).setVisibility(View.VISIBLE);
             editNombreEncargado.setText(enc.getNombreencargado());
             editApellidoEncargado.setText(enc.getApellidoencargado());
 
@@ -53,6 +54,7 @@ public class EncarImpresionesConsultarActivity extends Activity {
         editIdEncargado.setText("");
         editNombreEncargado.setText("");
         editApellidoEncargado.setText("");
+        findViewById(R.id.detalle).setVisibility(View.GONE);
     }
 
 }

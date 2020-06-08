@@ -11,6 +11,7 @@
         <EditText
             android:id="@+id/editCodlocal"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="10" />
     </TableRow>
 
@@ -20,6 +21,7 @@
         <EditText
             android:id="@+id/editNomlocal"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="50" />
     </TableRow>
 
@@ -29,6 +31,7 @@
         <EditText
             android:id="@+id/editUbicacionlocal"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="50" />
     </TableRow>
 

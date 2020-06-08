@@ -63,6 +63,7 @@ public class SolImpresionConsultarActivity extends Activity {
         if(solImpresion == null)
             Toast.makeText(this, "Solicitud no registrada", Toast.LENGTH_LONG).show();
         else{
+            findViewById(R.id.detalle).setVisibility(View.VISIBLE);
             editCantidadExamenes.setText(String.valueOf(solImpresion.getCantidadexamenes()));
             editHojasEmpaque.setText(String.valueOf(solImpresion.getHojasempaque()));
             editEstadoAprobacion.setText(String.valueOf(solImpresion.getEstadoaprobacion()));
@@ -76,5 +77,6 @@ public class SolImpresionConsultarActivity extends Activity {
         editCantidadExamenes.setText("");
         editHojasEmpaque.setText("");
         editEstadoAprobacion.setText("");
+        findViewById(R.id.detalle).setVisibility(View.GONE);
     }
 }

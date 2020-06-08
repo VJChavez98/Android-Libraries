@@ -10,6 +10,7 @@
         <EditText
             android:id="@+id/editIdEncarImpresiones"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="10" />
     </TableRow>
     <TableRow>
@@ -17,6 +18,7 @@
         <EditText
             android:id="@+id/editNombreEncargado"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="50" />
     </TableRow>
     <TableRow>
@@ -24,6 +26,7 @@
         <EditText
             android:id="@+id/editApellidoEncargado"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="50" />
     </TableRow>
     <TableRow>

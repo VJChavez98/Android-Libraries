@@ -13,6 +13,7 @@
         <EditText
             android:id="@+id/editCodasignatura"
             android:layout_width="fill_parent"
+            android:gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:inputType="text"
             android:maxLength="6"/>
@@ -26,6 +27,7 @@
         <EditText
             android:id="@+id/editCodciclo"
             android:layout_width="fill_parent"
+            android:gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:maxLength="5"/>
@@ -52,6 +54,7 @@
         <EditText
             android:id="@+id/editNumeval"
             android:layout_width="fill_parent"
+            android:gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:maxLength="1"/>
@@ -67,6 +70,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:onClick="limpiarTexto"
             android:text="Limpiar" />
     </TableRow>

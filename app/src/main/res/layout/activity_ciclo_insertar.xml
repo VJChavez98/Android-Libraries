@@ -9,6 +9,7 @@
         <EditText
             android:id="@+id/editCodciclo"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="5"/>
     </TableRow>
 
@@ -18,6 +19,7 @@
         <EditText
             android:id="@+id/editFechadesde"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="30"/>
     </TableRow>
 
@@ -27,6 +29,7 @@
         <EditText
             android:id="@+id/editFechahasta"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="30"/>
     </TableRow>
     <TableRow>
