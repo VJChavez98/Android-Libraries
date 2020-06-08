@@ -228,6 +228,7 @@ public class ControladorBase {
             cv.put("fechaEvaluacion", solicitudDiferido.getFechaEva());
             cv.put("horaEvaluacion", solicitudDiferido.getHoraEva());
             cv.put("descripcionMotivo", solicitudDiferido.getOtroMotivo());
+            cv.put("rutajustificante",solicitudDiferido.getRutaJustificante());
             db.update("SolicitudDiferido", cv, "idSolicitudDiferido = ?", id);
             return "Registro Actualizado Correctamente";
         } else return "Registro no existe";
@@ -445,6 +446,7 @@ public class ControladorBase {
             solicitudDiferido.setGL(cursor.getString(10));
             solicitudDiferido.setTipoEva(cursor.getString(11));
             solicitudDiferido.setEstado(cursor.getString(12));
+            solicitudDiferido.setRutaJustificante(cursor.getString(13));
             return solicitudDiferido;
         } else return null;
     }

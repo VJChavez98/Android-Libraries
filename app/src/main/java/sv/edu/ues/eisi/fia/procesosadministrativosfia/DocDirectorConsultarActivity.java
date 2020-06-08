@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class DocDirectorConsultarActivity extends Activity {
@@ -16,6 +17,7 @@ public class DocDirectorConsultarActivity extends Activity {
     EditText editApellidoDirector;
     EditText editCorreoDirector;
     EditText editTelefono;
+    LinearLayout linear;
 
     /** Called when the activity is first created. */
     @Override
@@ -29,6 +31,7 @@ public class DocDirectorConsultarActivity extends Activity {
         editApellidoDirector = (EditText) findViewById(R.id.editApellidoDirector);
         editCorreoDirector = (EditText) findViewById(R.id.editCorreoDirector);
         editTelefono = (EditText) findViewById(R.id.editTelefono);
+        linear = findViewById(R.id.detalle);
     }
     public void consultarDocDirector(View v) {
 
@@ -58,6 +61,7 @@ public class DocDirectorConsultarActivity extends Activity {
         if(docDirector == null)
             Toast.makeText(this, "Docente no registrado", Toast.LENGTH_LONG).show();
         else{
+            linear.setVisibility(View.VISIBLE);
             editNombreDirector.setText(String.valueOf(docDirector.getNombredirector()));
             editApellidoDirector.setText(String.valueOf(docDirector.getApellidodirector()));
             editCorreoDirector.setText(String.valueOf(docDirector.getCorreodirector()));
@@ -72,5 +76,6 @@ public class DocDirectorConsultarActivity extends Activity {
         editApellidoDirector.setText("");
         editCorreoDirector.setText("");
         editTelefono.setText("");
+        linear.setVisibility(View.GONE);
     }
 }

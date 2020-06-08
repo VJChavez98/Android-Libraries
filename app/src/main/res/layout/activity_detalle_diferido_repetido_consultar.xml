@@ -16,6 +16,7 @@
             android:layout_width="280dip"
             android:layout_height="wrap_content"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="6"/>
     </TableRow>
 
@@ -39,6 +40,7 @@
         <EditText android:id="@+id/editNumeval"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:inputType="number"
             android:maxLength="2"/>
     </TableRow>
@@ -72,6 +74,7 @@
             android:text="@string/codlocal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:layout_marginLeft="10dip"/>
         <EditText android:id="@+id/editCodlocal"
             android:inputType="text"
@@ -87,6 +90,7 @@
             android:layout_marginLeft="10dip"/>
         <EditText android:id="@+id/editDocente"
             android:layout_width="fill_parent"
+            android:gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:inputType="text"
             android:maxLength="10"/>
@@ -101,6 +105,7 @@
         <EditText android:id="@+id/editFechaDesde"
             android:inputType="text"
             android:focusable="false"
+            android:gravity="center_horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"/>
     </TableRow>
@@ -113,6 +118,7 @@
         <EditText android:id="@+id/editFechaHasta"
             android:inputType="text"
             android:focusable="false"
+            android:gravity="center_horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"/>
     </TableRow>
@@ -126,6 +132,7 @@
             android:inputType="text"
             android:focusable="false"
             android:layout_width="fill_parent"
+            android:gravity="center_horizontal"
             android:layout_height="wrap_content"/>
     </TableRow>
     <TableRow>
@@ -137,6 +144,7 @@
         <EditText android:id="@+id/editHoraRealizada"
             android:inputType="text"
             android:focusable="false"
+            android:gravity="center_horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"/>
     </TableRow>

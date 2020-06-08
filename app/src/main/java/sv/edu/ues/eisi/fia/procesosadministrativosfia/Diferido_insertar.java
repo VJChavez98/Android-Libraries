@@ -1,23 +1,17 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.FileObserver;
-import android.os.PersistableBundle;
 import android.provider.MediaStore;
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -26,13 +20,14 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.io.File;
 import java.util.Calendar;
-import java.util.Date;
 
 public class Diferido_insertar extends AppCompatActivity{
 
@@ -258,7 +253,7 @@ public class Diferido_insertar extends AppCompatActivity{
                 mOptions.setVisibility(View.GONE);
                 srcImg.setVisibility(View.VISIBLE);
                 file = data.getData();
-                srcImg.setText(file.toString());
+                srcImg.setText("Mostrar imagen seleccionada");
             }
         }
     }

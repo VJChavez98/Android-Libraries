@@ -30,7 +30,12 @@
             android:onClick="limpiarTexto"
             android:text="@string/limpiar" />
     </LinearLayout>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:id="@+id/detalle">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,7 +64,8 @@
         android:longClickable="false"
         android:inputType="text"/>
 
-    <LinearLayout>
+    <LinearLayout android:layout_height="wrap_content"
+        android:layout_width="match_parent">
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -85,7 +91,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
@@ -135,5 +141,5 @@
             android:enabled="false"
             android:width="1dp" />
     </LinearLayout>
-
+    </LinearLayout>
 </TableLayout>

@@ -11,6 +11,7 @@
         <EditText
             android:id="@+id/editCodasignatura"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="6"/>
     </TableRow>
 
@@ -33,6 +34,7 @@
         <EditText
             android:id="@+id/editCodciclo"
             android:inputType="number"
+            android:gravity="center_horizontal"
             android:maxLength="5"/>
     </TableRow>
 
@@ -42,6 +44,7 @@
         <EditText
             android:id="@+id/editNumeval"
             android:inputType="number"
+            android:gravity="center_horizontal"
             android:maxLength="1"/>
     </TableRow>
 
@@ -53,6 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
+            android:gravity="center_horizontal"
             android:ems="10"
             android:focusable="false"/>
     </TableRow>

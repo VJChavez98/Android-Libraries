@@ -14,6 +14,7 @@
             android:id="@+id/editIdDocenteDirector"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="10"/>
     </TableRow>
@@ -26,6 +27,7 @@
             android:id="@+id/editIdEscuela"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="10"/>
     </TableRow>

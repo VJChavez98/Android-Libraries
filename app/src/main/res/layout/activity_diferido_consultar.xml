@@ -15,6 +15,7 @@
             android:id="@+id/editCarnet"
             android:layout_width="200dip"
             android:inputType="none"
+            android:gravity="center_horizontal"
             android:maxLength="7"
             android:layout_height="wrap_content"/>
     </TableRow>
@@ -27,6 +28,7 @@
         <EditText android:id="@+id/editAsignatura"
             android:inputType="none"
             android:maxLength="6"
+            android:gravity="center_horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"/>
     </TableRow>
@@ -38,6 +40,7 @@
             android:text="@string/tipoEval"/>
         <Spinner android:id="@+id/spinTipoEval"
             android:layout_width="fill_parent"
+            android:gravity="center_horizontal"
             android:layout_height="wrap_content"/>
     </TableRow>
     <TableRow>
@@ -46,6 +49,7 @@
             android:text="@string/evaluacion_numero"/>
         <EditText android:id="@+id/editNumeval"
             android:layout_width="200dip"
+            android:gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:maxLength="2"/>

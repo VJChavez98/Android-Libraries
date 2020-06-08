@@ -13,6 +13,7 @@
         <EditText
             android:id="@+id/editIdEstadoImpresion"
             android:layout_width="fill_parent"
+            android:gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:inputType="text"
             android:maxLength="10"/>
@@ -25,6 +26,7 @@
         <EditText
             android:id="@+id/editIdSolicitudImpresion"
             android:layout_width="fill_parent"
+            android:gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:inputType="text"
             android:maxLength="10"/>
@@ -38,6 +40,7 @@
             android:id="@+id/editIdEncargado"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="10"/>
     </TableRow>
@@ -49,6 +52,7 @@
         <EditText
             android:id="@+id/editIdMotivoImpresion"
             android:layout_width="fill_parent"
+            android:gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:inputType="text"
             android:maxLength="10"/>

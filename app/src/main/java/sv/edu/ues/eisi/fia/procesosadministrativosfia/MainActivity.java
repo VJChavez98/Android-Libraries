@@ -26,7 +26,6 @@ import com.google.firebase.auth.GoogleAuthProvider;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private static final String TAG = "GoogleActivity";
     private static final int RC_SIGN_IN = 9001;
-    EditText editUsername, editPassword;
     ControladorBase DBHelper;
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
@@ -74,26 +73,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-   /* public void login(View view) {
-        Usuario usuario = new Usuario();
-
-        String username = editUsername.getText().toString();
-        String password = editPassword.getText().toString();
-        usuario.setUsername(username);
-        usuario.setPassword(password);
-        DBHelper.abrir();
-        if (DBHelper.consultarUsuario(username, password)) {
-            Intent intent = new Intent(this, MenuEstudiante.class);
-            startActivity(intent);
-            editUsername.setText("");
-            editPassword.setText("");
-            editUsername.requestFocus();
-
-        } else {
-
-            Toast.makeText(this, "Error, usuario o contraseña no encontrados", Toast.LENGTH_SHORT).show();
-        }
-    }*/
     public void onClick(View v) {
             signIn();
     }

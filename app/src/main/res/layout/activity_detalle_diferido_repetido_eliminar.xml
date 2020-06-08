@@ -13,6 +13,7 @@
         <EditText android:id="@+id/editAsignatura"
             android:layout_width="280dip"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="6"/>
     </TableRow>
@@ -38,6 +39,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
+            android:gravity="center_horizontal"
             android:maxLength="2"/>
     </TableRow>
 

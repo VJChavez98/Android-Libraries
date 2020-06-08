@@ -9,6 +9,7 @@
         <EditText
             android:id="@+id/editIdSolicitudImpresion"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="10" />
     </TableRow>
     <TableRow>
@@ -16,6 +17,7 @@
         <EditText
             android:id="@+id/editIdDocente"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="10" />
     </TableRow>
     <TableRow>
@@ -23,6 +25,7 @@
         <EditText
             android:id="@+id/editIdDocenteDirector"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="10" />
     </TableRow>
     <TableRow>
@@ -30,6 +33,7 @@
         <EditText
             android:id="@+id/editCantidadExamenes"
             android:inputType="number"
+            android:gravity="center_horizontal"
             android:maxLength="4" />
     </TableRow>
 
@@ -38,8 +42,9 @@
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAlignment="center"
             android:id="@+id/spinner"
-            />
+            android:gravity="center_horizontal" />
     </TableRow>
 
     <TableRow>
@@ -48,7 +53,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/spinner2"
-            />
+            android:textAlignment="center"
+            android:gravity="center_horizontal" />
     </TableRow>
     <TableRow>
         <TextView android:text="@string/opciones" />

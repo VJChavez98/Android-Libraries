@@ -13,6 +13,7 @@
             android:layout_height="wrap_content"
             android:layout_width="290dip"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="50"
             />
     </TableRow>
@@ -28,6 +29,7 @@
             android:layout_width="290dp"
             android:layout_height="wrap_content"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="50"/>
     </TableRow>
     <TableRow>
@@ -42,6 +44,7 @@
             android:id="@+id/editApellidoEstudiante"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="50" />
     </TableRow>
@@ -59,6 +62,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="50" />
     </TableRow>
     <TableRow>

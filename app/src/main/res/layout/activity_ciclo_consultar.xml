@@ -12,6 +12,7 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:inputType="text"
+        android:gravity="center_horizontal"
         android:maxLength="5"/>
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -40,6 +41,7 @@
         android:layout_height="wrap_content"
         android:inputType="text"
         android:enabled="false"
+        android:gravity="center_horizontal"
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:cursorVisible="false"
@@ -54,6 +56,7 @@
         android:layout_height="wrap_content"
         android:inputType="text"
         android:enabled="false"
+        android:gravity="center_horizontal"
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:cursorVisible="false"

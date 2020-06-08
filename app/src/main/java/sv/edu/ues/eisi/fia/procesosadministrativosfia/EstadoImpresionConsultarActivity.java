@@ -75,6 +75,7 @@ public class EstadoImpresionConsultarActivity extends Activity {
         if(estadoImpresion == null)
             Toast.makeText(this, "Estado de Impresion no registrado", Toast.LENGTH_LONG).show();
         else{
+            findViewById(R.id.detalle).setVisibility(View.VISIBLE);
             editRealizado.setText(String.valueOf(estadoImpresion.getRealizado()));
             editObservaciones.setText(String.valueOf(estadoImpresion.getObservaciones()));
         }
@@ -87,5 +88,6 @@ public class EstadoImpresionConsultarActivity extends Activity {
         editIdMotivoImpresion.setText("");
         editRealizado.setText("");
         editObservaciones.setText("");
+        findViewById(R.id.detalle).setVisibility(View.GONE);
     }
 }

@@ -9,6 +9,7 @@
         <EditText
             android:id="@+id/editIdEstadoImpresion"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="10" />
     </TableRow>
     <TableRow>
@@ -16,6 +17,7 @@
         <EditText
             android:id="@+id/editIdSolicitudImpresion"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="10" />
     </TableRow>
     <TableRow>
@@ -23,6 +25,7 @@
         <EditText
             android:id="@+id/editIdEncargado"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="10" />
     </TableRow>
     <TableRow>
@@ -30,6 +33,7 @@
         <EditText
             android:id="@+id/editIdMotivoImpresion"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="10" />
     </TableRow>
     <TableRow>
@@ -37,6 +41,7 @@
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:id="@+id/spinner3"
             />
     </TableRow>
@@ -45,6 +50,7 @@
         <EditText
             android:id="@+id/editObservaciones"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="50" />
     </TableRow>
     <TableRow>

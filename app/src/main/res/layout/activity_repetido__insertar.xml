@@ -12,6 +12,7 @@
         <EditText android:id="@+id/editCarnet"
             android:layout_width="290dip"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="7"/>
     </TableRow>
@@ -22,6 +23,7 @@
         <EditText android:id="@+id/editAsignatura"
             android:layout_width="290dip"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="6"/>
     </TableRow>
@@ -43,6 +45,7 @@
         <EditText android:id="@+id/editNumeval"
             android:layout_width="290dip"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:inputType="number"
             android:maxLength="2"/>
     </TableRow>
