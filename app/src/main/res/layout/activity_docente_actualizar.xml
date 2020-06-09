@@ -11,6 +11,7 @@
         <EditText
             android:id="@+id/editCoddocente"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="7"/>
     </TableRow>
     <TableRow>
@@ -19,6 +20,7 @@
         <EditText
             android:id="@+id/editNombredocente"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="30"/>
     </TableRow>
     <TableRow>
@@ -27,6 +29,7 @@
         <EditText
             android:id="@+id/editApellidodocente"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="30"/>
     </TableRow>
     <TableRow>

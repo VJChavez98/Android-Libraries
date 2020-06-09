@@ -59,6 +59,7 @@ public class PrimeraRevision_consultar extends Activity {
         if(primer == null){
             Toast.makeText(this, "Revision no Registrada", Toast.LENGTH_LONG).show();
         }else{
+            findViewById(R.id.detalle).setVisibility(View.VISIBLE);
             editEstado.setText(primer.getEstadoprimerrevision());
             editAsistencia.setText(primer.getAsistio());
             editNotaFinal.setText(String.valueOf(primer.getNotadespuesprimerarevision()));

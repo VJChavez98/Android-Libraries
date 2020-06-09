@@ -1,25 +1,34 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.text.InputType;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import java.util.Calendar;
-import java.util.Date;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class Diferido_insertar extends AppCompatActivity implements View.OnClickListener {
+import java.io.File;
+import java.util.Calendar;
+
+public class Diferido_insertar extends AppCompatActivity{
 
     ControladorBase DBHelper;
     EditText editCarnet, editMateria, editGrupoTeorico, editGrupoDiscusion, editGrupoLab, editFechaEval, editHoraEval, editMotivo, editEva;
@@ -28,12 +37,11 @@ public class Diferido_insertar extends AppCompatActivity implements View.OnClick
     static final int DATE_ID = 0, HOUR_ID=1;
     String[] tipos ={"Seleccione el tipo de evaluacion","EP","ED","EL"};
     Calendar c = Calendar.getInstance();
-    private final String DIRECTORY  = "DCIM/";
-    private final String MEDIA_DIRECTORY = DIRECTORY+"SolicitudesDiferido";
-    private String TEMPORAL_PICTURE_NAME = "SolicDifer"+c.getTimeInMillis();
-    private final int PHOTO_CODE = 100;
-    private final int SELECT_PHOTO = 200;
     Button mOptions;
+    final int FOTOGRAFIA = 0;
+    final int GALLERY = 1;
+    Uri file;
+    Button srcImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +61,16 @@ public class Diferido_insertar extends AppCompatActivity implements View.OnClick
         motivos = (Spinner) findViewById(R.id.spinMotivos);
         editFechaEval.setInputType(InputType.TYPE_NULL);
         editHoraEval.setInputType(InputType.TYPE_NULL);
-
+        srcImg = findViewById(R.id.rutaSolic);
         spinTipo.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,tipos));
         mOptions = findViewById(R.id.option);
-        mOptions.setOnClickListener(this);
-
+        mOptions.setOnClickListener(mostrarOpciones);
+        if (savedInstanceState != null){
+            if (savedInstanceState.getString("Foto") != null){
+                file = Uri.parse(savedInstanceState.getString("foto"));
+            }
+        }
+        srcImg.setOnClickListener(showImage);
         sMonthIni = c.get(Calendar.MONTH);
         sDayIni = c.get(Calendar.DAY_OF_MONTH);
         sYearIni = c.get(Calendar.YEAR);
@@ -79,6 +92,14 @@ public class Diferido_insertar extends AppCompatActivity implements View.OnClick
             }
         });
     }
+
+    public void onSaveInstanceState(@NonNull Bundle bundle) {
+        if (file!= null){
+            bundle.putString("Fot0", file.toString());
+        }
+        super.onSaveInstanceState(bundle);
+    }
+
     private void colocar_fecha() {
         if (String.valueOf(nMonthIni).length() == 1 && String.valueOf(nDayIni).length() == 1){
             editFechaEval.setText( nYearIni + "-0" + nMonthIni + "-0" + nDayIni );
@@ -158,6 +179,7 @@ public class Diferido_insertar extends AppCompatActivity implements View.OnClick
         solicitudDiferido.setMotivo(motivoSpin);
         solicitudDiferido.setOtroMotivo(motivoEdit);
         solicitudDiferido.setEstado("Pendiente");
+        solicitudDiferido.setRutaJustificante(file.toString());
         DBHelper.abrir();
         regInsertados=DBHelper.insertar(solicitudDiferido);
         DBHelper.cerrar();
@@ -177,9 +199,85 @@ public class Diferido_insertar extends AppCompatActivity implements View.OnClick
         editMotivo.setText("");
         motivos.setSelection(0);
     }
-
-    @Override
-    public void onClick(View v) {
-
+    public void selectImage(){
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        startActivityForResult(intent, GALLERY);
     }
+    public void takePicture(){
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        File photo = new File(Environment.getExternalStorageDirectory(), c.getTimeInMillis() + ".jpg");
+        file = Uri.fromFile(photo);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, file);
+        startActivityForResult(intent, FOTOGRAFIA);
+    }
+    View.OnClickListener mostrarOpciones = new View.OnClickListener() {
+        @Override
+        public void onClick(final View v) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+            builder.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.setTitle("Elegir acción");
+            builder.setItems(R.array.options, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if (which == 0){
+                        selectImage();
+                    }else {
+                      takePicture();
+                    }
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+    };
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == FOTOGRAFIA) {
+            if (resultCode == RESULT_OK) {
+                mOptions.setVisibility(View.GONE);
+                srcImg.setVisibility(View.VISIBLE);
+                srcImg.setText(file.toString());
+
+            } else {
+                Toast.makeText(getApplicationContext(), "Fotografia no tomada", Toast.LENGTH_SHORT).show();
+            }
+        }else if (requestCode == GALLERY){
+            if (resultCode == RESULT_OK){
+                mOptions.setVisibility(View.GONE);
+                srcImg.setVisibility(View.VISIBLE);
+                file = data.getData();
+                srcImg.setText("Mostrar imagen seleccionada");
+            }
+        }
+    }
+    View.OnClickListener showImage = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+            View dialogView = LayoutInflater.from(v.getContext()).inflate(R.layout.mostar_imagen, null, false);
+            builder.setView(dialogView);
+            builder.setTitle("Justificante Diferido");
+            ImageView justificante = dialogView.findViewById(R.id.mostarImagen);
+            justificante.setImageURI(file);
+            builder.setNegativeButton("Seleccionar otra imagen", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    selectImage();
+                }
+            });
+            builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.create().show();
+        }
+    };
 }

@@ -56,6 +56,7 @@ public class Evaluacion_consultar extends Activity {
         if(evaluacion == null){
             Toast.makeText(this, "Evaluacion no registrada", Toast.LENGTH_LONG).show();
         }else{
+            findViewById(R.id.detalle).setVisibility(View.VISIBLE);
             editFechaeval.setText(evaluacion.getFechaEvaluacion());
             editNomasignatura.setText(asignatura.getNomasignatura());
         }
@@ -68,5 +69,6 @@ public class Evaluacion_consultar extends Activity {
         editNumeval.setText("");
         editFechaeval.setText("");
         editNomasignatura.setText("");
+        findViewById(R.id.detalle).setVisibility(View.GONE);
     }
 }

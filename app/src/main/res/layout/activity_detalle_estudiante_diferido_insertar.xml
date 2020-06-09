@@ -14,9 +14,10 @@
             android:inputType="text"
             android:maxLength="7"
             android:layout_width="300dip"
+            android:gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:gravity="center"/>
+            />
     </TableRow>
     <TableRow>
         <TextView android:text="@string/codAsignatura"
@@ -26,6 +27,7 @@
             android:inputType="text"
             android:maxLength="6"
             android:layout_width="fill_parent"
+            android:gravity="center_horizontal"
             android:layout_height="wrap_content"/>
     </TableRow>
     <TableRow>
@@ -46,6 +48,7 @@
         <EditText android:id="@+id/editNumeval"
             android:inputType="number"
             android:maxLength="2"
+            android:gravity="center_horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"/>
     </TableRow>
@@ -56,6 +59,7 @@
         <EditText android:id="@+id/editFechaInscrip"
             android:inputType="text"
             android:focusable="false"
+            android:gravity="center_horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"/>
     </TableRow>

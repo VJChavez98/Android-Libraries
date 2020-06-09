@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="30dip"
+    android:stretchColumns="1" >
+    <TableRow>
+        <TextView android:text="ID Solicitud Impresion"/>
+        <EditText
+            android:id="@+id/editIdSolicitudImpresion"
+            android:inputType="text"
+            android:gravity="center_horizontal"
+            android:maxLength="10" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="ID Docente" />
+        <EditText
+            android:id="@+id/editIdDocente"
+            android:inputType="text"
+            android:gravity="center_horizontal"
+            android:maxLength="10" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="ID Docente Director" />
+        <EditText
+            android:id="@+id/editIdDocenteDirector"
+            android:inputType="text"
+            android:gravity="center_horizontal"
+            android:maxLength="10" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="Cantidad de Examenes" />
+        <EditText
+            android:id="@+id/editCantidadExamenes"
+            android:inputType="number"
+            android:gravity="center_horizontal"
+            android:maxLength="4" />
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="Hojas Empaque" />
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:id="@+id/spinner"
+            android:gravity="center_horizontal" />
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="Estado de Aprobacion" />
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner2"
+            android:textAlignment="center"
+            android:gravity="center_horizontal" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="@string/opciones" />
+    </TableRow>
+    <TableRow>
+        <Button
+            android:onClick="insertarSolicitudImpresion"
+            android:text="@string/insertar"
+            android:id="@+id/buttonValidar"/>
+        <Button
+            android:onClick="limpiarTexto"
+            android:text="@string/limpiar" />
+    </TableRow>
+</TableLayout>

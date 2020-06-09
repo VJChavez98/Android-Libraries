@@ -13,6 +13,7 @@
         <EditText
             android:id="@+id/editCodasignatura"
             android:layout_width="fill_parent"
+            android:gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:inputType="text"
             android:maxLength="6"/>
@@ -25,6 +26,7 @@
         <EditText
             android:id="@+id/editNombreasignatura"
             android:layout_width="fill_parent"
+            android:gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:inputType="text"
             android:maxLength="30"/>
@@ -38,6 +40,7 @@
             android:id="@+id/editUnidadesval"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:inputType="number"
             android:maxLength="1"/>
 

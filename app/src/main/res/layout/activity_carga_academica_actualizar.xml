@@ -12,6 +12,7 @@
         <EditText
             android:id="@+id/editIdcargaacademica"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="5"/>
     </TableRow>
     <TableRow>
@@ -20,6 +21,7 @@
         <EditText
             android:id="@+id/editCodciclo"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="5"/>
     </TableRow>
     <TableRow>
@@ -28,6 +30,7 @@
         <EditText
             android:id="@+id/editCoddocente"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="5"/>
     </TableRow>
     <TableRow>
@@ -36,6 +39,7 @@
         <EditText
             android:id="@+id/editCodasignatura"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="6"/>
     </TableRow>
     <TableRow>
@@ -44,6 +48,7 @@
         <EditText
             android:id="@+id/editIdtipodocenteciclo"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="6"/>
     </TableRow>
     <TableRow>

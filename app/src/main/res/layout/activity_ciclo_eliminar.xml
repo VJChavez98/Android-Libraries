@@ -13,6 +13,7 @@
         <EditText
             android:id="@+id/editCodciclo"
             android:layout_width="fill_parent"
+            android:gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:inputType="text"
             android:maxLength="5"/>
@@ -26,6 +27,7 @@
             android:id="@+id/editFechadesde"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="10"/>
     </TableRow>
@@ -36,6 +38,7 @@
             android:text="@string/fechahasta"/>
         <EditText
             android:id="@+id/editFechahasta"
+            android:gravity="center_horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:inputType="text"

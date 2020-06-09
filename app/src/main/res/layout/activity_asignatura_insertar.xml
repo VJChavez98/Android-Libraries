@@ -18,6 +18,7 @@
         <EditText
             android:id="@+id/editNombreasignatura"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="50"/>
     </TableRow>
     <TableRow>
@@ -26,6 +27,7 @@
         <EditText
             android:id="@+id/editUnidadesval"
             android:inputType="number"
+            android:gravity="center_horizontal"
             android:maxLength="1"/>
     </TableRow>
 

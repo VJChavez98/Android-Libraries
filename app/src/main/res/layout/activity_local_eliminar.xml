@@ -14,6 +14,7 @@
             android:id="@+id/editCodlocal"
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="10" />
     </TableRow>
@@ -27,6 +28,7 @@
             android:id="@+id/editNomlocal"
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="50" />
     </TableRow>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="30dip"
+    android:stretchColumns="1" >
+    <TableRow>
+        <TextView android:text="ID Estado Impresion"/>
+        <EditText
+            android:id="@+id/editIdEstadoImpresion"
+            android:inputType="text"
+            android:gravity="center_horizontal"
+            android:maxLength="10" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="ID SolicitudImpresion" />
+        <EditText
+            android:id="@+id/editIdSolicitudImpresion"
+            android:inputType="text"
+            android:gravity="center_horizontal"
+            android:maxLength="10" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="ID Encargado" />
+        <EditText
+            android:id="@+id/editIdEncargado"
+            android:inputType="text"
+            android:gravity="center_horizontal"
+            android:maxLength="10" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="ID Motivo Impresion" />
+        <EditText
+            android:id="@+id/editIdMotivoImpresion"
+            android:inputType="text"
+            android:gravity="center_horizontal"
+            android:maxLength="10" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="Realizado" />
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:id="@+id/spinner3"
+            />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="Observaciones" />
+        <EditText
+            android:id="@+id/editObservaciones"
+            android:inputType="text"
+            android:gravity="center_horizontal"
+            android:maxLength="50" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="@string/opciones" />
+    </TableRow>
+    <TableRow>
+        <Button
+            android:onClick="insertarEstadoImpresion"
+            android:text="@string/insertar" />
+        <Button
+            android:onClick="limpiarTexto"
+            android:text="@string/limpiar" />
+    </TableRow>
+</TableLayout>

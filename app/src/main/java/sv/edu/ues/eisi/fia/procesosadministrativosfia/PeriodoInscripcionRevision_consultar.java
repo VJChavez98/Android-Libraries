@@ -70,6 +70,7 @@ public class PeriodoInscripcionRevision_consultar extends Activity {
         if(perInscRev == null){
             Toast.makeText(this, "Periodo de Inscripcion no registrado", Toast.LENGTH_LONG).show();
         }else{
+            findViewById(R.id.detalle).setVisibility(View.VISIBLE);
             editCoddocente.setText(perInscRev.getCodDocente());
             editCodlocal.setText(perInscRev.getCodLocal());
             editFechadesde.setText(perInscRev.getFechaDesde());
@@ -91,5 +92,6 @@ public class PeriodoInscripcionRevision_consultar extends Activity {
         editFechahasta.setText("");
         editFecharev.setText("");
         editHorarev.setText("");
+        findViewById(R.id.detalle).setVisibility(View.GONE);
     }
 }

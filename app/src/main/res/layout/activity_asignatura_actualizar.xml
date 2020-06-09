@@ -11,6 +11,7 @@
         <EditText
             android:id="@+id/editCodasignatura"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="6"/>
     </TableRow>
     <TableRow>
@@ -19,6 +20,7 @@
         <EditText
             android:id="@+id/editNombreasignatura"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="30"/>
     </TableRow>
     <TableRow>
@@ -27,6 +29,7 @@
         <EditText
             android:id="@+id/editUnidadesval"
             android:inputType="text"
+            android:gravity="center_horizontal"
             android:maxLength="1"/>
     </TableRow>
     <TableRow>

@@ -8,8 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class Estudiante_menu extends ListActivity {
-    String[] menu = {"Insertar Registro", "Consultar Registro"};
-    String[] activities = {"Estudiante_insertar", "Estudiante_consultar"};
+    String[] menu = {"Insertar Registro", "Consultar Registro", "Exportar Registros"};
+    String[] activities = {"Estudiante_insertar", "Estudiante_consultar", "ExcelEstudiante"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
