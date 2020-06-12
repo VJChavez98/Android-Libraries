@@ -151,4 +151,9 @@
             android:textAlignment="center"
             android:gravity="center_horizontal"/>
     </TableRow>
+    <TableRow>
+        <Button
+            android:id="@+id/btnText2SpeechPlay"
+            android:text="@string/escuchar"/>
+    </TableRow>
 </TableLayout>

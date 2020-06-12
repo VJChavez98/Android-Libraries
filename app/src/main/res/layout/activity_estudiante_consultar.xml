@@ -32,6 +32,13 @@
                 android:text="@string/consultar" />
     </TableRow>
     <TableRow>
+        <Button
+            android:id="@+id/btnText2SpeechPlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/escuchar"/>
+    </TableRow>
+    <TableRow>
         <TextView
             android:id="@+id/lblNombre"
             android:layout_width="58dp"

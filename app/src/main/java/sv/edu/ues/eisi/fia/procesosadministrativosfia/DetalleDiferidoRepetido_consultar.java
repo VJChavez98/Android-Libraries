@@ -14,6 +14,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+import java.util.HashMap;
+import java.util.Locale;
+import android.annotation.SuppressLint;
+import android.os.Environment;
+import android.speech.tts.TextToSpeech;
+
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,6 +28,12 @@ import java.util.Calendar;
 
 public class DetalleDiferidoRepetido_consultar extends AppCompatActivity {
     EditText editMateria, editNumEval,editLocal,editDocente,editFechaDesde,editFechaHasta,editFechaEval,editHoraEval;
+
+    TextToSpeech tts;
+    TextView Texto, Texto1, Texto2,Texto3, Texto4, Texto5, Texto6, Texto7;
+    Button BtnPlay;
+    private int numarch=0;
+
     Spinner spinTipoEval, spinTipoDifRep;
     TextView lblLocal, lblDocente, lblFechaDesde, lblFechaHasta, lblFechaEval, lblHora;
     ControladorBase helper;
@@ -50,6 +63,19 @@ public class DetalleDiferidoRepetido_consultar extends AppCompatActivity {
         editFechaHasta.setInputType(InputType.TYPE_NULL);
         editFechaEval.setInputType(InputType.TYPE_NULL);
         editHoraEval.setInputType(InputType.TYPE_NULL);
+
+        Texto=(TextView) findViewById(R.id.editAsignatura);
+        Texto1=(TextView) findViewById(R.id.editNumeval);
+        Texto2=(TextView) findViewById(R.id.editCodlocal);
+        Texto3=(TextView) findViewById(R.id.editDocente);
+        Texto4=(TextView) findViewById(R.id.editFechaDesde);
+        Texto5=(TextView) findViewById(R.id.editFechaHasta);
+        Texto6=(TextView) findViewById(R.id.editFechaeval);
+        Texto7=(TextView) findViewById(R.id.editHoraRealizada);
+        BtnPlay = (Button) findViewById(R.id.btnText2SpeechPlay);
+        tts = new TextToSpeech(this,OnInit);
+        BtnPlay.setOnClickListener(onClick);
+
         spinTipoEval.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, tipos));
         lblLocal = findViewById(R.id.lblLocal);
         lblLocal.setVisibility(View.GONE);
@@ -113,6 +139,9 @@ public class DetalleDiferidoRepetido_consultar extends AppCompatActivity {
                 showDialog(DATE_ID2);
             }
         });
+
+
+
 
     }
     private void colocar_fecha(int id) {
@@ -295,5 +324,36 @@ public class DetalleDiferidoRepetido_consultar extends AppCompatActivity {
         helper.cerrar();
         Toast.makeText(this,resultado,Toast.LENGTH_SHORT).show();
 
+    }
+
+    TextToSpeech.OnInitListener OnInit= new TextToSpeech.OnInitListener(){
+        @Override
+        public void onInit(int status){
+            if (TextToSpeech.SUCCESS==status){
+                tts.setLanguage(new Locale("spa","ESP"));
+            }
+            else{
+                Toast.makeText(getApplicationContext(), "TTS No Disponible", Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
+    View.OnClickListener onClick=new View.OnClickListener(){
+        @SuppressLint("SdCardPath")
+        public void onClick(View v){
+            if (v.getId()==R.id.btnText2SpeechPlay){
+                tts.speak(Texto.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto1.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto2.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto3.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto4.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto5.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto6.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto7.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+            }
+        }
+    };
+    public void onDestroy(){
+        tts.shutdown();
+        super.onDestroy();
     }
 }

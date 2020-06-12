@@ -1,21 +1,32 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 public class PeriodoInscripcionRevision_insertar extends Activity {
     EditText editCoddocente, editCodlocal, editCodasignatura, editCodciclo, editNumeval, editFechadesde, editFechahasta, editFecharev, editHorarev;
+
+    TextToSpeech tts;
+    TextView Texto, Texto1, Texto2, Texto3, Texto4, Texto5, Texto6, Texto7, Texto8;
+    Button BtnPlay;
+    private int numarch=0;
+
     Spinner spinTiporev, spinTipoeval;
     ControladorBase helper;
     private int pdYearIni, pdMonthIni, pdDayIni, sdYearIni, sdMonthIni, sdDayIni, sdHour, pdHour, sdMinute, pdMinute;
@@ -41,6 +52,19 @@ public class PeriodoInscripcionRevision_insertar extends Activity {
         editHorarev = (EditText) findViewById(R.id.editHoraRevision);
         spinTiporev = (Spinner) findViewById(R.id.spinTipoRev);
         spinTipoeval = (Spinner) findViewById(R.id.spinTipoEval);
+
+        Texto=(TextView) findViewById(R.id.editCoddocente);
+        Texto1=(TextView) findViewById(R.id.editCodasignatura);
+        Texto2=(TextView) findViewById(R.id.editCodlocal);
+        Texto3=(TextView) findViewById(R.id.editCodciclo);
+        Texto4=(TextView) findViewById(R.id.editNumeval);
+        Texto5=(TextView) findViewById(R.id.editFechaDesdeRev);
+        Texto6=(TextView) findViewById(R.id.editFechaHastaRev);
+        Texto7=(TextView) findViewById(R.id.editFechaRev);
+        Texto8=(TextView) findViewById(R.id.editHoraRevision);
+        BtnPlay = (Button) findViewById(R.id.btnText2SpeechPlay);
+        tts = new TextToSpeech(this,OnInit);
+        BtnPlay.setOnClickListener(onClick);
 
         sdMonthIni = c.get(Calendar.MONTH);
         sdDayIni = c.get(Calendar.DAY_OF_MONTH);
@@ -243,5 +267,36 @@ public class PeriodoInscripcionRevision_insertar extends Activity {
         editFechahasta.setText("");
         editFecharev.setText("");
         editHorarev.setText("");
+    }
+    TextToSpeech.OnInitListener OnInit= new TextToSpeech.OnInitListener(){
+        @Override
+        public void onInit(int status){
+            if (TextToSpeech.SUCCESS==status){
+                tts.setLanguage(new Locale("spa","ESP"));
+            }
+            else{
+                Toast.makeText(getApplicationContext(), "TTS No Disponible", Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
+    View.OnClickListener onClick=new View.OnClickListener(){
+        @SuppressLint("SdCardPath")
+        public void onClick(View v){
+            if (v.getId()==R.id.btnText2SpeechPlay){
+                tts.speak(Texto.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto1.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto2.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto3.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto4.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto5.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto6.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto7.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto8.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+            }
+        }
+    };
+    public void onDestroy(){
+        tts.shutdown();
+        super.onDestroy();
     }
 }

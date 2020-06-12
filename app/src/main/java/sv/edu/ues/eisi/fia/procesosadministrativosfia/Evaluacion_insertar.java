@@ -1,20 +1,29 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 public class Evaluacion_insertar extends Activity{
     ControladorBase helper;
     EditText editAsignatura, editCiclo, editNumero, editFecha;
+    TextToSpeech tts;
+    TextView Texto, Texto1, Texto2, Texto3;
+    Button BtnPlay;
+    private int numarch=0;
     Spinner spinTipoeval;
     private int nYearIni, nMonthIni, nDayIni, sYearIni, sMonthIni, sDayIni;
     static final int DATE_ID = 0;
@@ -30,6 +39,14 @@ public class Evaluacion_insertar extends Activity{
         editFecha = (EditText) findViewById(R.id.editFechaeval);
         editNumero = (EditText) findViewById(R.id.editNumeval);
         spinTipoeval = (Spinner) findViewById(R.id.spinTipoEval);
+
+        Texto=(TextView) findViewById(R.id.editCodasignatura);
+        Texto1=(TextView) findViewById(R.id.editCodciclo);
+        Texto2=(TextView) findViewById(R.id.editFechaeval);
+        Texto3=(TextView) findViewById(R.id.editNumeval);
+        BtnPlay = (Button) findViewById(R.id.btnText2SpeechPlay);
+        tts = new TextToSpeech(this,OnInit);
+        BtnPlay.setOnClickListener(onClick);
 
         sMonthIni = c.get(Calendar.MONTH);
         sDayIni = c.get(Calendar.DAY_OF_MONTH);
@@ -116,5 +133,31 @@ public class Evaluacion_insertar extends Activity{
         spinTipoeval.setSelection(0);
         editFecha.setText("");
         editNumero.setText("");
+    }
+    TextToSpeech.OnInitListener OnInit= new TextToSpeech.OnInitListener(){
+        @Override
+        public void onInit(int status){
+            if (TextToSpeech.SUCCESS==status){
+                tts.setLanguage(new Locale("spa","ESP"));
+            }
+            else{
+                Toast.makeText(getApplicationContext(), "TTS No Disponible", Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
+    View.OnClickListener onClick=new View.OnClickListener(){
+        @SuppressLint("SdCardPath")
+        public void onClick(View v){
+            if (v.getId()==R.id.btnText2SpeechPlay){
+                tts.speak(Texto.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto1.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto2.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto3.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+            }
+        }
+    };
+    public void onDestroy(){
+        tts.shutdown();
+        super.onDestroy();
     }
 }

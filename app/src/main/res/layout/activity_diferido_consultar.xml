@@ -167,6 +167,9 @@
         <Button android:id="@+id/ModificarBtn"
             android:onClick="ModificarSolicitudDiferido"
             android:text="@string/modificarBtn"/>
+        <Button
+            android:id="@+id/btnText2SpeechPlay"
+            android:text="@string/escuchar"/>
     </TableRow>
     
 </TableLayout>

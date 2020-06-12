@@ -1,5 +1,6 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -10,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.speech.tts.TextToSpeech;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +21,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -27,11 +30,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.File;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class Diferido_insertar extends AppCompatActivity{
 
     ControladorBase DBHelper;
     EditText editCarnet, editMateria, editGrupoTeorico, editGrupoDiscusion, editGrupoLab, editFechaEval, editHoraEval, editMotivo, editEva;
+
+    TextToSpeech tts;
+    TextView Texto, Texto1, Texto2, Texto3, Texto4, Texto5, Texto6, Texto7, Texto8;
+    Button BtnPlay;
+    private int numarch=0;
+
     Spinner motivos, spinTipo;
     private int nYearIni, nMonthIni, nDayIni, sYearIni, sMonthIni, sDayIni, sHour, nHour, sMinute, nMinute;
     static final int DATE_ID = 0, HOUR_ID=1;
@@ -61,10 +71,25 @@ public class Diferido_insertar extends AppCompatActivity{
         motivos = (Spinner) findViewById(R.id.spinMotivos);
         editFechaEval.setInputType(InputType.TYPE_NULL);
         editHoraEval.setInputType(InputType.TYPE_NULL);
+
+        Texto=(TextView) findViewById(R.id.editCarnet);
+        Texto1=(TextView) findViewById(R.id.editAsignatura);
+        Texto2=(TextView) findViewById(R.id.editGrupoTeorico);
+        Texto3=(TextView) findViewById(R.id.editGrupoDiscusion);
+        Texto4=(TextView) findViewById(R.id.editGrupoLab);
+        Texto5=(TextView) findViewById(R.id.editCodEva);
+        Texto6=(TextView) findViewById(R.id.editFechaRealizada);
+        Texto7=(TextView) findViewById(R.id.editHoraRealizada);
+        Texto8=(TextView) findViewById(R.id.editMotivo);
+        BtnPlay = (Button) findViewById(R.id.btnText2SpeechPlay);
+        tts = new TextToSpeech(this,OnInit);
+        BtnPlay.setOnClickListener(onClick);
+
         srcImg = findViewById(R.id.rutaSolic);
         spinTipo.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,tipos));
         mOptions = findViewById(R.id.option);
         mOptions.setOnClickListener(mostrarOpciones);
+
         if (savedInstanceState != null){
             if (savedInstanceState.getString("Foto") != null){
                 file = Uri.parse(savedInstanceState.getString("foto"));
@@ -280,4 +305,35 @@ public class Diferido_insertar extends AppCompatActivity{
             builder.create().show();
         }
     };
+    TextToSpeech.OnInitListener OnInit= new TextToSpeech.OnInitListener(){
+        @Override
+        public void onInit(int status){
+            if (TextToSpeech.SUCCESS==status){
+                tts.setLanguage(new Locale("spa","ESP"));
+            }
+            else{
+                Toast.makeText(getApplicationContext(), "TTS No Disponible", Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
+    View.OnClickListener onClick=new View.OnClickListener(){
+        @SuppressLint("SdCardPath")
+        public void onClick(View v){
+            if (v.getId()==R.id.btnText2SpeechPlay){
+                tts.speak(Texto.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto1.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto2.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto3.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto4.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto5.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto6.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto7.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto8.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+            }
+        }
+    };
+    public void onDestroy(){
+        tts.shutdown();
+        super.onDestroy();
+    }
 }

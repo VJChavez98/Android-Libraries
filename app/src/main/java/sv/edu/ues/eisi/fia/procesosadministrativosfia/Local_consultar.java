@@ -1,6 +1,7 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,6 +23,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import java.util.List;
+import java.util.Locale;
 
 public class Local_consultar extends Activity{
     EditText editCodlocal, editNomlocal, editUbicacionlocal;
@@ -32,6 +35,11 @@ public class Local_consultar extends Activity{
     TextView edtDireccion;
     LocationManager locationManager;
 
+    TextToSpeech tts;
+    TextView Texto, Texto1, Texto2;
+    Button BtnPlay;
+    private int numarch=0;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +49,13 @@ public class Local_consultar extends Activity{
         editCodlocal = (EditText) findViewById(R.id.editCodlocal);
         editNomlocal = (EditText) findViewById(R.id.editNomlocal);
         editUbicacionlocal = (EditText) findViewById(R.id.editUbicacionlocal);
+
+        Texto=(TextView) findViewById(R.id.editCodlocal);
+        Texto1=(TextView) findViewById(R.id.editNomlocal);
+        Texto2=(TextView) findViewById(R.id.editUbicacionlocal);
+        BtnPlay = (Button) findViewById(R.id.btnText2SpeechPlay);
+        tts = new TextToSpeech(this,OnInit);
+        BtnPlay.setOnClickListener(onClick);
 
         //obtenerDir = (Button) findViewById(R.id.btnObtenerDatosPos);
         edtLatitud = (EditText) findViewById(R.id.edtLatitud);
@@ -169,5 +184,31 @@ public class Local_consultar extends Activity{
         edtLatitud.setText("");
         edtAltitud.setText("");
         findViewById(R.id.detalle).setVisibility(View.GONE);
+    }
+    TextToSpeech.OnInitListener OnInit= new TextToSpeech.OnInitListener(){
+        @Override
+        public void onInit(int status){
+            if (TextToSpeech.SUCCESS==status){
+                tts.setLanguage(new Locale("spa","ESP"));
+            }
+            else{
+                Toast.makeText(getApplicationContext(), "TTS No Disponible", Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
+    View.OnClickListener onClick=new View.OnClickListener(){
+        @SuppressLint("SdCardPath")
+        public void onClick(View v){
+            if (v.getId()==R.id.btnText2SpeechPlay){
+                tts.speak(Texto.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto1.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto2.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+
+            }
+        }
+    };
+    public void onDestroy(){
+        tts.shutdown();
+        super.onDestroy();
     }
 }

@@ -174,5 +174,9 @@
         android:layout_width="fill_parent" />
 
     </TableRow>
-
+    <TableRow>
+    <Button
+        android:id="@+id/btnText2SpeechPlay"
+        android:text="@string/escuchar"/>
+    </TableRow>
 </TableLayout>

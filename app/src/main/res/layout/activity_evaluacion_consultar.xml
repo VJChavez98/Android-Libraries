@@ -68,6 +68,11 @@
             android:layout_height="wrap_content"
             android:onClick="limpiarTexto"
             android:text="Limpiar" />
+        <Button
+            android:id="@+id/btnText2SpeechPlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/escuchar"/>
     </LinearLayout>
 <LinearLayout
     android:layout_width="match_parent"
