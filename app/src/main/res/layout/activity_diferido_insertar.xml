@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="20dip"
     tools:context="sv.edu.ues.eisi.fia.procesosadministrativosfia.Diferido_insertar">
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <TableRow>
     <TextView
         android:layout_width="match_parent"
@@ -174,5 +177,5 @@
         android:layout_width="fill_parent" />
 
     </TableRow>
-
-</TableLayout>
+    </TableLayout>
+</ScrollView>
