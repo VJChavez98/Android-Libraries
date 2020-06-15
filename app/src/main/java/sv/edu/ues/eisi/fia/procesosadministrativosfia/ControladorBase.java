@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Path;
 
 import androidx.annotation.Nullable;
 
@@ -118,7 +117,7 @@ public class ControladorBase {
                 db.execSQL("CREATE TABLE DetalleDiferidoRepetido(idDetalleDiferidoRepetido CHARACTER(25) NOT NULL PRIMARY KEY,idLocal CHARACTER(10) NOT NULL, numEval INTEGER NOT NULL,tipoEval CHARACTER(2) NOT NULL,codAsignatura CHARACTER(6), idDocente CHARACTER(10) NOT NULL, idTipoDiferidoRepetido CHARACTER(10) NOT NULL, fechaDesde DATE NOT NULL, fechaHasta DATE NOT NULL, fechaRealizacion DATE NOT NULL, horaRealizacion TIME NOT NULL);");
                 db.execSQL("CREATE TABLE DetalleEstudianteDiferido(carnet CHARACTER(7) NOT NULL, idDetalleDiferidoRepetido CHARACTER(10) NOT NULL,FechaInscripcionDiferido DATE NOT NULL ,PRIMARY KEY(carnet,idDetalleDiferidoRepetido))");
                 db.execSQL("CREATE TABLE DetalleEstudianteRepetido(carnet CHARACTER(7) NOT NULL, idDetalleDiferidoRepetido CHARACTER(10) NOT NULL, fechaInscripcionRepetido DATE NOT NULL, PRIMARY KEY(carnet, idDetalleDiferidoRepetido))");
-                db.execSQL("CREATE TABLE SolicitudDiferido(idSolicitudDiferido NOT NULL, carnet VARCHAR(7) NOT NULL, numeroeval INTEGER NOT NULL, idMotivoDiferido CHARACTER(13) NOT NULL, fechaEvaluacion DATE NOT NULL,  horaEvaluacion TIME NOT NULL, descripcionMotivo VARCHAR(256), idAsignatura CHARACTER(6) NOT NULL, GT NUMERIC(2,0) NOT NULL, GD NUMERIC(2,0) NOT NULL, GL NUMERIC(2,0), tipoEvaluacion CHARACTER(2), estadoSolicitud CHARACTER(10) NOT NULL, PRIMARY KEY(idSolicitudDiferido, carnet, idAsignatura, tipoEvaluacion,numeroeval) )");
+                db.execSQL("CREATE TABLE SolicitudDiferido( carnet VARCHAR(7) NOT NULL, numeroeval INTEGER NOT NULL, idMotivoDiferido CHARACTER(13) NOT NULL, fechaEvaluacion DATE NOT NULL,  horaEvaluacion TIME NOT NULL, descripcionMotivo VARCHAR(256), idAsignatura CHARACTER(6) NOT NULL, GT NUMERIC(2,0) NOT NULL, GD NUMERIC(2,0) NOT NULL, GL NUMERIC(2,0), tipoEvaluacion CHARACTER(2), estadoSolicitud CHARACTER(10) NOT NULL,ciclo varchar(5) not null, PRIMARY KEY(carnet, idAsignatura,ciclo, tipoEvaluacion,numeroeval) )");
                 //Finaliza sector de tablas con llaves foraneas
                 /*
                 *
@@ -234,9 +233,9 @@ public class ControladorBase {
         if (verificarIntegridadReferencial(solicitudDiferido, 5)) {
 
             ContentValues contentValues = new ContentValues();
-            contentValues.put("idSolicitudDiferido", solicitudDiferido.getIdSolicitud());
             contentValues.put("carnet", solicitudDiferido.getCarnet());
             contentValues.put("numeroeval", solicitudDiferido.getNumeroEval());
+            contentValues.put("ciclo", solicitudDiferido.getCiclo());
             contentValues.put("tipoEvaluacion", solicitudDiferido.getTipoEva());
             contentValues.put("idMotivoDiferido", solicitudDiferido.getMotivo());
             contentValues.put("fechaEvaluacion", solicitudDiferido.getFechaEva());
@@ -260,7 +259,7 @@ public class ControladorBase {
 
     public String actualizar(SolicitudDiferido solicitudDiferido) {
         if (verificarIntegridadReferencial(solicitudDiferido, 5)) {
-            String[] id = {solicitudDiferido.getIdSolicitud()};
+            String[] id = {solicitudDiferido.getCarnet(), solicitudDiferido.getCodMateria(), solicitudDiferido.getCiclo(), solicitudDiferido.getTipoEva(), String.valueOf(solicitudDiferido.getNumeroEval())};
             ContentValues cv = new ContentValues();
             cv.put("GT", solicitudDiferido.getGT());
             cv.put("GD", solicitudDiferido.getGD());
@@ -269,7 +268,7 @@ public class ControladorBase {
             cv.put("fechaEvaluacion", solicitudDiferido.getFechaEva());
             cv.put("horaEvaluacion", solicitudDiferido.getHoraEva());
             cv.put("descripcionMotivo", solicitudDiferido.getOtroMotivo());
-            db.update("SolicitudDiferido", cv, "idSolicitudDiferido = ?", id);
+            db.update("SolicitudDiferido", cv, "carnet = ? AND idAsignatura = ? AND ciclo = ? AND tipoEvaluacion = ? AND numeroeval = ?", id);
             return "Registro Actualizado Correctamente";
         } else return "Registro no existe";
     }
@@ -406,10 +405,10 @@ public class ControladorBase {
 
     public String actualizarEstado(SolicitudDiferido solicitudDiferido) throws SQLException {
         if (verificarIntegridadReferencial(solicitudDiferido, 5)) {
-            String[] id = {solicitudDiferido.getIdSolicitud()};
+            String[] id = {solicitudDiferido.getCarnet(), solicitudDiferido.getCodMateria(), solicitudDiferido.getCiclo(), solicitudDiferido.getTipoEva(), String.valueOf(solicitudDiferido.getNumeroEval())};
             ContentValues contentValues = new ContentValues();
             contentValues.put("estadoSolicitud", solicitudDiferido.getEstado());
-            db.update("SolicitudDiferido", contentValues, "idSolicitudDiferido = ?", id);
+            db.update("SolicitudDiferido", contentValues, "carnet = ? AND idAsignatura = ? AND ciclo = ? AND tipoEvaluacion = ? AND numeroeval = ?", id);
 
             return "Registro Actualizado Correctamente";
         } else return "Registro no existe";
@@ -455,45 +454,46 @@ public class ControladorBase {
         return regAfectados;
     }
 
-    public ArrayList<String> consultarSolicitudesPendiente(String materia, String tipoEval, int numeroEval, String estado) {
+    public ArrayList<String> consultarSolicitudesPendiente(String materia, String tipoEval, int numeroEval, String estado, String ciclo) {
         ArrayList<String> solicitudes = new ArrayList<>();
         String[] ids = {materia, tipoEval, String.valueOf(numeroEval), estado};
-        Cursor cursor = db.rawQuery("SELECT * FROM SolicitudDiferido WHERE idAsignatura ='" + materia + "' AND tipoEvaluacion = '" + tipoEval + "' AND numeroeval = " + numeroEval + " AND estadoSolicitud = '" + estado + "'", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM SolicitudDiferido WHERE idAsignatura ='" + materia + "' AND ciclo = '"+ciclo+"' AND tipoEvaluacion = '" + tipoEval + "' AND numeroeval = " + numeroEval + " AND estadoSolicitud = '" + estado + "'", null);
         if (cursor.moveToFirst()) {
             do {
 
-                solicitudes.add(cursor.getString(1));
+                solicitudes.add(cursor.getString(0));
             } while (cursor.moveToNext());
         }
         return solicitudes;
     }
 
-    public SolicitudDiferido consultarSolicitudDiferido(String carnet, String codMateria, String tipoEval, String numEval) {
-        String[] id = {carnet + codMateria + tipoEval + numEval};
-        Cursor cursor = db.query("SolicitudDiferido", null, "idSolicitudDiferido = ?", id, null, null, null);
+    public SolicitudDiferido consultarSolicitudDiferido(String carnet, String codMateria, String ciclo, String tipoEval, String numEval) {
+        String[] id = {carnet, codMateria, ciclo, tipoEval,  numEval};
+        Cursor cursor = db.query("SolicitudDiferido", null, "carnet = ? AND idAsignatura = ? AND ciclo = ? AND tipoEvaluacion = ? AND numeroeval = ?", id, null, null, null);
         if (cursor.moveToFirst()) {
             SolicitudDiferido solicitudDiferido = new SolicitudDiferido();
-            solicitudDiferido.setIdSolicitud(cursor.getString(0));
-            solicitudDiferido.setCarnet(cursor.getString(1));
-            solicitudDiferido.setNumeroEval(cursor.getInt(2));
-            solicitudDiferido.setMotivo(cursor.getString(3));
-            solicitudDiferido.setFechaEva(cursor.getString(4));
-            solicitudDiferido.setHoraEva(cursor.getString(5));
-            solicitudDiferido.setOtroMotivo(cursor.getString(6));
-            solicitudDiferido.setCodMateria(cursor.getString(7));
-            solicitudDiferido.setGT(cursor.getString(8));
-            solicitudDiferido.setGD(cursor.getString(9));
-            solicitudDiferido.setGL(cursor.getString(10));
-            solicitudDiferido.setTipoEva(cursor.getString(11));
-            solicitudDiferido.setEstado(cursor.getString(12));
+            solicitudDiferido.setCarnet(cursor.getString(0));
+            solicitudDiferido.setNumeroEval(cursor.getInt(1));
+            solicitudDiferido.setMotivo(cursor.getString(2));
+            solicitudDiferido.setFechaEva(cursor.getString(3));
+            solicitudDiferido.setHoraEva(cursor.getString(4));
+            solicitudDiferido.setOtroMotivo(cursor.getString(5));
+            solicitudDiferido.setCodMateria(cursor.getString(6));
+            solicitudDiferido.setGT(cursor.getString(7));
+            solicitudDiferido.setGD(cursor.getString(8));
+            solicitudDiferido.setGL(cursor.getString(9));
+            solicitudDiferido.setTipoEva(cursor.getString(10));
+            solicitudDiferido.setEstado(cursor.getString(11));
+            solicitudDiferido.setCiclo(cursor.getString(12));
             return solicitudDiferido;
         } else return null;
     }
 
     public String eliminar(SolicitudDiferido solicitudDiferido) {
         String regAfectados = "filas afectadas= ";
+        String[] id = {solicitudDiferido.getCarnet(), solicitudDiferido.getCodMateria(), solicitudDiferido.getCiclo(), solicitudDiferido.getTipoEva(), String.valueOf(solicitudDiferido.getNumeroEval())};
         int contador = 0;
-        contador += db.delete("SolicitudDiferido", "idSolicitudDiferido='" + solicitudDiferido.getIdSolicitud() + "'", null);
+        contador += db.delete("SolicitudDiferido", "carnet=? AND idAsignatura = ? AND ciclo =? AND tipoEvaluacion = ? AND numeroeval = ?", id);
         regAfectados += contador;
         return regAfectados;
     }

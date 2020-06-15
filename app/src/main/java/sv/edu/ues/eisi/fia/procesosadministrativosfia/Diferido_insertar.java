@@ -1,7 +1,5 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
@@ -15,12 +13,14 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.Calendar;
 
 public class Diferido_insertar extends AppCompatActivity {
 
     ControladorBase DBHelper;
-    EditText editCarnet, editMateria, editGrupoTeorico, editGrupoDiscusion, editGrupoLab, editFechaEval, editHoraEval, editMotivo, editEva;
+    EditText editCarnet, editMateria, editGrupoTeorico, editGrupoDiscusion, editGrupoLab, editFechaEval, editHoraEval, editMotivo, editEva, ciclo;
     Spinner motivos, spinTipo;
     private int nYearIni, nMonthIni, nDayIni, sYearIni, sMonthIni, sDayIni, sHour, nHour, sMinute, nMinute;
     static final int DATE_ID = 0, HOUR_ID=1;
@@ -46,6 +46,7 @@ public class Diferido_insertar extends AppCompatActivity {
         motivos = (Spinner) findViewById(R.id.spinMotivos);
         editFechaEval.setInputType(InputType.TYPE_NULL);
         editHoraEval.setInputType(InputType.TYPE_NULL);
+        ciclo = findViewById(R.id.editCodciclo);
 
         spinTipo.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,tipos));
 
@@ -135,9 +136,7 @@ public class Diferido_insertar extends AppCompatActivity {
         String hora = editHoraEval.getText().toString();
         String motivoSpin = motivos.getSelectedItem().toString();
         String motivoEdit = editMotivo.getText().toString();
-        codSolicitud = carnet+asignatura+tipoEval+numEva;
         SolicitudDiferido solicitudDiferido = new SolicitudDiferido();
-        solicitudDiferido.setIdSolicitud(codSolicitud);
         solicitudDiferido.setCarnet(carnet);
         solicitudDiferido.setCodMateria(asignatura);
         solicitudDiferido.setNumeroEval(numEva);
@@ -149,6 +148,7 @@ public class Diferido_insertar extends AppCompatActivity {
         solicitudDiferido.setHoraEva(hora);
         solicitudDiferido.setMotivo(motivoSpin);
         solicitudDiferido.setOtroMotivo(motivoEdit);
+        solicitudDiferido.setCiclo(ciclo.getText().toString());
         solicitudDiferido.setEstado("Pendiente");
         DBHelper.abrir();
         regInsertados=DBHelper.insertar(solicitudDiferido);
@@ -168,5 +168,6 @@ public class Diferido_insertar extends AppCompatActivity {
         editHoraEval.setText("");
         editMotivo.setText("");
         motivos.setSelection(0);
+        ciclo.setText("");
     }
 }
