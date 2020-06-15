@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         DBHelper.abrir();
         if (DBHelper.consultarUsuario(username, password)) {
             Intent intent = new Intent(this, MenuEstudiante.class);
+            intent.putExtra("carnet", editUsername.getText().toString());
             startActivity(intent);
             editUsername.setText("");
             editPassword.setText("");
