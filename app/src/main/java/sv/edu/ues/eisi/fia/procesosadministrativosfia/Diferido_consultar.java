@@ -1,7 +1,5 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -18,14 +16,14 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import java.util.Calendar;
+import androidx.appcompat.app.AppCompatActivity;
 
-import sv.edu.ues.eisi.fia.procesosadministrativosfia.R;
+import java.util.Calendar;
 
 public class Diferido_consultar extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
-    EditText editNumEval, editCarnet, editCodMateria, editGT, editGD, editGL, editFechaEval, editHoraEval, editOtroMotivo, estadoSoli;
+    EditText editNumEval, editCarnet, editCodMateria, editGT, editGD, editGL, editFechaEval, editHoraEval, editOtroMotivo, estadoSoli, ciclo;
     ControladorBase helper;
     TextView lblMateria, lblTipoEva, lblGT,lblGD,lblGL, lblFecha, lblHora, lblMotivo, lblOtro, lblEstado;
     Button eliminarBtn, modificarBtn;
@@ -52,6 +50,7 @@ public class Diferido_consultar extends AppCompatActivity {
         estadoSoli = findViewById(R.id.editEstadoSolicitud);
         tipoEval=(Spinner) findViewById(R.id.spinTipoEval);
         motivos = (Spinner) findViewById(R.id.spinMotivos);
+        ciclo = findViewById(R.id.editCodciclo);
 
 
         lblMateria = (TextView) findViewById(R.id.lblCodMat);
@@ -130,7 +129,7 @@ public class Diferido_consultar extends AppCompatActivity {
 
     public void consultarSolicitudDiferido(View view) {
         helper.abrir();
-        SolicitudDiferido solicitudDiferido = helper.consultarSolicitudDiferido(editCarnet.getText().toString(),editCodMateria.getText().toString(),tipoEval.getSelectedItem().toString(), editNumEval.getText().toString());
+        SolicitudDiferido solicitudDiferido = helper.consultarSolicitudDiferido(editCarnet.getText().toString(),editCodMateria.getText().toString(),ciclo.getText().toString(),tipoEval.getSelectedItem().toString(), editNumEval.getText().toString());
         helper.cerrar();
         if(solicitudDiferido == null)
             Toast.makeText(this, "Solicitud no encontrada", Toast.LENGTH_LONG).show();
@@ -281,6 +280,7 @@ public class Diferido_consultar extends AppCompatActivity {
         estadoSoli.setText("");
         estadoSoli.setVisibility(View.GONE);
         lblEstado.setVisibility(View.GONE);
+        ciclo.setText("");
     }
 
     public void EliminarSolicitud(View view) {
@@ -289,8 +289,8 @@ public class Diferido_consultar extends AppCompatActivity {
         solicitudDiferido.setCarnet(String.valueOf(editCarnet.getText()));
         solicitudDiferido.setNumeroEval(Integer.parseInt(String.valueOf(editNumEval.getText())));
         solicitudDiferido.setCodMateria(String.valueOf(editCodMateria.getText()));
+        solicitudDiferido.setCiclo(ciclo.getText().toString());
         solicitudDiferido.setTipoEva(String.valueOf(tipoEval.getSelectedItem()));
-        solicitudDiferido.setIdSolicitud();
         helper.abrir();
         String regAfectados = helper.eliminar(solicitudDiferido);
         helper.cerrar();
@@ -302,6 +302,7 @@ public class Diferido_consultar extends AppCompatActivity {
         SolicitudDiferido solicitudDiferido = new SolicitudDiferido();
         solicitudDiferido.setCarnet(String.valueOf(editCarnet.getText()));
         solicitudDiferido.setCodMateria(String.valueOf(editCodMateria.getText()));
+        solicitudDiferido.setCiclo(ciclo.getText().toString());
         solicitudDiferido.setNumeroEval(Integer.parseInt(String.valueOf(editNumEval.getText())));
         solicitudDiferido.setTipoEva(String.valueOf(tipoEval.getSelectedItem()));
         solicitudDiferido.setGT(editGT.getText().toString());
@@ -311,7 +312,6 @@ public class Diferido_consultar extends AppCompatActivity {
         solicitudDiferido.setHoraEva(editHoraEval.getText().toString());
         solicitudDiferido.setMotivo(motivos.getSelectedItem().toString());
         solicitudDiferido.setOtroMotivo(editOtroMotivo.getText().toString());
-        solicitudDiferido.setIdSolicitud();
         helper.abrir();
         String regAfectados = helper.actualizar(solicitudDiferido);
         helper.cerrar();

@@ -1,30 +1,24 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Dialog;
-import android.content.ContentValues;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
 public class SolicitudDiferido_consultarDocente extends AppCompatActivity {
-    EditText editMateria, editNumEval;
+    EditText editMateria, editNumEval, ciclo;
     Spinner spinTipoEval, spinEstadoSoli;
     ListView listView1;
     FrameLayout frame;
@@ -40,13 +34,14 @@ public class SolicitudDiferido_consultarDocente extends AppCompatActivity {
         spinEstadoSoli = findViewById(R.id.estadoSolicitud);
         listView1 = findViewById(R.id.listaSolicitudes);
         frame = findViewById(R.id.fragmentSolicitudes);
+        ciclo = findViewById(R.id.editCodciclo);
 
     }
 
     public void consultarSolicitudes(View view) {
         frame.setVisibility(View.VISIBLE);
         helper.abrir();
-        final ArrayList<String> solicitudes = helper.consultarSolicitudesPendiente(editMateria.getText().toString(),spinTipoEval.getSelectedItem().toString(), Integer.parseInt(editNumEval.getText().toString()), spinEstadoSoli.getSelectedItem().toString());
+        final ArrayList<String> solicitudes = helper.consultarSolicitudesPendiente(editMateria.getText().toString(),spinTipoEval.getSelectedItem().toString(), Integer.parseInt(editNumEval.getText().toString()),spinEstadoSoli.getSelectedItem().toString(),ciclo.getText().toString());
         helper.cerrar();
         if (solicitudes.size() > 0) {
 
@@ -55,7 +50,7 @@ public class SolicitudDiferido_consultarDocente extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     helper.abrir();
-                    final SolicitudDiferido solicitudDiferido = helper.consultarSolicitudDiferido(solicitudes.get(position), editMateria.getText().toString(), spinTipoEval.getSelectedItem().toString(), editNumEval.getText().toString());
+                    final SolicitudDiferido solicitudDiferido = helper.consultarSolicitudDiferido(solicitudes.get(position), editMateria.getText().toString(), ciclo.getText().toString(), spinTipoEval.getSelectedItem().toString(), editNumEval.getText().toString());
                     helper.cerrar();
                     AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                     View dialogView = LayoutInflater.from(view.getContext()).inflate(R.layout.activity_diferido_actualizar, null, false);
@@ -70,6 +65,7 @@ public class SolicitudDiferido_consultarDocente extends AppCompatActivity {
                     EditText fecha = dialogView.findViewById(R.id.editFechaRealizada);
                     EditText hora = dialogView.findViewById(R.id.editHoraRealizada);
                     EditText descrip = dialogView.findViewById(R.id.editMotivo);
+                    EditText ciclo = dialogView.findViewById(R.id.editCodciclo);
                     Spinner tipoEval = dialogView.findViewById(R.id.spinTipoEval);
                     Spinner motivo = dialogView.findViewById(R.id.spinMotivos);
                     final Spinner estado = dialogView.findViewById(R.id.estadoSolicitud);
@@ -85,6 +81,7 @@ public class SolicitudDiferido_consultarDocente extends AppCompatActivity {
                     motivo.setSelection(colocarMotivo(solicitudDiferido.getMotivo()));
                     descrip.setText(solicitudDiferido.getOtroMotivo());
                     estado.setSelection(colocarEstado(solicitudDiferido.getEstado()));
+                    ciclo.setText(solicitudDiferido.getCiclo());
                     tipoEval.setEnabled(false);
                     motivo.setEnabled(false);
                     builder.setPositiveButton("Actualizar", new DialogInterface.OnClickListener() {

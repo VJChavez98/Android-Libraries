@@ -46,7 +46,6 @@ public class MenuEstudiante extends ListActivity {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        //asdask
     }
 
     @Override
