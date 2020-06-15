@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Path;
 
 import androidx.annotation.Nullable;
 
@@ -152,6 +153,50 @@ public class ControladorBase {
         db.close();
     }
 
+    public String insertar(AccesoUsuario accesoUsuario) throws SQLException{
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("username",accesoUsuario.getUsername());
+        contentValues.put("idOpcion", accesoUsuario.getIdOpcion());
+        long contador = 0;
+        contador = db.insert("accesoUsuario", null, contentValues);
+        if (contador == -1 || contador == 0){
+            return "Error al insertar los datos";
+        }else return "Registro número: "+contador;
+    }
+    public String insertar(OpcionCrud opcion) throws SQLException{
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("idOpcion",opcion.getIdOpcion());
+        contentValues.put("descOpcion", opcion.getDescOpcion());
+        contentValues.put("numCrud", opcion.getNumCrud());
+        long contador = 0;
+        contador = db.insert("opcionCrud", null, contentValues);
+        if (contador == -1 || contador == 0){
+            return "Error al insertar los datos";
+        }else return "Registro número: "+contador;
+
+    }
+    public ArrayList<String> consultarAcceso(String username) {
+        ArrayList<String> acceso = new ArrayList<>();
+        Cursor cursor = db.rawQuery("select * from accesoUsuario where username ='" + username + "';", null);
+        if (cursor.moveToFirst() == true) {
+            do {
+                acceso.add(cursor.getString(0));
+            }while (cursor.moveToNext());
+            cerrar();
+        } else return null;
+        return acceso;
+    }
+    public ArrayList<String> consultarOpcionCrud(String idOpcion) {
+        ArrayList<String> crud = new ArrayList<>();
+        Cursor cursor = db.rawQuery("select * from opcionCrud where idOpcion ='" + idOpcion + "';", null);
+        if (cursor.moveToFirst() == true) {
+            do {
+                crud.add(cursor.getString(0));
+            }while (cursor.moveToNext());
+            cerrar();
+        } else return null;
+        return crud;
+    }
 
     public boolean consultarUsuario(String username, String password) {
         String[] id = {username};
@@ -2113,6 +2158,14 @@ public class ControladorBase {
         final Boolean[] VEsIrealizado= {true, false, true, true };
         final String[] VEsIobservaciones= {"PARCIAL", "EVALUADO", "FOTOCOPIAS", "INTERNOS"};
 
+        final String[] idOpcion = {"001","002","003","004","005","006","007","008","009","010","011","012","013","014","015","016","017","018","019"};
+        final String[] idOpcionEstudiante ={"001","002", "003", "010"};
+        final String[] idOpcionDocente = {"004","005","006","008","009","010","011","016"};
+        final String[] idDocenteDirector = {"005","006","008","016"};
+        final String[] idEncargado = {"016","019"};
+        final String[] descripOpcion = {"Estudiante_menu","Repetido_menu", "Diferido_menu","DetalleDiferidoRepetido_menu","DetalleEstudianteDiferido_consultar", "DetalleEstudianteRepetido_consultar","Local_menu", "Evaluacion_menu", "PeriodoInscripcionRevision_menu", "PrimeraRevision_menu","SolicitudDiferido_consultarDocente","CicloMenuActivity","CargaAcademicaMenuActivity","DocenteMenuActivity", "AsignaturaMenuActivity","SolImpresionMenuActivity", "DocDirectorMenuActivity", "EstadoImpresionMenuActivity", "EncarImpresionesMenuActivity"};
+        final int[] numCrud = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19};
+
         abrir();
         db.execSQL("DELETE FROM usuario;");
         db.execSQL("DELETE FROM asignatura");
@@ -2131,6 +2184,8 @@ public class ControladorBase {
         db.execSQL("DELETE FROM encargadodeimpresiones");
         db.execSQL("DELETE FROM motivoimpresion");
         db.execSQL("DELETE FROM estadoimpresion");
+        db.execSQL("DELETE FROM accesoUsuario");
+        db.execSQL("DELETE FROM opcionCrud");
 
         Usuario user = new Usuario();
         for (int i = 0; i < usersId.length; i++) {
@@ -2138,6 +2193,49 @@ public class ControladorBase {
             user.setNombreUsuario(names[i]);
             user.setPassword(userPass[i]);
             insertar(user);
+        }
+        //Llenado acceso Administrador
+        AccesoUsuario acceso = new AccesoUsuario();
+        for (int i = 0; i < idOpcion.length; i++) {
+            acceso.setUsername(usersId[0]);
+            acceso.setIdOpcion(idOpcion[i]);
+            insertar(acceso);
+        }
+        //Llenado acceso Estudiante
+        AccesoUsuario accesoUsuario = new AccesoUsuario();
+        for (int i = 0; i < idOpcionEstudiante.length; i++) {
+            accesoUsuario.setUsername(usersId[1]);
+            accesoUsuario.setIdOpcion(idOpcionEstudiante[i]);
+            insertar(accesoUsuario);
+        }
+        //Llenado acceso Administrador
+        AccesoUsuario accesoDocente = new AccesoUsuario();
+        for (int i = 0; i < idOpcionDocente.length; i++) {
+            accesoDocente.setUsername(usersId[2]);
+            accesoDocente.setIdOpcion(idOpcionDocente[i]);
+            insertar(accesoDocente);
+        }
+        //Llenado acceso DocenteDirector
+        AccesoUsuario accesoDocenteDirector = new AccesoUsuario();
+        for (int i = 0; i < idDocenteDirector.length; i++) {
+            accesoDocenteDirector.setUsername(usersId[3]);
+            accesoDocenteDirector.setIdOpcion(idDocenteDirector[i]);
+            insertar(accesoDocenteDirector);
+        }
+        //Llenado acceso Encargado Impresiones
+        AccesoUsuario accesoEncargado = new AccesoUsuario();
+        for (int i = 0; i < idEncargado.length; i++) {
+            accesoEncargado.setUsername(usersId[4]);
+            accesoEncargado.setIdOpcion(idEncargado[i]);
+            insertar(accesoEncargado);
+        }
+        //Llenado opciones crud
+        OpcionCrud opcionCrud = new OpcionCrud();
+        for (int i = 0; i<idOpcion.length; i++){
+            opcionCrud.setIdOpcion(idOpcion[i]);
+            opcionCrud.setDescOpcion(descripOpcion[i]);
+            opcionCrud.setNumCrud(numCrud[i]);
+            insertar(opcionCrud);
         }
 
         MotivoDiferido motivoDiferido = new MotivoDiferido();
