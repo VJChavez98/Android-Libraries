@@ -219,7 +219,7 @@ public class PeriodoInscripcionRevision_insertar extends Activity {
         if(spinTiporev.getSelectedItem().toString().equals("Primer Revisión")){
             String tipoEval = "PR";
             perInscRev.setTipoRevision(tipoEval);
-        }else if(spinTipoeval.getSelectedItem().toString().equals("Segunda Revisión")){
+        }else if(spinTiporev.getSelectedItem().toString().equals("Segunda Revisión")){
             String tipoEval = "SR";
             perInscRev.setTipoRevision(tipoEval);
         }else{

@@ -917,52 +917,82 @@ public class ControladorBase {
         String regAfectados = "Filas afectadas = ";
         int contador = 0;
 
-        String where = "codasignatura = '" + evaluacion.getCodAsignatura() + "'";
-        where = where + "AND codciclo = '" + evaluacion.getCodCiclo() + "'";
-        where = where + "AND codtipoeval = '" + evaluacion.getCodTipoEval() + "'";
-        where = where + "AND numeroeval = '" + evaluacion.getNumeroEvaluacion() + "'";
+        if(verificarIntegridadReferencial(evaluacion, 32)){
+            String nosepuede = "Error, No se puede eliminar, existen registros de esta Evaluación en otras Tablas.";
+            return nosepuede;
+        }
+
+        String where = "codasignatura = '"+evaluacion.getCodAsignatura()+"'";
+        where = where + "AND codciclo = '"+evaluacion.getCodCiclo()+"'";
+        where = where + "AND codtipoeval = '"+evaluacion.getCodTipoEval()+"'";
+        where = where + "AND numeroeval = '"+evaluacion.getNumeroEvaluacion()+"'";
         contador += db.delete("evaluacion", where, null);
+
+        if(contador == 0){
+            return "Está Evaluación No Existe o Campos Incompletos.";
+        }
+
         regAfectados += contador;
         return regAfectados;
     }
 
-    public String eliminar(Local local) {
-        String regAfectados = "Filas afectadas = ";
+    public String eliminar(Local local){
+        String regAfectados = "Local Eliminado con exito, Filas afectadas = ";
         int contador = 0;
 
-        String where = "codlocal = '" + local.getCodlocal() + "'";
-        where = where + "AND nomlocal = '" + local.getNomlocal() + "'";
+        if(verificarIntegridadReferencial(local, 31)){
+            String nosepuede = "Error, existen registros de este Local en otras Tablas.";
+            return nosepuede;
+        }
+
+        String where = "codlocal = '"+local.getCodlocal()+"'";
+        where = where + "AND nomlocal = '"+local.getNomlocal()+"'";
         contador += db.delete("local", where, null);
+
+        if(contador == 0){
+            return "Esté Local No Existe o Campos Incompletos.";
+        }
+
         regAfectados += contador;
         return regAfectados;
     }
 
-    public String eliminar(PeriodoInscripcionRevision perInscRev) {
-        String regAfectados = "Filas afectadas = ";
+    public String eliminar(PeriodoInscripcionRevision perInscRev){
+        String regAfectados = "Período Revisión Eliminado con exito, Filas afectadas = ";
         int contador = 0;
 
-        String where = "codtiporevision = '" + perInscRev.getTipoRevision() + "'";
-        where = where + "AND codasignatura = '" + perInscRev.getCodAsignatura() + "'";
-        where = where + "AND codciclo = '" + perInscRev.getCodCiclo() + "'";
-        where = where + "AND codtipoeval = '" + perInscRev.getCodTipoEval() + "'";
-        where = where + "AND numeroeval = '" + perInscRev.getNumeroEval() + "'";
+        String where = "codtiporevision = '"+perInscRev.getTipoRevision()+"'";
+        where = where + "AND codasignatura = '"+perInscRev.getCodAsignatura()+"'";
+        where = where + "AND codciclo = '"+perInscRev.getCodCiclo()+"'";
+        where = where + "AND codtipoeval = '"+perInscRev.getCodTipoEval()+"'";
+        where = where + "AND numeroeval = '"+perInscRev.getNumeroEval()+"'";
         contador += db.delete("periodoinscripcionrevision", where, null);
+
+        if(contador == 0){
+            return "Período Revisión No Existe";
+        }
+
         regAfectados += contador;
         return regAfectados;
     }
 
-    public String eliminar(PrimeraRevision primRev) {
-        String regAfectados = "Filas afectadas = ";
+    public String eliminar (PrimeraRevision primRev){
+        String regAfectados = "Primera Revisión Eliminada con exito, Filas afectadas = ";
         int contador = 0;
 
-        String where = "coddocente = '" + primRev.getCoddocente() + "'";
-        where = where + "AND carnet = '" + primRev.getCarnet() + "'";
-        where = where + "AND codasignatura = '" + primRev.getCodasignatura() + "'";
-        where = where + "AND codtiporevision = '" + primRev.getCodtiporevision() + "'";
-        where = where + "AND codciclo = '" + primRev.getCodciclo() + "'";
-        where = where + "AND codtipoeval = '" + primRev.getCodtipoeval() + "'";
-        where = where + "AND numeroeval = '" + primRev.getNumeroeval() + "'";
+        String where = "coddocente = '"+primRev.getCoddocente()+"'";
+        where = where + "AND carnet = '"+primRev.getCarnet()+"'";
+        where = where + "AND codasignatura = '"+primRev.getCodasignatura()+"'";
+        where = where + "AND codtiporevision = '"+primRev.getCodtiporevision()+"'";
+        where = where + "AND codciclo = '"+primRev.getCodciclo()+"'";
+        where = where + "AND codtipoeval = '"+primRev.getCodtipoeval()+"'";
+        where = where + "AND numeroeval = '"+primRev.getNumeroeval()+"'";
         contador += db.delete("primerrevision", where, null);
+
+        if(contador == 0){
+            return "Período Revisión No Existe";
+        }
+
         regAfectados += contador;
         return regAfectados;
     }
@@ -2072,6 +2102,26 @@ public class ControladorBase {
                     return true;
                 }
                 return false;
+            }
+            case 31:{
+                //Verificar que no haya registro de local en otras tablas antes de eliminar
+                Local local = (Local) dato;
+                Cursor c = db.query(true, "periodoinscripcionrevision", new String[]{"codlocal"}, "codlocal = '"+local.getCodlocal()+"'", null, null, null, null, null);
+                if(c.moveToFirst()){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+            case 32:{
+                //Verificar que no haya registro de local en otras tablas antes de eliminar
+                Evaluacion evaluacion = (Evaluacion) dato;
+                Cursor c = db.query(true, "periodoinscripcionrevision", new String[]{"codasignatura", "codciclo", "codtipoeval", "numeroeval"}, "codasignatura = '"+evaluacion.getCodAsignatura()+"' AND codciclo = '"+evaluacion.getCodCiclo()+"' AND codtipoeval = '"+evaluacion.getCodTipoEval()+"' AND numeroeval = '"+evaluacion.getNumeroEvaluacion()+"'", null, null, null, null, null);
+                if(c.moveToFirst()){
+                    return true;
+                }else{
+                    return false;
+                }
             }
             default:
                 return false;
