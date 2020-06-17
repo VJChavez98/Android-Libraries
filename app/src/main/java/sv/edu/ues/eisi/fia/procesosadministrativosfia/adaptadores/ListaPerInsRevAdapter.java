@@ -52,7 +52,7 @@ public class ListaPerInsRevAdapter extends RecyclerView.Adapter<ListaPerInsRevAd
         holder.codTipoEval.setText(listaPeriodos.get(position).getCodTipoEval().toString());
         holder.codCiclo.setText(listaPeriodos.get(position).getCodCiclo().toString());
         holder.numeroEval.setText(Integer.toString(listaPeriodos.get(position).getNumeroEval()));
-        holder.nombreDocente.setText(nomdocente+ " " +apellidodocente);
+        holder.nombreDocente.setText(listaPeriodos.get(position).getCodDocente().toString()  /*nomdocente+ " " +apellidodocente*/);
         holder.codLocal.setText(listaPeriodos.get(position).getCodLocal().toString());
         holder.fechaRevision.setText(listaPeriodos.get(position).getFechaRevision().toString());
         holder.horaRevision.setText(listaPeriodos.get(position).getHoraRevision().toString());

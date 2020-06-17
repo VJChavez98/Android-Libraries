@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SolicitudRevisionActivity"></activity>
+        <activity android:name=".SolicitudRevision_eliminar"></activity>
+        <activity android:name=".SolicitudRevision_menu" />
+        <activity android:name=".SolicitudRevisionActivity" />
         <activity android:name=".ListaPerInsRevActivity" />
         <activity android:name=".PrimeraRevision_eliminar" />
         <activity android:name=".PrimeraRevision_actualizar" />
