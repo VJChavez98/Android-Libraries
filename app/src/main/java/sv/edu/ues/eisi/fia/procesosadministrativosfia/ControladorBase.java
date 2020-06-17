@@ -630,8 +630,7 @@ public class ControladorBase {
             }
             case 5:
             {
-                //Verificar que al Insertar Solicitud exista el TipoGrupo y Estudiante
-               /* SolicitudRevision solicitud = (SolicitudRevision) dato;
+                /* SolicitudRevision solicitud = (SolicitudRevision) dato;
                 String[] id1 = {solicitud.getCarnet()};
                 abrir();
 
