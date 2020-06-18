@@ -194,18 +194,14 @@ public class ControladorBase {
             do {
                 acceso.add(cursor.getString(0));
             }while (cursor.moveToNext());
-            cerrar();
         } else return null;
         return acceso;
     }
-    public ArrayList<String> consultarOpcionCrud(String idOpcion) {
-        ArrayList<String> crud = new ArrayList<>();
+    public String consultarOpcionCrud(String idOpcion) {
+        String crud = null;
         Cursor cursor = db.rawQuery("select * from opcionCrud where idOpcion ='" + idOpcion + "';", null);
         if (cursor.moveToFirst() == true) {
-            do {
-                crud.add(cursor.getString(0));
-            }while (cursor.moveToNext());
-            cerrar();
+                crud= cursor.getString(1);
         } else return null;
         return crud;
     }

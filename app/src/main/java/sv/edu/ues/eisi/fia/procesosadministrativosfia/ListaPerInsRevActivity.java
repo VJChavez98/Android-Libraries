@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -30,24 +31,23 @@ public class ListaPerInsRevActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_per_ins_rev);
 
-        helper= new ControladorBase(this);
+        helper = new ControladorBase(this);
 
-        listaPeriodos= new ArrayList<>();
+        listaPeriodos = new ArrayList<>();
 
-        recyclerViewPeriodos= (RecyclerView) findViewById(R.id.recyclerPeriodo);
+        recyclerViewPeriodos = (RecyclerView) findViewById(R.id.recyclerPeriodo);
         recyclerViewPeriodos.setLayoutManager(new LinearLayoutManager(this));
 
         consultarPeriodosIncripcionRevision();
-
-        ListaPerInsRevAdapter adapter=new ListaPerInsRevAdapter(listaPeriodos, docente[0], docente[1]);
-
+        if (!listaPeriodos.isEmpty()) {
+            ListaPerInsRevAdapter adapter = new ListaPerInsRevAdapter(listaPeriodos, docente[0], docente[1]);
 
         adapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                PeriodoInscripcionRevision periodoSeleccionado= null;
-                periodoSeleccionado= (PeriodoInscripcionRevision) listaPeriodos.get(recyclerViewPeriodos.getChildAdapterPosition(v));
+                PeriodoInscripcionRevision periodoSeleccionado = null;
+                periodoSeleccionado = (PeriodoInscripcionRevision) listaPeriodos.get(recyclerViewPeriodos.getChildAdapterPosition(v));
 
                 //************************************************************************************************
                 //Muestro con un Toast el objeto seleccionado
@@ -72,7 +72,10 @@ public class ListaPerInsRevActivity extends Activity {
         });
 
         recyclerViewPeriodos.setAdapter(adapter);
-
+    }
+        else{
+            Toast.makeText(getApplicationContext(), "ERROR AL RECUPERAR LOS DATOS", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void consultarPeriodosIncripcionRevision() {
@@ -84,29 +87,31 @@ public class ListaPerInsRevActivity extends Activity {
         String sql= "SELECT * FROM periodoinscripcionrevision";
 
         Cursor cursor = db.rawQuery(sql, null);
+        if (cursor.moveToFirst()) {
+            while (cursor.moveToNext()) {
+                int i = 0;
+                periodo = new PeriodoInscripcionRevision();
 
-        while(cursor.moveToNext()){
-            int i =0;
-            periodo = new PeriodoInscripcionRevision();
+                periodo.setFechaDesde(cursor.getString(0));
+                periodo.setFechaHasta(cursor.getString(1));
+                periodo.setFechaRevision(cursor.getString(2));
+                periodo.setHoraRevision(cursor.getString(3));
+                periodo.setTipoRevision(cursor.getString(4));
+                periodo.setCodDocente(cursor.getString(5));
+                periodo.setCodLocal(cursor.getString(6));
+                periodo.setCodAsignatura(cursor.getString(7));
+                periodo.setCodCiclo(cursor.getString(8));
+                periodo.setCodTipoEval(cursor.getString(9));
+                periodo.setNumeroEval(cursor.getInt(10));
 
-            periodo.setFechaDesde(cursor.getString(0));
-            periodo.setFechaHasta(cursor.getString(1));
-            periodo.setFechaRevision(cursor.getString(2));
-            periodo.setHoraRevision(cursor.getString(3));
-            periodo.setTipoRevision(cursor.getString(4));
-            periodo.setCodDocente(cursor.getString(5));
-            periodo.setCodLocal(cursor.getString(6));
-            periodo.setCodAsignatura(cursor.getString(7));
-            periodo.setCodCiclo(cursor.getString(8));
-            periodo.setCodTipoEval(cursor.getString(9));
-            periodo.setNumeroEval(cursor.getInt(10));
+                recuperarDocente(cursor.getString(5));
 
-            recuperarDocente(cursor.getString(5));
+                listaPeriodos.add(periodo);
 
-            listaPeriodos.add(periodo);
-
+            }
+        }else {
+            Toast.makeText(getApplicationContext(), "PERIODO REVISION VACIO", Toast.LENGTH_SHORT).show();
         }
-
     }
 
 
@@ -119,7 +124,7 @@ public class ListaPerInsRevActivity extends Activity {
 
        for (int i=0; i<=listaPeriodos.size(); i++){
 
-           Cursor cursor = db.rawQuery("SELECT nombredocente, apellidodocente FROM Docente WHERE coddocente = ?" , parametros);
+           Cursor cursor = db.rawQuery("SELECT nombredocente, apellidodocente FROM docente WHERE coddocente = ?" , parametros);
 
             cursor.moveToFirst();
 
