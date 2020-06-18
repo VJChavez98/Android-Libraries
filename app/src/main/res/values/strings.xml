@@ -94,6 +94,7 @@
     <string name="direccion">Dirección</string>
     <string name="escuchar">Escuchar</string>
     <string name="exportar"><b>Exportar Tabla</b></string>
+    <string name="btnTalk">Hable</string>
 
 
     <string-array name="tipoRevision">

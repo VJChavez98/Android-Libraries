@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,6 +47,23 @@ public class DocenteInsertarActivity extends Activity {
         String nombredocente=editNombredocente.getText().toString();
         String apellidodocente=editApellidodocente.getText().toString();
         String regInsertados;
+
+        if(TextUtils.isEmpty(coddocente)){
+            editCoddocente.setError(getString(R.string.error_campo_obligatorio));
+            editCoddocente.requestFocus();
+            return;
+        }
+        if(TextUtils.isEmpty(nombredocente)){
+            editNombredocente.setError(getString(R.string.error_campo_obligatorio));
+            editNombredocente.requestFocus();
+            return;
+        }
+        if(TextUtils.isEmpty(apellidodocente)){
+            editApellidodocente.setError(getString(R.string.error_campo_obligatorio));
+            editApellidodocente.requestFocus();
+            return;
+        }
+
         Docente docente= new Docente();
         docente.setCoddocente(coddocente);
         docente.setNomdocente(nombredocente);

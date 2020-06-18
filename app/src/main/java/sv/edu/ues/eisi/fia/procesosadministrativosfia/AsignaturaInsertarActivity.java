@@ -5,6 +5,7 @@ import java.util.Locale;
 import android.annotation.SuppressLint;
 import android.os.Environment;
 import android.speech.tts.TextToSpeech;
+import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.app.Activity;
@@ -45,6 +46,23 @@ public class AsignaturaInsertarActivity extends Activity {
         String nombreasignatura=editNombreasignatura.getText().toString();
         String unidadesval=editUnidadesval.getText().toString();
         String regInsertados;
+
+        if(TextUtils.isEmpty(codasignatura)){
+            editCodasignatura.setError(getString(R.string.error_campo_obligatorio));
+            editCodasignatura.requestFocus();
+            return;
+        }
+        if(TextUtils.isEmpty(nombreasignatura)){
+            editNombreasignatura.setError(getString(R.string.error_campo_obligatorio));
+            editNombreasignatura.requestFocus();
+            return;
+        }
+        if(TextUtils.isEmpty(unidadesval)){
+            editUnidadesval.setError(getString(R.string.error_campo_obligatorio));
+            editUnidadesval.requestFocus();
+            return;
+        }
+
         Asignatura asignatura= new Asignatura();
         asignatura.setCodasignatura(codasignatura);
         asignatura.setNomasignatura(nombreasignatura);

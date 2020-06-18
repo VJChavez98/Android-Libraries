@@ -1,9 +1,13 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.os.Environment;
+import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
 import android.widget.Button;
 import android.widget.TextView;
@@ -30,6 +34,10 @@ public class CicloConsultarActivity extends Activity {
     Button BtnPlay;
     private int numarch=0;
 
+    private static final int REQ_CODE_SPEECH_INPUT=100;
+    private TextView mEntradaVoz;
+    private Button mBotonhablar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +56,40 @@ public class CicloConsultarActivity extends Activity {
         tts = new TextToSpeech(this,OnInit);
         BtnPlay.setOnClickListener(onClick);
 
+        mEntradaVoz=findViewById(R.id.editCodciclo);
+        mBotonhablar=findViewById(R.id.bvoice);
+        mBotonhablar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iniciarEntradaVoz();
+            }
+        });
+
+    }
+    private void iniciarEntradaVoz(){
+        Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        i.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        i.putExtra(RecognizerIntent.EXTRA_PROMPT, "Diga el Código del Ciclo ");
+        try {
+            startActivityForResult(i, REQ_CODE_SPEECH_INPUT);
+        }catch (ActivityNotFoundException e){
+
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode){
+            case REQ_CODE_SPEECH_INPUT:{
+                if (resultCode==RESULT_OK && null!=data){
+                    ArrayList<String> result=data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    mEntradaVoz.setText(result.get(0));
+                }
+                break;
+            }
+        }
     }
     public void consultarCiclo(View v){
         helper.abrir();

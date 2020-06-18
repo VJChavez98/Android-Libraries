@@ -1,7 +1,10 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -32,6 +35,10 @@ public class DetalleEstudianteDiferido_consultar extends AppCompatActivity {
     Button BtnPlay;
     private int numarch=0;
 
+    private static final int REQ_CODE_SPEECH_INPUT=100;
+    private TextView mEntradaVoz;
+    private Button mBotonhablar;
+
     Spinner spinTipoEval;
     FrameLayout frame;
     ListView listaDetalle;
@@ -53,8 +60,43 @@ public class DetalleEstudianteDiferido_consultar extends AppCompatActivity {
         tts = new TextToSpeech(this,OnInit);
         BtnPlay.setOnClickListener(onClick);
 
+        mEntradaVoz=findViewById(R.id.editCodasignatura);
+        mBotonhablar=findViewById(R.id.bvoice);
+        mBotonhablar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iniciarEntradaVoz();
+            }
+        });
+
         frame = findViewById(R.id.frameConsulta);
         listaDetalle = findViewById(R.id.listDetalles);
+    }
+
+    private void iniciarEntradaVoz(){
+        Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        i.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        i.putExtra(RecognizerIntent.EXTRA_PROMPT, "Diga el Código de la Asignatura ");
+        try {
+            startActivityForResult(i, REQ_CODE_SPEECH_INPUT);
+        }catch (ActivityNotFoundException e){
+
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode){
+            case REQ_CODE_SPEECH_INPUT:{
+                if (resultCode==RESULT_OK && null!=data){
+                    ArrayList<String> result=data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    mEntradaVoz.setText(result.get(0));
+                }
+                break;
+            }
+        }
     }
 
     public void consultarDetalle(View view) {

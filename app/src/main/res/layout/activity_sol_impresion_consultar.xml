@@ -49,6 +49,11 @@
             android:layout_height="wrap_content"
             android:text="@string/limpiar"
             android:onClick="limpiarTexto"/>
+        <Button
+            android:id="@+id/bvoice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btnTalk" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

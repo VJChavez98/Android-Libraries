@@ -68,6 +68,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:onClick="consultarDetalle"/>
+
     </TableRow>
     <TableRow>
         <TextView android:id="@+id/lblLocal"
@@ -158,4 +159,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/escuchar"/>
+    <Button
+        android:id="@+id/bvoice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnTalk" />
 </TableLayout>

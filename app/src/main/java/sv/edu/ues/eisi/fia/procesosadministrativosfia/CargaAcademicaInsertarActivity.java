@@ -5,6 +5,7 @@ import java.util.Locale;
 import android.annotation.SuppressLint;
 import android.os.Environment;
 import android.speech.tts.TextToSpeech;
+import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.app.Activity;
@@ -53,6 +54,35 @@ public class CargaAcademicaInsertarActivity extends Activity {
         String coddocente=editCoddocente.getText().toString();
         String codasignatura=editCodasignatura.getText().toString();
         String idtipodocenteciclo=editIdtipodocenteciclo.getText().toString();
+
+        if(TextUtils.isEmpty(idcargaacademica)){
+            editIdcargaacademica.setError(getString(R.string.error_campo_obligatorio));
+            editIdcargaacademica.requestFocus();
+            return;
+        }
+        if(TextUtils.isEmpty(codciclo)){
+            editCodciclo.setError(getString(R.string.error_campo_obligatorio));
+            editCodciclo.requestFocus();
+            return;
+        }
+        if(TextUtils.isEmpty(coddocente)){
+            editCoddocente.setError(getString(R.string.error_campo_obligatorio));
+            editCoddocente.requestFocus();
+            return;
+        }
+
+        if(TextUtils.isEmpty(codasignatura)){
+            editCodasignatura.setError(getString(R.string.error_campo_obligatorio));
+            editCodasignatura.requestFocus();
+            return;
+        }
+
+        if(TextUtils.isEmpty(idtipodocenteciclo)){
+            editIdtipodocenteciclo.setError(getString(R.string.error_campo_obligatorio));
+            editIdtipodocenteciclo.requestFocus();
+            return;
+        }
+
         CargaAcademica cargaAcademica= new CargaAcademica();
         cargaAcademica.setIdcargaacademica(idcargaacademica);
         cargaAcademica.setCodciclo(codciclo);

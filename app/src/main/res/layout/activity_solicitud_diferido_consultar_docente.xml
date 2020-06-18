@@ -63,6 +63,11 @@
             android:onClick="consultarSolicitudes"
             android:layout_height="wrap_content"
             android:layout_width="fill_parent" />
+        <Button
+            android:id="@+id/bvoice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btnTalk" />
 
     </TableRow>
     <FrameLayout android:id="@+id/fragmentSolicitudes"

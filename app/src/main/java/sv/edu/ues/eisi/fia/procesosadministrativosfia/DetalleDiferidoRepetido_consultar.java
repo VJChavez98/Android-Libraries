@@ -3,7 +3,10 @@ package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.text.InputType;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -14,6 +17,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 import android.annotation.SuppressLint;
@@ -33,6 +38,10 @@ public class DetalleDiferidoRepetido_consultar extends AppCompatActivity {
     TextView Texto, Texto1, Texto2,Texto3, Texto4, Texto5, Texto6, Texto7;
     Button BtnPlay;
     private int numarch=0;
+
+    private static final int REQ_CODE_SPEECH_INPUT=100;
+    private TextView mEntradaVoz;
+    private Button mBotonhablar;
 
     Spinner spinTipoEval, spinTipoDifRep;
     TextView lblLocal, lblDocente, lblFechaDesde, lblFechaHasta, lblFechaEval, lblHora;
@@ -63,6 +72,15 @@ public class DetalleDiferidoRepetido_consultar extends AppCompatActivity {
         editFechaHasta.setInputType(InputType.TYPE_NULL);
         editFechaEval.setInputType(InputType.TYPE_NULL);
         editHoraEval.setInputType(InputType.TYPE_NULL);
+
+        mEntradaVoz=findViewById(R.id.editAsignatura);
+        mBotonhablar=findViewById(R.id.bvoice);
+        mBotonhablar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iniciarEntradaVoz();
+            }
+        });
 
         Texto=(TextView) findViewById(R.id.editAsignatura);
         Texto1=(TextView) findViewById(R.id.editNumeval);
@@ -143,6 +161,31 @@ public class DetalleDiferidoRepetido_consultar extends AppCompatActivity {
 
 
 
+    }
+    private void iniciarEntradaVoz(){
+        Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        i.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        i.putExtra(RecognizerIntent.EXTRA_PROMPT, "Diga el Código de la Materia ");
+        try {
+            startActivityForResult(i, REQ_CODE_SPEECH_INPUT);
+        }catch (ActivityNotFoundException e){
+
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode){
+            case REQ_CODE_SPEECH_INPUT:{
+                if (resultCode==RESULT_OK && null!=data){
+                    ArrayList<String> result=data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    mEntradaVoz.setText(result.get(0));
+                }
+                break;
+            }
+        }
     }
     private void colocar_fecha(int id) {
         switch (id){

@@ -6,7 +6,10 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
 import android.text.InputType;
 import android.view.View;
@@ -19,6 +22,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -31,6 +35,11 @@ public class Diferido_consultar extends AppCompatActivity {
     TextView Texto, Texto1, Texto2, Texto3, Texto4, Texto5, Texto6, Texto7;
     Button BtnPlay;
     private int numarch=0;
+
+    private static final int REQ_CODE_SPEECH_INPUT=100;
+    private TextView mEntradaVoz;
+    private Button mBotonhablar;
+
 
     ControladorBase helper;
     TextView lblMateria, lblTipoEva, lblGT,lblGD,lblGL, lblFecha, lblHora, lblMotivo, lblOtro, lblEstado;
@@ -70,6 +79,15 @@ public class Diferido_consultar extends AppCompatActivity {
         BtnPlay = (Button) findViewById(R.id.btnText2SpeechPlay);
         tts = new TextToSpeech(this,OnInit);
         BtnPlay.setOnClickListener(onClick);
+
+        mEntradaVoz=findViewById(R.id.editCarnet);
+        mBotonhablar=findViewById(R.id.bvoice);
+        mBotonhablar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iniciarEntradaVoz();
+            }
+        });
 
 
         lblMateria = (TextView) findViewById(R.id.lblCodMat);
@@ -202,6 +220,32 @@ public class Diferido_consultar extends AppCompatActivity {
         }
 
 
+    }
+
+    private void iniciarEntradaVoz(){
+        Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        i.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        i.putExtra(RecognizerIntent.EXTRA_PROMPT, "Diga el Carné");
+        try {
+            startActivityForResult(i, REQ_CODE_SPEECH_INPUT);
+        }catch (ActivityNotFoundException e){
+
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode){
+            case REQ_CODE_SPEECH_INPUT:{
+                if (resultCode==RESULT_OK && null!=data){
+                    ArrayList<String> result=data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    mEntradaVoz.setText(result.get(0));
+                }
+                break;
+            }
+        }
     }
     private void colocar_fecha() {
         if (String.valueOf(nMonthIni).length() == 1 && String.valueOf(nDayIni).length() == 1){

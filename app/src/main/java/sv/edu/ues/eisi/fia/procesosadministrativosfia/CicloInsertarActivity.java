@@ -5,6 +5,7 @@ import java.util.Locale;
 import android.annotation.SuppressLint;
 import android.os.Environment;
 import android.speech.tts.TextToSpeech;
+import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.app.Activity;
@@ -130,6 +131,23 @@ public class CicloInsertarActivity extends Activity {
         String fechadesde=editFechadesde.getText().toString();
         String fechahasta=editFechahasta.getText().toString();
         String regInsertados;
+
+        if(TextUtils.isEmpty(codciclo)){
+            editCodciclo.setError(getString(R.string.error_campo_obligatorio));
+            editCodciclo.requestFocus();
+            return;
+        }
+        if(TextUtils.isEmpty(fechadesde)){
+            editFechadesde.setError(getString(R.string.error_campo_obligatorio));
+            editFechadesde.requestFocus();
+            return;
+        }
+        if(TextUtils.isEmpty(fechahasta)){
+            editFechahasta.setError(getString(R.string.error_campo_obligatorio));
+            editFechahasta.requestFocus();
+            return;
+        }
+
         Ciclo ciclo=new Ciclo();
         ciclo.setCodciclo(codciclo);
         ciclo.setFechadesde(fechadesde);
