@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class SolicitudRevision_eliminar extends Activity {
 
     EditText editCarnet, editCodasignatura, editCodciclo, editNumeval;
-    Spinner spinTiporev, spinTipoeval;
+    Spinner spinTiporev, spinTipoeval, spinTipogrupo;
     ControladorBase helper;
 
     @Override
@@ -28,6 +28,7 @@ public class SolicitudRevision_eliminar extends Activity {
         editNumeval = (EditText) findViewById(R.id.editNumeval);
         spinTiporev = (Spinner) findViewById(R.id.spinTipoRev);
         spinTipoeval = (Spinner) findViewById(R.id.spinTipoEval);
+        spinTipogrupo = (Spinner) findViewById(R.id.spinTipoGrupo);
     }
 
     public void eliminarSolicitudRevision(View v){
@@ -35,9 +36,10 @@ public class SolicitudRevision_eliminar extends Activity {
 
         SolicitudRevision solRev = new SolicitudRevision();
 
-        solRev.setCodtipoeval(spinTiporev.getSelectedItem().toString());
+        solRev.setCodtiporevision(spinTiporev.getSelectedItem().toString());
         solRev.setCodasignatura(editCodasignatura.getText().toString());
         solRev.setCodtipoeval(spinTipoeval.getSelectedItem().toString());
+        solRev.setCodtipogrupo(spinTipogrupo.getSelectedItem().toString());
         solRev.setCodciclo(editCodciclo.getText().toString());
         //solRev.setNumeroeval(Integer.parseInt(editNumeval.getText().toString()));
         solRev.setCarnet(editCarnet.getText().toString());
@@ -60,6 +62,7 @@ public class SolicitudRevision_eliminar extends Activity {
         editNumeval.setText("");
         spinTipoeval.setSelection(0);
         spinTiporev.setSelection(0);
+        spinTipogrupo.setSelection(0);
         editCarnet.setText("");
     }
 }

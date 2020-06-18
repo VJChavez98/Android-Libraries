@@ -58,9 +58,14 @@ public class ControladorBase {
                         "codasignatura VARCHAR(6) NOT NULL, codciclo VARCHAR(5) NOT NULL, codtipoeval VARCHAR(2) NOT NULL, numeroeval INTEGER NOT NULL, " +
                         "PRIMARY KEY(codtiporevision, codasignatura, codciclo, codtipoeval, numeroeval));");
 
-                db.execSQL("CREATE TABLE primerrevision(estadoprimerrevision VARCHAR(15) NOT NULL, notadespuesprimerarevision REAL NOT NULL, asistio VARCHAR(2) NOT NULL, observacionesprimerarev VARCHAR(200), coddocente VARCHAR(10) NOT NULL," +
+                db.execSQL("CREATE TABLE primerrevision(estadoprimerrevision VARCHAR(15) NOT NULL, notadespuesprimerarevision REAL NOT NULL, asistio VARCHAR(2) NOT NULL, observacionesprimerarev VARCHAR(200), coddocente VARCHAR(10) NOT NULL,  codtipogrupo VARCHAR(2) NOT NULL," +
+                        "carnet VARCHAR(7) NOT NULL, codasignatura VARCHAR(6) NOT NULL, codciclo VARCHAR(5) NOT NULL, codtipoeval VARCHAR(2) NOT NULL, numeroeval INTEGER NOT NULL, codtiporevision VARCHAR(2) NOT NULL, codmotivocambionota VARCHAR(10) NOT NULL," +
+                        "PRIMARY KEY(coddocente, carnet, codtiporevision, codasignatura, codciclo, codtipoeval, numeroeval, codtipogrupo));");
+
+                db.execSQL("CREATE TABLE segundarevision(codmotivocambionota VARCHAR(10) NOT NULL, codtipogrupo VARCHAR(2) NOT NULL, coddocente VARCHAR(10) NOT NULL, notafinalsegundarev REAL NOT NULL, observacionessegundarev VARCHAR(200), " +
                         "carnet VARCHAR(7) NOT NULL, codasignatura VARCHAR(6) NOT NULL, codciclo VARCHAR(5) NOT NULL, codtipoeval VARCHAR(2) NOT NULL, numeroeval INTEGER NOT NULL, codtiporevision VARCHAR(2) NOT NULL," +
-                        "PRIMARY KEY(coddocente, carnet, codtiporevision, codasignatura, codciclo, codtipoeval, numeroeval));");
+                        "PRIMARY KEY(codtiporevision, codasignatura, codtipoeval, numeroeval, codciclo, carnet));");
+
 
                 db.execSQL("CREATE TABLE motivocambionota(codmotivocambionota VARCHAR(10) NOT NULL PRIMARY KEY, motivo VARCHAR(200) NOT NULL);");
 
@@ -232,7 +237,7 @@ public class ControladorBase {
         String regInsertados = "Registro No. = ";
         long contador = 0;
 
-        if(verificarIntegridadReferencial(solicitud, 5)){
+        if(verificarIntegridadReferencial(solicitud, 31)){
 
             ContentValues sol = new ContentValues();
             sol.put("fechasolicitudrevision", solicitud.getFechasolicitudrevision());
@@ -384,7 +389,6 @@ public class ControladorBase {
     }
 
 
-
     public Asignatura consultarNomAsignatura(String codAsignatura){
         String[] id = {codAsignatura};
         String[] camposAsigConsul = {"nomasignatura"};
@@ -531,31 +535,57 @@ public class ControladorBase {
     }
 
     public String eliminar(SolicitudRevision solRev){//********************************************************************************************************************
-        String regAfectados = "Filas afectadas = ";
+        String regAfectados = "Solicitud Eliminada, Filas afectadas = ";
         int contador = 0;
 
-        /*String where = "carnet = '"+solRev.getCarnet()+"'";
+        if(verificarIntegridadReferencial(solRev, 32)){
+
+            String nosepuede = "Error, existen registros de esta Solicitud en otras tablas.";
+            return nosepuede;
+        }
+
+        String where = "carnet = '"+solRev.getCarnet()+"'";
+        where = where + " AND codtipogrupo = '"+solRev.getCodtipogrupo()+"'";
         where = where + " AND codtiporevision = '"+solRev.getCodtiporevision()+"'";
         where = where + " AND codasignatura = '"+solRev.getCodasignatura()+"'";
         where = where + " AND codciclo = '"+solRev.getCodciclo()+"'";
         where = where + " AND codtipoeval = '"+solRev.getCodtipoeval()+"'";
-        where = where + " AND numeroeval = '"+solRev.getNumeroeval()+"'";*/
-        String[] parametros = {solRev.getCarnet(), solRev.getCodtiporevision(), solRev.getCodasignatura(), solRev.getCodciclo(), solRev.getCodtipoeval(), String.valueOf(solRev.getNumeroeval())};
-        String where = "carnet=? AND codtiporevision=? AND codasignatura=? AND codciclo=? AND codtipoeval=? AND numeroeval=?";
-        contador += db.delete("solicitudrevision", where, parametros);
+        where = where + " AND numeroeval = '"+solRev.getNumeroeval()+"'";
+        contador += db.delete("solicitudrevision", where, null);
 
+        if (contador==0){
+            return  "Esta Solicitud de Revision No Existe o Campos Incompletos";
+        }
 
-        //contador += db.execSQL("DELETE FROM solicitudrevision WHERE carnet=? AND codtiporevision=? AND codasignatura=? AND codciclo=? AND codtipoeval=? AND numeroeval=?", parametros);
         regAfectados += contador;
         return regAfectados;
     }
 
 
+    public String actualizar(SolicitudRevision solRev) {
+
+        if (verificarIntegridadReferencial(solRev, 33)) {
+
+            String[] id = {solRev.getCarnet(), solRev.getCodtipogrupo(), solRev.getCodtiporevision(), solRev.getCodasignatura(), solRev.getCodciclo(), solRev.getCodtipoeval(), String.valueOf(solRev.getNumeroeval())};
+            ContentValues cv = new ContentValues();
+            cv.put("notaantesrevision", solRev.getNotaantesrevision());
+            cv.put("numerogrupo", solRev.getNumerogrupo());
+            cv.put("fechasolicitudrevision", solRev.getFechasolicitudrevision());
+            cv.put("motivorevision", solRev.getMotivorevision());
+            db.update("solicitudrevision", cv, "carnet = ? AND codtipogrupo = ? AND codtiporevision = ? AND codasignatura = ?  AND codciclo = ? AND codtipoeval = ? AND numeroeval = ?", id);
+            return "Registro Actualizado correctamente";
+
+        } else {
+            return "Registro no Existe";
+        }
+
+    }
+
+
 
     public boolean verificarIntegridadReferencial(Object dato, int relacion) throws SQLException{
-        switch (relacion){
-            case 1:
-            {
+        switch (relacion) {
+            case 1: {
                 //Verificar que al Insertar Evaluacion exista el TipoEvaluacion, Asignatura y Ciclo
                 Evaluacion evaluacion = (Evaluacion) dato;
                 String[] id1 = {evaluacion.getCodAsignatura()};
@@ -567,15 +597,14 @@ public class ControladorBase {
                 Cursor cursor2 = db.query("ciclo", null, "codciclo = ?", id2, null, null, null);
                 Cursor cursor3 = db.query("tipoevaluacion", null, "codtipoeval = ?", id3, null, null, null);
 
-                if(cursor1.moveToFirst() && cursor2.moveToFirst() && cursor3.moveToFirst()){
+                if (cursor1.moveToFirst() && cursor2.moveToFirst() && cursor3.moveToFirst()) {
                     //Se encontraron los datos
                     return true;
                 }
 
                 return false;
             }
-            case 2:
-            {
+            case 2: {
                 //verificar que al Modificar Evaluacion exista el TipoEvaluacion, Asignatura, Ciclo y Numero de Evaluacion
                 Evaluacion evaluacion = (Evaluacion) dato;
                 String[] ids = {evaluacion.getCodAsignatura(), evaluacion.getCodCiclo(), evaluacion.getCodTipoEval(), String.valueOf(evaluacion.getNumeroEvaluacion())};
@@ -583,13 +612,12 @@ public class ControladorBase {
 
                 Cursor c = db.query("evaluacion", null, "codasignatura = ? AND codciclo = ? AND codtipoeval = ? AND numeroeval = ?", ids, null, null, null);
 
-                if(c.moveToFirst()){
+                if (c.moveToFirst()) {
                     return true;
                 }
                 return false;
             }
-            case 3:
-            {
+            case 3: {
                 //Verificar que al Insertar PeriodoInscripcionRevision exista Asignatura, Ciclo, TipoEvaluacion, NumeroEvaluacion, Docente, Local, TipoRevision
                 PeriodoInscripcionRevision perInscRev = (PeriodoInscripcionRevision) dato;
                 String[] id1 = {perInscRev.getCodAsignatura()};
@@ -609,12 +637,11 @@ public class ControladorBase {
                 Cursor cursor6 = db.query("local", null, "codlocal = ?", id6, null, null, null);
                 Cursor cursor7 = db.query("tiporevision", null, "codtiporevision = ?", id7, null, null, null);
 
-                if(cursor1.moveToFirst() && cursor2.moveToFirst() && cursor3.moveToFirst() && cursor4.moveToFirst() && cursor5.moveToFirst() && cursor6.moveToFirst() && cursor7.moveToFirst()){
+                if (cursor1.moveToFirst() && cursor2.moveToFirst() && cursor3.moveToFirst() && cursor4.moveToFirst() && cursor5.moveToFirst() && cursor6.moveToFirst() && cursor7.moveToFirst()) {
                     return true;
                 }
             }
-            case 4:
-            {
+            case 4: {
                 //Verificar que al modificar el PeriodoInscripcionRevision exista Asignatura, Ciclo, TipoEvaluacion, NumeroEvaluacion y TipoRevision
                 PeriodoInscripcionRevision perInscRev = (PeriodoInscripcionRevision) dato;
                 String[] ids = {perInscRev.getCodAsignatura(), perInscRev.getCodCiclo(), perInscRev.getCodTipoEval(), String.valueOf(perInscRev.getNumeroEval()), perInscRev.getTipoRevision()};
@@ -623,26 +650,12 @@ public class ControladorBase {
 
                 Cursor c = db.query("periodoinscripcionrevision", null, "codasignatura = ? AND codciclo = ? AND codtipoeval = ? AND numeroeval = ? AND codtiporevision = ?", ids, null, null, null);
 
-                if(c.moveToFirst()){
+                if (c.moveToFirst()) {
                     return true;
                 }
                 return false;
             }
-            case 5:
-            {
-                /* SolicitudRevision solicitud = (SolicitudRevision) dato;
-                String[] id1 = {solicitud.getCarnet()};
-                abrir();
-
-                Cursor cursor1 = db.query("estudiante", null, "carnet = ?", id1, null, null, null);
-
-                if(cursor1.moveToFirst()){
-                    //Se encontraron los datos
-                    return true;
-                }
-
-                return false;*/
-
+            case 31: {
                 //Verificar que al Insertar SolicitudRevision exista Asignatura, Ciclo, TipoEvaluacion, NumeroEvaluacion, Estudiante, TipoGrupo, TipoRevision
                 SolicitudRevision solicitud = (SolicitudRevision) dato;
                 String[] id1 = {solicitud.getCodasignatura()};
@@ -662,11 +675,47 @@ public class ControladorBase {
                 Cursor cursor6 = db.query("estudiante", null, "carnet = ?", id6, null, null, null);
                 Cursor cursor7 = db.query("tiporevision", null, "codtiporevision = ?", id7, null, null, null);
 
-                if(cursor1.moveToFirst() && cursor2.moveToFirst() && cursor3.moveToFirst() && cursor4.moveToFirst() && cursor5.moveToFirst() && cursor6.moveToFirst() && cursor7.moveToFirst()){
+                if (cursor1.moveToFirst() && cursor2.moveToFirst() && cursor3.moveToFirst() && cursor4.moveToFirst() && cursor5.moveToFirst() && cursor6.moveToFirst() && cursor7.moveToFirst()) {
                     return true;
                 }
 
+            }
+            case 32: {
 
+                //Verificar que no haya registro de solicitud revision en otras tablas antes de eliminar
+                SolicitudRevision solRev = (SolicitudRevision) dato;
+
+                //carnet, codtipogrupo, codtiporevision, codasignatura, codciclo, codtipoeval, numeroeval
+
+                String[] idrecu = new String[]{"carnet","codtipogrupo","codtiporevision","codasignatura","codciclo","codtipoeval","numeroeval"};
+                String[] parametros = {solRev.getCarnet(), solRev.getCodtipogrupo(), solRev.getCodtiporevision(), solRev.getCodasignatura(), solRev.getCodciclo(), solRev.getCodtipoeval(), String.valueOf(solRev.getNumeroeval())};
+                String where = "carnet =? AND codtipogrupo =?  AND codtiporevision =? AND codasignatura =? AND codciclo =? AND codtipoeval =? AND numeroeval =?";
+
+                Cursor c1 = db.query(true, "primerrevision", idrecu, where, parametros, null, null, null, null);
+                Cursor c2 = db.query(true, "segundarevision", idrecu, where, parametros, null, null, null, null);
+
+                if(c1.moveToFirst() && c2.moveToFirst()){
+                    return true;
+                }
+                else {
+                    return false;
+                }
+
+
+            }
+            case 33: {
+                //Verificar que al modificar una SolicitudRevision exista el registro
+                SolicitudRevision solRev = (SolicitudRevision) dato;
+                String[] idrecu = new String[]{"carnet","codtipogrupo","codtiporevision","codasignatura","codciclo","codtipoeval","numeroeval"};
+                String where = "carnet =? AND codtipogrupo =?  AND codtiporevision =? AND codasignatura =? AND codciclo =? AND codtipoeval =? AND numeroeval =?";
+                String[] ids = {solRev.getCarnet(), solRev.getCodtipogrupo(), solRev.getCodtiporevision(), solRev.getCodasignatura(), solRev.getCodciclo(), solRev.getCodtipoeval(), String.valueOf(solRev.getNumeroeval())};
+                abrir();
+
+                Cursor c = db.query("solicitudrevision", idrecu, where, ids, null, null, null);
+
+                if (c.moveToFirst()) {
+                    return true;
+                } else return false;
 
             }
             default:
@@ -733,6 +782,12 @@ public class ControladorBase {
         db.execSQL("DELETE FROM motivocambionota");
         db.execSQL("DELETE FROM solicitudrevision");
         db.execSQL("DELETE FROM tipogrupo");
+        db.execSQL("DELETE FROM local");
+        db.execSQL("DELETE FROM evaluacion");
+        db.execSQL("DELETE FROM periodoinscripcionrevision");
+        db.execSQL("DELETE FROM primerrevision");
+        db.execSQL("DELETE FROM segundarevision");
+
 
         Usuario user = new Usuario();
         for (int i = 0; i<usersId.length; i++){
@@ -818,6 +873,9 @@ public class ControladorBase {
             tipogrupo.setNombreTipoGrupo(TTGnomtipogrupo[i]);
             insertar(tipogrupo);
         }
+
+
+
 
         cerrar();
         return "Guardado correctamente";

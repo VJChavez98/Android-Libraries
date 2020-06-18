@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
@@ -14,14 +13,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.sql.Date;
 import java.util.Calendar;
 
-public class SolicitudRevisionActivity extends Activity {
+public class SolicitudRevision_actualizar extends Activity {
 
-    TextView codtiporevision, codasignatura, codtipoevaluacion, numeroevaluacion, codciclo;
-    EditText carnet, notaactual, numerogrupo, fechasol, motrevision;
-    Spinner codtipogrupo;
+    EditText carnet, notaactual, numerogrupo, fechasol, motrevision, codasignatura,  numeroevaluacion, codciclo;
+    Spinner codtiporevision, codtipoevaluacion, codtipogrupo;
 
     ControladorBase helper;
 
@@ -32,25 +29,22 @@ public class SolicitudRevisionActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_solicitud_revision);
+        setContentView(R.layout.activity_solicitud_revision_actualizar);
 
         helper = new ControladorBase(this);
 
-        codtiporevision = (TextView) findViewById(R.id.codtiporev);
-        codasignatura = (TextView) findViewById(R.id.codasignatura);
-        codtipoevaluacion = (TextView) findViewById(R.id.codtipoeva);
-        numeroevaluacion = (TextView) findViewById(R.id.numeval);
-        codciclo = (TextView) findViewById(R.id.codciclo);
 
         carnet= (EditText) findViewById(R.id.editCarnet);
         notaactual= (EditText) findViewById(R.id.editNotaActual);
-
-        codtipogrupo= (Spinner) findViewById(R.id.spinTipoGrupo);
-
         numerogrupo= (EditText) findViewById(R.id.editnumerogrupo);
-
         fechasol= (EditText) findViewById(R.id.editFechaSolicitud);
         motrevision= (EditText) findViewById(R.id.editmotivorev);
+        codasignatura = (EditText) findViewById(R.id.editCodasignatura);
+        numeroevaluacion = (EditText) findViewById(R.id.editNumeval);
+        codciclo = (EditText) findViewById(R.id.editCodciclo);
+        codtiporevision = (Spinner) findViewById(R.id.spinTipoRev);
+        codtipoevaluacion = (Spinner) findViewById(R.id.spinTipoEval);
+        codtipogrupo= (Spinner) findViewById(R.id.spinTipoGrupo);
 
         sMonthIni = c.get(Calendar.MONTH);
         sDayIni = c.get(Calendar.DAY_OF_MONTH);
@@ -64,23 +58,8 @@ public class SolicitudRevisionActivity extends Activity {
             }
         });
 
-
-
-
-        PeriodoInscripcionRevision  periodoseleccionado = (PeriodoInscripcionRevision) getIntent().getSerializableExtra("periodo");
-
-        if(periodoseleccionado!=null){
-
-            codtiporevision.setText(periodoseleccionado.getTipoRevision().toString());
-            codasignatura.setText(periodoseleccionado.getCodAsignatura().toString());
-            codtipoevaluacion.setText(periodoseleccionado.getCodTipoEval().toString());
-            numeroevaluacion.setText(Integer.toString(periodoseleccionado.getNumeroEval()));
-            codciclo.setText(periodoseleccionado.getCodCiclo());
-
-        }
-
-
     }
+
 
     private void colocar_fecha() {
         if(String.valueOf(nMonthIni).length() == 1 && String.valueOf(nDayIni).length() == 1){
@@ -111,23 +90,25 @@ public class SolicitudRevisionActivity extends Activity {
         return null;
     }
 
-    public void insertarSolicitudRevision(View v){
+
+    public void actualizarSolicitudRevision(View v){
+
         String regInsertados;
-        String tipogrupo;
+        String tiporevision, tipoeva, tipogrupo;
+        tiporevision = codtiporevision.getSelectedItem().toString();
+        tipoeva = codtipoevaluacion.getSelectedItem().toString();
         tipogrupo = codtipogrupo.getSelectedItem().toString();
 
         SolicitudRevision solicitud = new SolicitudRevision();
-        solicitud.setCodtiporevision(codtiporevision.getText().toString());
-        solicitud.setCodasignatura(codasignatura.getText().toString());
-        solicitud.setCodtipoeval(codtipoevaluacion.getText().toString());
-        //solicitud.setNumeroeval(Integer.parseInt(numeroevaluacion.getText().toString()));
-        solicitud.setCodciclo(codciclo.getText().toString());
         solicitud.setCarnet(carnet.getText().toString());
-        //solicitud.setNotaantesrevision(Float.parseFloat(notaactual.getText().toString()));
-        //solicitud.setNumerogrupo(Integer.parseInt(numerogrupo.getText().toString()));
         solicitud.setFechasolicitudrevision(fechasol.getText().toString());
         solicitud.setMotivorevision(motrevision.getText().toString());
+        solicitud.setCodasignatura(codasignatura.getText().toString());
+        solicitud.setCodciclo(codciclo.getText().toString());
+        solicitud.setCodtiporevision(tiporevision);
+        solicitud.setCodtipoeval(tipoeva);
         solicitud.setCodtipogrupo(tipogrupo);
+
 
         if(!numeroevaluacion.getText().toString().isEmpty()){
             solicitud.setNumeroeval(Integer.parseInt(numeroevaluacion.getText().toString()));
@@ -150,12 +131,12 @@ public class SolicitudRevisionActivity extends Activity {
         }
 
 
-
         helper.abrir();
-        regInsertados = helper.insertar(solicitud);
+        regInsertados = helper.actualizar(solicitud);
         helper.cerrar();
         Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
     }
+
 
 
     public void limpiarTexto(View v){
@@ -164,7 +145,15 @@ public class SolicitudRevisionActivity extends Activity {
         numerogrupo.setText("");
         fechasol.setText("");
         motrevision.setText("");
+        codasignatura.setText("");
+        numeroevaluacion.setText("");
+        codciclo.setText("");
+        codtiporevision.setSelection(0);
+        codtipoevaluacion.setSelection(0);
         codtipogrupo.setSelection(0);
+
+
+
 
     }
 }
