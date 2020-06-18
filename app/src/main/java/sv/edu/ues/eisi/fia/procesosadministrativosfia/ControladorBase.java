@@ -253,7 +253,7 @@ public class ControladorBase {
             } else {
                 regAfectados = regAfectados + contador;
             }
-        }
+        }else return "Error al insertar, Datos incorrectos o vacios";
         return regAfectados;
     }
 
@@ -1746,13 +1746,12 @@ public class ControladorBase {
                 String[] id1 = {solicitudDiferido.getCodMateria()};
                 String[] id3 = {solicitudDiferido.getCarnet()};
                 String[] id4 = {solicitudDiferido.getMotivo()};
-                String[] id5 = {solicitudDiferido.getCodMateria(), solicitudDiferido.getTipoEva()};
+                String[] id5 = {solicitudDiferido.getCodMateria(), solicitudDiferido.getTipoEva(), solicitudDiferido.getCiclo(), String.valueOf(solicitudDiferido.getNumeroEval())};
                 abrir();
                 Cursor cursor1 = db.query("asignatura", null, "codasignatura = ?", id1, null, null, null);
                 Cursor cursor3 = db.query("Estudiante", null, "carnet = ?", id3, null, null, null);
                 Cursor cursor4 = db.query("MotivoDiferido", null, "nombreMotivo = ?", id4, null, null, null);
-                Cursor cursor5 = db.query("evaluacion", null, "codasignatura = ? AND codtipoeval = ?", id5, null, null, null);
-
+                Cursor cursor5 = db.query("evaluacion", null, "codasignatura = ? AND codtipoeval = ? AND codciclo = ? AND numeroeval = ?", id5, null, null, null);
                 if (cursor1.moveToFirst() && cursor3.moveToFirst() && cursor4.moveToFirst() && cursor5.moveToFirst()) {
                     return true;
                 } else return false;
