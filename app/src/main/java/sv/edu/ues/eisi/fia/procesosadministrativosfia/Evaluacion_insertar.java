@@ -1,13 +1,11 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.widget.DatePicker;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -79,18 +77,31 @@ public class Evaluacion_insertar extends Activity{
         String asignatura = editAsignatura.getText().toString();
         String ciclo = editCiclo.getText().toString();
         String fecha = editFecha.getText().toString();
-        String tipoEval = spinTipoeval.getSelectedItem().toString();
         String regInsertados;
 
         Evaluacion eval = new Evaluacion();
         eval.setCodAsignatura(asignatura);
         eval.setCodCiclo(ciclo);
-        eval.setCodTipoEval(tipoEval);
         eval.setFechaEvaluacion(fecha);
+
         if(!editNumero.getText().toString().isEmpty()){
             eval.setNumeroEvaluacion(Integer.parseInt(editNumero.getText().toString()));
         }else{
             eval.setNumeroEvaluacion(0);
+        }
+
+        //Validacion de los Spinner para guardar los codigos.
+        if(spinTipoeval.getSelectedItem().toString().equals("Examen Parcial")){
+            String tipoEval = "EP";
+            eval.setCodTipoEval(tipoEval);
+        }else if(spinTipoeval.getSelectedItem().toString().equals("Examen Discusion")){
+            String tipoEval = "ED";
+            eval.setCodTipoEval(tipoEval);
+        }else if(spinTipoeval.getSelectedItem().toString().equals("Examen Laboratorio")){
+            String tipoEval = "EL";
+            eval.setCodTipoEval(tipoEval);
+        }else{
+            eval.setCodTipoEval("");
         }
 
         helper.abrir();

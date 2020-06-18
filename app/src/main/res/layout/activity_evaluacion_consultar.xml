@@ -10,7 +10,7 @@
         android:text="@string/codasignatura"/>
     <EditText
         android:id="@+id/editCodasignatura"
-        android:layout_width="200dp"
+        android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:maxLength="6" />
@@ -21,7 +21,7 @@
         android:text="@string/codtipoeval"/>
     <Spinner android:id="@+id/spinTipoEval"
         android:layout_height="wrap_content"
-        android:layout_width="200dp"
+        android:layout_width="260dp"
         android:entries="@array/tipoEval"
         android:textAlignment="center"
         android:gravity="center_horizontal" />
@@ -32,7 +32,7 @@
         android:text="@string/codciclo" />
     <EditText
         android:id="@+id/editCodciclo"
-        android:layout_width="200dp"
+        android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:inputType="number"
         android:maxLength="5"/>
@@ -43,7 +43,7 @@
         android:text="@string/evaluacion_numero" />
     <EditText
         android:id="@+id/editNumeval"
-        android:layout_width="200dp"
+        android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:inputType="number"
         android:maxLength="1"/>
@@ -70,25 +70,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/fecha" />
-    <EditText
-        android:id="@+id/editFechaeval"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:cursorVisible="false"
-        android:longClickable="false"
-        android:inputType="textPersonName"
-        android:ems="10"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/codasignatura" />
+        android:text="@string/nomasignatura" />
     <EditText
         android:id="@+id/editNomasignatura"
-        android:layout_width="100dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:focusable="false"
@@ -96,5 +81,19 @@
         android:cursorVisible="false"
         android:longClickable="false" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fecha" />
+    <EditText
+        android:id="@+id/editFechaeval"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:cursorVisible="false"
+        android:longClickable="false"
+        android:inputType="textPersonName"
+        android:ems="10"/>
 
 </LinearLayout>

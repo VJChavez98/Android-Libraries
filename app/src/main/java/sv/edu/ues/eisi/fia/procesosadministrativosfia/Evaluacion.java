@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.sql.Time;
 
 class Evaluacion {
-    private String idEvaluacion;
     private String codAsignatura;
     private String codTipoEval;
     private String codCiclo;
@@ -14,8 +13,7 @@ class Evaluacion {
     public Evaluacion() {
     }
 
-    public Evaluacion(String idEvaluacion, String codAsignatura, String codTipoEval, String codCiclo, String fechaEvaluacion, int numeroEvaluacion) {
-        this.idEvaluacion = idEvaluacion;
+    public Evaluacion(String codAsignatura, String codTipoEval, String codCiclo, String fechaEvaluacion, int numeroEvaluacion) {
         this.codAsignatura = codAsignatura;
         this.codTipoEval = codTipoEval;
         this.codCiclo = codCiclo;
@@ -23,9 +21,6 @@ class Evaluacion {
         this.numeroEvaluacion = numeroEvaluacion;
     }
 
-    public String getIdEvaluacion() {
-        return idEvaluacion;
-    }
 
     public String getCodAsignatura() {
         return codAsignatura;
@@ -45,10 +40,6 @@ class Evaluacion {
 
     public int getNumeroEvaluacion() {
         return numeroEvaluacion;
-    }
-
-    public void setIdEvaluacion(String idEvaluacion) {
-        this.idEvaluacion = idEvaluacion;
     }
 
     public void setCodAsignatura(String codAsignatura) {

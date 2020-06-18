@@ -5,8 +5,8 @@ import java.sql.Date;
 public class SolicitudRevision {
     private String fechasolicitudrevision;
     private float notaantesrevision;
-    private int numerogrupo;
     private String codtipogrupo;
+    private int numerogrupo;
     private String motivorevision;
     private String carnet;
     private String codasignatura;
@@ -32,6 +32,7 @@ public class SolicitudRevision {
         this.codtiporevision = codtiporevision;
     }
 
+
     public float getNotaantesrevision() {
         return notaantesrevision;
     }
@@ -39,6 +40,7 @@ public class SolicitudRevision {
     public void setNotaantesrevision(float notaantesrevision) {
         this.notaantesrevision = notaantesrevision;
     }
+
 
     public int getNumerogrupo() {
         return numerogrupo;

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <TableRow>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/carnet"/>
+
+        <EditText
+            android:id="@+id/editCarnet"
+            android:layout_height="wrap_content"
+            android:layout_width="290dip"
+            android:inputType="text"
+            android:maxLength="50"
+            />
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:id="@+id/lblNombre"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/estudianteNombre"/>
+
+        <EditText
+            android:id="@+id/editNombreEstudiante"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLength="50"/>
+    </TableRow>
+    <TableRow>
+
+        <TextView
+            android:id="@+id/lblApellido"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/estudianteApellido" />
+
+        <EditText
+            android:id="@+id/editApellidoEstudiante"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLength="50" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/lblCarrera"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/estudianteCarrera" />
+
+        <EditText
+            android:id="@+id/editCarreraEstudiante"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLength="50" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="@string/fechaInscripcion"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/editFechaInscrip"
+            android:inputType="text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+    </TableRow>
+</TableLayout>

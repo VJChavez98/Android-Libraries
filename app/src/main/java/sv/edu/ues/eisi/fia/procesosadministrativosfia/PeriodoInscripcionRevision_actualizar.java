@@ -181,9 +181,6 @@ public class PeriodoInscripcionRevision_actualizar extends Activity {
 
     public void actualizarPeriodoRevision(View v){
         String regInsertados;
-        String tipoEval, tipoRev;
-        tipoEval = spinTipoeval.getSelectedItem().toString();
-        tipoRev = spinTiporev.getSelectedItem().toString();
 
         PeriodoInscripcionRevision perInscRev = new PeriodoInscripcionRevision();
         perInscRev.setCodAsignatura(editCodasignatura.getText().toString());
@@ -194,12 +191,35 @@ public class PeriodoInscripcionRevision_actualizar extends Activity {
         perInscRev.setFechaHasta(editFechahasta.getText().toString());
         perInscRev.setFechaRevision(editFecharev.getText().toString());
         perInscRev.setHoraRevision(editHorarev.getText().toString());
-        perInscRev.setCodTipoEval(tipoEval);
-        perInscRev.setTipoRevision(tipoRev);
+
         if(!editNumeval.getText().toString().isEmpty()){
             perInscRev.setNumeroEval(Integer.parseInt(editNumeval.getText().toString()));
         }else{
             perInscRev.setNumeroEval(0);
+        }
+
+        //Validacion de los Spinner para guardar los codigos.
+        if(spinTipoeval.getSelectedItem().toString().equals("Examen Parcial")){
+            String tipoEval = "EP";
+            perInscRev.setCodTipoEval(tipoEval);
+        }else if(spinTipoeval.getSelectedItem().toString().equals("Examen Discusion")){
+            String tipoEval = "ED";
+            perInscRev.setCodTipoEval(tipoEval);
+        }else if(spinTipoeval.getSelectedItem().toString().equals("Examen Laboratorio")){
+            String tipoEval = "EL";
+            perInscRev.setCodTipoEval(tipoEval);
+        }else{
+            perInscRev.setCodTipoEval("");
+        }
+
+        if(spinTiporev.getSelectedItem().toString().equals("Primer Revisión")){
+            String tipoEval = "PR";
+            perInscRev.setTipoRevision(tipoEval);
+        }else if(spinTiporev.getSelectedItem().toString().equals("Segunda Revisión")){
+            String tipoEval = "SR";
+            perInscRev.setTipoRevision(tipoEval);
+        }else{
+            perInscRev.setTipoRevision("");
         }
 
         helper.abrir();

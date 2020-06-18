@@ -129,5 +129,4 @@ public class PrimeraRevision {
     public void setMotivoCambioNota(String motivoCambioNota) {
         this.motivoCambioNota = motivoCambioNota;
     }
-
 }

@@ -1,16 +1,17 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
+
 import java.util.Date;
 
 public class Ciclo {
     private String codciclo;
-    private Date fechadesde;
-    private Date fechahasta;
+    private String fechadesde;
+    private String fechahasta;
 
     public Ciclo() {
     }
 
-    public Ciclo(String codciclo, Date fechadesde, Date fechahasta) {
+    public Ciclo(String codciclo, String fechadesde, String fechahasta) {
         this.codciclo = codciclo;
         this.fechadesde = fechadesde;
         this.fechahasta = fechahasta;
@@ -20,23 +21,23 @@ public class Ciclo {
         return codciclo;
     }
 
-    public Date getFechadesde() {
-        return fechadesde;
-    }
-
-    public Date getFechahasta() {
-        return fechahasta;
-    }
-
     public void setCodciclo(String codciclo) {
         this.codciclo = codciclo;
     }
 
-    public void setFechadesde(Date fechadesde) {
+    public String getFechadesde() {
+        return fechadesde;
+    }
+
+    public void setFechadesde(String fechadesde) {
         this.fechadesde = fechadesde;
     }
 
-    public void setFechahasta(Date fechahasta) {
+    public String getFechahasta() {
+        return fechahasta;
+    }
+
+    public void setFechahasta(String fechahasta) {
         this.fechahasta = fechahasta;
     }
 }
