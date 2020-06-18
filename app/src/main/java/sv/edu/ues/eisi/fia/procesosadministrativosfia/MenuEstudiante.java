@@ -208,6 +208,12 @@ public class MenuEstudiante extends ListActivity {
                     i++;
                     break;
                 }
+                case "020":{
+                    menu[i] = "Segunda Revisión.";
+                    activities[i] ="SegundaRevisionMenu";
+                    i++;
+                    break;
+                }
             }
         }
         return menu;

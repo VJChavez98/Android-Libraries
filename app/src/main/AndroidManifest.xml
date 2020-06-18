@@ -15,7 +15,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".SegundaRevisionMenu"></activity>
+        <activity android:name=".SegundaRevisionInsertar" />
+        <activity android:name=".SegundaRevisionEliminar" />
+        <activity android:name=".SegundaRevisionConsultar" />
+        <activity android:name=".SegundaRevisionActualizar" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -28,7 +32,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".Diferido_actualizar"/>
+        <activity android:name=".Diferido_actualizar" />
         <activity android:name=".SolicitudDiferido_consultarDocente" />
         <activity android:name=".DetalleEstudianteDiferido_consultar" />
         <activity android:name=".DetalleEstudianteRepetido_eliminar" />
@@ -79,7 +83,7 @@
         <activity android:name=".Repetido_Insertar" />
         <activity android:name=".Repetido_Consultar" />
         <activity android:name=".Repetido_menu" />
-        <activity android:name=".AsignaturaConsultarActivity"></activity>
+        <activity android:name=".AsignaturaConsultarActivity" />
         <activity android:name=".AsignaturaActualizarActivity" />
         <activity android:name=".AsignaturaEliminarActivity" />
         <activity android:name=".AsignaturaInsertarActivity" />
@@ -100,7 +104,7 @@
         <activity android:name=".DocenteMenuActivity" />
         <activity android:name=".CargaAcademicaMenuActivity" />
         <activity android:name=".CicloMenuActivity" />
-        <activity android:name=".EstadoImpresionInsertarActivity"></activity>
+        <activity android:name=".EstadoImpresionInsertarActivity" />
         <activity android:name=".EstadoImpresionEliminarActivity" />
         <activity android:name=".EstadoImpresionConsultarActivity" />
         <activity android:name=".EstadoImpresionActualizarActivity" />

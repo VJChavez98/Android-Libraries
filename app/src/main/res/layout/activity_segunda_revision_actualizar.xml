@@ -10,61 +10,11 @@
 
         <TableRow>
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/estadoPrimRev"/>
-            <RadioGroup
-                android:id="@+id/opciones_estado"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
-                <RadioButton
-                    android:id="@+id/radio_Terminada"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="@string/estadoTerminada" />
-                <RadioButton
-                    android:id="@+id/radio_Pendiente"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="16dp"
-                    android:checked="false"
-                    android:text="@string/estadoPendiente" />
-            </RadioGroup>
-        </TableRow>
-
-        <TableRow>
-            <TextView
                 android:text="@string/codasignatura" />
             <EditText
                 android:id="@+id/editCodasignatura"
                 android:inputType="text"
                 android:maxLength="6"/>
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/codtipogrupo"/>
-            <Spinner
-                android:id="@+id/spinTipoGrupo"
-                android:layout_height="wrap_content"
-                android:layout_width="fill_parent"
-                android:entries="@array/tipoGrupo"
-                android:textAlignment="center"
-                android:gravity="center_horizontal" />
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:text="@string/codciclo" />
-            <EditText
-                android:id="@+id/editCodciclo"
-                android:inputType="number"
-                android:maxLength="5"/>
         </TableRow>
 
         <TableRow>
@@ -91,6 +41,29 @@
 
         <TableRow>
             <TextView
+                android:text="@string/codciclo" />
+            <EditText
+                android:id="@+id/editCodciclo"
+                android:inputType="number"
+                android:maxLength="5"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/codtipogrupo"/>
+            <Spinner
+                android:id="@+id/spinTipoGrupo"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:entries="@array/tipoGrupo"
+                android:textAlignment="center"
+                android:gravity="center_horizontal" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
                 android:text="@string/codDocente" />
             <EditText
                 android:id="@+id/editCoddocente"
@@ -105,33 +78,6 @@
                 android:id="@+id/editCarnet"
                 android:inputType="text"
                 android:maxLength="7"/>
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/asistio"/>
-            <RadioGroup
-                android:id="@+id/opciones_asistencia"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
-                <RadioButton
-                    android:id="@+id/radio_Si"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="16dp"
-                    android:checked="true"
-                    android:text="@string/asisSi" />
-                <RadioButton
-                    android:id="@+id/radio_No"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:text="@string/asisNo" />
-            </RadioGroup>
         </TableRow>
 
         <TableRow>
@@ -176,7 +122,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="actualizarPrimeraRevision"
+                android:onClick="actualizarSegundaRevision"
                 android:text="@string/actualizar" />
 
             <Button
