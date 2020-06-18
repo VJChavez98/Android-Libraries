@@ -208,7 +208,7 @@ public class MenuEstudiante extends ListActivity {
                     i++;
                     break;
                 }
-                case "020":{
+                case "022":{
                     menu[i] = "Segunda Revisión.";
                     activities[i] ="SegundaRevisionMenu";
                     i++;

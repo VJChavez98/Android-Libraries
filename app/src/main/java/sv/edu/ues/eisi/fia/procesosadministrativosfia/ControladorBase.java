@@ -775,7 +775,7 @@ public class ControladorBase {
         /*String[] id = {segRev.getCarnet(), segRev.getCodtiporevision(), segRev.getCodasignatura(), segRev.getCodciclo(), segRev.getCodtipoeval(), segRev.getCodtipogrupo(), String.valueOf(segRev.getNumeroeval())};
         Cursor c = db.rawQuery("SELECT * FROM solicitudrevision WHERE carnet = ? AND codtiporevision = ? AND codasignatura = ? AND codciclo = ? AND codtipoeval = ? AND codtipogrupo = ? AND numeroeval = ?;", id);
         if(c.moveToFirst()){
-            if(verificarIntegridadReferencial(segRev, 33)){
+            if(verificarIntegridadReferencial(segRev, 36)){
                 ContentValues segundarevision = new ContentValues();
                 segundarevision.put("codmotivocambionota", segRev.getMotivoCambioNota());
                 segundarevision.put("codtipogrupo", segRev.getCodtipogrupo());
@@ -794,7 +794,7 @@ public class ControladorBase {
             Toast.makeText(context, "No existe Solicitud", Toast.LENGTH_SHORT).show();
         }*/
 
-        //if(verificarIntegridadReferencial(segRev, 33)) {
+        //if(verificarIntegridadReferencial(segRev, 36)) {
         ContentValues segundarevision = new ContentValues();
 
         segundarevision.put("codmotivocambionota", segRev.getMotivoCambioNota());
@@ -1018,7 +1018,7 @@ public class ControladorBase {
     }
 
     public String actualizar (SegundaRevision segRev){
-        if(verificarIntegridadReferencial(segRev, 34)){
+        if(verificarIntegridadReferencial(segRev, 37)){
             String[] id = {segRev.getCodtiporevision(), segRev.getCodasignatura(), segRev.getCodtipoeval(), String.valueOf(segRev.getNumeroeval()), segRev.getCodciclo(), segRev.getCarnet()};
             ContentValues cv = new ContentValues();
 
@@ -1107,7 +1107,7 @@ public class ControladorBase {
         String regAfectados = "Primera Revisión Eliminada con exito, Filas afectadas = ";
         int contador = 0;
 
-        if(verificarIntegridadReferencial(primRev, 35)){
+        if(verificarIntegridadReferencial(primRev, 38)){
             String nosepuede = "Error, existen registros de este Revision en otras Tablas.";
             return nosepuede;
         }
@@ -2389,7 +2389,7 @@ public class ControladorBase {
 
             }
 
-            case 33:{
+            case 36:{
                 //Verificar que al insertar  Segunda Revision exista SolicitudRevision, Primera Revision y Motivo Cambio Nota
                 SegundaRevision segRev = (SegundaRevision) dato;
                 //String[] id1 = {segRev.getCarnet(), segRev.getCodtiporevision(), segRev.getCodasignatura(), segRev.getCodciclo(), segRev.getCodtipoeval(), segRev.getCodtipogrupo(), String.valueOf(segRev.getNumeroeval())};
@@ -2408,7 +2408,7 @@ public class ControladorBase {
                 return false;
             }
 
-            case 34:{
+            case 37:{
                 //Verificar que al modificar la SegundaRevision exista la Primer Revision
                 SegundaRevision segRev = (SegundaRevision) dato;
 
@@ -2422,7 +2422,7 @@ public class ControladorBase {
                 return false;
             }
 
-            case 35:{
+            case 38:{
                 //Verificar que no haya registro de Primer Revision en otras tablas antes de eliminar
                 PrimeraRevision primRev = (PrimeraRevision) dato;
                 Cursor c = db.query(true, "segundarevision", new String[]{"coddocente", "carnet", "codtiporevision", "codasignatura", "codciclo", "codtipoeval", "numeroeval", "codtipogrupo"}, "coddocente = '"+primRev.getCoddocente()+"' AND carnet = '"+primRev.getCarnet()+"' AND codtiporevision = '"+primRev.getCodtiporevision()+"' AND codasignatura = '"+primRev.getCodasignatura()+"' AND codciclo = '"+primRev.getCodciclo()+"' AND codtipoeval = '"+primRev.getCodtipoeval()+"' AND numeroeval = "+primRev.getNumeroeval()+" AND codtipogrupo = '"+primRev.getCodtipogrupo()+"'", null, null, null, null, null);

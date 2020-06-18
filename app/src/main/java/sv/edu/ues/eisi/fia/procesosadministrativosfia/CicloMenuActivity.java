@@ -16,7 +16,6 @@ public class CicloMenuActivity extends ListActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ListView listView = getListView();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, menu);
         setListAdapter(adapter);
     }
@@ -24,7 +23,6 @@ public class CicloMenuActivity extends ListActivity  {
     protected void onListItemClick(ListView l, View v, int position, long id){
         super.onListItemClick(l, v, position, id);
         String nombreValue=activities[position];
-        l.getChildAt(position).setBackgroundColor(Color.rgb(128, 128, 255));
         try{
             Class<?> clase=Class.forName("sv.edu.ues.eisi.fia.procesosadministrativosfia."+nombreValue);
             Intent inte = new Intent(this,clase);

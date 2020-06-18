@@ -82,7 +82,6 @@
     <string name="asistio">Asistencia</string>
     <string name="asisSi">SI</string>
     <string name="asisNo">NO</string>
-    <string name="codtipogrupo">Tipo Grupo</string>
     <string name="fechaSolicitud">Fecha Solicitud</string>
     <string name="notaAntesRev">Nota Actual</string>
     <string name="numerogrupo">Numero Grupo</string>
@@ -189,10 +188,4 @@
     <string name="idSegRev">Código Segunda Revisión</string>
     <string name="codtipogrupo">Tipo Grupo</string>
 
-    <string-array name="tipoGrupo">
-        <item>Seleccione el Tipo de Grupo</item>
-        <item>GT</item>
-        <item>GD</item>
-        <item>GL</item>
-    </string-array>
 </resources>

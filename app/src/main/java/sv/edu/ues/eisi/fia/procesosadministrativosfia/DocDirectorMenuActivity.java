@@ -16,8 +16,6 @@ public class DocDirectorMenuActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ListView listView = getListView();
-        listView.setBackgroundColor(Color.rgb(64, 0, 128));
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menu);
         setListAdapter(adapter);
     }
@@ -26,7 +24,6 @@ public class DocDirectorMenuActivity extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         String nombreValue = activities[position];
-        l.getChildAt(position).setBackgroundColor(Color.rgb(255, 128, 0));
         try {
             Class<?> clase = Class.forName("sv.edu.ues.eisi.fia.procesosadministrativosfia." + nombreValue);
             Intent inte = new Intent(this, clase);
