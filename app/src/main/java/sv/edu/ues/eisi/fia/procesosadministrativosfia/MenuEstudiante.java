@@ -188,6 +188,18 @@ public class MenuEstudiante extends ListActivity {
                     i++;
                     break;
                 }
+                case "020":{
+                    menu[i] = "Solicitud Revision";
+                    activities[i] ="SolicitudRevision_menu";
+                    i++;
+                    break;
+                }
+                case "021":{
+                    menu[i] = "Lista de Revisiones";
+                    activities[i] ="ListaPerInsRevActivity";
+                    i++;
+                    break;
+                }
             }
         }
         return menu;

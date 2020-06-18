@@ -100,7 +100,6 @@ public class ControladorBase {
 
                 db.execSQL("CREATE TABLE tipogrupo(codtipogrupo VARCHAR(2) NOT NULL PRIMARY KEY, nombretipogrupo VARCHAR(50) NOT NULL);");
 
-                db.execSQL("CREATE TABLE estudiante(carnet VARCHAR(7) NOT NULL PRIMARY KEY, nombreestudiante VARCHAR(50) NOT NULL, apellidoestudiante VARCHAR(50) NOT NULL, carrera VARCHAR(50) NOT NULL);");
 
 
                 /*
@@ -584,7 +583,7 @@ public class ControladorBase {
         String regInsertados = "Registro No. = ";
         long contador = 0;
 
-        if(verificarIntegridadReferencial(solicitud, 31)){
+        if(verificarIntegridadReferencial(solicitud, 35)){
 
             ContentValues sol = new ContentValues();
             sol.put("fechasolicitudrevision", solicitud.getFechasolicitudrevision());
@@ -953,7 +952,7 @@ public class ControladorBase {
         String regAfectados = "Filas afectadas = ";
         int contador = 0;
 
-        if(verificarIntegridadReferencial(evaluacion, 32)){
+        if(verificarIntegridadReferencial(evaluacion, 34)){
             String nosepuede = "Error, No se puede eliminar, existen registros de esta Evaluación en otras Tablas.";
             return nosepuede;
         }
@@ -1713,7 +1712,7 @@ public class ControladorBase {
         String regAfectados = "Solicitud Eliminada, Filas afectadas = ";
         int contador = 0;
 
-        if(verificarIntegridadReferencial(solRev, 32)){
+        if(verificarIntegridadReferencial(solRev, 34)){
 
             String nosepuede = "Error, existen registros de esta Solicitud en otras tablas.";
             return nosepuede;
@@ -1739,7 +1738,7 @@ public class ControladorBase {
 
     public String actualizar(SolicitudRevision solRev) {
 
-        if (verificarIntegridadReferencial(solRev, 33)) {
+        if (verificarIntegridadReferencial(solRev, 35)) {
 
             String[] id = {solRev.getCarnet(), solRev.getCodtipogrupo(), solRev.getCodtiporevision(), solRev.getCodasignatura(), solRev.getCodciclo(), solRev.getCodtipoeval(), String.valueOf(solRev.getNumeroeval())};
             ContentValues cv = new ContentValues();
@@ -2362,13 +2361,13 @@ public class ControladorBase {
         final Boolean[] VEsIrealizado= {true, false, true, true };
         final String[] VEsIobservaciones= {"PARCIAL", "EVALUADO", "FOTOCOPIAS", "INTERNOS"};
 
-        final String[] idOpcion = {"001","002","003","004","005","006","007","008","009","010","011","012","013","014","015","016","017","018","019"};
-        final String[] idOpcionEstudiante ={"001","002", "003", "010"};
-        final String[] idOpcionDocente = {"004","005","006","008","009","010","011","016"};
-        final String[] idDocenteDirector = {"005","006","008","016"};
+        final String[] idOpcion = {"001","002","003","004","005","006","007","008","009","010","011","012","013","014","015","016","017","018","019","020","021"};
+        final String[] idOpcionEstudiante ={"001","002", "003", "010","020"};
+        final String[] idOpcionDocente = {"004","005","006","008","009","010","011","016","021"};
+        final String[] idDocenteDirector = {"005","006","008","016","021"};
         final String[] idEncargado = {"016","019"};
-        final String[] descripOpcion = {"Estudiante_menu","Repetido_menu", "Diferido_menu","DetalleDiferidoRepetido_menu","DetalleEstudianteDiferido_consultar", "DetalleEstudianteRepetido_consultar","Local_menu", "Evaluacion_menu", "PeriodoInscripcionRevision_menu", "PrimeraRevision_menu","SolicitudDiferido_consultarDocente","CicloMenuActivity","CargaAcademicaMenuActivity","DocenteMenuActivity", "AsignaturaMenuActivity","SolImpresionMenuActivity", "DocDirectorMenuActivity", "EstadoImpresionMenuActivity", "EncarImpresionesMenuActivity"};
-        final int[] numCrud = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19};
+        final String[] descripOpcion = {"Estudiante_menu","Repetido_menu", "Diferido_menu","DetalleDiferidoRepetido_menu","DetalleEstudianteDiferido_consultar", "DetalleEstudianteRepetido_consultar","Local_menu", "Evaluacion_menu", "PeriodoInscripcionRevision_menu", "PrimeraRevision_menu","SolicitudDiferido_consultarDocente","CicloMenuActivity","CargaAcademicaMenuActivity","DocenteMenuActivity", "AsignaturaMenuActivity","SolImpresionMenuActivity", "DocDirectorMenuActivity", "EstadoImpresionMenuActivity", "EncarImpresionesMenuActivity","SolicitudRevision_menu", "ListaPerInsRevActivity"};
+        final int[] numCrud = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21};
 
         abrir();
         db.execSQL("DELETE FROM usuario;");
@@ -2396,6 +2395,7 @@ public class ControladorBase {
         db.execSQL("DELETE FROM estadoimpresion");
         db.execSQL("DELETE FROM accesoUsuario");
         db.execSQL("DELETE FROM opcionCrud");
+        db.execSQL("DELETE FROM Estudiante");
 
         Usuario user = new Usuario();
         for (int i = 0; i < usersId.length; i++) {
