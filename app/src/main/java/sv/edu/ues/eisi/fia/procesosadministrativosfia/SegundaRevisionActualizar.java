@@ -11,7 +11,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class PrimeraRevision_actualizar extends Activity {
+public class SegundaRevisionActualizar extends Activity {
     EditText editAsignatura, editCiclo, editNumEval, editDocente, editCarnet, editNotaFinal, editObservaciones;
     Spinner spinTipoEval, spinTipoGrupo, spinMotCambNota;
     RadioGroup radioEstado, radioAsistencia;
@@ -19,9 +19,10 @@ public class PrimeraRevision_actualizar extends Activity {
     ControladorBase helper;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_primera_revision_actualizar);
+        setContentView(R.layout.activity_segunda_revision_actualizar);
+
         helper = new ControladorBase(this);
         editAsignatura = (EditText) findViewById(R.id.editCodasignatura);
         editCiclo = (EditText) findViewById(R.id.editCodciclo);
@@ -41,89 +42,81 @@ public class PrimeraRevision_actualizar extends Activity {
         radioTerminada = (RadioButton) findViewById(R.id.radio_Terminada);
     }
 
-    public void actualizarPrimeraRevision(View v){
-        PrimeraRevision primRev = new PrimeraRevision();
-        primRev.setCodtiporevision("PR");
-        primRev.setCodasignatura(editAsignatura.getText().toString());
-        primRev.setCodciclo(editCiclo.getText().toString());
-        primRev.setCoddocente(editDocente.getText().toString());
-        primRev.setCarnet(editCarnet.getText().toString());
-        primRev.setObservacionesprimerarev(editObservaciones.getText().toString());
-        primRev.setMotivoCambioNota(spinMotCambNota.getSelectedItem().toString());
+    public void actualizarSegundaRevision(View v){
+        String asignatura = editAsignatura.getText().toString();
+        String ciclo = editCiclo.getText().toString();
+        String numEval = editNumEval.getText().toString();
+        String docente = editDocente.getText().toString();
+        String carnet = editCarnet.getText().toString();
+        String notafinal = editNotaFinal.getText().toString();
+        String observaciones = editObservaciones.getText().toString();
+        String tipoRevision = "SR";
+        String regInsertados;
+
+        SegundaRevision segundaRevision = new SegundaRevision();
+        segundaRevision.setCarnet(carnet);
+        segundaRevision.setCodasignatura(asignatura);
+        segundaRevision.setCodciclo(ciclo);
+        segundaRevision.setCoddocente(docente);
+        segundaRevision.setObservacionessegundarev(observaciones);
+        segundaRevision.setCodtiporevision(tipoRevision);
 
         if(!editNumEval.getText().toString().isEmpty()){
-            primRev.setNumeroeval(Integer.parseInt(editNumEval.getText().toString()));
+            segundaRevision.setNumeroeval(Integer.parseInt(numEval));
         }else{
-            primRev.setNumeroeval(0);
+            segundaRevision.setNumeroeval(0);
         }
 
         if(!editNotaFinal.getText().toString().isEmpty()){
-            primRev.setNotadespuesprimerarevision(Float.parseFloat(editNotaFinal.getText().toString()));
+            segundaRevision.setNotafinalsegundarev(Float.parseFloat(notafinal));
         }else{
-            primRev.setNotadespuesprimerarevision(0.0f);
+            segundaRevision.setNotafinalsegundarev(0.0f);
         }
 
         //Validacion de los Spinner para guardar los codigos.
         if(spinTipoEval.getSelectedItem().toString().equals("Examen Parcial")){
             String tipoEval = "EP";
-            primRev.setCodtipoeval(tipoEval);
+            segundaRevision.setCodtipoeval(tipoEval);
         }else if(spinTipoEval.getSelectedItem().toString().equals("Examen Discusion")){
             String tipoEval = "ED";
-            primRev.setCodtipoeval(tipoEval);
+            segundaRevision.setCodtipoeval(tipoEval);
         }else if(spinTipoEval.getSelectedItem().toString().equals("Examen Laboratorio")){
             String tipoEval = "EL";
-            primRev.setCodtipoeval(tipoEval);
+            segundaRevision.setCodtipoeval(tipoEval);
         }else{
-            primRev.setCodtipoeval("");
+            segundaRevision.setCodtipoeval("");
         }
 
         if(spinMotCambNota.getSelectedItem().toString().equals("Error de suma")){
             String motivoCambNota = "ERRSUM";
-            primRev.setMotivoCambioNota(motivoCambNota);
+            segundaRevision.setMotivoCambioNota(motivoCambNota);
         }else if(spinMotCambNota.getSelectedItem().toString().equals("Error de elaboracion de preguntas")){
             String motivoCambNota = "ERRELPR";
-            primRev.setMotivoCambioNota(motivoCambNota);
+            segundaRevision.setMotivoCambioNota(motivoCambNota);
         }else if(spinMotCambNota.getSelectedItem().toString().equals("Error de calificacion")){
             String motivoCambNota = "ERRCAL";
-            primRev.setMotivoCambioNota(motivoCambNota);
+            segundaRevision.setMotivoCambioNota(motivoCambNota);
         }else{
-            primRev.setMotivoCambioNota("");
+            segundaRevision.setMotivoCambioNota("");
         }
 
         if(spinTipoGrupo.getSelectedItem().toString().equals("GT")){
             String tipoGrupo = "GT";
-            primRev.setCodtipogrupo(tipoGrupo);
+            segundaRevision.setCodtipogrupo(tipoGrupo);
         }else if(spinTipoGrupo.getSelectedItem().toString().equals("GD")){
             String tipoGrupo = "GD";
-            primRev.setCodtipogrupo(tipoGrupo);
+            segundaRevision.setCodtipogrupo(tipoGrupo);
         }else if(spinTipoGrupo.getSelectedItem().toString().equals("GL")){
             String tipoGrupo = "GL";
-            primRev.setCodtipogrupo(tipoGrupo);
+            segundaRevision.setCodtipogrupo(tipoGrupo);
         }else{
-            primRev.setCodtipogrupo("");
-        }
-
-        if(radioSi.isChecked()){
-            String asistencia = "SI";
-            primRev.setAsistio(asistencia);
-        }else if(radioNo.isChecked()){
-            String asistencia = "NO";
-            primRev.setAsistio(asistencia);
-        }
-
-        if(radioPendiente.isChecked()){
-            String estado = "Pendiente";
-            primRev.setEstadoprimerrevision(estado);
-        }else if(radioTerminada.isChecked()){
-            String estado = "Terminada";
-            primRev.setEstadoprimerrevision(estado);
+            segundaRevision.setCodtipogrupo("");
         }
 
         helper.abrir();
-        String estado = helper.actualizar(primRev);
+        regInsertados = helper.actualizar(segundaRevision);
         helper.cerrar();
-
-        Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, regInsertados, Toast.LENGTH_LONG).show();
     }
 
     public void limpiarTexto(View v){
@@ -137,9 +130,5 @@ public class PrimeraRevision_actualizar extends Activity {
         spinTipoEval.setSelection(0);
         spinMotCambNota.setSelection(0);
         spinTipoGrupo.setSelection(0);
-        radioSi.setChecked(true);
-        radioNo.setChecked(false);
-        radioTerminada.setChecked(true);
-        radioPendiente.setChecked(false);
     }
 }

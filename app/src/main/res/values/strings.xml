@@ -171,7 +171,16 @@
     <string name="error_campo_obligatorio">Campo Obligatorio</string>
     <string name="error_valor_entre">Error valor entre 1 y 9999</string>
 
-
     <string name="validar">Validar</string>
     <string name="title_activity_maps">Map</string>
+
+    <string name="idSegRev">Código Segunda Revisión</string>
+    <string name="codtipogrupo">Tipo Grupo</string>
+
+    <string-array name="tipoGrupo">
+        <item>Seleccione el Tipo de Grupo</item>
+        <item>GT</item>
+        <item>GD</item>
+        <item>GL</item>
+    </string-array>
 </resources>

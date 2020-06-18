@@ -18,7 +18,8 @@ public class ControladorBase {
     private static final String[] camposEvaluacion = {"codasignatura", "codciclo", "codtipoeval", "numeroeval", "fechaevaluacion"};
     private static final String[] camposLocal = {"codlocal", "nomlocal", "ubicacionlocal"};
     private static final String[] camposPerInscRev = {"fechadesde", "fechahasta", "fecharevision", "horarevision", "codtiporevision", "coddocente", "codlocal", "codasignatura", "codtipoeval", "codciclo", "numeroeval"};
-    private static final String[] camposPrimerRevision = {"estadoprimerrevision", "notadespuesprimerarevision", "asistio", "observacionesprimerarev", "coddocente", "carnet", "codasignatura", "codciclo", "codtipoeval", "numeroeval", "codtiporevision", "codmotivocambionota"};
+    private static final String[] camposPrimerRevision = {"estadoprimerrevision", "notadespuesprimerarevision", "asistio", "observacionesprimerarev", "coddocente", "codtipogrupo", "carnet", "codasignatura", "codciclo", "codtipoeval", "numeroeval", "codtiporevision", "codmotivocambionota"};
+    private static final String[] camposSegundaRevision = {"codmotivocambionota", "codtipogrupo", "coddocente", "notafinalsegundarev", "observacionessegundarev", "carnet", "codasignatura", "codciclo", "codtipoeval", "numeroeval", "codtiporevision"};
     private static final String[]camposCiclo = new String[]
             {"codciclo", "fechadesde", "fechahasta"};
     private static final String[]camposCargaAcademica = new String[]
@@ -85,14 +86,20 @@ public class ControladorBase {
                         "codasignatura VARCHAR(6) NOT NULL, codciclo VARCHAR(5) NOT NULL, codtipoeval VARCHAR(2) NOT NULL, numeroeval INTEGER NOT NULL, " +
                         "PRIMARY KEY(codtiporevision, codasignatura, codciclo, codtipoeval, numeroeval));");
 
-                db.execSQL("CREATE TABLE primerrevision(estadoprimerrevision VARCHAR(15) NOT NULL, notadespuesprimerarevision REAL NOT NULL, asistio VARCHAR(2) NOT NULL, observacionesprimerarev VARCHAR(200), coddocente VARCHAR(10) NOT NULL," +
+                db.execSQL("CREATE TABLE primerrevision(estadoprimerrevision VARCHAR(15) NOT NULL, notadespuesprimerarevision REAL NOT NULL, asistio VARCHAR(2) NOT NULL, observacionesprimerarev VARCHAR(200), coddocente VARCHAR(10) NOT NULL,  codtipogrupo VARCHAR(2) NOT NULL," +
                         "carnet VARCHAR(7) NOT NULL, codasignatura VARCHAR(6) NOT NULL, codciclo VARCHAR(5) NOT NULL, codtipoeval VARCHAR(2) NOT NULL, numeroeval INTEGER NOT NULL, codtiporevision VARCHAR(2) NOT NULL, codmotivocambionota VARCHAR(10) NOT NULL," +
-                        "PRIMARY KEY(coddocente, carnet, codtiporevision, codasignatura, codciclo, codtipoeval, numeroeval));");
+                        "PRIMARY KEY(coddocente, carnet, codtiporevision, codasignatura, codciclo, codtipoeval, numeroeval, codtipogrupo));");
 
                 db.execSQL("CREATE TABLE motivocambionota(codmotivocambionota VARCHAR(10) NOT NULL PRIMARY KEY, motivo VARCHAR(200) NOT NULL);");
                 db.execSQL("CREATE TABLE solicitudrevision(fechasolicitudrevision DATE, notaantesrevision REAL NOT NULL, codtipogrupo VARCHAR(2) NOT NULL, numerogrupo INTEGER NOT NULL, motivorevision VARCHAR(200)," +
                         "carnet VARCHAR(7) NOT NULL, codasignatura VARCHAR(6) NOT NULL, codciclo VARCHAR(5) NOT NULL, codtipoeval VARCHAR(2) NOT NULL, numeroeval INTEGER NOT NULL, codtiporevision VARCHAR(2) NOT NULL," +
-                        "PRIMARY KEY(carnet, codtiporevision, codasignatura, codciclo, codtipoeval, numeroeval));");
+                        "PRIMARY KEY(carnet, codtiporevision, codasignatura, codciclo, codtipoeval, numeroeval, codtipogrupo));");
+
+                db.execSQL("CREATE TABLE segundarevision(codmotivocambionota VARCHAR(10) NOT NULL, codtipogrupo VARCHAR(2) NOT NULL, coddocente VARCHAR(10) NOT NULL, notafinalsegundarev REAL NOT NULL, observacionessegundarev VARCHAR(200), " +
+                        "carnet VARCHAR(7) NOT NULL, codasignatura VARCHAR(6) NOT NULL, codciclo VARCHAR(5) NOT NULL, codtipoeval VARCHAR(2) NOT NULL, numeroeval INTEGER NOT NULL, codtiporevision VARCHAR(2) NOT NULL," +
+                        "PRIMARY KEY(codtiporevision, codasignatura, codtipoeval, numeroeval, codciclo, carnet));");
+
+                db.execSQL("CREATE TABLE tipogrupo(codtipogrupo VARCHAR(2) NOT NULL PRIMARY KEY, nombretipogrupo VARCHAR(50) NOT NULL);");
 
                 /*
                  *
@@ -709,11 +716,11 @@ public class ControladorBase {
         return regInsertados;
     }
 
-    public String insertar(PrimeraRevision primRev) {
-        String regInsertados = "Registro No. = ";
+    public String insertar(PrimeraRevision primRev){
+        String regInsertados = "Revisión Insertada con Exito, Registro No. = ";
         long contador = 0;
 
-        if (verificarIntegridadReferencial(primRev, 10)) {
+        if(verificarIntegridadReferencial(primRev, 10)){
             ContentValues primerrevision = new ContentValues();
             primerrevision.put("estadoprimerrevision", primRev.getEstadoprimerrevision());
             primerrevision.put("notadespuesprimerarevision", primRev.getNotadespuesprimerarevision());
@@ -727,11 +734,62 @@ public class ControladorBase {
             primerrevision.put("numeroeval", primRev.getNumeroeval());
             primerrevision.put("codtiporevision", primRev.getCodtiporevision());
             primerrevision.put("codmotivocambionota", primRev.getMotivoCambioNota());
+            primerrevision.put("codtipogrupo", primRev.getCodtipogrupo());
             contador = db.insert("primerrevision", null, primerrevision);
         }
-        if (contador == -1 || contador == 0) {
-            regInsertados = "Error al insertar el registro, Registro Duplicado. Verificar Insercion";
-        } else {
+        if (contador == -1 || contador == 0){
+            regInsertados = "Error al insertar Primera Revisión, Registro Duplicado o Campos Incompletos. Verificar Inserción.";
+        }else{
+            regInsertados = regInsertados + contador;
+        }
+        return regInsertados;
+    }
+
+    public String insertar(SegundaRevision segRev){
+        String regInsertados = "Revisión Insertada con Exito, Registro No. = ";
+        long contador = 0;
+
+        /*String[] id = {segRev.getCarnet(), segRev.getCodtiporevision(), segRev.getCodasignatura(), segRev.getCodciclo(), segRev.getCodtipoeval(), segRev.getCodtipogrupo(), String.valueOf(segRev.getNumeroeval())};
+        Cursor c = db.rawQuery("SELECT * FROM solicitudrevision WHERE carnet = ? AND codtiporevision = ? AND codasignatura = ? AND codciclo = ? AND codtipoeval = ? AND codtipogrupo = ? AND numeroeval = ?;", id);
+        if(c.moveToFirst()){
+            if(verificarIntegridadReferencial(segRev, 33)){
+                ContentValues segundarevision = new ContentValues();
+                segundarevision.put("codmotivocambionota", segRev.getMotivoCambioNota());
+                segundarevision.put("codtipogrupo", segRev.getCodtipogrupo());
+                segundarevision.put("coddocente", segRev.getCoddocente());
+                segundarevision.put("notafinalsegundarev", segRev.getNotafinalsegundarev());
+                segundarevision.put("observacionessegundarev", segRev.getObservacionessegundarev());
+                segundarevision.put("carnet", segRev.getCarnet());
+                segundarevision.put("codasignatura", segRev.getCodasignatura());
+                segundarevision.put("codciclo", segRev.getCodciclo());
+                segundarevision.put("codtipoeval", segRev.getCodtipoeval());
+                segundarevision.put("numeroeval", segRev.getNumeroeval());
+                segundarevision.put("codtiporevision", segRev.getCodtiporevision());
+                contador = db.insert("segundarevision", null, segundarevision);
+            }
+        }else{
+            Toast.makeText(context, "No existe Solicitud", Toast.LENGTH_SHORT).show();
+        }*/
+
+        //if(verificarIntegridadReferencial(segRev, 33)) {
+        ContentValues segundarevision = new ContentValues();
+
+        segundarevision.put("codmotivocambionota", segRev.getMotivoCambioNota());
+        segundarevision.put("codtipogrupo", segRev.getCodtipogrupo());
+        segundarevision.put("coddocente", segRev.getCoddocente());
+        segundarevision.put("notafinalsegundarev", segRev.getNotafinalsegundarev());
+        segundarevision.put("observacionessegundarev", segRev.getObservacionessegundarev());
+        segundarevision.put("carnet", segRev.getCarnet());
+        segundarevision.put("codasignatura", segRev.getCodasignatura());
+        segundarevision.put("codciclo", segRev.getCodciclo());
+        segundarevision.put("codtipoeval", segRev.getCodtipoeval());
+        segundarevision.put("numeroeval", segRev.getNumeroeval());
+        segundarevision.put("codtiporevision", segRev.getCodtiporevision());
+        contador = db.insert("segundarevision", null, segundarevision);
+        //}
+        if (contador == -1 || contador == 0){
+            regInsertados = "Error al insertar Segunda Revisión, Registro Duplicado o Campos Incompletos. Verificar Inserción.";
+        }else{
             regInsertados = regInsertados + contador;
         }
         return regInsertados;
@@ -831,25 +889,48 @@ public class ControladorBase {
         }
     }
 
-    public PrimeraRevision consultarPrimerRevision(String codAsignatura, String codCiclo, int numEval, String carnet, String tipoEval) {
-        String[] id = {codAsignatura, codCiclo, String.valueOf(numEval), carnet, tipoEval};
-        Cursor cursor = db.query("primerrevision", camposPrimerRevision, "codasignatura = ? AND codciclo = ? AND numeroeval = ? AND carnet = ? AND codtipoeval = ?", id, null, null, null);
-        if (cursor.moveToFirst()) {
+    public PrimeraRevision consultarPrimerRevision(String codAsignatura, String codCiclo, int numEval, String carnet, String tipoEval, String codtipogrupo){
+        String[] id = {codAsignatura, codCiclo, String.valueOf(numEval), carnet, tipoEval, codtipogrupo};
+        Cursor cursor = db.query("primerrevision", camposPrimerRevision, "codasignatura = ? AND codciclo = ? AND numeroeval = ? AND carnet = ? AND codtipoeval = ? AND codtipogrupo = ?", id, null, null, null);
+        if(cursor.moveToFirst()) {
             PrimeraRevision primRev = new PrimeraRevision();
             primRev.setEstadoprimerrevision(cursor.getString(0));
             primRev.setNotadespuesprimerarevision(Float.parseFloat(cursor.getString(1)));
             primRev.setAsistio(cursor.getString(2));
             primRev.setObservacionesprimerarev(cursor.getString(3));
             primRev.setCoddocente(cursor.getString(4));
-            primRev.setCarnet(cursor.getString(5));
-            primRev.setCodasignatura(cursor.getString(6));
-            primRev.setCodciclo(cursor.getString(7));
-            primRev.setCodtipoeval(cursor.getString(8));
-            primRev.setNumeroeval(Integer.parseInt(cursor.getString(9)));
-            primRev.setCodtiporevision(cursor.getString(10));
-            primRev.setMotivoCambioNota(cursor.getString(11));
+            primRev.setCodtipogrupo(cursor.getString(5));
+            primRev.setCarnet(cursor.getString(6));
+            primRev.setCodasignatura(cursor.getString(7));
+            primRev.setCodciclo(cursor.getString(8));
+            primRev.setCodtipoeval(cursor.getString(9));
+            primRev.setNumeroeval(Integer.parseInt(cursor.getString(10)));
+            primRev.setCodtiporevision(cursor.getString(11));
+            primRev.setMotivoCambioNota(cursor.getString(12));
             return primRev;
-        } else {
+        }else{
+            return null;
+        }
+    }
+
+    public SegundaRevision consultarSegundaRevision(String codAsignatura, String codTipoEval, int numeroEval, String codCiclo, String carnet){
+        String[] id = {codAsignatura, codTipoEval, String.valueOf(numeroEval), codCiclo, carnet};
+        Cursor cursor = db.query("segundarevision", camposSegundaRevision, "codasignatura = ? AND codtipoeval = ? AND numeroeval = ? AND codciclo = ? AND carnet = ?", id, null, null, null);
+        if(cursor.moveToFirst()) {
+            SegundaRevision segRev = new SegundaRevision();
+            segRev.setMotivoCambioNota(cursor.getString(0));
+            segRev.setCodtipogrupo(cursor.getString(1));
+            segRev.setCoddocente(cursor.getString(2));
+            segRev.setNotafinalsegundarev(Float.parseFloat(cursor.getString(3)));
+            segRev.setObservacionessegundarev(cursor.getString(4));
+            segRev.setCarnet(cursor.getString(5));
+            segRev.setCodasignatura(cursor.getString(6));
+            segRev.setCodciclo(cursor.getString(7));
+            segRev.setCodtipoeval(cursor.getString(8));
+            segRev.setNumeroeval(Integer.parseInt(cursor.getString(9)));
+            segRev.setCodtiporevision(cursor.getString(10));
+            return segRev;
+        }else{
             return null;
         }
     }
@@ -897,19 +978,42 @@ public class ControladorBase {
         }
     }
 
-    public String actualizar(PrimeraRevision primRev) {
-        if (verificarIntegridadReferencial(primRev, 11)) {
-            String[] id = {primRev.getCoddocente(), primRev.getCarnet(), primRev.getCodasignatura(), primRev.getCodtiporevision(), primRev.getCodciclo(), primRev.getCodtipoeval(), String.valueOf(primRev.getNumeroeval())};
+    public String actualizar (PrimeraRevision primRev){
+        if(verificarIntegridadReferencial(primRev, 11)){
+            String[] id = {primRev.getCoddocente() ,primRev.getCarnet(), primRev.getCodasignatura(), primRev.getCodtiporevision(), primRev.getCodciclo(), primRev.getCodtipoeval(), primRev.getCodtipogrupo(), String.valueOf(primRev.getNumeroeval())};
             ContentValues cv = new ContentValues();
             cv.put("estadoprimerrevision", primRev.getEstadoprimerrevision());
             cv.put("asistio", primRev.getAsistio());
             cv.put("notadespuesprimerarevision", primRev.getNotadespuesprimerarevision());
             cv.put("codmotivocambionota", primRev.getMotivoCambioNota());
             cv.put("observacionesprimerarev", primRev.getObservacionesprimerarev());
-            db.update("primerrevision", cv, "coddocente = ? AND carnet = ? AND codasignatura = ? AND codtiporevision = ? AND codciclo = ? AND codtipoeval = ? AND numeroeval = ?", id);
-            return "Registro Actualizado Correctamente";
-        } else {
-            return "Registro no Existe";
+            db.update("primerrevision", cv, "coddocente = ? AND carnet = ? AND codasignatura = ? AND codtiporevision = ? AND codciclo = ? AND codtipoeval = ? AND codtipogrupo = ? AND numeroeval = ?", id);
+            return "Revisión Actualizada Correctamente";
+        }else{
+            return "Error, está Revisión No Existe";
+        }
+    }
+
+    public String actualizar (SegundaRevision segRev){
+        if(verificarIntegridadReferencial(segRev, 34)){
+            String[] id = {segRev.getCodtiporevision(), segRev.getCodasignatura(), segRev.getCodtipoeval(), String.valueOf(segRev.getNumeroeval()), segRev.getCodciclo(), segRev.getCarnet()};
+            ContentValues cv = new ContentValues();
+
+            cv.put("codtiporevision", segRev.getCodtiporevision());
+            cv.put("codasignatura", segRev.getCodasignatura());
+            cv.put("codtipoeval", segRev.getCodtipoeval());
+            cv.put("numeroeval", segRev.getNumeroeval());
+            cv.put("codciclo", segRev.getCodciclo());
+            cv.put("codmotivocambionota", segRev.getMotivoCambioNota());
+            cv.put("codtipogrupo", segRev.getCodtipogrupo());
+            cv.put("carnet", segRev.getCarnet());
+            cv.put("coddocente", segRev.getCoddocente());
+            cv.put("notafinalsegundarev", segRev.getNotafinalsegundarev());
+            cv.put("observacionessegundarev", segRev.getObservacionessegundarev());
+            db.update("segundarevision", cv, "codtiporevision = ? AND codasignatura = ? AND codtipoeval = ? AND numeroeval = ? AND codciclo = ? AND carnet = ?", id);
+            return "Revisión Actualizada Correctamente";
+        }else{
+            return "Error, está Revisión No Existe";
         }
     }
 
@@ -980,22 +1084,49 @@ public class ControladorBase {
         String regAfectados = "Primera Revisión Eliminada con exito, Filas afectadas = ";
         int contador = 0;
 
+        if(verificarIntegridadReferencial(primRev, 35)){
+            String nosepuede = "Error, existen registros de este Revision en otras Tablas.";
+            return nosepuede;
+        }
+
         String where = "coddocente = '"+primRev.getCoddocente()+"'";
         where = where + "AND carnet = '"+primRev.getCarnet()+"'";
         where = where + "AND codasignatura = '"+primRev.getCodasignatura()+"'";
         where = where + "AND codtiporevision = '"+primRev.getCodtiporevision()+"'";
         where = where + "AND codciclo = '"+primRev.getCodciclo()+"'";
         where = where + "AND codtipoeval = '"+primRev.getCodtipoeval()+"'";
+        where = where + "AND codtipogrupo = '"+primRev.getCodtipogrupo()+"'";
         where = where + "AND numeroeval = '"+primRev.getNumeroeval()+"'";
         contador += db.delete("primerrevision", where, null);
 
         if(contador == 0){
-            return "Período Revisión No Existe";
+            return "Primera Revisión No Existe";
         }
 
         regAfectados += contador;
         return regAfectados;
     }
+
+    public String eliminar (SegundaRevision segRev){
+        String regAfectados = "Segunda Revisión Eliminada con exito, Filas afectadas = ";
+        int contador = 0;
+
+        String where = "codtiporevision = '"+segRev.getCodtiporevision()+"'";
+        where = where + "AND codasignatura = '"+segRev.getCodasignatura()+"'";
+        where = where + "AND codtipoeval = '"+segRev.getCodtipoeval()+"'";
+        where = where + "AND numeroeval = '"+segRev.getNumeroeval()+"'";
+        where = where + "AND codciclo = '"+segRev.getCodciclo()+"'";
+        where = where + "AND carnet = '"+segRev.getCarnet()+"'";
+        contador += db.delete("segundarevision", where, null);
+
+        if(contador == 0){
+            return "Segunda Revisión No Existe.";
+        }
+
+        regAfectados += contador;
+        return regAfectados;
+    }
+
     public String insertar(Ciclo ciclo){
         String regInsertados="Registro Insertado N°=";
         long contador=0;
@@ -1815,27 +1946,27 @@ public class ControladorBase {
             case 10: {
                 //Verificar que al insertar  Primera Revision exista SolicitudRevision, Docente y Motivo Cambio Nota
                 PrimeraRevision primRev = (PrimeraRevision) dato;
-                String[] id1 = {primRev.getCarnet(), primRev.getCodtiporevision(), primRev.getCodasignatura(), primRev.getCodciclo(), primRev.getCodtipoeval(), String.valueOf(primRev.getNumeroeval())};
+                String[] id1 = {primRev.getCarnet(), primRev.getCodtiporevision(), primRev.getCodasignatura(), primRev.getCodciclo(), primRev.getCodtipoeval(), primRev.getCodtipogrupo(), String.valueOf(primRev.getNumeroeval())};
                 String[] id2 = {primRev.getCoddocente()};
                 String[] id3 = {primRev.getMotivoCambioNota()};
                 abrir();
 
-                Cursor cursor1 = db.query("solicitudrevision", null, "carnet = ? AND codtiporevision = ? AND codasignatura = ? AND codciclo = ? AND codtipoeval = ? AND numeroeval = ?", id1, null, null, null);
+                Cursor cursor1 = db.query("solicitudrevision", null, "carnet = ? AND codtiporevision = ? AND codasignatura = ? AND codciclo = ? AND codtipoeval = ? AND codtipogrupo = ? AND numeroeval = ? ", id1, null, null, null);
                 Cursor cursor2 = db.query("docente", null, "coddocente = ?", id2, null, null, null);
                 Cursor cursor3 = db.query("motivocambionota", null, "codmotivocambionota = ?", id3, null, null, null);
 
-                if (cursor1.moveToFirst() && cursor2.moveToFirst() && cursor3.moveToFirst()) {
+                if(cursor1.moveToFirst() && cursor2.moveToFirst() && cursor3.moveToFirst()){
                     return true;
                 }
             }
             case 11: {
                 //Verificar que al modificar la PrimerRevision exista la solicitud de revision Solicitud Revision
                 PrimeraRevision primRev = (PrimeraRevision) dato;
-                String[] ids = {primRev.getCoddocente(), primRev.getCarnet(), primRev.getCodasignatura(), primRev.getCodtiporevision(), primRev.getCodciclo(), primRev.getCodtipoeval(), String.valueOf(primRev.getNumeroeval())};
+                String[] ids = {primRev.getCoddocente() ,primRev.getCarnet(), primRev.getCodasignatura(), primRev.getCodtiporevision(), primRev.getCodciclo(), primRev.getCodtipoeval(), primRev.getCodtipogrupo(), String.valueOf(primRev.getNumeroeval())};
                 abrir();
 
-                Cursor c = db.query("primerrevision", null, "coddocente = ? AND carnet = ? AND codasignatura = ? AND codtiporevision = ? AND codciclo = ? AND codtipoeval = ? AND numeroeval = ?", ids, null, null, null);
-                if (c.moveToFirst()) {
+                Cursor c  = db.query("primerrevision", null, "coddocente = ? AND carnet = ? AND codasignatura = ? AND codtiporevision = ? AND codciclo = ? AND codtipoeval = ? AND codtipogrupo = ? AND numeroeval = ?", ids, null, null, null);
+                if(c.moveToFirst()){
                     return true;
                 }
                 return false;
@@ -2113,10 +2244,55 @@ public class ControladorBase {
                     return false;
                 }
             }
+
             case 32:{
                 //Verificar que no haya registro de local en otras tablas antes de eliminar
                 Evaluacion evaluacion = (Evaluacion) dato;
                 Cursor c = db.query(true, "periodoinscripcionrevision", new String[]{"codasignatura", "codciclo", "codtipoeval", "numeroeval"}, "codasignatura = '"+evaluacion.getCodAsignatura()+"' AND codciclo = '"+evaluacion.getCodCiclo()+"' AND codtipoeval = '"+evaluacion.getCodTipoEval()+"' AND numeroeval = '"+evaluacion.getNumeroEvaluacion()+"'", null, null, null, null, null);
+                if(c.moveToFirst()){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+
+            case 33:{
+                //Verificar que al insertar  Segunda Revision exista SolicitudRevision, Primera Revision y Motivo Cambio Nota
+                SegundaRevision segRev = (SegundaRevision) dato;
+                //String[] id1 = {segRev.getCarnet(), segRev.getCodtiporevision(), segRev.getCodasignatura(), segRev.getCodciclo(), segRev.getCodtipoeval(), segRev.getCodtipogrupo(), String.valueOf(segRev.getNumeroeval())};
+                String[] id2 = {segRev.getCoddocente(), segRev.getCarnet(), segRev.getCodtiporevision(), segRev.getCodasignatura(), segRev.getCodciclo(), segRev.getCodtipoeval(), String.valueOf(segRev.getNumeroeval()), segRev.getCodtipogrupo()};
+                String[] id3 = {segRev.getMotivoCambioNota()};
+                abrir();
+
+                //Cursor cursor1 = db.query("solicitudrevision", null, "carnet = ? AND codtiporevision = ? AND codasignatura = ? AND codciclo = ? AND codtipoeval = ? AND codtipogrupo = ? AND numeroeval = ? ", id1, null, null, null);
+                Cursor cursor2 = db.query("primerrevision", null, "coddocente = ? AND carnet = ? AND codtiporevision = ? AND codasignatura = ? AND codciclo = ? AND codtipoeval = ? AND numeroeval = ? AND codtipogrupo = ?", id2, null, null, null);
+                Cursor cursor3 = db.query("motivocambionota", null, "codmotivocambionota = ?", id3, null, null, null);
+
+                if(cursor2.moveToFirst() && cursor3.moveToFirst()){
+                    return true;
+                }
+
+                return false;
+            }
+
+            case 34:{
+                //Verificar que al modificar la SegundaRevision exista la Primer Revision
+                SegundaRevision segRev = (SegundaRevision) dato;
+
+                String[] ids = {segRev.getCodtiporevision(), segRev.getCodasignatura(), segRev.getCodtipoeval(), String.valueOf(segRev.getNumeroeval()), segRev.getCodciclo(), segRev.getCarnet()};
+                abrir();
+
+                Cursor c  = db.query("segundarevision", null, "codtiporevision = ? AND codasignatura = ? AND codtipoeval = ? AND numeroeval = ? AND codciclo = ? AND carnet = ?", ids, null, null, null);
+                if(c.moveToFirst()){
+                    return true;
+                }
+                return false;
+            }
+
+            case 35:{
+                //Verificar que no haya registro de Primer Revision en otras tablas antes de eliminar
+                PrimeraRevision primRev = (PrimeraRevision) dato;
+                Cursor c = db.query(true, "segundarevision", new String[]{"coddocente", "carnet", "codtiporevision", "codasignatura", "codciclo", "codtipoeval", "numeroeval", "codtipogrupo"}, "coddocente = '"+primRev.getCoddocente()+"' AND carnet = '"+primRev.getCarnet()+"' AND codtiporevision = '"+primRev.getCodtiporevision()+"' AND codasignatura = '"+primRev.getCodasignatura()+"' AND codciclo = '"+primRev.getCodciclo()+"' AND codtipoeval = '"+primRev.getCodtipoeval()+"' AND numeroeval = "+primRev.getNumeroeval()+" AND codtipogrupo = '"+primRev.getCodtipogrupo()+"'", null, null, null, null, null);
                 if(c.moveToFirst()){
                     return true;
                 }else{
@@ -2158,17 +2334,18 @@ public class ControladorBase {
         final String[] TMCNcodmotivocambnota = {"ERRSUM", "ERRELPR", "ERRCAL"};
         final String[] TMCNmotivo = {"Error de suma", "Error de elaboracion de preguntas", "Error de calificacion"};
 
-        final Date[] TSoRfechasolicitudrev = {Date.valueOf("2020-05-10"), Date.valueOf("2020-05-15")};
-        final String[] TSoRmotivorevision = {"Mal calculo en la suma", "Pregunta incoherente"};
-        final String[] TSoRcarnet = {"RM17039", "PR17017"};
-        final String[] TSoRcodasignatura = {"MAT115", "FIR115"};
-        final String[] TSoRcodcilo = {"12020", "22020"};
-        final String[] TSoRcodtipoeval = {"EP", "ED"};
-        final String[] TSoRcodtiporev = {"PR", "PR"};
-        final float[] TSoRnotaantesrev = {Float.parseFloat("7.5"), Float.parseFloat("6.0")};
-        final String[] TSoRcodtipogrupo = {"GD", "GL"};
-        final int[] TSoRnumerogrupo = {Integer.parseInt("1"), Integer.parseInt("3")};
-        final int[] TSoRcodnumeroeval = {Integer.parseInt("1"), Integer.parseInt("2")};
+        final Date[] TSoRfechasolicitudrev = {Date.valueOf("2020-05-10"), Date.valueOf("2020-05-15"), Date.valueOf("2020-05-15")};
+        final String[] TSoRmotivorevision = {"Mal calculo en la suma", "Pregunta incoherente", "Mal calculo en la suma",};
+        final String[] TSoRcarnet = {"RM17039", "PR17017", "RM17039"};
+        final String[] TSoRcodasignatura = {"MAT115", "FIR115", "MAT115"};
+        final String[] TSoRcodcilo = {"12020", "22020", "12020"};
+        final String[] TSoRcodtipoeval = {"EP", "ED", "EP"};
+        final String[] TSoRcodtiporev = {"PR", "PR", "SR"};
+        final float[] TSoRnotaantesrev = {Float.parseFloat("7.5"), Float.parseFloat("6.0"), Float.parseFloat("8.0")};
+        final String[] TSoRcodtipogrupo = {"GT", "GL", "GT"};
+        final int[] TSoRnumerogrupo = {Integer.parseInt("1"), Integer.parseInt("3"),  Integer.parseInt("1")};
+        final int[] TSoRcodnumeroeval = {Integer.parseInt("1"), Integer.parseInt("2"), Integer.parseInt("1")};
+
         final String[] VTidtipodocenteciclo = {"00001", "00002", "00003", "00004" };
         final String[] VTnomtipodocenteciclo = {"Docente teórico", "Docente discusión", "Docente Laboratorio", "Tutot"};
 
@@ -2208,13 +2385,13 @@ public class ControladorBase {
         final Boolean[] VEsIrealizado= {true, false, true, true };
         final String[] VEsIobservaciones= {"PARCIAL", "EVALUADO", "FOTOCOPIAS", "INTERNOS"};
 
-        final String[] idOpcion = {"001","002","003","004","005","006","007","008","009","010","011","012","013","014","015","016","017","018","019"};
+        final String[] idOpcion = {"001","002","003","004","005","006","007","008","009","010","011","012","013","014","015","016","017","018","019", "020"};
         final String[] idOpcionEstudiante ={"001","002", "003", "010"};
         final String[] idOpcionDocente = {"004","005","006","008","009","010","011","016"};
         final String[] idDocenteDirector = {"005","006","008","016"};
         final String[] idEncargado = {"016","019"};
-        final String[] descripOpcion = {"Estudiante_menu","Repetido_menu", "Diferido_menu","DetalleDiferidoRepetido_menu","DetalleEstudianteDiferido_consultar", "DetalleEstudianteRepetido_consultar","Local_menu", "Evaluacion_menu", "PeriodoInscripcionRevision_menu", "PrimeraRevision_menu","SolicitudDiferido_consultarDocente","CicloMenuActivity","CargaAcademicaMenuActivity","DocenteMenuActivity", "AsignaturaMenuActivity","SolImpresionMenuActivity", "DocDirectorMenuActivity", "EstadoImpresionMenuActivity", "EncarImpresionesMenuActivity"};
-        final int[] numCrud = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19};
+        final String[] descripOpcion = {"Estudiante_menu","Repetido_menu", "Diferido_menu","DetalleDiferidoRepetido_menu","DetalleEstudianteDiferido_consultar", "DetalleEstudianteRepetido_consultar","Local_menu", "Evaluacion_menu", "PeriodoInscripcionRevision_menu", "PrimeraRevision_menu","SolicitudDiferido_consultarDocente","CicloMenuActivity","CargaAcademicaMenuActivity","DocenteMenuActivity", "AsignaturaMenuActivity","SolImpresionMenuActivity", "DocDirectorMenuActivity", "EstadoImpresionMenuActivity", "EncarImpresionesMenuActivity", "SegundaRevisionMenu"};
+        final int[] numCrud = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
 
         abrir();
         db.execSQL("DELETE FROM usuario;");

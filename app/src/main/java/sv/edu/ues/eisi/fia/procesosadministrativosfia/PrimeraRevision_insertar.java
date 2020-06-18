@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 public class PrimeraRevision_insertar extends Activity {
     EditText editAsignatura, editCiclo, editNumEval, editDocente, editCarnet, editNotaFinal, editObservaciones;
-    Spinner spinTipoEval, spinEstado, spinMotCambNota;
+    Spinner spinTipoEval, spinTipoGrupo, spinMotCambNota;
     RadioGroup radioEstado, radioAsistencia;
     RadioButton radioSi, radioNo, radioPendiente, radioTerminada;
     ControladorBase helper;
@@ -33,6 +33,7 @@ public class PrimeraRevision_insertar extends Activity {
         editObservaciones = (EditText) findViewById(R.id.editObservaciones);
         spinTipoEval = (Spinner) findViewById(R.id.spinTipoEval);
         spinMotCambNota = (Spinner) findViewById(R.id.spinMotCambioNota);
+        spinTipoGrupo = (Spinner) findViewById(R.id.spinTipoGrupo);
         radioEstado = (RadioGroup) findViewById(R.id.opciones_asistencia);
         radioSi = (RadioButton) findViewById(R.id.radio_Si);
         radioNo = (RadioButton) findViewById(R.id.radio_No);
@@ -100,6 +101,19 @@ public class PrimeraRevision_insertar extends Activity {
             primRev.setMotivoCambioNota("");
         }
 
+        if(spinTipoGrupo.getSelectedItem().toString().equals("GT")){
+            String tipoGrupo = "GT";
+            primRev.setCodtipogrupo(tipoGrupo);
+        }else if(spinTipoGrupo.getSelectedItem().toString().equals("GD")){
+            String tipoGrupo = "GD";
+            primRev.setCodtipogrupo(tipoGrupo);
+        }else if(spinTipoGrupo.getSelectedItem().toString().equals("GL")){
+            String tipoGrupo = "GL";
+            primRev.setCodtipogrupo(tipoGrupo);
+        }else{
+            primRev.setCodtipogrupo("");
+        }
+
         if(radioSi.isChecked()){
             String asistencia = "SI";
             primRev.setAsistio(asistencia);
@@ -115,7 +129,6 @@ public class PrimeraRevision_insertar extends Activity {
             String estado = "Terminada";
             primRev.setEstadoprimerrevision(estado);
         }
-
 
         helper.abrir();
         regInsertados = helper.insertar(primRev);
@@ -133,6 +146,7 @@ public class PrimeraRevision_insertar extends Activity {
         editObservaciones.setText("");
         spinTipoEval.setSelection(0);
         spinMotCambNota.setSelection(0);
+        spinTipoGrupo.setSelection(0);
         radioSi.setChecked(true);
         radioNo.setChecked(false);
         radioTerminada.setChecked(true);

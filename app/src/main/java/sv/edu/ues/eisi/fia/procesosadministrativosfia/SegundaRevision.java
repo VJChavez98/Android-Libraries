@@ -1,11 +1,10 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
-public class PrimeraRevision {
-    private String estadoprimerrevision;
-    private float notadespuesprimerarevision;
-    private String asistio;
-    private String observacionesprimerarev;
+public class SegundaRevision {
+    private String idsegundarevision;
+    private String codtipogrupo;
     private String coddocente;
+    private String observacionessegundarev;
     private String carnet;
     private String codasignatura;
     private String codciclo;
@@ -13,6 +12,33 @@ public class PrimeraRevision {
     private int numeroeval;
     private String codtiporevision;
     private String motivoCambioNota;
+    private float notafinalsegundarev;
+
+    public SegundaRevision() {
+    }
+
+    public SegundaRevision(String idsegundarevision, String codtipogrupo, String coddocente, String observacionessegundarev, String carnet, String codasignatura, String codciclo, String codtipoeval, int numeroeval, String codtiporevision, String motivoCambioNota, float notafinalsegundarev) {
+        this.idsegundarevision = idsegundarevision;
+        this.codtipogrupo = codtipogrupo;
+        this.coddocente = coddocente;
+        this.observacionessegundarev = observacionessegundarev;
+        this.carnet = carnet;
+        this.codasignatura = codasignatura;
+        this.codciclo = codciclo;
+        this.codtipoeval = codtipoeval;
+        this.numeroeval = numeroeval;
+        this.codtiporevision = codtiporevision;
+        this.motivoCambioNota = motivoCambioNota;
+        this.notafinalsegundarev = notafinalsegundarev;
+    }
+
+    public String getIdsegundarevision() {
+        return idsegundarevision;
+    }
+
+    public void setIdsegundarevision(String idsegundarevision) {
+        this.idsegundarevision = idsegundarevision;
+    }
 
     public String getCodtipogrupo() {
         return codtipogrupo;
@@ -22,65 +48,20 @@ public class PrimeraRevision {
         this.codtipogrupo = codtipogrupo;
     }
 
-    private String codtipogrupo;
-
-    public PrimeraRevision(String estadoprimerrevision, float notadespuesprimerarevision, String asistio, String observacionesprimerarev, String coddocente, String carnet, String codasignatura, String codciclo, String codtipoeval, int numeroeval, String codtiporevision, String motivoCambioNota, String codtipogrupo) {
-        this.estadoprimerrevision = estadoprimerrevision;
-        this.notadespuesprimerarevision = notadespuesprimerarevision;
-        this.asistio = asistio;
-        this.observacionesprimerarev = observacionesprimerarev;
-        this.coddocente = coddocente;
-        this.carnet = carnet;
-        this.codasignatura = codasignatura;
-        this.codciclo = codciclo;
-        this.codtipoeval = codtipoeval;
-        this.numeroeval = numeroeval;
-        this.codtiporevision = codtiporevision;
-        this.motivoCambioNota = motivoCambioNota;
-        this.codtipogrupo = codtipogrupo;
-    }
-
-    public PrimeraRevision() {
-    }
-
-    public String getEstadoprimerrevision() {
-        return estadoprimerrevision;
-    }
-
-    public void setEstadoprimerrevision(String estadoprimerrevision) {
-        this.estadoprimerrevision = estadoprimerrevision;
-    }
-
-    public float getNotadespuesprimerarevision() {
-        return notadespuesprimerarevision;
-    }
-
-    public void setNotadespuesprimerarevision(float notadespuesprimerarevision) {
-        this.notadespuesprimerarevision = notadespuesprimerarevision;
-    }
-
-    public String getAsistio() {
-        return asistio;
-    }
-
-    public void setAsistio(String asistio) {
-        this.asistio = asistio;
-    }
-
-    public String getObservacionesprimerarev() {
-        return observacionesprimerarev;
-    }
-
-    public void setObservacionesprimerarev(String observacionesprimerarev) {
-        this.observacionesprimerarev = observacionesprimerarev;
-    }
-
     public String getCoddocente() {
         return coddocente;
     }
 
     public void setCoddocente(String coddocente) {
         this.coddocente = coddocente;
+    }
+
+    public String getObservacionessegundarev() {
+        return observacionessegundarev;
+    }
+
+    public void setObservacionessegundarev(String observacionessegundarev) {
+        this.observacionessegundarev = observacionessegundarev;
     }
 
     public String getCarnet() {
@@ -137,5 +118,13 @@ public class PrimeraRevision {
 
     public void setMotivoCambioNota(String motivoCambioNota) {
         this.motivoCambioNota = motivoCambioNota;
+    }
+
+    public float getNotafinalsegundarev() {
+        return notafinalsegundarev;
+    }
+
+    public void setNotafinalsegundarev(float notafinalsegundarev) {
+        this.notafinalsegundarev = notafinalsegundarev;
     }
 }
