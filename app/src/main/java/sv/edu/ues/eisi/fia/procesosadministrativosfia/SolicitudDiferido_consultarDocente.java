@@ -39,79 +39,102 @@ public class SolicitudDiferido_consultarDocente extends AppCompatActivity {
     }
 
     public void consultarSolicitudes(View view) {
-        frame.setVisibility(View.VISIBLE);
-        helper.abrir();
-        final ArrayList<String> solicitudes = helper.consultarSolicitudesPendiente(editMateria.getText().toString(),spinTipoEval.getSelectedItem().toString(), Integer.parseInt(editNumEval.getText().toString()),spinEstadoSoli.getSelectedItem().toString(),ciclo.getText().toString());
-        helper.cerrar();
-        if (solicitudes.size() > 0) {
+        if (!(editMateria.getText().toString().isEmpty() && editNumEval.getText().toString().isEmpty() && ciclo.getText().toString().isEmpty() && spinTipoEval.getSelectedItem().toString().equals(spinTipoEval.getItemAtPosition(0).toString()) && spinEstadoSoli.getSelectedItem().toString().equals(spinEstadoSoli.getItemAtPosition(0).toString()))) {
+            if (!editMateria.getText().toString().isEmpty()) {
+                if (!spinTipoEval.getSelectedItem().toString().equals(spinTipoEval.getItemAtPosition(0).toString())) {
+                    if (!ciclo.getText().toString().isEmpty()) {
+                        if (!editNumEval.getText().toString().isEmpty()) {
+                            if (!spinEstadoSoli.getSelectedItem().toString().equals(spinEstadoSoli.getItemAtPosition(0).toString())) {
+                                helper.abrir();
+                                final ArrayList<String> solicitudes = helper.consultarSolicitudesPendiente(editMateria.getText().toString(), spinTipoEval.getSelectedItem().toString(), Integer.parseInt(editNumEval.getText().toString()), spinEstadoSoli.getSelectedItem().toString(), ciclo.getText().toString());
+                                helper.cerrar();
+                                frame.setVisibility(View.VISIBLE);
+                                if (solicitudes.size() > 0) {
 
-            listView1.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, solicitudes));
-            listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    helper.abrir();
-                    final SolicitudDiferido solicitudDiferido = helper.consultarSolicitudDiferido(solicitudes.get(position), editMateria.getText().toString(), ciclo.getText().toString(), spinTipoEval.getSelectedItem().toString(), editNumEval.getText().toString());
-                    helper.cerrar();
-                    AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                    View dialogView = LayoutInflater.from(view.getContext()).inflate(R.layout.activity_diferido_actualizar, null, false);
-                    builder.setView(dialogView);
-                    builder.setTitle("Aprobar/Denegar solicitud");
-                    EditText carnet = dialogView.findViewById(R.id.editCarnet);
-                    EditText materia = dialogView.findViewById(R.id.editAsignatura);
-                    EditText numEval = dialogView.findViewById(R.id.editCodEva);
-                    EditText GT = dialogView.findViewById(R.id.editGrupoTeorico);
-                    EditText GD = dialogView.findViewById(R.id.editGrupoDiscusion);
-                    EditText GL = dialogView.findViewById(R.id.editGrupoLab);
-                    EditText fecha = dialogView.findViewById(R.id.editFechaRealizada);
-                    EditText hora = dialogView.findViewById(R.id.editHoraRealizada);
-                    EditText descrip = dialogView.findViewById(R.id.editMotivo);
-                    EditText ciclo = dialogView.findViewById(R.id.editCodciclo);
-                    Spinner tipoEval = dialogView.findViewById(R.id.spinTipoEval);
-                    Spinner motivo = dialogView.findViewById(R.id.spinMotivos);
-                    final Spinner estado = dialogView.findViewById(R.id.estadoSolicitud);
-                    carnet.setText(solicitudDiferido.getCarnet());
-                    materia.setText(solicitudDiferido.getCodMateria());
-                    GT.setText(solicitudDiferido.getGT());
-                    GD.setText(solicitudDiferido.getGD());
-                    GL.setText(solicitudDiferido.getGL());
-                    tipoEval.setSelection(tipoEvaluacion(solicitudDiferido.getTipoEva()));
-                    numEval.setText(String.valueOf(solicitudDiferido.getNumeroEval()));
-                    fecha.setText(solicitudDiferido.getFechaEva());
-                    hora.setText(solicitudDiferido.getHoraEva());
-                    motivo.setSelection(colocarMotivo(solicitudDiferido.getMotivo()));
-                    descrip.setText(solicitudDiferido.getOtroMotivo());
-                    estado.setSelection(colocarEstado(solicitudDiferido.getEstado()));
-                    ciclo.setText(solicitudDiferido.getCiclo());
-                    tipoEval.setEnabled(false);
-                    motivo.setEnabled(false);
-                    builder.setPositiveButton("Actualizar", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            helper.abrir();
-                            solicitudDiferido.setEstado(estado.getSelectedItem().toString());
-                            String resultado = helper.actualizarEstado(solicitudDiferido);
-                            helper.cerrar();
-                            Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.show();
-               }
-            });
+                                    listView1.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, solicitudes));
+                                    listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                        @Override
+                                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                            helper.abrir();
+                                            final SolicitudDiferido solicitudDiferido = helper.consultarSolicitudDiferido(solicitudes.get(position), editMateria.getText().toString(), ciclo.getText().toString(), spinTipoEval.getSelectedItem().toString(), editNumEval.getText().toString());
+                                            helper.cerrar();
+                                            AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                                            View dialogView = LayoutInflater.from(view.getContext()).inflate(R.layout.activity_diferido_actualizar, null, false);
+                                            builder.setView(dialogView);
+                                            builder.setTitle("Aprobar/Denegar solicitud");
+                                            EditText carnet = dialogView.findViewById(R.id.editCarnet);
+                                            EditText materia = dialogView.findViewById(R.id.editAsignatura);
+                                            EditText numEval = dialogView.findViewById(R.id.editCodEva);
+                                            EditText GT = dialogView.findViewById(R.id.editGrupoTeorico);
+                                            EditText GD = dialogView.findViewById(R.id.editGrupoDiscusion);
+                                            EditText GL = dialogView.findViewById(R.id.editGrupoLab);
+                                            EditText fecha = dialogView.findViewById(R.id.editFechaRealizada);
+                                            EditText hora = dialogView.findViewById(R.id.editHoraRealizada);
+                                            EditText descrip = dialogView.findViewById(R.id.editMotivo);
+                                            EditText ciclo = dialogView.findViewById(R.id.editCodciclo);
+                                            Spinner tipoEval = dialogView.findViewById(R.id.spinTipoEval);
+                                            Spinner motivo = dialogView.findViewById(R.id.spinMotivos);
+                                            final Spinner estado = dialogView.findViewById(R.id.estadoSolicitud);
+                                            carnet.setText(solicitudDiferido.getCarnet());
+                                            materia.setText(solicitudDiferido.getCodMateria());
+                                            GT.setText(solicitudDiferido.getGT());
+                                            GD.setText(solicitudDiferido.getGD());
+                                            GL.setText(solicitudDiferido.getGL());
+                                            tipoEval.setSelection(tipoEvaluacion(solicitudDiferido.getTipoEva()));
+                                            numEval.setText(String.valueOf(solicitudDiferido.getNumeroEval()));
+                                            fecha.setText(solicitudDiferido.getFechaEva());
+                                            hora.setText(solicitudDiferido.getHoraEva());
+                                            motivo.setSelection(colocarMotivo(solicitudDiferido.getMotivo()));
+                                            descrip.setText(solicitudDiferido.getOtroMotivo());
+                                            estado.setSelection(colocarEstado(solicitudDiferido.getEstado()));
+                                            ciclo.setText(solicitudDiferido.getCiclo());
+                                            tipoEval.setEnabled(false);
+                                            motivo.setEnabled(false);
+                                            builder.setPositiveButton("Actualizar", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    helper.abrir();
+                                                    solicitudDiferido.setEstado(estado.getSelectedItem().toString());
+                                                    String resultado = helper.actualizarEstado(solicitudDiferido);
+                                                    helper.cerrar();
+                                                    Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                            builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    dialog.dismiss();
+                                                }
+                                            });
+                                            AlertDialog alertDialog = builder.create();
+                                            alertDialog.show();
+                                        }
+                                    });
 
-        }else {
-            frame.setVisibility(View.GONE);
-            Toast.makeText(getApplicationContext(), "No se encontraron solicitudes",Toast.LENGTH_SHORT).show();
-        }
+                                } else {
+                                    frame.setVisibility(View.GONE);
+                                    Toast.makeText(getApplicationContext(), "No se encontraron solicitudes", Toast.LENGTH_SHORT).show();
+                                }
+                            } else
+                                Toast.makeText(getApplicationContext(), "Campo obligatorio: Estado", Toast.LENGTH_SHORT).show();
+                        } else
+                            Toast.makeText(getApplicationContext(), "Campo obligatorio: Numero evaluacion", Toast.LENGTH_SHORT).show();
+                    } else
+                        Toast.makeText(getApplicationContext(), "Campo obligatorio: Ciclo", Toast.LENGTH_SHORT).show();
+                } else
+                    Toast.makeText(getApplicationContext(), "Campo obligatorio: Tipo evaluacion", Toast.LENGTH_SHORT).show();
+            } else
+                Toast.makeText(getApplicationContext(), "Campo obligatorio: Codigo materia", Toast.LENGTH_SHORT).show();
+        }else Toast.makeText(getApplicationContext(), "Campos vacios", Toast.LENGTH_SHORT).show();
     }
-
     public void limpiarTexto(View view){
+        editMateria.setText("");
+        editNumEval.setText("");
+        spinTipoEval.setSelection(0);
+        spinEstadoSoli.setSelection(0);
+        frame.setVisibility(View.GONE);
+        ciclo.setText("");
+        editMateria.requestFocus();
 
     }
 

@@ -85,7 +85,7 @@
                 android:text="@string/fechaDesde" />
             <EditText
                 android:id="@+id/editFechaDesdeRev"
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
@@ -97,7 +97,7 @@
                 android:text="@string/fechaHasta" />
             <EditText
                 android:id="@+id/editFechaHastaRev"
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"

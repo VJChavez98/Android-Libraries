@@ -50,8 +50,6 @@
         <Button
             android:onClick="actualizarCargaacademica"
             android:text="@string/actualizar"/>
-    </TableRow>
-    <TableRow>
         <Button
             android:onClick="limpiarTexto"
             android:text="@string/limpiar"/>

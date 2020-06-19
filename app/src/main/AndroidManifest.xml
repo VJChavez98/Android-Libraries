@@ -81,7 +81,6 @@
         <activity android:name=".Diferido_consultar" />
         <activity android:name=".Diferido_menu" />
         <activity android:name=".Repetido_Eliminar" />
-        <activity android:name=".Repetido_modificar" />
         <activity android:name=".Repetido_Insertar" />
         <activity android:name=".Repetido_Consultar" />
         <activity android:name=".Repetido_menu" />

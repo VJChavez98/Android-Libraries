@@ -32,8 +32,6 @@
         <Button
             android:onClick="actualizarCiclo"
             android:text="@string/actualizar"/>
-    </TableRow>
-    <TableRow>
         <Button
             android:onClick="limpiarTexto"
             android:text="@string/limpiar"/>

@@ -35,7 +35,7 @@ public class DocenteConsultarActivity extends Activity {
             editApellidodocente.setText(docente.getApellidodocente());
         }
     }
-    public void limpiar(View v){
+    public void limpiarTexto(View v){
         editCoddocente.setText("");
         editNombredocente.setText("");
         editApellidodocente.setText("");

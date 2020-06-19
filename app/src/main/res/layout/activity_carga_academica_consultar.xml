@@ -18,42 +18,46 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/codciclo"/>
+
     <EditText
         android:id="@+id/editCodciclo"
-        android:layout_width="100dp"
+        android:layout_width="200dip"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:maxLength="5"/>
+        android:maxLength="5" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/coddocente"/>
+
     <EditText
         android:id="@+id/editCoddocente"
-        android:layout_width="100dp"
+        android:layout_width="200dip"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:maxLength="5"/>
+        android:maxLength="5" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/codasignatura"/>
+
     <EditText
         android:id="@+id/editCodasignatura"
-        android:layout_width="100dp"
+        android:layout_width="200dip"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:maxLength="6"/>
+        android:maxLength="6" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/idtipodocenteciclo"/>
+
     <EditText
         android:id="@+id/editIdtipodocenteciclo"
-        android:layout_width="100dp"
+        android:layout_width="200dip"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:maxLength="5"/>
+        android:maxLength="5" />
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"

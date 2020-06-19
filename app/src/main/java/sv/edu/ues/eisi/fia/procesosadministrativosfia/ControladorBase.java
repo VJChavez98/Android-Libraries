@@ -1045,7 +1045,7 @@ public class ControladorBase {
         String regAfectados = "Filas afectadas = ";
         int contador = 0;
 
-        if(verificarIntegridadReferencial(evaluacion, 34)){
+        if(verificarIntegridadReferencial(evaluacion, 32)){
             String nosepuede = "Error, No se puede eliminar, existen registros de esta Evaluación en otras Tablas.";
             return nosepuede;
         }
@@ -1457,7 +1457,7 @@ public class ControladorBase {
             cv.put("cantidadexamenes", solImpresion.getCantidadexamenes());
             cv.put("hojasempaque", solImpresion.getHojasempaque());
             cv.put("estadoaprobacion", solImpresion.getEstadoaprobacion());
-            db.update("solicitudimpresion", cv, "idsolicitudimpresion = ? AND iddocente = ? AND iddocentedirector = ?", id);
+            db.update("solicitudimpresion", cv, "idsolicitudimpresion = ? AND coddocente = ? AND iddocentedirector = ?", id);
             return "Registro Actualizado Correctamente";
         } else {
             return "Registro no Existe";
@@ -1471,7 +1471,7 @@ public class ControladorBase {
 
         if (verificarIntegridadReferencial(solImpresion, 23)) {
             String where = "idsolicitudimpresion='" + solImpresion.getIdsolicitudimpresion() + "'";
-            where = where + " AND iddocente='" + solImpresion.getIddocente() + "'";
+            where = where + " AND coddocente='" + solImpresion.getIddocente() + "'";
             where = where + " AND iddocentedirector='" + solImpresion.getIddocentedirector() + "'";
 
             contador += db.delete("solicitudimpresion", where, null);
@@ -1485,7 +1485,7 @@ public class ControladorBase {
     public SolImpresion consultarSolImpresion(String idsolicitudimpresion, String iddocente, String iddocentedirector) {
 
         String[] id = {idsolicitudimpresion, iddocente, iddocentedirector};
-        Cursor cursor = db.query("solicitudimpresion", campossolImpresion, "idsolicitudimpresion = ? AND iddocente = ? AND iddocentedirector = ?", id, null, null, null);
+        Cursor cursor = db.query("solicitudimpresion", null, "idsolicitudimpresion = ? AND coddocente = ? AND iddocentedirector = ?", id, null, null, null);
 
         if (cursor.moveToFirst()) {
             SolImpresion sol = new SolImpresion();
@@ -2225,7 +2225,7 @@ public class ControladorBase {
                 SolImpresion sol1 = (SolImpresion) dato;
                 String[] ids = {sol1.getIdsolicitudimpresion(), sol1.getIddocente(), sol1.getIddocentedirector()};
                 abrir();
-                Cursor c = db.query("solicitudimpresion", null, "idsolicitudimpresion = ? AND iddocente = ? AND iddocentedirector = ?", ids, null, null, null);
+                Cursor c = db.query("solicitudimpresion", null, "idsolicitudimpresion = ? AND coddocente = ? AND iddocentedirector = ?", ids, null, null, null);
                 if (c.moveToFirst()) {
                     //Se encontraron datos
                     return true;

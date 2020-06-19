@@ -19,7 +19,7 @@
         android:text="ID Escuela"/>
     <EditText
         android:id="@+id/editIdEscuela"
-        android:layout_width="100dp"
+        android:layout_width="200dip"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:maxLength="10"/>
@@ -46,7 +46,7 @@
         android:text="Nombre Director" />
     <EditText
         android:id="@+id/editNombreDirector"
-        android:layout_width="100dp"
+        android:layout_width="200dip"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:enabled ="false"
@@ -60,7 +60,7 @@
         android:text="Apellidos Director" />
     <EditText
         android:id="@+id/editApellidoDirector"
-        android:layout_width="100dp"
+        android:layout_width="200dip"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:enabled ="false"
@@ -74,7 +74,7 @@
         android:text="Correo Director" />
     <EditText
         android:id="@+id/editCorreoDirector"
-        android:layout_width="100dp"
+        android:layout_width="200dip"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:enabled ="false"
@@ -88,7 +88,7 @@
         android:text="Telefono Director" />
     <EditText
         android:id="@+id/editTelefono"
-        android:layout_width="100dp"
+        android:layout_width="200dip"
         android:layout_height="wrap_content"
         android:inputType="number"
         android:enabled ="false"

@@ -54,8 +54,6 @@
         <Button
             android:onClick="actualizarSolImpresion"
             android:text="@string/actualizar" />
-    </TableRow>
-    <TableRow>
         <Button
             android:onClick="limpiarTexto"
             android:text="@string/limpiar" />

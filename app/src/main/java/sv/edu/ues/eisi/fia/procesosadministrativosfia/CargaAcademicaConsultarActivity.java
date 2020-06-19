@@ -40,7 +40,7 @@ public class CargaAcademicaConsultarActivity extends Activity {
             editIdtipodocenteciclo.setText(cargaAcademica.getIdtipodocenteciclo());
         }
     }
-    public void limpiar(View v){
+    public void limpiarTexto(View v){
         editIdcargaacademica.setText("");
         editCodciclo.setText("");
         editCoddocente.setText("");

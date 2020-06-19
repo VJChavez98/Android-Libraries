@@ -17,12 +17,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ID Docente"/>
+
     <EditText
         android:id="@+id/editIdDocente"
-        android:layout_width="100dp"
+        android:layout_width="200dip"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:maxLength="10"/>
+        android:maxLength="10" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -54,43 +55,46 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cantidad de Examenes" />
+
     <EditText
         android:id="@+id/editCantidadExamenes"
-        android:layout_width="100dp"
+        android:layout_width="200dip"
         android:layout_height="wrap_content"
-        android:inputType="text"
-        android:enabled ="false"
+        android:cursorVisible="false"
+        android:enabled="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:cursorVisible="false"
+        android:inputType="text"
         android:longClickable="false" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hojas de Empaque" />
+
     <EditText
         android:id="@+id/editHojasEmpaque"
-        android:layout_width="100dp"
+        android:layout_width="200dip"
         android:layout_height="wrap_content"
-        android:inputType="text"
-        android:enabled ="false"
+        android:cursorVisible="false"
+        android:enabled="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:cursorVisible="false"
+        android:inputType="text"
         android:longClickable="false" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Estado de Aprobacion" />
+
     <EditText
         android:id="@+id/editEstadoAprobacion"
-        android:layout_width="100dp"
+        android:layout_width="200dip"
         android:layout_height="wrap_content"
-        android:inputType="text"
-        android:enabled ="false"
+        android:cursorVisible="false"
+        android:enabled="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:cursorVisible="false"
+        android:inputType="text"
         android:longClickable="false" />
 </LinearLayout>
 
