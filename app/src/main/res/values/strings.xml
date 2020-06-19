@@ -92,6 +92,11 @@
         <item>Primer Revisión</item>
         <item>Segunda Revisión</item>
     </string-array>
+    <string-array name="codTipoRevision">
+        <item>Seleccione el Tipo de Revisión</item>
+        <item>PR</item>
+        <item>SR</item>
+    </string-array>
 
     <string-array name="tipoEval">
         <item>Seleccione el Tipo de Evaluación</item>

@@ -23,23 +23,6 @@
             android:layout_marginLeft="0dp"/>
     </TableRow>
 
-
-    <TableRow android:layout_marginBottom="15dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="@string/codasignatura" />
-        <EditText
-            android:id="@+id/editCodasignatura"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="0dp"
-            android:inputType="text"
-            android:maxLength="6"/>
-    </TableRow>
-
-
-
     <TableRow android:layout_marginBottom="15dp">
         <TextView
             android:layout_width="wrap_content"
@@ -55,69 +38,6 @@
             android:gravity="center_horizontal"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="0dp"/>
-    </TableRow>
-
-
-    <TableRow android:layout_marginBottom="15dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="@string/evaluacion_numero" />
-        <EditText
-            android:id="@+id/editNumeval"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="0dp"
-            android:inputType="text"
-            android:maxLength="2"/>
-    </TableRow>
-
-
-    <TableRow android:layout_marginBottom="15dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="@string/codciclo" />
-        <EditText
-            android:id="@+id/editCodciclo"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="0dp"
-            android:inputType="text"
-            android:maxLength="5"/>
-    </TableRow>
-
-
-
-    <TableRow android:layout_marginBottom="15dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="@string/carnet" />
-        <EditText
-            android:id="@+id/editCarnet"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="0dp"
-            android:inputType="text"
-            android:maxLength="7"/>
-    </TableRow>
-
-    <TableRow android:layout_marginBottom="15dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="@string/notaAntesRev" />
-
-        <EditText
-            android:id="@+id/editNotaActual"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="0dp"
-            android:inputType="text"
-            android:maxLength="4"/>
-
     </TableRow>
 
     <TableRow android:layout_marginBottom="15dp">
@@ -138,7 +58,121 @@
     </TableRow>
 
 
+    <TableRow android:layout_marginBottom="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="@string/codasignatura" />
+        <EditText
+            android:id="@+id/editCodasignatura"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="0dp"
+            android:inputType="text"
+            android:maxLength="6"/>
+    </TableRow>
+
+
+    <TableRow android:layout_marginBottom="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="@string/evaluacion_numero" />
+        <EditText
+            android:id="@+id/editNumeval"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="0dp"
+            android:inputType="text"
+            android:maxLength="2"/>
+    </TableRow>
+
+
+    <TableRow android:layout_marginBottom="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="@string/codciclo" />
+        <EditText
+            android:id="@+id/editCodciclo"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="0dp"
+            android:inputType="text"
+            android:maxLength="5"/>
+    </TableRow>
+
+
+
+    <TableRow android:layout_marginBottom="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="@string/carnet" />
+        <EditText
+            android:id="@+id/editCarnet"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="0dp"
+            android:inputType="text"
+            android:maxLength="7"/>
+    </TableRow>
+
+
+    <TableRow>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="consultarSolicitudRevision"
+            android:text="@string/consultar" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="limpiarTexto"
+            android:text="Limpiar" />
+    </TableRow>
+
+
+
     <TableRow android:layout_marginBottom="15dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimary"
+            android:layout_below="@+id/idImagen"
+            android:layout_marginTop="11dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimary"
+            android:layout_below="@+id/idImagen"
+            android:layout_marginTop="11dp" />
+    </TableRow>
+
+
+
+
+    <TableRow android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="@string/notaAntesRev" />
+
+        <EditText
+            android:id="@+id/editNotaActual"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="0dp"
+            android:inputType="text"
+            android:maxLength="4"
+            android:focusable="false"/>
+
+    </TableRow>
+
+
+    <TableRow android:layout_marginBottom="10dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -151,12 +185,13 @@
             android:layout_marginRight="20dp"
             android:layout_marginLeft="0dp"
             android:inputType="text"
-            android:maxLength="2"/>
+            android:maxLength="2"
+            android:focusable="false"/>
 
     </TableRow>
 
 
-    <TableRow>
+    <TableRow android:layout_marginBottom="10dp">
         <TextView
             android:layout_marginLeft="20dp"
             android:text="@string/fechaSolicitud" />
@@ -171,7 +206,7 @@
             android:focusable="false"/>
     </TableRow>
 
-    <TableRow android:layout_marginBottom="15dp">
+    <TableRow android:layout_marginBottom="1dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -184,24 +219,9 @@
             android:layout_marginRight="20dp"
             android:layout_marginLeft="0dp"
             android:inputType="text"
-            android:maxLength="50"/>
+            android:maxLength="50"
+            android:focusable="false"/>
 
-    </TableRow>
-
-
-
-    <TableRow>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="actualizarSolicitudRevision"
-            android:text="@string/actualizar" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="limpiarTexto"
-            android:text="Limpiar" />
     </TableRow>
 
 </TableLayout>

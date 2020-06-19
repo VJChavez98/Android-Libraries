@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -578,7 +579,7 @@ public class ControladorBase {
         String regInsertados = "Registro No. = ";
         long contador = 0;
 
-        if(verificarIntegridadReferencial(solicitud, 35)){
+        if(verificarIntegridadReferencial(solicitud, 33)){
 
             ContentValues sol = new ContentValues();
             sol.put("fechasolicitudrevision", solicitud.getFechasolicitudrevision());
@@ -772,7 +773,7 @@ public class ControladorBase {
         String regInsertados = "Revisión Insertada con Exito, Registro No. = ";
         long contador = 0;
 
-        /*String[] id = {segRev.getCarnet(), segRev.getCodtiporevision(), segRev.getCodasignatura(), segRev.getCodciclo(), segRev.getCodtipoeval(), segRev.getCodtipogrupo(), String.valueOf(segRev.getNumeroeval())};
+        String[] id = {segRev.getCarnet(), segRev.getCodtiporevision(), segRev.getCodasignatura(), segRev.getCodciclo(), segRev.getCodtipoeval(), segRev.getCodtipogrupo(), String.valueOf(segRev.getNumeroeval())};
         Cursor c = db.rawQuery("SELECT * FROM solicitudrevision WHERE carnet = ? AND codtiporevision = ? AND codasignatura = ? AND codciclo = ? AND codtipoeval = ? AND codtipogrupo = ? AND numeroeval = ?;", id);
         if(c.moveToFirst()){
             if(verificarIntegridadReferencial(segRev, 36)){
@@ -792,10 +793,10 @@ public class ControladorBase {
             }
         }else{
             Toast.makeText(context, "No existe Solicitud", Toast.LENGTH_SHORT).show();
-        }*/
+        }
 
         //if(verificarIntegridadReferencial(segRev, 36)) {
-        ContentValues segundarevision = new ContentValues();
+        /*ContentValues segundarevision = new ContentValues();
 
         segundarevision.put("codmotivocambionota", segRev.getMotivoCambioNota());
         segundarevision.put("codtipogrupo", segRev.getCodtipogrupo());
@@ -809,7 +810,7 @@ public class ControladorBase {
         segundarevision.put("numeroeval", segRev.getNumeroeval());
         segundarevision.put("codtiporevision", segRev.getCodtiporevision());
         contador = db.insert("segundarevision", null, segundarevision);
-        //}
+        //}*/
         if (contador == -1 || contador == 0){
             regInsertados = "Error al insertar Segunda Revisión, Registro Duplicado o Campos Incompletos. Verificar Inserción.";
         }else{
@@ -1873,6 +1874,34 @@ public class ControladorBase {
         }
 
     }
+    public SolicitudRevision consultarSolicitudRevision(String carnet, String codtipogrupo, String codtiporevision, String codtipoeval, String codasignatura, String numeroeval, String codciclo) {
+
+        String[] id = {carnet, codtipogrupo, codtiporevision, codasignatura, codciclo, codtipoeval, numeroeval};
+
+        Cursor cursor = db.query("solicitudrevision", null, "carnet=? AND codtipogrupo=? AND codtiporevision=? AND codasignatura=? AND codciclo=? AND codtipoeval =? AND numeroeval =?", id, null, null, null);
+
+        if (cursor.moveToFirst()) {
+
+            SolicitudRevision solRev = new SolicitudRevision();
+
+            solRev.setFechasolicitudrevision(cursor.getString(0));
+            solRev.setNotaantesrevision(cursor.getFloat(1));
+            solRev.setCodtipogrupo(cursor.getString(2));
+            solRev.setNumerogrupo(cursor.getInt(3));
+            solRev.setMotivorevision(cursor.getString(4));
+            solRev.setCarnet(cursor.getString(5));
+            solRev.setCodasignatura(cursor.getString(6));
+            solRev.setCodciclo(cursor.getString(7));
+            solRev.setCodtipoeval(cursor.getString(8));
+            solRev.setNumeroeval(cursor.getInt(9));
+            solRev.setCodtiporevision(cursor.getString(10));
+            return solRev;
+
+        } else {
+
+            return null;
+        }
+    }
 
 
     public boolean verificarIntegridadReferencial(Object dato, int relacion) throws SQLException {
@@ -2342,7 +2371,7 @@ public class ControladorBase {
                 Cursor cursor3 = db.query("tipoevaluacion", null, "codtipoeval = ?", id3, null, null, null);
                 Cursor cursor4 = db.query("evaluacion", null, "numeroeval = ?", id4, null, null, null);
                 Cursor cursor5 = db.query("tipogrupo", null, "codtipogrupo = ?", id5, null, null, null);
-                Cursor cursor6 = db.query("estudiante", null, "carnet = ?", id6, null, null, null);
+                Cursor cursor6 = db.query("Estudiante", null, "carnet = ?", id6, null, null, null);
                 Cursor cursor7 = db.query("tiporevision", null, "codtiporevision = ?", id7, null, null, null);
 
                 if (cursor1.moveToFirst() && cursor2.moveToFirst() && cursor3.moveToFirst() && cursor4.moveToFirst() && cursor5.moveToFirst() && cursor6.moveToFirst() && cursor7.moveToFirst()) {
@@ -2392,12 +2421,12 @@ public class ControladorBase {
             case 36:{
                 //Verificar que al insertar  Segunda Revision exista SolicitudRevision, Primera Revision y Motivo Cambio Nota
                 SegundaRevision segRev = (SegundaRevision) dato;
-                //String[] id1 = {segRev.getCarnet(), segRev.getCodtiporevision(), segRev.getCodasignatura(), segRev.getCodciclo(), segRev.getCodtipoeval(), segRev.getCodtipogrupo(), String.valueOf(segRev.getNumeroeval())};
-                String[] id2 = {segRev.getCoddocente(), segRev.getCarnet(), segRev.getCodtiporevision(), segRev.getCodasignatura(), segRev.getCodciclo(), segRev.getCodtipoeval(), String.valueOf(segRev.getNumeroeval()), segRev.getCodtipogrupo()};
+                String[] id1 = {segRev.getCarnet(), segRev.getCodtiporevision(), segRev.getCodasignatura(), segRev.getCodciclo(), segRev.getCodtipoeval(), segRev.getCodtipogrupo(), String.valueOf(segRev.getNumeroeval())};
+                String[] id2 = {segRev.getCoddocente(), segRev.getCarnet(), "PR", segRev.getCodasignatura(), segRev.getCodciclo(), segRev.getCodtipoeval(), String.valueOf(segRev.getNumeroeval()), segRev.getCodtipogrupo()};
                 String[] id3 = {segRev.getMotivoCambioNota()};
                 abrir();
 
-                //Cursor cursor1 = db.query("solicitudrevision", null, "carnet = ? AND codtiporevision = ? AND codasignatura = ? AND codciclo = ? AND codtipoeval = ? AND codtipogrupo = ? AND numeroeval = ? ", id1, null, null, null);
+                Cursor cursor1 = db.query("solicitudrevision", null, "carnet = ? AND codtiporevision = ? AND codasignatura = ? AND codciclo = ? AND codtipoeval = ? AND codtipogrupo = ? AND numeroeval = ? ", id1, null, null, null);
                 Cursor cursor2 = db.query("primerrevision", null, "coddocente = ? AND carnet = ? AND codtiporevision = ? AND codasignatura = ? AND codciclo = ? AND codtipoeval = ? AND numeroeval = ? AND codtipogrupo = ?", id2, null, null, null);
                 Cursor cursor3 = db.query("motivocambionota", null, "codmotivocambionota = ?", id3, null, null, null);
 

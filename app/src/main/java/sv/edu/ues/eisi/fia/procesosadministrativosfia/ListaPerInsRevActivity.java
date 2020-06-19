@@ -73,10 +73,8 @@ public class ListaPerInsRevActivity extends Activity {
 
         recyclerViewPeriodos.setAdapter(adapter);
         }
-        else{
-            Toast.makeText(getApplicationContext(), "ERROR AL RECUPERAR LOS DATOS", Toast.LENGTH_SHORT).show();
+         else Toast.makeText(getApplicationContext(), "Lista de revisiones vacia", Toast.LENGTH_SHORT).show();
         }
-    }
 
     private void consultarPeriodosIncripcionRevision() {
 
@@ -87,7 +85,6 @@ public class ListaPerInsRevActivity extends Activity {
         String sql= "SELECT * FROM periodoinscripcionrevision";
 
         Cursor cursor = db.rawQuery(sql, null);
-        if (cursor.moveToFirst()) {
             while (cursor.moveToNext()) {
                 int i = 0;
                 periodo = new PeriodoInscripcionRevision();
@@ -109,9 +106,6 @@ public class ListaPerInsRevActivity extends Activity {
                 listaPeriodos.add(periodo);
 
             }
-        }else {
-            Toast.makeText(getApplicationContext(), "PERIODO REVISION VACIO", Toast.LENGTH_SHORT).show();
-        }
     }
 
 

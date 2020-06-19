@@ -17,7 +17,7 @@ public class SegundaRevisionConsultar extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_segunda_revision_consultar);
+        setContentView(R.layout.activity_segunda_revision_consultar);
         helper = new ControladorBase(this);
 
         editAsignatura = (EditText) findViewById(R.id.editCodasignatura);

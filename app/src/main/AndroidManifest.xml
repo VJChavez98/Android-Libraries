@@ -34,6 +34,7 @@
             android:value="@string/google_maps_key" />
 
         <activity android:name=".Diferido_actualizar" />
+        <activity android:name=".SolicitudRevision_consultar"/>
         <activity android:name=".SolicitudDiferido_consultarDocente" />
         <activity android:name=".DetalleEstudianteDiferido_consultar" />
         <activity android:name=".DetalleEstudianteRepetido_eliminar" />
