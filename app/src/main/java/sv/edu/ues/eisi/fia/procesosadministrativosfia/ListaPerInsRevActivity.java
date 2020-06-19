@@ -73,8 +73,10 @@ public class ListaPerInsRevActivity extends Activity {
 
         recyclerViewPeriodos.setAdapter(adapter);
         }
-         else Toast.makeText(getApplicationContext(), "Lista de revisiones vacia", Toast.LENGTH_SHORT).show();
+        else{
+            Toast.makeText(getApplicationContext(), "LISTA DE REVISIONES VACIA", Toast.LENGTH_SHORT).show();
         }
+    }
 
     private void consultarPeriodosIncripcionRevision() {
 
@@ -85,27 +87,31 @@ public class ListaPerInsRevActivity extends Activity {
         String sql= "SELECT * FROM periodoinscripcionrevision";
 
         Cursor cursor = db.rawQuery(sql, null);
-            while (cursor.moveToNext()) {
-                int i = 0;
-                periodo = new PeriodoInscripcionRevision();
 
-                periodo.setFechaDesde(cursor.getString(0));
-                periodo.setFechaHasta(cursor.getString(1));
-                periodo.setFechaRevision(cursor.getString(2));
-                periodo.setHoraRevision(cursor.getString(3));
-                periodo.setTipoRevision(cursor.getString(4));
-                periodo.setCodDocente(cursor.getString(5));
-                periodo.setCodLocal(cursor.getString(6));
-                periodo.setCodAsignatura(cursor.getString(7));
-                periodo.setCodCiclo(cursor.getString(8));
-                periodo.setCodTipoEval(cursor.getString(9));
-                periodo.setNumeroEval(cursor.getInt(10));
+        while (cursor.moveToNext()) {
+            int i = 0;
+            periodo = new PeriodoInscripcionRevision();
 
-                recuperarDocente(cursor.getString(5));
+            periodo.setFechaDesde(cursor.getString(0));
+            periodo.setFechaHasta(cursor.getString(1));
+            periodo.setFechaRevision(cursor.getString(2));
+            periodo.setHoraRevision(cursor.getString(3));
+            periodo.setTipoRevision(cursor.getString(4));
+            periodo.setCodDocente(cursor.getString(5));
+            periodo.setCodLocal(cursor.getString(6));
+            periodo.setCodAsignatura(cursor.getString(7));
+            periodo.setCodCiclo(cursor.getString(8));
+            periodo.setCodTipoEval(cursor.getString(9));
+            periodo.setNumeroEval(cursor.getInt(10));
 
-                listaPeriodos.add(periodo);
+            recuperarDocente(cursor.getString(5));
 
-            }
+            listaPeriodos.add(periodo);
+
+        }
+
+
+
     }
 
 
