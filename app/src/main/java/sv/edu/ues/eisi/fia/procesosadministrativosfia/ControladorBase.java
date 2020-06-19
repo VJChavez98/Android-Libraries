@@ -2555,13 +2555,13 @@ public class ControladorBase {
         final Boolean[] VEsIrealizado= {true, false, true, true };
         final String[] VEsIobservaciones= {"PARCIAL", "EVALUADO", "FOTOCOPIAS", "INTERNOS"};
 
-        final String[] idOpcion = {"001","002","003","004","005","006","007","008","009","010","011","012","013","014","015","016","017","018","019","020","021","022"};
+        final String[] idOpcion = {"001","002","003","004","005","006","007","008","009","010","011","012","013","014","015","016","017","018","019","020","021","022","023"};
         final String[] idOpcionEstudiante ={"001","002", "003", "010","020"};
-        final String[] idOpcionDocente = {"004","005","006","008","009","010","011","016","021"};
-        final String[] idDocenteDirector = {"005","006","008","016","021"};
+        final String[] idOpcionDocente = {"004","005","006","008","009","010","011","016","022","023"};
+        final String[] idDocenteDirector = {"005","006","008","016","022","023"};
         final String[] idEncargado = {"016","019"};
-        final String[] descripOpcion = {"Estudiante_menu","Repetido_menu", "Diferido_menu","DetalleDiferidoRepetido_menu","DetalleEstudianteDiferido_consultar", "DetalleEstudianteRepetido_consultar","Local_menu", "Evaluacion_menu", "PeriodoInscripcionRevision_menu", "PrimeraRevision_menu","SolicitudDiferido_consultarDocente","CicloMenuActivity","CargaAcademicaMenuActivity","DocenteMenuActivity", "AsignaturaMenuActivity","SolImpresionMenuActivity", "DocDirectorMenuActivity", "EstadoImpresionMenuActivity", "EncarImpresionesMenuActivity","SolicitudRevision_menu", "ListaPerInsRevActivity","SegundaRevisionMenu"};
-        final int[] numCrud = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22};
+        final String[] descripOpcion = {"Estudiante_menu","Repetido_menu", "Diferido_menu","DetalleDiferidoRepetido_menu","DetalleEstudianteDiferido_consultar", "DetalleEstudianteRepetido_consultar","Local_menu", "Evaluacion_menu", "PeriodoInscripcionRevision_menu", "PrimeraRevision_menu","SolicitudDiferido_consultarDocente","CicloMenuActivity","CargaAcademicaMenuActivity","DocenteMenuActivity", "AsignaturaMenuActivity","SolImpresionMenuActivity", "DocDirectorMenuActivity", "EstadoImpresionMenuActivity", "EncarImpresionesMenuActivity","SolicitudRevision_menu", "ListaPerInsRevActivity","SegundaRevisionMenu","ListaPerInsRevActivity_docente"};
+        final int[] numCrud = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23};
 
         abrir();
         db.execSQL("DELETE FROM usuario;");
