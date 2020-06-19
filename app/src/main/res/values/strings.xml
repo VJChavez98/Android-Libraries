@@ -82,11 +82,20 @@
     <string name="asistio">Asistencia</string>
     <string name="asisSi">SI</string>
     <string name="asisNo">NO</string>
+    <string name="fechaSolicitud">Fecha Solicitud</string>
+    <string name="notaAntesRev">Nota Actual</string>
+    <string name="numerogrupo">Numero Grupo</string>
+    <string name="motivorev">Motivo Revision</string>
 
     <string-array name="tipoRevision">
         <item>Seleccione el Tipo de Revisión</item>
         <item>Primer Revisión</item>
         <item>Segunda Revisión</item>
+    </string-array>
+    <string-array name="codTipoRevision">
+        <item>Seleccione el Tipo de Revisión</item>
+        <item>PR</item>
+        <item>SR</item>
     </string-array>
 
     <string-array name="tipoEval">
@@ -94,6 +103,13 @@
         <item>Examen Parcial</item>
         <item>Examen Discusion</item>
         <item>Examen Laboratorio</item>
+    </string-array>
+
+    <string-array name="tipoGrupo">
+        <item>Seleccione el Tipo de Grupo</item>
+        <item>GT</item>
+        <item>GD</item>
+        <item>GL</item>
     </string-array>
 
     <string-array name="estadoPrimRev">
@@ -171,7 +187,10 @@
     <string name="error_campo_obligatorio">Campo Obligatorio</string>
     <string name="error_valor_entre">Error valor entre 1 y 9999</string>
 
-
     <string name="validar">Validar</string>
     <string name="title_activity_maps">Map</string>
+
+    <string name="idSegRev">Código Segunda Revisión</string>
+    <string name="codtipogrupo">Tipo Grupo</string>
+
 </resources>

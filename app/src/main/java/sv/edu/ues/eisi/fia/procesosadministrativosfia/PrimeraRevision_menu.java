@@ -25,7 +25,6 @@ public class PrimeraRevision_menu extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id){
         super.onListItemClick(l, v, position, id);
         String nombreValues = activities[position];
-        l.getChildAt(position).setBackgroundColor(Color.rgb(100, 100, 230));
         try{
             Class<?> clase = Class.forName("sv.edu.ues.eisi.fia.procesosadministrativosfia."+nombreValues);
             Intent intent = new Intent(this, clase);

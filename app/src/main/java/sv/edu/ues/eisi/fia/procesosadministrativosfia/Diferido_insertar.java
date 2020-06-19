@@ -124,7 +124,6 @@ public class Diferido_insertar extends AppCompatActivity {
 
     public void insertarDiferido(View view) {
         String regInsertados;
-        String codSolicitud;
         String carnet = editCarnet.getText().toString();
         String asignatura = editMateria.getText().toString();
         String GT = editGrupoTeorico.getText().toString();

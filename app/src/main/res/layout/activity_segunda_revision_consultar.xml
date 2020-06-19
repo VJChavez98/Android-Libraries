@@ -22,18 +22,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/codtipogrupo"/>
-        <Spinner
-            android:id="@+id/spinTipoGrupo"
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
-            android:entries="@array/tipoGrupo"
-            android:textAlignment="center"
-            android:gravity="center_horizontal" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="@string/codciclo" />
         <EditText
             android:id="@+id/editCodciclo"
@@ -46,10 +34,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/codtipoeval"/>
-        <Spinner
-            android:id="@+id/spinTipoEval"
+        <Spinner android:id="@+id/spinTipoEval"
             android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
+            android:layout_width="300dp"
             android:entries="@array/tipoEval"
             android:textAlignment="center"
             android:gravity="center_horizontal" />
@@ -85,7 +72,7 @@
                 android:id="@+id/botonConsultar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="consultarPrimeraRevision"
+                android:onClick="consultarSegundaRevision"
                 android:text="@string/consultar" />
 
             <Button
@@ -98,37 +85,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/estadoPrimRev" />
-        <EditText
-            android:id="@+id/editEstado"
-            android:layout_width="330dp"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:cursorVisible="false"
-            android:longClickable="false" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="@string/nomDocente" />
         <EditText
             android:id="@+id/editNomdocente"
-            android:layout_width="330dp"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:cursorVisible="false"
-            android:longClickable="false" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/asistio" />
-        <EditText
-            android:id="@+id/editAsitencia"
             android:layout_width="330dp"
             android:layout_height="wrap_content"
             android:inputType="text"

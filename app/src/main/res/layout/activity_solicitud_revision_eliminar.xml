@@ -1,23 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:paddingTop="10dip"
-    android:stretchColumns="1">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="1"
+    android:paddingTop="4dip">
+
+    <TableRow android:layout_marginBottom="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/codtiporev"/>
+        <Spinner android:id="@+id/spinTipoRev"
+            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:entries="@array/codTipoRevision"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            />
+    </TableRow>
+
+    <TableRow android:layout_marginBottom="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/codtipoeval"/>
+        <Spinner android:id="@+id/spinTipoEval"
+            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:entries="@array/codTipoEval"
+            android:textAlignment="center"
+            android:gravity="center_horizontal" />
+    </TableRow>
 
     <TableRow>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/codtipogrupo"/>
-        <Spinner
-            android:id="@+id/spinTipoGrupo"
+        <Spinner android:id="@+id/spinTipoGrupo"
             android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
+            android:layout_width="200dp"
             android:entries="@array/tipoGrupo"
             android:textAlignment="center"
             android:gravity="center_horizontal" />
     </TableRow>
+
 
     <TableRow>
         <TextView
@@ -26,24 +53,13 @@
             android:text="@string/codasignatura" />
         <EditText
             android:id="@+id/editCodasignatura"
-            android:layout_width="fill_parent"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:inputType="text"
             android:maxLength="6"/>
     </TableRow>
 
-    <TableRow>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/codtipoeval"/>
-        <Spinner android:id="@+id/spinTipoEval"
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
-            android:entries="@array/tipoEval"
-            android:textAlignment="center"
-            android:gravity="center_horizontal" />
-    </TableRow>
+
 
     <TableRow>
         <TextView
@@ -51,9 +67,9 @@
             android:layout_height="wrap_content"
             android:text="@string/codciclo" />
         <EditText
-            android:id="@+id/editCodciclo"
-            android:layout_width="fill_parent"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:id="@+id/editCodciclo"
             android:inputType="number"
             android:maxLength="5"/>
     </TableRow>
@@ -64,9 +80,9 @@
             android:layout_height="wrap_content"
             android:text="@string/evaluacion_numero" />
         <EditText
-            android:id="@+id/editNumeval"
-            android:layout_width="fill_parent"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:id="@+id/editNumeval"
             android:inputType="number"
             android:maxLength="1"/>
     </TableRow>
@@ -75,25 +91,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/codDocente" />
-        <EditText
-            android:id="@+id/editCoddocente"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:maxLength="10"/>
-    </TableRow>
-
-    <TableRow>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="@string/carnet" />
         <EditText
-            android:id="@+id/editCarnet"
-            android:layout_width="fill_parent"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:inputType="text"
+            android:id="@+id/editCarnet"
             android:maxLength="7"/>
     </TableRow>
 
@@ -101,7 +103,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="eliminarPrimeraRevision"
+            android:onClick="eliminarSolicitudRevision"
             android:text="@string/eliminar" />
 
         <Button

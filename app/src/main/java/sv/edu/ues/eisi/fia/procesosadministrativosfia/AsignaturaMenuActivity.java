@@ -17,18 +17,12 @@ public class AsignaturaMenuActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setListAdapter(new ArrayAdapter<String>(this,  android.R.layout.simple_list_item_1, menu));
-
-        ListView listView = getListView();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, menu);
-        setListAdapter(adapter);
     }
 
     @Override
         protected void onListItemClick(ListView l,View v,int position,long id){
-            super.onListItemClick(l, v, position, id);
+           super.onListItemClick(l, v, position, id);
             String nombreValue=activities[position];
-            l.getChildAt(position).setBackgroundColor(Color.rgb(0, 128, 64));
-
             try{
                 Class<?> clase=Class.forName("sv.edu.ues.eisi.fia.procesosadministrativosfia."+nombreValue);
                 Intent inte = new Intent(this,clase);
