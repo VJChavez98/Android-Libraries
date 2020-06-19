@@ -12,12 +12,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import sv.edu.ues.eisi.fia.procesosadministrativosfia.adaptadores.ListaPerInsRevAdapter;
 
-public class ListaPerInsRevActivity extends Activity {
+public class ListaPerInsRevActivity_docente extends Activity {
 
     ArrayList<PeriodoInscripcionRevision> listaPeriodos;
     RecyclerView recyclerViewPeriodos;
@@ -29,7 +28,8 @@ public class ListaPerInsRevActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_per_ins_rev);
+        setContentView(R.layout.activity_lista_per_ins_rev_docente);
+
 
         helper = new ControladorBase(this);
 
@@ -40,43 +40,16 @@ public class ListaPerInsRevActivity extends Activity {
 
         consultarPeriodosIncripcionRevision();
         if (!listaPeriodos.isEmpty()) {
+
             ListaPerInsRevAdapter adapter = new ListaPerInsRevAdapter(listaPeriodos, docente[0], docente[1]);
 
-            adapter.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    PeriodoInscripcionRevision periodoSeleccionado = null;
-                    periodoSeleccionado = (PeriodoInscripcionRevision) listaPeriodos.get(recyclerViewPeriodos.getChildAdapterPosition(v));
-
-                    //************************************************************************************************
-                    //Muestro con un Toast el objeto seleccionado
-                    //Toast.makeText(getApplicationContext(),periodo.getNombre(),Toast.LENGTH_SHORT).show();
-
-                    //Envío el objeto seleccionado a SolicitudRevisionActivity
-                    /*Intent intent = new Intent(ListaPerInsRevActivity.this,SolicitudRevision.class);
-
-                    Bundle bundle= new Bundle();
-                    bundle.putSerializable("periodo",periodoSeleccionado);
-
-                    intent.putExtras(bundle);
-                    //startActivity(intent);
-                    startActivityForResult(intent,1);*/
-                    //***************************************************************************************
-
-                    Intent intent = new Intent(ListaPerInsRevActivity.this, SolicitudRevisionActivity.class);
-                    intent.putExtra("periodo", periodoSeleccionado);
-                    startActivity(intent);
-
-                }
-            });
-
-        recyclerViewPeriodos.setAdapter(adapter);
+            recyclerViewPeriodos.setAdapter(adapter);
         }
         else{
             Toast.makeText(getApplicationContext(), "ERROR AL RECUPERAR LOS DATOS", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     private void consultarPeriodosIncripcionRevision() {
 
@@ -116,23 +89,23 @@ public class ListaPerInsRevActivity extends Activity {
 
 
 
-   private void recuperarDocente(String s){
+    private void recuperarDocente(String s){
 
         SQLiteDatabase db = helper.abrirLeer();
 
         String[] parametros = {s};
 
-       for (int i=0; i<=listaPeriodos.size(); i++){
+        for (int i=0; i<=listaPeriodos.size(); i++){
 
-           Cursor cursor = db.rawQuery("SELECT nombredocente, apellidodocente FROM docente WHERE coddocente = ?" , parametros);
+            Cursor cursor = db.rawQuery("SELECT nombredocente, apellidodocente FROM docente WHERE coddocente = ?" , parametros);
 
             cursor.moveToFirst();
 
             String[] doc= {cursor.getString(0), cursor.getString(1)};
 
-           asignarDocente(doc);
+            asignarDocente(doc);
 
-       }
+        }
 
     }
 
@@ -141,6 +114,7 @@ public class ListaPerInsRevActivity extends Activity {
 
         docente=s;
     }
+
 
 
 }

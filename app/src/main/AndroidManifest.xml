@@ -5,7 +5,7 @@
           The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
           Google Maps Android API v2, but you must specify either coarse or fine
           location permissions for the 'MyLocation' functionality.
-     -->
+    -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SegundaRevisionMenu"></activity>
+        <activity android:name=".ListaPerInsRevActivity_docente"></activity>
+        <activity android:name=".SegundaRevisionMenu" />
         <activity android:name=".SegundaRevisionInsertar" />
         <activity android:name=".SegundaRevisionEliminar" />
         <activity android:name=".SegundaRevisionConsultar" />
@@ -49,8 +50,8 @@
         <activity android:name=".Estudiante_consultar" />
         <activity android:name=".Estudiante_insertar" />
         <activity android:name=".PeriodoInscripcionRevision_menu" />
-        <activity android:name=".PrimeraRevision_eliminar"/>
-        <activity android:name=".SolicitudRevision_actualizar"/>
+        <activity android:name=".PrimeraRevision_eliminar" />
+        <activity android:name=".SolicitudRevision_actualizar" />
         <activity android:name=".SolicitudRevision_eliminar" />
         <activity android:name=".SolicitudRevision_menu" />
         <activity android:name=".SolicitudRevisionActivity" />
@@ -76,7 +77,7 @@
         <activity android:name=".Evaluacion_menu" />
         <activity android:name=".MenuEstudiante" />
         <activity android:name=".Diferido_insertar" />
-        <activity android:name=".Diferido_consultar"/>
+        <activity android:name=".Diferido_consultar" />
         <activity android:name=".Diferido_menu" />
         <activity android:name=".Repetido_Eliminar" />
         <activity android:name=".Repetido_modificar" />
