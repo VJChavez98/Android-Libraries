@@ -9,7 +9,7 @@
         android:text="ID Estado Impresion"/>
     <EditText
         android:id="@+id/editIdEstadoImpresion"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:maxLength="10"/>
@@ -19,7 +19,7 @@
         android:text="ID Solicitud Impresion"/>
     <EditText
         android:id="@+id/editIdSolicitudImpresion"
-        android:layout_width="200dip"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:maxLength="10"/>
@@ -29,7 +29,7 @@
         android:text="ID Encargado" />
     <EditText
         android:id="@+id/editIdEncargado"
-        android:layout_width="200dip"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:maxLength="10"/>
@@ -39,7 +39,7 @@
         android:text="ID MotivoImpresion" />
     <EditText
         android:id="@+id/editIdMotivoImpresion"
-        android:layout_width="200dip"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:maxLength="10"/>
@@ -66,7 +66,7 @@
         android:text="Realizado" />
     <EditText
         android:id="@+id/editRealizado"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:enabled ="false"
@@ -80,7 +80,7 @@
         android:text="Observaciones" />
     <EditText
         android:id="@+id/editObservaciones"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:enabled ="false"
