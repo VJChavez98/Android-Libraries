@@ -37,7 +37,6 @@
         <activity android:name=".SolicitudRevision_consultar"/>
         <activity android:name=".SolicitudDiferido_consultarDocente" />
         <activity android:name=".DetalleEstudianteDiferido_consultar" />
-        <activity android:name=".DetalleEstudianteRepetido_eliminar" />
         <activity android:name=".DetalleEstudianteRepetido_consultar" />
         <activity android:name=".DetalleEstudianteRepetido_menu" />
         <activity android:name=".DetalleEstudianteRepetido_insertar" />
