@@ -17,6 +17,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final String TAG = "GoogleActivity";
     private static final int RC_SIGN_IN = 9001;
     ControladorBase DBHelper;
+    FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
 
     @Override
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         DBHelper = new ControladorBase(this);
         findViewById(R.id.ingresarBtn).setOnClickListener(this);
+        mAuth = FirebaseAuth.getInstance();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -47,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        FirebaseUser account = mAuth.getCurrentUser();
         updateUI(account);
     }
     @Override
@@ -60,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             try {
                 // Google Sign In was successful
                 GoogleSignInAccount account = task.getResult(ApiException.class);
-                updateUI(account);
+                firebaseAuthWithGoogle(account);
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed" + e.getStatusCode());
@@ -69,6 +72,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // [END_EXCLUDE]
             }
         }
+    }
+
+    private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
+        final AuthCredential authCredential = GoogleAuthProvider.getCredential(account.getIdToken(),null);
+        mAuth.signInWithCredential(authCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    Log.d(TAG, "SignInWithCredential: Success");
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    updateUI(user);
+                }
+                else {
+                    Log.w(TAG, "signInWithCredential:failure", task.getException());
+                    Toast.makeText(getApplicationContext(), "Authentication Failed.", Toast.LENGTH_SHORT).show();
+                    updateUI(null);
+                }
+            }
+        });
     }
 
     public void onClick(View v) {
@@ -83,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void signOut() {
         // Google sign out
+        mAuth.signOut();
         mGoogleSignInClient.signOut().addOnCompleteListener(this,
                 new OnCompleteListener<Void>() {
                     @Override
@@ -94,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void revokeAccess() {
         // Google revoke access
+        mAuth.signOut();
         mGoogleSignInClient.revokeAccess().addOnCompleteListener(this,
                 new OnCompleteListener<Void>() {
                     @Override
@@ -103,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 });
     }
 
-    private void updateUI(GoogleSignInAccount user) {
+    private void updateUI(FirebaseUser user) {
         if (user != null) {
             DBHelper.abrir();
             if (DBHelper.consultarUsuario(user.getEmail())) {

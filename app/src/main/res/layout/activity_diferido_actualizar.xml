@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Diferido_actualizar">
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <TableRow>
         <TextView
             android:layout_width="match_parent"
@@ -148,6 +151,15 @@
             android:layout_width="fill_parent"/>
     </TableRow>
     <TableRow>
+        <TextView android:id="@+id/lblJustificante"
+            android:text="@string/justificante"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+        <ImageView android:layout_width="match_parent"
+            android:layout_height="200dip"
+            android:id="@+id/justificante"/>
+    </TableRow>
+    <TableRow>
         <TextView android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/estadoSolic"/>
@@ -158,20 +170,5 @@
             android:textAlignment="center"
             android:entries="@array/estadoSoli" />
     </TableRow>
-<!--
-    <TableRow>
-        <Button android:id="@+id/cancelarBtn"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:onClick="limpiarTexto"
-            android:text="@string/cancelarBtn"/>
-        <Button android:id="@+id/ModificarBtn"
-            android:text="@string/actualizar"
-            android:onClick="actualizarSolicitud"
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent" />
-
-    </TableRow>
--->
-
-</TableLayout>
+    </TableLayout>
+</ScrollView>

@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="sv.edu.ues.eisi.fia.procesosadministrativosfia">
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-feature android:name="android.hardware.Camera"/>
-    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.Camera" />
+
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" /> <!-- External storage for caching. -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -22,7 +25,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ExcelDocente"></activity>
+        <activity android:name=".ExcelDocente" />
         <activity android:name=".ExcelEstudiante" />
         <activity android:name=".MapaConsultarE" />
         <activity android:name=".MapaConsultarBIB" />
@@ -47,7 +50,7 @@
         <activity android:name=".Estudiante_consultar" />
         <activity android:name=".Estudiante_insertar" />
         <activity android:name=".PeriodoInscripcionRevision_menu" />
-        <activity android:name=".PrimeraRevision_eliminar"></activity>
+        <activity android:name=".PrimeraRevision_eliminar" />
         <activity android:name=".PrimeraRevision_actualizar" />
         <activity android:name=".PrimeraRevision_consultar" />
         <activity android:name=".PrimeraRevision_insertar" />
@@ -60,7 +63,6 @@
         <activity android:name=".Local_eliminar" />
         <activity android:name=".Local_consultar" />
         <activity android:name=".Local_insertar" />
-        <activity android:name=".DatePickerFragment" />
         <activity android:name=".Evaluacion_actualizar" />
         <activity android:name=".Evaluacion_consultar" />
         <activity android:name=".Evaluacion_eliminar" />
@@ -70,14 +72,14 @@
         <activity android:name=".Evaluacion_menu" />
         <activity android:name=".MenuEstudiante" />
         <activity android:name=".Diferido_insertar" />
-        <activity android:name=".Diferido_consultar"/>
+        <activity android:name=".Diferido_consultar" />
         <activity android:name=".Diferido_menu" />
         <activity android:name=".Repetido_Eliminar" />
         <activity android:name=".Repetido_modificar" />
         <activity android:name=".Repetido_Insertar" />
         <activity android:name=".Repetido_Consultar" />
         <activity android:name=".Repetido_menu" />
-        <activity android:name=".AsignaturaConsultarActivity"></activity>
+        <activity android:name=".AsignaturaConsultarActivity" />
         <activity android:name=".AsignaturaActualizarActivity" />
         <activity android:name=".AsignaturaEliminarActivity" />
         <activity android:name=".AsignaturaInsertarActivity" />
@@ -98,7 +100,7 @@
         <activity android:name=".DocenteMenuActivity" />
         <activity android:name=".CargaAcademicaMenuActivity" />
         <activity android:name=".CicloMenuActivity" />
-        <activity android:name=".EstadoImpresionInsertarActivity"></activity>
+        <activity android:name=".EstadoImpresionInsertarActivity" />
         <activity android:name=".EstadoImpresionEliminarActivity" />
         <activity android:name=".EstadoImpresionConsultarActivity" />
         <activity android:name=".EstadoImpresionActualizarActivity" />

@@ -1,20 +1,37 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class SolicitudDiferido_consultarDocente extends AppCompatActivity {
@@ -23,6 +40,10 @@ public class SolicitudDiferido_consultarDocente extends AppCompatActivity {
     ListView listView1;
     FrameLayout frame;
     ControladorBase helper;
+    StorageReference mStorage;
+    File file;
+    String ruta;
+    ProgressDialog mProgress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +55,8 @@ public class SolicitudDiferido_consultarDocente extends AppCompatActivity {
         spinEstadoSoli = findViewById(R.id.estadoSolicitud);
         listView1 = findViewById(R.id.listaSolicitudes);
         frame = findViewById(R.id.fragmentSolicitudes);
+        mStorage = FirebaseStorage.getInstance().getReference().child("Justificante");
+        mProgress = new ProgressDialog(this);
 
     }
 
@@ -47,7 +70,7 @@ public class SolicitudDiferido_consultarDocente extends AppCompatActivity {
             listView1.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, solicitudes));
             listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
                     helper.abrir();
                     final SolicitudDiferido solicitudDiferido = helper.consultarSolicitudDiferido(solicitudes.get(position), editMateria.getText().toString(), spinTipoEval.getSelectedItem().toString(), editNumEval.getText().toString());
                     helper.cerrar();
@@ -66,6 +89,7 @@ public class SolicitudDiferido_consultarDocente extends AppCompatActivity {
                     EditText descrip = dialogView.findViewById(R.id.editMotivo);
                     Spinner tipoEval = dialogView.findViewById(R.id.spinTipoEval);
                     Spinner motivo = dialogView.findViewById(R.id.spinMotivos);
+                    final ImageView srcImg = dialogView.findViewById(R.id.justificante);
                     final Spinner estado = dialogView.findViewById(R.id.estadoSolicitud);
                     carnet.setText(solicitudDiferido.getCarnet());
                     materia.setText(solicitudDiferido.getCodMateria());
@@ -79,6 +103,33 @@ public class SolicitudDiferido_consultarDocente extends AppCompatActivity {
                     motivo.setSelection(colocarMotivo(solicitudDiferido.getMotivo()));
                     descrip.setText(solicitudDiferido.getOtroMotivo());
                     estado.setSelection(colocarEstado(solicitudDiferido.getEstado()));
+                    ruta = solicitudDiferido.getRutaJustificante();
+                    mProgress.setTitle("Cargando justificante");
+                    mProgress.setMessage("Por favor espere");
+                    mProgress.show();
+                    try {
+                        file = File.createTempFile(ruta, "jpg");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    mStorage.child(ruta).getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            Toast.makeText(getApplicationContext(),"Se descargo correctamente",Toast.LENGTH_SHORT).show();
+                            Bitmap b = BitmapFactory.decodeFile(file.getAbsolutePath());
+                            Glide.with(view.getContext()).load(b).centerCrop().into(srcImg);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getApplicationContext(), "Error al descargar justificante", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnCompleteListener(new OnCompleteListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<FileDownloadTask.TaskSnapshot> task) {
+                            mProgress.dismiss();
+                        }
+                    });
                     tipoEval.setEnabled(false);
                     motivo.setEnabled(false);
                     builder.setPositiveButton("Actualizar", new DialogInterface.OnClickListener() {
@@ -99,6 +150,7 @@ public class SolicitudDiferido_consultarDocente extends AppCompatActivity {
                     });
                     AlertDialog alertDialog = builder.create();
                     alertDialog.show();
+                    srcImg.setOnClickListener(showImage);
                }
             });
 
@@ -148,5 +200,24 @@ public class SolicitudDiferido_consultarDocente extends AppCompatActivity {
             default:return 0;
         }
     }
+    View.OnClickListener showImage = new View.OnClickListener() {
+        @Override
+        public void onClick(final View v) {
+            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(v.getContext());
+            View dialogView = LayoutInflater.from(v.getContext()).inflate(R.layout.mostar_imagen, null, false);
+            builder.setView(dialogView);
+            builder.setTitle("Justificante Diferido");
+            final ImageView justificante = dialogView.findViewById(R.id.mostarImagen);
+            Bitmap b = BitmapFactory.decodeFile(file.getAbsolutePath());
+            Glide.with(getApplicationContext()).load(b).into(justificante);
+            builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.create().show();
+        }
 
+    };
 }
