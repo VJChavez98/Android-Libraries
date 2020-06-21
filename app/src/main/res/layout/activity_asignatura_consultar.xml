@@ -10,8 +10,7 @@
         android:text="@string/codasignatura"/>
     <EditText
         android:id="@+id/editCodasignatura"
-        android:layout_width="200dp"
-        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:maxLength="6"/>
@@ -19,24 +18,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nombreasignatura"/>
+
     <EditText
         android:id="@+id/editNombreasignatura"
-        android:layout_width="100dp"
-        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:maxLength="30"/>
+        android:maxLength="30"
+        android:focusable="false"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/unidadesval"/>
+
     <EditText
         android:id="@+id/editUnidadesval"
-        android:layout_width="100dp"
-        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:maxLength="1"/>
+        android:maxLength="1"
+        android:focusable="false"/>
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"

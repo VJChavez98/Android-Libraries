@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 public class PrimeraRevision_consultar extends Activity {
     EditText editAsignatura, editCiclo, editNumEval, editDocente, editCarnet, editNotaFinal, editObservaciones, editEstado, editAsistencia, editMotCambio;
-    Spinner spinTipoEval;
+    Spinner spinTipoEval, spinTipoGrupo;
     ControladorBase helper;
 
     @Override
@@ -26,6 +26,7 @@ public class PrimeraRevision_consultar extends Activity {
         editNotaFinal = (EditText) findViewById(R.id.editNotaFinal);
         editObservaciones = (EditText) findViewById(R.id.editObservaciones);
         spinTipoEval = (Spinner) findViewById(R.id.spinTipoEval);
+        spinTipoGrupo = (Spinner) findViewById(R.id.spinTipoGrupo);
         editEstado = (EditText) findViewById(R.id.editEstado);
         editAsistencia = (EditText) findViewById(R.id.editAsitencia);
         editMotCambio = (EditText) findViewById(R.id.editMotivoCambio);
@@ -53,8 +54,21 @@ public class PrimeraRevision_consultar extends Activity {
             primRev.setCodtipoeval("");
         }
 
+        if(spinTipoGrupo.getSelectedItem().toString().equals("GT")){
+            String tipoGrupo = "GT";
+            primRev.setCodtipogrupo(tipoGrupo);
+        }else if(spinTipoGrupo.getSelectedItem().toString().equals("GD")){
+            String tipoGrupo = "GD";
+            primRev.setCodtipogrupo(tipoGrupo);
+        }else if(spinTipoGrupo.getSelectedItem().toString().equals("GL")){
+            String tipoGrupo = "GL";
+            primRev.setCodtipogrupo(tipoGrupo);
+        }else{
+            primRev.setCodtipogrupo("");
+        }
+
         helper.abrir();
-        PrimeraRevision primer = helper.consultarPrimerRevision(editAsignatura.getText().toString(), editCiclo.getText().toString(), primRev.getNumeroeval(), editCarnet.getText().toString(), primRev.getCodtipoeval());
+        PrimeraRevision primer = helper.consultarPrimerRevision(editAsignatura.getText().toString(), editCiclo.getText().toString(), primRev.getNumeroeval(), editCarnet.getText().toString(), primRev.getCodtipoeval(), primRev.getCodtipogrupo());
         helper.cerrar();
         if(primer == null){
             Toast.makeText(this, "Revision no Registrada", Toast.LENGTH_LONG).show();
@@ -88,6 +102,7 @@ public class PrimeraRevision_consultar extends Activity {
         editCiclo.setText("");
         editNumEval.setText("");
         spinTipoEval.setSelection(0);
+        spinTipoGrupo.setSelection(0);
         editCarnet.setText("");
         editEstado.setText("");
         editDocente.setText("");

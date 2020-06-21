@@ -42,7 +42,7 @@ import java.util.Calendar;
 public class Diferido_insertar extends AppCompatActivity {
 
     ControladorBase DBHelper;
-    EditText editCarnet, editMateria, editGrupoTeorico, editGrupoDiscusion, editGrupoLab, editFechaEval, editHoraEval, editMotivo, editEva;
+    EditText editCarnet, editMateria, editGrupoTeorico, editGrupoDiscusion, editGrupoLab, editFechaEval, editHoraEval, editMotivo, editEva, ciclo;
     Spinner motivos, spinTipo;
     private int nYearIni, nMonthIni, nDayIni, sYearIni, sMonthIni, sDayIni, sHour, nHour, sMinute, nMinute;
     static final int DATE_ID = 0, HOUR_ID = 1;
@@ -84,6 +84,9 @@ public class Diferido_insertar extends AppCompatActivity {
             }
         }
         srcImg.setOnClickListener(showImage);
+        ciclo = findViewById(R.id.editCodciclo);
+
+
         sMonthIni = c.get(Calendar.MONTH);
         sDayIni = c.get(Calendar.DAY_OF_MONTH);
         sYearIni = c.get(Calendar.YEAR);
@@ -172,7 +175,6 @@ public class Diferido_insertar extends AppCompatActivity {
 
     public void insertarDiferido(View view) {
         String regInsertados;
-        String codSolicitud;
         String carnet = editCarnet.getText().toString();
         String asignatura = editMateria.getText().toString();
         String GT = editGrupoTeorico.getText().toString();
@@ -184,9 +186,7 @@ public class Diferido_insertar extends AppCompatActivity {
         String hora = editHoraEval.getText().toString();
         String motivoSpin = motivos.getSelectedItem().toString();
         String motivoEdit = editMotivo.getText().toString();
-        codSolicitud = carnet + asignatura + tipoEval + numEva;
-        final SolicitudDiferido solicitudDiferido = new SolicitudDiferido();
-        solicitudDiferido.setIdSolicitud(codSolicitud);
+        SolicitudDiferido solicitudDiferido = new SolicitudDiferido();
         solicitudDiferido.setCarnet(carnet);
         solicitudDiferido.setCodMateria(asignatura);
         solicitudDiferido.setNumeroEval(numEva);
@@ -198,6 +198,7 @@ public class Diferido_insertar extends AppCompatActivity {
         solicitudDiferido.setHoraEva(hora);
         solicitudDiferido.setMotivo(motivoSpin);
         solicitudDiferido.setOtroMotivo(motivoEdit);
+        solicitudDiferido.setCiclo(ciclo.getText().toString());
         solicitudDiferido.setEstado("Pendiente");
         solicitudDiferido.setRutaJustificante(file.getLastPathSegment());
         DBHelper.abrir();
@@ -220,6 +221,7 @@ public class Diferido_insertar extends AppCompatActivity {
         editHoraEval.setText("");
         editMotivo.setText("");
         motivos.setSelection(0);
+        ciclo.setText("");
     }
     public void selectImage(){
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);

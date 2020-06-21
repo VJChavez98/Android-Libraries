@@ -61,7 +61,7 @@ public class SolImpresionEliminarActivity extends Activity {
         controlhelper.cerrar();
         Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
     }
-    public void limpiar(View v){
+    public void limpiarTexto(View v){
         editIdSolicitudImpresion.setText("");
         editIdDocente.setText("");
         editIdDocenteDirector.setText("");

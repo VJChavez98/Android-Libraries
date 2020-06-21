@@ -35,7 +35,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class SolicitudDiferido_consultarDocente extends AppCompatActivity {
-    EditText editMateria, editNumEval;
+    EditText editMateria, editNumEval, ciclo;
     Spinner spinTipoEval, spinEstadoSoli;
     ListView listView1;
     FrameLayout frame;
@@ -57,15 +57,22 @@ public class SolicitudDiferido_consultarDocente extends AppCompatActivity {
         frame = findViewById(R.id.fragmentSolicitudes);
         mStorage = FirebaseStorage.getInstance().getReference().child("Justificante");
         mProgress = new ProgressDialog(this);
+        ciclo = findViewById(R.id.editCodciclo);
 
     }
 
     public void consultarSolicitudes(View view) {
-        frame.setVisibility(View.VISIBLE);
-        helper.abrir();
-        final ArrayList<String> solicitudes = helper.consultarSolicitudesPendiente(editMateria.getText().toString(),spinTipoEval.getSelectedItem().toString(), Integer.parseInt(editNumEval.getText().toString()), spinEstadoSoli.getSelectedItem().toString());
-        helper.cerrar();
-        if (solicitudes.size() > 0) {
+        if (!(editMateria.getText().toString().isEmpty() && editNumEval.getText().toString().isEmpty() && ciclo.getText().toString().isEmpty() && spinTipoEval.getSelectedItem().toString().equals(spinTipoEval.getItemAtPosition(0).toString()) && spinEstadoSoli.getSelectedItem().toString().equals(spinEstadoSoli.getItemAtPosition(0).toString()))) {
+            if (!editMateria.getText().toString().isEmpty()) {
+                if (!spinTipoEval.getSelectedItem().toString().equals(spinTipoEval.getItemAtPosition(0).toString())) {
+                    if (!ciclo.getText().toString().isEmpty()) {
+                        if (!editNumEval.getText().toString().isEmpty()) {
+                            if (!spinEstadoSoli.getSelectedItem().toString().equals(spinEstadoSoli.getItemAtPosition(0).toString())) {
+                                helper.abrir();
+                                final ArrayList<String> solicitudes = helper.consultarSolicitudesPendiente(editMateria.getText().toString(), spinTipoEval.getSelectedItem().toString(), Integer.parseInt(editNumEval.getText().toString()), spinEstadoSoli.getSelectedItem().toString(), ciclo.getText().toString());
+                                helper.cerrar();
+                                frame.setVisibility(View.VISIBLE);
+                                if (solicitudes.size() > 0) {
 
             listView1.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, solicitudes));
             listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -88,6 +95,7 @@ public class SolicitudDiferido_consultarDocente extends AppCompatActivity {
                     EditText hora = dialogView.findViewById(R.id.editHoraRealizada);
                     EditText descrip = dialogView.findViewById(R.id.editMotivo);
                     Spinner tipoEval = dialogView.findViewById(R.id.spinTipoEval);
+                    EditText ciclo = dialogView.findViewById(R.id.editCodciclo);
                     Spinner motivo = dialogView.findViewById(R.id.spinMotivos);
                     final ImageView srcImg = dialogView.findViewById(R.id.justificante);
                     final Spinner estado = dialogView.findViewById(R.id.estadoSolicitud);
@@ -103,6 +111,7 @@ public class SolicitudDiferido_consultarDocente extends AppCompatActivity {
                     motivo.setSelection(colocarMotivo(solicitudDiferido.getMotivo()));
                     descrip.setText(solicitudDiferido.getOtroMotivo());
                     estado.setSelection(colocarEstado(solicitudDiferido.getEstado()));
+                    ciclo.setText(solicitudDiferido.getCiclo());
                     ruta = solicitudDiferido.getRutaJustificante();
                     mProgress.setTitle("Cargando justificante");
                     mProgress.setMessage("Por favor espere");
@@ -154,13 +163,31 @@ public class SolicitudDiferido_consultarDocente extends AppCompatActivity {
                }
             });
 
-        }else {
-            frame.setVisibility(View.GONE);
-            Toast.makeText(getApplicationContext(), "No se encontraron solicitudes",Toast.LENGTH_SHORT).show();
-        }
+                                } else {
+                                    frame.setVisibility(View.GONE);
+                                    Toast.makeText(getApplicationContext(), "No se encontraron solicitudes", Toast.LENGTH_SHORT).show();
+                                }
+                            } else
+                                Toast.makeText(getApplicationContext(), "Campo obligatorio: Estado", Toast.LENGTH_SHORT).show();
+                        } else
+                            Toast.makeText(getApplicationContext(), "Campo obligatorio: Numero evaluacion", Toast.LENGTH_SHORT).show();
+                    } else
+                        Toast.makeText(getApplicationContext(), "Campo obligatorio: Ciclo", Toast.LENGTH_SHORT).show();
+                } else
+                    Toast.makeText(getApplicationContext(), "Campo obligatorio: Tipo evaluacion", Toast.LENGTH_SHORT).show();
+            } else
+                Toast.makeText(getApplicationContext(), "Campo obligatorio: Codigo materia", Toast.LENGTH_SHORT).show();
+        }else Toast.makeText(getApplicationContext(), "Campos vacios", Toast.LENGTH_SHORT).show();
     }
 
     public void limpiarTexto(View view){
+        editMateria.setText("");
+        editNumEval.setText("");
+        spinTipoEval.setSelection(0);
+        spinEstadoSoli.setSelection(0);
+        frame.setVisibility(View.GONE);
+        ciclo.setText("");
+        editMateria.requestFocus();
 
     }
 

@@ -14,12 +14,17 @@ public class PrimeraRevision {
     private String codtiporevision;
     private String motivoCambioNota;
 
-
-
-    public PrimeraRevision() {
+    public String getCodtipogrupo() {
+        return codtipogrupo;
     }
 
-    public PrimeraRevision(String estadoprimerrevision, float notadespuesprimerarevision, String asistio, String observacionesprimerarev, String coddocente, String carnet, String codasignatura, String codciclo, String codtipoeval, int numeroeval, String codtiporevision, String motivoCambioNota) {
+    public void setCodtipogrupo(String codtipogrupo) {
+        this.codtipogrupo = codtipogrupo;
+    }
+
+    private String codtipogrupo;
+
+    public PrimeraRevision(String estadoprimerrevision, float notadespuesprimerarevision, String asistio, String observacionesprimerarev, String coddocente, String carnet, String codasignatura, String codciclo, String codtipoeval, int numeroeval, String codtiporevision, String motivoCambioNota, String codtipogrupo) {
         this.estadoprimerrevision = estadoprimerrevision;
         this.notadespuesprimerarevision = notadespuesprimerarevision;
         this.asistio = asistio;
@@ -32,6 +37,10 @@ public class PrimeraRevision {
         this.numeroeval = numeroeval;
         this.codtiporevision = codtiporevision;
         this.motivoCambioNota = motivoCambioNota;
+        this.codtipogrupo = codtipogrupo;
+    }
+
+    public PrimeraRevision() {
     }
 
     public String getEstadoprimerrevision() {

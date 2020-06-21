@@ -29,14 +29,24 @@ public class Estudiante_insertar extends AppCompatActivity {
     }
 
     public void insertarEstudiante(View view) {
-        Estudiante estudiante = new Estudiante();
-        estudiante.setCarnet(editCarnet.getText().toString());
-        estudiante.setNombre(editNombre.getText().toString());
-        estudiante.setApellido(editApellido.getText().toString());
-        estudiante.setCarrera(editCarrera.getText().toString());
-        helper.abrir();
-        String resultado = helper.insertar(estudiante);
-        helper.cerrar();
-        Toast.makeText(this,resultado,Toast.LENGTH_SHORT).show();
+        if (!(editCarnet.getText().toString().isEmpty() && editNombre.getText().toString().isEmpty() && editApellido.getText().toString().isEmpty() && editCarrera.getText().toString().isEmpty())){
+            if (!editCarnet.getText().toString().isEmpty()) {
+                if (!editNombre.getText().toString().isEmpty()) {
+                    if (!editApellido.getText().toString().isEmpty()) {
+                        if (!editCarrera.getText().toString().isEmpty()) {
+                            Estudiante estudiante = new Estudiante();
+                            estudiante.setCarnet(editCarnet.getText().toString());
+                            estudiante.setNombre(editNombre.getText().toString());
+                            estudiante.setApellido(editApellido.getText().toString());
+                            estudiante.setCarrera(editCarrera.getText().toString());
+                            helper.abrir();
+                            String resultado = helper.insertar(estudiante);
+                            helper.cerrar();
+                            Toast.makeText(this, resultado, Toast.LENGTH_SHORT).show();
+                        }else Toast.makeText(getApplicationContext(), "Campo obligatorio: Carrera",Toast.LENGTH_SHORT).show();
+                    }else Toast.makeText(getApplicationContext(), "Campo obligatorio: Apellidos",Toast.LENGTH_SHORT).show();
+                }else Toast.makeText(getApplicationContext(), "Campo obligatorio: Nombres",Toast.LENGTH_SHORT).show();
+            }else Toast.makeText(getApplicationContext(), "Campo obligatorio: Carnet",Toast.LENGTH_SHORT).show();
+        }else Toast.makeText(getApplicationContext(), "Campos vacios",Toast.LENGTH_SHORT).show();
     }
 }
