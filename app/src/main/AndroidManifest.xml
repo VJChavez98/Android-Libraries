@@ -25,7 +25,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MostrarImagenActivity"></activity>
         <activity android:name=".ExcelDocente" />
         <activity android:name=".ExcelEstudiante" />
         <activity android:name=".MapaConsultarE" />
@@ -64,7 +63,6 @@
         <activity android:name=".Local_eliminar" />
         <activity android:name=".Local_consultar" />
         <activity android:name=".Local_insertar" />
-        <activity android:name=".DatePickerFragment" />
         <activity android:name=".Evaluacion_actualizar" />
         <activity android:name=".Evaluacion_consultar" />
         <activity android:name=".Evaluacion_eliminar" />
