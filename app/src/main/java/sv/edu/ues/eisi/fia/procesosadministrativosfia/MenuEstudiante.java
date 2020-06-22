@@ -21,9 +21,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.ArrayList;
+
 public class MenuEstudiante extends ListActivity{
     Intent intent;
-    String carnet;
+    String correo;
     ArrayList<String> acceso;
     String [] menu;
     String [] activities;
@@ -36,10 +38,10 @@ public class MenuEstudiante extends ListActivity{
         super.onCreate(savedInstanceState);
 
         intent = getIntent();
-        carnet = intent.getStringExtra("correo");
+        correo = intent.getStringExtra("correo");
         helper = new ControladorBase(this);
         helper.abrir();
-        acceso = helper.consultarAcceso(carnet);
+        acceso = helper.consultarAcceso(correo);
         menu = menu(acceso);
         activities = actividades(acceso);
         helper.cerrar();
@@ -54,7 +56,7 @@ public class MenuEstudiante extends ListActivity{
 
     protected void onListItemClick(ListView listView, View view, int position, long id){
         super.onListItemClick(listView, view, position, id);
-        if (position!=19) {
+        if (position!=menu.length-1) {
             String nombreValue = activities[position];
             try {
                 Class<?> clase = Class.forName("sv.edu.ues.eisi.fia.procesosadministrativosfia." + nombreValue);
@@ -122,7 +124,7 @@ public class MenuEstudiante extends ListActivity{
         return actividades;
     }
     public String[] menu(ArrayList<String> id){
-        String[] menu = new String[id.size()];
+        String[] menu = new String[id.size()+1];
         int i = 0;
         while (i <id.size()){
             switch (id.get(i)) {
@@ -241,6 +243,7 @@ public class MenuEstudiante extends ListActivity{
                     i++;
                 }
             }
+            menu[id.size()] = "Cerrar sesión";
         }
         return menu;
     }

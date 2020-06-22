@@ -124,7 +124,6 @@
             android:inputType="text"
             android:focusable="false"
             android:layout_width="fill_parent"
-            android:focusable="false"
             android:layout_height="wrap_content"/>
     </TableRow>
     <TableRow>

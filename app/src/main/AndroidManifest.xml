@@ -31,7 +31,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ListaPerInsRevActivity_docente"></activity>
+        <activity android:name=".ListaPerInsRevActivity_docente"/>
         <activity android:name=".SegundaRevisionMenu" />
         <activity android:name=".SegundaRevisionInsertar" />
         <activity android:name=".SegundaRevisionEliminar" />
@@ -45,10 +45,6 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
-
         <activity android:name=".Diferido_actualizar" />
         <activity android:name=".SolicitudRevision_consultar"/>
         <activity android:name=".ExcelDocente" />
@@ -59,7 +55,6 @@
         <activity android:name=".MapaConsultarB" />
         <activity android:name=".MapaConsultarD" />
         <activity android:name=".MapaConsultarC" />
-        <activity android:name=".Diferido_actualizar" />
         <activity android:name=".SolicitudDiferido_consultarDocente" />
         <activity android:name=".DetalleEstudianteDiferido_consultar" />
         <activity android:name=".DetalleEstudianteRepetido_consultar" />

@@ -174,39 +174,41 @@ public class Diferido_insertar extends AppCompatActivity {
 
 
     public void insertarDiferido(View view) {
-        String regInsertados;
-        String carnet = editCarnet.getText().toString();
-        String asignatura = editMateria.getText().toString();
-        String GT = editGrupoTeorico.getText().toString();
-        String GD = editGrupoDiscusion.getText().toString();
-        String GL = editGrupoLab.getText().toString();
-        int numEva = Integer.parseInt(editEva.getText().toString());
-        String tipoEval = spinTipo.getSelectedItem().toString();
-        String fechaEval = editFechaEval.getText().toString();
-        String hora = editHoraEval.getText().toString();
-        String motivoSpin = motivos.getSelectedItem().toString();
-        String motivoEdit = editMotivo.getText().toString();
-        SolicitudDiferido solicitudDiferido = new SolicitudDiferido();
-        solicitudDiferido.setCarnet(carnet);
-        solicitudDiferido.setCodMateria(asignatura);
-        solicitudDiferido.setNumeroEval(numEva);
-        solicitudDiferido.setGT(GT);
-        solicitudDiferido.setGD(GD);
-        solicitudDiferido.setGL(GL);
-        solicitudDiferido.setTipoEva(tipoEval);
-        solicitudDiferido.setFechaEva(fechaEval);
-        solicitudDiferido.setHoraEva(hora);
-        solicitudDiferido.setMotivo(motivoSpin);
-        solicitudDiferido.setOtroMotivo(motivoEdit);
-        solicitudDiferido.setCiclo(ciclo.getText().toString());
-        solicitudDiferido.setEstado("Pendiente");
-        solicitudDiferido.setRutaJustificante(file.getLastPathSegment());
-        DBHelper.abrir();
-        regInsertados = DBHelper.insertar(solicitudDiferido);
-        DBHelper.cerrar();
-        Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
-        StorageReference storageReference = mStorage.child("Justificante").child(file.getLastPathSegment());
-        storageReference.putFile(file);
+        if (!areEmpty()) {
+            String regInsertados;
+            String carnet = editCarnet.getText().toString();
+            String asignatura = editMateria.getText().toString();
+            String GT = editGrupoTeorico.getText().toString();
+            String GD = editGrupoDiscusion.getText().toString();
+            String GL = editGrupoLab.getText().toString();
+            int numEva = Integer.parseInt(editEva.getText().toString());
+            String tipoEval = spinTipo.getSelectedItem().toString();
+            String fechaEval = editFechaEval.getText().toString();
+            String hora = editHoraEval.getText().toString();
+            String motivoSpin = motivos.getSelectedItem().toString();
+            String motivoEdit = editMotivo.getText().toString();
+            SolicitudDiferido solicitudDiferido = new SolicitudDiferido();
+            solicitudDiferido.setCarnet(carnet);
+            solicitudDiferido.setCodMateria(asignatura);
+            solicitudDiferido.setNumeroEval(numEva);
+            solicitudDiferido.setGT(GT);
+            solicitudDiferido.setGD(GD);
+            solicitudDiferido.setGL(GL);
+            solicitudDiferido.setTipoEva(tipoEval);
+            solicitudDiferido.setFechaEva(fechaEval);
+            solicitudDiferido.setHoraEva(hora);
+            solicitudDiferido.setMotivo(motivoSpin);
+            solicitudDiferido.setOtroMotivo(motivoEdit);
+            solicitudDiferido.setCiclo(ciclo.getText().toString());
+            solicitudDiferido.setEstado("Pendiente");
+            solicitudDiferido.setRutaJustificante(file.getLastPathSegment());
+            DBHelper.abrir();
+            regInsertados = DBHelper.insertar(solicitudDiferido);
+            DBHelper.cerrar();
+            Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
+            StorageReference storageReference = mStorage.child("Justificante").child(file.getLastPathSegment());
+            storageReference.putFile(file);
+        }else Toast.makeText(getApplicationContext(), "Hay campos vacios", Toast.LENGTH_SHORT).show();
     }
     public void limpiarTexto(View v) {
         editCarnet.setText("");
@@ -305,4 +307,13 @@ public class Diferido_insertar extends AppCompatActivity {
             builder.create().show();
         }
     };
+    public boolean areEmpty(){
+        return (editCarnet.getText().toString().isEmpty() || ciclo.getText().toString().isEmpty()
+                || editMateria.getText().toString().isEmpty() || editGrupoTeorico.getText().toString().isEmpty() ||
+                editGrupoDiscusion.getText().toString().isEmpty()
+                || spinTipo.getSelectedItem().toString().equals(spinTipo.getItemAtPosition(0).toString())
+                || editEva.getText().toString().isEmpty() || editFechaEval.getText().toString().isEmpty() ||
+                editHoraEval.getText().toString().isEmpty() || motivos.getSelectedItem().toString().equals(motivos.getItemAtPosition(0).toString())
+                ||file == null || file.getLastPathSegment() == null);
+    }
 }
