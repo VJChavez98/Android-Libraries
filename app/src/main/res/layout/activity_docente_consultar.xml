@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context=".DocenteConsultarActivity">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,6 +15,28 @@
         android:layout_height="wrap_content"
         android:inputType="text"
         android:maxLength="7"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nombredocente"/>
+    <EditText
+        android:id="@+id/editNombredocente"
+        android:layout_width="200dip"
+        android:enabled="false"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:maxLength="30"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/apellidodocente"/>
+    <EditText
+        android:id="@+id/editApellidodocente"
+        android:layout_width="200dp"
+        android:enabled="false"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:maxLength="30"/>
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
@@ -30,35 +53,6 @@
             android:layout_height="wrap_content"
             android:text="@string/limpiar"
             android:onClick="limpiarTexto"/>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/detalle"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/nombredocente"/>
-        <EditText
-            android:id="@+id/editNombredocente"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:inputType="text"
-            android:maxLength="30"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/apellidodocente"/>
-        <EditText
-            android:id="@+id/editApellidodocente"
-            android:layout_width="100dp"
-            android:gravity="center_horizontal"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:maxLength="30"/>
-
     </LinearLayout>
 
 </LinearLayout>

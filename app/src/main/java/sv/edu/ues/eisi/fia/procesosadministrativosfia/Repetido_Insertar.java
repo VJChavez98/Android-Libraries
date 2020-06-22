@@ -35,6 +35,11 @@ public class Repetido_Insertar extends AppCompatActivity {
     }
 
     public void limpiarTexto(View view){
+        carnet.setText("");
+        materia.setText("");
+        spinTipoEval.setSelection(0);
+        numEval.setText("");
+        carnet.requestFocus();
 
     }
     public void insertarRepetido(View view) {

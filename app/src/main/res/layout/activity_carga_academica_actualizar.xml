@@ -30,8 +30,7 @@
         <EditText
             android:id="@+id/editCoddocente"
             android:inputType="text"
-            android:gravity="center_horizontal"
-            android:maxLength="5"/>
+            android:maxLength="7"/>
     </TableRow>
     <TableRow>
         <TextView
@@ -55,8 +54,6 @@
         <Button
             android:onClick="actualizarCargaacademica"
             android:text="@string/actualizar"/>
-    </TableRow>
-    <TableRow>
         <Button
             android:onClick="limpiarTexto"
             android:text="@string/limpiar"/>

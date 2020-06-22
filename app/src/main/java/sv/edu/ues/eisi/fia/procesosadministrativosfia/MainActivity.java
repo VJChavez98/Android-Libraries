@@ -132,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             DBHelper.abrir();
             if (DBHelper.consultarUsuario(user.getEmail())) {
                 Intent intent = new Intent(this, MenuEstudiante.class);
+                intent.putExtra("correo", user.getEmail());
                 startActivity(intent);
                 DBHelper.cerrar();
             }else {

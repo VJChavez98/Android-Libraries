@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:inputType="text"
-            android:maxLength="5"/>
+            android:maxLength="7"/>
 
     </TableRow>
     <TableRow>

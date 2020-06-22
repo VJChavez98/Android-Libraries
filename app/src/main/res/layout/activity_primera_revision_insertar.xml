@@ -14,18 +14,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/estadoPrimRev"/>
+
             <RadioGroup
                 android:id="@+id/opciones_estado"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="horizontal">
+
                 <RadioButton
                     android:id="@+id/radio_Terminada"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
                     android:text="@string/estadoTerminada" />
+
                 <RadioButton
                     android:id="@+id/radio_Pendiente"
                     android:layout_width="wrap_content"
@@ -39,11 +43,39 @@
         <TableRow>
             <TextView
                 android:text="@string/codasignatura" />
+
             <EditText
                 android:id="@+id/editCodasignatura"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:inputType="text"
-                android:gravity="center_horizontal"
-                android:maxLength="6"/>
+                android:maxLength="6" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/codtipogrupo"/>
+            <Spinner
+                android:id="@+id/spinTipoGrupo"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:entries="@array/tipoGrupo"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:gravity="center_horizontal" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="@string/codciclo" />
+            <EditText
+                android:id="@+id/editCodciclo"
+                android:inputType="number"
+                android:layout_weight="1"
+                android:maxLength="5"/>
         </TableRow>
 
         <TableRow>
@@ -55,18 +87,9 @@
                 android:layout_height="wrap_content"
                 android:layout_width="fill_parent"
                 android:entries="@array/tipoEval"
+                android:layout_weight="1"
                 android:textAlignment="center"
                 android:gravity="center_horizontal" />
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:text="@string/codciclo" />
-            <EditText
-                android:id="@+id/editCodciclo"
-                android:inputType="number"
-                android:gravity="center_horizontal"
-                android:maxLength="5"/>
         </TableRow>
 
         <TableRow>
@@ -75,7 +98,7 @@
             <EditText
                 android:id="@+id/editNumeval"
                 android:inputType="number"
-                android:gravity="center_horizontal"
+                android:layout_weight="1"
                 android:maxLength="1"/>
         </TableRow>
 
@@ -85,7 +108,7 @@
             <EditText
                 android:id="@+id/editCoddocente"
                 android:inputType="text"
-                android:gravity="center_horizontal"
+                android:layout_weight="1"
                 android:maxLength="10"/>
         </TableRow>
 
@@ -95,7 +118,7 @@
             <EditText
                 android:id="@+id/editCarnet"
                 android:inputType="text"
-                android:gravity="center_horizontal"
+                android:layout_weight="1"
                 android:maxLength="7"/>
         </TableRow>
 
@@ -104,12 +127,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/asistio"/>
+
             <RadioGroup
                 android:id="@+id/opciones_asistencia"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="horizontal">
+
                 <RadioButton
                     android:id="@+id/radio_Si"
                     android:layout_width="wrap_content"
@@ -117,6 +143,7 @@
                     android:layout_marginRight="16dp"
                     android:checked="true"
                     android:text="@string/asisSi" />
+
                 <RadioButton
                     android:id="@+id/radio_No"
                     android:layout_width="wrap_content"
@@ -129,10 +156,13 @@
         <TableRow>
             <TextView
                 android:text="@string/notaDespRev" />
+
             <EditText
                 android:id="@+id/editNotaDespues"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:inputType="numberDecimal"
-                android:gravity="center_horizontal"
                 android:maxLength="4" />
         </TableRow>
 
@@ -141,12 +171,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/moCambioNota"/>
-            <Spinner android:id="@+id/spinMotCambioNota"
-                android:layout_height="wrap_content"
+
+            <Spinner
+                android:id="@+id/spinMotCambioNota"
                 android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:entries="@array/motCambNot"
-                android:textAlignment="center"
-                android:gravity="center_horizontal" />
+                android:gravity="center_horizontal"
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow>
@@ -155,14 +188,16 @@
 
             <EditText
                 android:id="@+id/editObservaciones"
-                android:layout_width="230dp"
-                android:singleLine="false"
-                android:lines="5"
-                android:gravity="top|start"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="top|left"
                 android:inputType="textMultiLine"
-                android:scrollHorizontally="false"
+                android:lines="5"
+                android:maxLength="200"
                 android:scrollbars="vertical"
-                android:maxLength="200"/>
+                android:scrollHorizontally="false"
+                android:singleLine="false" />
         </TableRow>
 
         <TableRow>
@@ -175,6 +210,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:onClick="limpiarTexto"
                 android:text="Limpiar" />
         </TableRow>

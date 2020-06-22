@@ -121,6 +121,8 @@ public class SolImpresionInsertarActivity extends AppCompatActivity {
         editIdDocenteDirector.setText("");
         editIdDocente.setText("");
         editCantidadExamenes.setText("");
+        spinner.setSelection(0);
+        spinner2.setSelection(0);
         editEstadoAprobacion.setText("");
     }
 }

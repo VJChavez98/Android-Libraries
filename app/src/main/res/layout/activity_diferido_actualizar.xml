@@ -37,10 +37,21 @@
             android:layout_height="wrap_content"/>
     </TableRow>
     <TableRow>
+        <TextView android:text="@string/codciclo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/editCodciclo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:gravity="center_horizontal"
+            android:inputType="number"
+            android:maxLength="5"/>
+    </TableRow>
+    <TableRow>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:enabled="false"
             android:text="@string/GrupoTeorico"/>
         <EditText android:id="@+id/editGrupoTeorico"
             android:inputType="number"

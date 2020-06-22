@@ -11,7 +11,7 @@ public class PrimeraRevision_eliminar extends Activity {
     ControladorBase helper;
 
     EditText editAsignatura, editCiclo, editNumEval, editDocente, editCarnet;
-    Spinner spinTipoEval;
+    Spinner spinTipoEval, spinTipoGrupo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,7 @@ public class PrimeraRevision_eliminar extends Activity {
         editDocente = (EditText) findViewById(R.id.editCoddocente);
         editCarnet = (EditText) findViewById(R.id.editCarnet);
         spinTipoEval = (Spinner) findViewById(R.id.spinTipoEval);
+        spinTipoGrupo = (Spinner) findViewById(R.id.spinTipoGrupo);
     }
 
     public void eliminarPrimeraRevision(View v){
@@ -55,6 +56,19 @@ public class PrimeraRevision_eliminar extends Activity {
             primRev.setCodtipoeval("");
         }
 
+        if(spinTipoGrupo.getSelectedItem().toString().equals("GT")){
+            String tipoGrupo = "GT";
+            primRev.setCodtipogrupo(tipoGrupo);
+        }else if(spinTipoGrupo.getSelectedItem().toString().equals("GD")){
+            String tipoGrupo = "GD";
+            primRev.setCodtipogrupo(tipoGrupo);
+        }else if(spinTipoGrupo.getSelectedItem().toString().equals("GL")){
+            String tipoGrupo = "GL";
+            primRev.setCodtipogrupo(tipoGrupo);
+        }else{
+            primRev.setCodtipogrupo("");
+        }
+
         helper.abrir();
         regEliminados = helper.eliminar(primRev);
         helper.cerrar();
@@ -68,5 +82,6 @@ public class PrimeraRevision_eliminar extends Activity {
         editDocente.setText("");
         editCarnet.setText("");
         spinTipoEval.setSelection(0);
+        spinTipoGrupo.setSelection(0);
     }
 }

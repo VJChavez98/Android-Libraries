@@ -53,7 +53,7 @@ import java.util.zip.Inflater;
 public class Diferido_consultar extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
-    EditText editNumEval, editCarnet, editCodMateria, editGT, editGD, editGL, editFechaEval, editHoraEval, editOtroMotivo, estadoSoli;
+    EditText editNumEval, editCarnet, editCodMateria, editGT, editGD, editGL, editFechaEval, editHoraEval, editOtroMotivo, estadoSoli, ciclo;
     ControladorBase helper;
     TextView lblMateria, lblTipoEva, lblGT, lblGD, lblGL, lblFecha, lblHora, lblMotivo, lblOtro, lblEstado, lblJustificante;
     Button eliminarBtn, modificarBtn;
@@ -91,6 +91,7 @@ public class Diferido_consultar extends AppCompatActivity {
         estadoSoli = findViewById(R.id.editEstadoSolicitud);
         tipoEval = (Spinner) findViewById(R.id.spinTipoEval);
         motivos = (Spinner) findViewById(R.id.spinMotivos);
+        ciclo = findViewById(R.id.editCodciclo);
         if (savedInstanceState != null) {
             if (savedInstanceState.getString("Foto") != null) {
                 file = Uri.parse(savedInstanceState.getString("foto"));
@@ -188,82 +189,83 @@ public class Diferido_consultar extends AppCompatActivity {
     }
 
     public void consultarSolicitudDiferido(View view) throws IOException {
-        FirebaseUser user = mAuth.getCurrentUser();
-        helper.abrir();
-        SolicitudDiferido solicitudDiferido = helper.consultarSolicitudDiferido(editCarnet.getText().toString(), editCodMateria.getText().toString(), tipoEval.getSelectedItem().toString(), editNumEval.getText().toString());
-        helper.cerrar();
-        if (solicitudDiferido == null)
-            Toast.makeText(this, "Solicitud no encontrada", Toast.LENGTH_LONG).show();
-        else {
-            editCarnet.setEnabled(false);
-            editNumEval.setEnabled(false);
-            editCodMateria.setEnabled(false);
-            tipoEval.setEnabled(false);
-            lblGT.setVisibility(View.VISIBLE);
-            lblGD.setVisibility(View.VISIBLE);
-            lblGL.setVisibility(View.VISIBLE);
-            lblFecha.setVisibility(View.VISIBLE);
-            lblHora.setVisibility(View.VISIBLE);
-            lblMotivo.setVisibility(View.VISIBLE);
-            lblEstado.setVisibility(View.VISIBLE);
-            estadoSoli.setVisibility(View.VISIBLE);
-            editGT.setVisibility(View.VISIBLE);
-            editGD.setVisibility(View.VISIBLE);
-            editGL.setVisibility(View.VISIBLE);
-            editFechaEval.setVisibility(View.VISIBLE);
-            editHoraEval.setVisibility(View.VISIBLE);
-            motivos.setVisibility(View.VISIBLE);
-            editOtroMotivo.setText(solicitudDiferido.getOtroMotivo());
-            lblOtro.setVisibility(View.VISIBLE);
-            editOtroMotivo.setVisibility(View.VISIBLE);
-            editCodMateria.setText(solicitudDiferido.getCodMateria());
-            editGT.setText(solicitudDiferido.getGT());
-            editGT.setEnabled(true);
-            editGD.setText(solicitudDiferido.getGD());
-            editGD.setEnabled(true);
-            editGL.setText(solicitudDiferido.getGL());
-            editGL.setEnabled(true);
-            editFechaEval.setText(solicitudDiferido.getFechaEva());
-            editFechaEval.setEnabled(true);
-            editHoraEval.setEnabled(true);
-            editHoraEval.setText(solicitudDiferido.getHoraEva());
-            eliminarBtn.setVisibility(View.VISIBLE);
-            modificarBtn.setVisibility(View.VISIBLE);
-            modificarBtn.setEnabled(true);
-            eliminarBtn.setEnabled(true);
-            tipoEval.setSelection(tipoEval(solicitudDiferido.getTipoEva()));
-            motivos.setSelection(colocarMotivo(solicitudDiferido.getMotivo()));
-            motivos.setEnabled(true);
-            editOtroMotivo.setEnabled(true);
-            if (solicitudDiferido.getOtroMotivo().isEmpty()) {
-                editOtroMotivo.setVisibility(View.GONE);
-                lblOtro.setVisibility(View.GONE);
+        if (!areEmpty()) {
+            helper.abrir();
+            SolicitudDiferido solicitudDiferido = helper.consultarSolicitudDiferido(editCarnet.getText().toString(), editCodMateria.getText().toString(), ciclo.getText().toString(), tipoEval.getSelectedItem().toString(), editNumEval.getText().toString());
+            helper.cerrar();
+            if (solicitudDiferido == null)
+                Toast.makeText(this, "Solicitud no encontrada", Toast.LENGTH_LONG).show();
+            else {
+                editCarnet.setEnabled(false);
+                editNumEval.setEnabled(false);
+                editCodMateria.setEnabled(false);
+                tipoEval.setEnabled(false);
+                lblGT.setVisibility(View.VISIBLE);
+                lblGD.setVisibility(View.VISIBLE);
+                lblGL.setVisibility(View.VISIBLE);
+                lblFecha.setVisibility(View.VISIBLE);
+                lblHora.setVisibility(View.VISIBLE);
+                lblMotivo.setVisibility(View.VISIBLE);
+                lblEstado.setVisibility(View.VISIBLE);
+                estadoSoli.setVisibility(View.VISIBLE);
+                editGT.setVisibility(View.VISIBLE);
+                editGD.setVisibility(View.VISIBLE);
+                editGL.setVisibility(View.VISIBLE);
+                editFechaEval.setVisibility(View.VISIBLE);
+                editHoraEval.setVisibility(View.VISIBLE);
+                motivos.setVisibility(View.VISIBLE);
+                editOtroMotivo.setText(solicitudDiferido.getOtroMotivo());
+                lblOtro.setVisibility(View.VISIBLE);
+                editOtroMotivo.setVisibility(View.VISIBLE);
+                editCodMateria.setText(solicitudDiferido.getCodMateria());
+                editGT.setText(solicitudDiferido.getGT());
+                editGT.setEnabled(true);
+                editGD.setText(solicitudDiferido.getGD());
+                editGD.setEnabled(true);
+                editGL.setText(solicitudDiferido.getGL());
+                editGL.setEnabled(true);
+                editFechaEval.setText(solicitudDiferido.getFechaEva());
+                editFechaEval.setEnabled(true);
+                editHoraEval.setEnabled(true);
+                editHoraEval.setText(solicitudDiferido.getHoraEva());
+                eliminarBtn.setVisibility(View.VISIBLE);
+                modificarBtn.setVisibility(View.VISIBLE);
+                modificarBtn.setEnabled(true);
+                eliminarBtn.setEnabled(true);
+                tipoEval.setSelection(tipoEval(solicitudDiferido.getTipoEva()));
+                motivos.setSelection(colocarMotivo(solicitudDiferido.getMotivo()));
+                motivos.setEnabled(true);
+                editOtroMotivo.setEnabled(true);
+                if (solicitudDiferido.getOtroMotivo().isEmpty()) {
+                    editOtroMotivo.setVisibility(View.GONE);
+                    lblOtro.setVisibility(View.GONE);
+                }
+                estadoSoli.setText(solicitudDiferido.getEstado());
+                srcImg.setVisibility(View.VISIBLE);
+                lblJustificante.setVisibility(View.VISIBLE);
+                mProgress.setTitle("Cargando justificante");
+                mProgress.setMessage("Por favor espere");
+                mProgress.show();
+                file = Uri.parse(solicitudDiferido.getRutaJustificante());
+                ruta = solicitudDiferido.getRutaJustificante();
+                localFile = File.createTempFile(ruta, "jpg");
+                mStorage.child(ruta).getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                        Toast.makeText(getApplicationContext(), "Se descargo correctamente", Toast.LENGTH_SHORT).show();
+                        Bitmap b = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                        Glide.with(getApplicationContext()).load(b).into(srcImg);
+                        mProgress.dismiss();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        mProgress.dismiss();
+                        Toast.makeText(getApplicationContext(), "Error al descargar la foto", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
-            estadoSoli.setText(solicitudDiferido.getEstado());
-            srcImg.setVisibility(View.VISIBLE);
-            lblJustificante.setVisibility(View.VISIBLE);
-            mProgress.setTitle("Cargando justificante");
-            mProgress.setMessage("Por favor espere");
-            mProgress.show();
-            file = Uri.parse(solicitudDiferido.getRutaJustificante());
-            ruta = solicitudDiferido.getRutaJustificante();
-            localFile = File.createTempFile(ruta, "jpg");
-            mStorage.child(ruta).getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    Toast.makeText(getApplicationContext(), "Se descargo correctamente", Toast.LENGTH_SHORT).show();
-                    Bitmap b = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                    Glide.with(getApplicationContext()).load(b).into(srcImg);
-                    mProgress.dismiss();
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getApplicationContext(), "Error al descargar la foto", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-
+        }else Toast.makeText(getApplicationContext(), "Hay campos vacios", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -366,6 +368,7 @@ public class Diferido_consultar extends AppCompatActivity {
         estadoSoli.setText("");
         estadoSoli.setVisibility(View.GONE);
         lblEstado.setVisibility(View.GONE);
+        ciclo.setText("");
         srcImg.setVisibility(View.GONE);
         lblJustificante.setVisibility(View.GONE);
     }
@@ -376,8 +379,8 @@ public class Diferido_consultar extends AppCompatActivity {
         solicitudDiferido.setCarnet(String.valueOf(editCarnet.getText()));
         solicitudDiferido.setNumeroEval(Integer.parseInt(String.valueOf(editNumEval.getText())));
         solicitudDiferido.setCodMateria(String.valueOf(editCodMateria.getText()));
+        solicitudDiferido.setCiclo(ciclo.getText().toString());
         solicitudDiferido.setTipoEva(String.valueOf(tipoEval.getSelectedItem()));
-        solicitudDiferido.setIdSolicitud();
         helper.abrir();
         String regAfectados = helper.eliminar(solicitudDiferido);
         helper.cerrar();
@@ -386,36 +389,37 @@ public class Diferido_consultar extends AppCompatActivity {
     }
 
     public void ModificarSolicitudDiferido(View view) throws IOException {
-        SolicitudDiferido solicitudDiferido = new SolicitudDiferido();
-        solicitudDiferido.setCarnet(String.valueOf(editCarnet.getText()));
-        solicitudDiferido.setCodMateria(String.valueOf(editCodMateria.getText()));
-        solicitudDiferido.setNumeroEval(Integer.parseInt(String.valueOf(editNumEval.getText())));
-        solicitudDiferido.setTipoEva(String.valueOf(tipoEval.getSelectedItem()));
-        solicitudDiferido.setGT(editGT.getText().toString());
-        solicitudDiferido.setGD(editGD.getText().toString());
-        solicitudDiferido.setGL(editGL.getText().toString());
-        solicitudDiferido.setFechaEva(editFechaEval.getText().toString());
-        solicitudDiferido.setHoraEva(editHoraEval.getText().toString());
-        solicitudDiferido.setMotivo(motivos.getSelectedItem().toString());
-        solicitudDiferido.setOtroMotivo(editOtroMotivo.getText().toString());
-        solicitudDiferido.setIdSolicitud();
-        antigua = solicitudDiferido.getRutaJustificante();
-        solicitudDiferido.setRutaJustificante(file.getLastPathSegment());
-        helper.abrir();
-        String regAfectados = helper.actualizar(solicitudDiferido);
-        helper.cerrar();
+        if (!areEmpty2()) {
+            SolicitudDiferido solicitudDiferido = new SolicitudDiferido();
+            solicitudDiferido.setCarnet(String.valueOf(editCarnet.getText()));
+            solicitudDiferido.setCodMateria(String.valueOf(editCodMateria.getText()));
+            solicitudDiferido.setCiclo(ciclo.getText().toString());
+            solicitudDiferido.setNumeroEval(Integer.parseInt(String.valueOf(editNumEval.getText())));
+            solicitudDiferido.setTipoEva(String.valueOf(tipoEval.getSelectedItem()));
+            solicitudDiferido.setGT(editGT.getText().toString());
+            solicitudDiferido.setGD(editGD.getText().toString());
+            solicitudDiferido.setGL(editGL.getText().toString());
+            solicitudDiferido.setFechaEva(editFechaEval.getText().toString());
+            solicitudDiferido.setHoraEva(editHoraEval.getText().toString());
+            solicitudDiferido.setMotivo(motivos.getSelectedItem().toString());
+            solicitudDiferido.setOtroMotivo(editOtroMotivo.getText().toString());
+            solicitudDiferido.setRutaJustificante(file.getLastPathSegment());
+            helper.abrir();
+            String regAfectados = helper.actualizar(solicitudDiferido);
+            helper.cerrar();
 
-        mProgress.setTitle("Subiendo imagen");
-        mProgress.setMessage("Espere por favor");
-        mProgress.show();
-        StorageReference storageReference = mStorage.child(file.getLastPathSegment());
-        storageReference.putFile(file).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                mProgress.dismiss();
-            }
-        });
-        Toast.makeText(this, regAfectados, Toast.LENGTH_SHORT).show();
+            mProgress.setTitle("Subiendo imagen");
+            mProgress.setMessage("Espere por favor");
+            mProgress.show();
+            StorageReference storageReference = mStorage.child(file.getLastPathSegment());
+            storageReference.putFile(file).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                    mProgress.dismiss();
+                }
+            });
+            Toast.makeText(this, regAfectados, Toast.LENGTH_SHORT).show();
+        }else Toast.makeText(getApplicationContext(),"Por favor llenar todos los campos", Toast.LENGTH_SHORT).show();
     }
 
     public int tipoEval(String tipo) {
@@ -539,4 +543,13 @@ public class Diferido_consultar extends AppCompatActivity {
         }
 
     };
+    public boolean areEmpty(){return (editCarnet.getText().toString().isEmpty() ||
+            editCodMateria.getText().toString().isEmpty() ||
+            tipoEval.getSelectedItem().toString().equals(tipoEval.getItemAtPosition(0).toString())
+            || editNumEval.getText().toString().isEmpty()
+            ||ciclo.getText().toString().isEmpty());
+    }
+    public boolean areEmpty2(){
+        return (editGT.getText().toString().isEmpty() || editGD.getText().toString().isEmpty() || editFechaEval.getText().toString().isEmpty() || editHoraEval.getText().toString().isEmpty() || file == null || file.getLastPathSegment().isEmpty()|| motivos.getSelectedItem().toString().equals(motivos.getItemAtPosition(0).toString()));
+    }
 }

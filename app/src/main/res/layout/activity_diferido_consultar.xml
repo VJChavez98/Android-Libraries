@@ -57,7 +57,16 @@
             android:inputType="number"
             android:maxLength="2"/>
     </TableRow>
-
+    <TableRow>
+        <TextView android:text="@string/codciclo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/editCodciclo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="5"/>
+    </TableRow>
     <TableRow>
         <Button android:id="@+id/cancelarBtn"
             android:onClick="limpiarTexto"

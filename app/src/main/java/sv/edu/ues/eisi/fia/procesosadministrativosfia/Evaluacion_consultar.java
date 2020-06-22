@@ -54,7 +54,7 @@ public class Evaluacion_consultar extends Activity {
         Asignatura asignatura = helper.consultarNomAsignatura(editCodasignatura.getText().toString());
         helper.cerrar();
         if(evaluacion == null){
-            Toast.makeText(this, "Evaluacion no registrada", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Evaluacion no registrada.", Toast.LENGTH_LONG).show();
         }else{
             findViewById(R.id.detalle).setVisibility(View.VISIBLE);
             editFechaeval.setText(evaluacion.getFechaEvaluacion());

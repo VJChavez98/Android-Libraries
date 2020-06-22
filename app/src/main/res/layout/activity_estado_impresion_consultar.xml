@@ -9,7 +9,7 @@
         android:text="ID Estado Impresion"/>
     <EditText
         android:id="@+id/editIdEstadoImpresion"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:maxLength="10"/>
@@ -19,7 +19,7 @@
         android:text="ID Solicitud Impresion"/>
     <EditText
         android:id="@+id/editIdSolicitudImpresion"
-        android:layout_width="100dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:maxLength="10"/>
@@ -29,7 +29,7 @@
         android:text="ID Encargado" />
     <EditText
         android:id="@+id/editIdEncargado"
-        android:layout_width="100dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:maxLength="10"/>
@@ -39,7 +39,7 @@
         android:text="ID MotivoImpresion" />
     <EditText
         android:id="@+id/editIdMotivoImpresion"
-        android:layout_width="100dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:maxLength="10"/>
@@ -60,19 +60,13 @@
             android:text="@string/limpiar"
             android:onClick="limpiarTexto"/>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:id="@+id/detalle"
-        android:visibility="gone">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Realizado" />
     <EditText
         android:id="@+id/editRealizado"
-        android:layout_width="100dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:enabled ="false"
@@ -86,7 +80,7 @@
         android:text="Observaciones" />
     <EditText
         android:id="@+id/editObservaciones"
-        android:layout_width="100dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:enabled ="false"
@@ -94,5 +88,4 @@
         android:focusableInTouchMode="false"
         android:cursorVisible="false"
         android:longClickable="false" />
-    </LinearLayout>
 </LinearLayout>

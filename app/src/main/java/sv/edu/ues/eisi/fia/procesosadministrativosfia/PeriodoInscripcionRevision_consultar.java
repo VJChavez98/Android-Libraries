@@ -57,7 +57,7 @@ public class PeriodoInscripcionRevision_consultar extends Activity {
         if(spinTiporev.getSelectedItem().toString().equals("Primer Revisión")){
             String tipoEval = "PR";
             perIns.setTipoRevision(tipoEval);
-        }else if(spinTipoeval.getSelectedItem().toString().equals("Segunda Revisión")){
+        }else if(spinTiporev.getSelectedItem().toString().equals("Segunda Revisión")){
             String tipoEval = "SR";
             perIns.setTipoRevision(tipoEval);
         }else{

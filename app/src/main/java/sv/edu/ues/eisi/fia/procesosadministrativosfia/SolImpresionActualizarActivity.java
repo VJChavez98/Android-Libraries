@@ -109,6 +109,8 @@ public class SolImpresionActualizarActivity extends Activity {
         editIdDocente.setText("");
         editIdDocenteDirector.setText("");
         editCantidadExamenes.setText("");
+        spinner.setSelection(0);
+        spinner2.setSelection(0);
 
     }
 }
