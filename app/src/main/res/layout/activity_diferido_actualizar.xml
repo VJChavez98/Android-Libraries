@@ -3,183 +3,299 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".Diferido_actualizar">
+
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <TableRow>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/carnet"/>
+        android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/editCarnet"
+        <TableRow
             android:layout_width="match_parent"
-            android:inputType="text"
-            android:maxLength="7"
-            android:gravity="center_horizontal"
-            android:enabled="false"
-            android:layout_height="wrap_content"/>
-    </TableRow>
-    <TableRow>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/codAsignatura"/>
-        <EditText android:id="@+id/editAsignatura"
-            android:inputType="text"
-            android:maxLength="6"
-            android:enabled="false"
-            android:gravity="center_horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
-    </TableRow>
-    <TableRow>
-        <TextView android:text="@string/codciclo"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
-        <EditText android:id="@+id/editCodciclo"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:gravity="center_horizontal"
-            android:inputType="number"
-            android:maxLength="5"/>
-    </TableRow>
-    <TableRow>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/GrupoTeorico"/>
-        <EditText android:id="@+id/editGrupoTeorico"
-            android:inputType="number"
-            android:maxLength="2"
-            android:enabled="false"
-            android:gravity="center_horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
-    </TableRow>
-    <TableRow>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/grupoDiscusion"/>
-        <EditText android:id="@+id/editGrupoDiscusion"
-            android:inputType="number"
-            android:maxLength="2"
-            android:enabled="false"
-            android:gravity="center_horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
-    </TableRow>
-    <TableRow>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/grupoLab"/>
-        <EditText android:id="@+id/editGrupoLab"
-            android:inputType="number"
-            android:maxLength="2"
-            android:enabled="false"
-            android:gravity="center_horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
-    </TableRow>
-    <TableRow>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tipoEval"/>
-        <Spinner android:id="@+id/spinTipoEval"
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
-            android:entries="@array/codTipoEval"
-            android:textAlignment="center"
-            android:gravity="center_horizontal" />
-    </TableRow>
-    <TableRow>
-        <TextView android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="@string/evaluacion"/>
-        <EditText android:id="@+id/editCodEva"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:gravity="center_horizontal"
-            android:inputType="number"
-            android:maxLength="2"/>
-    </TableRow>
-    <TableRow>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fechaRealizada"/>
-        <EditText android:id="@+id/editFechaRealizada"
-            android:inputType="text"
-            android:layout_width="fill_parent"
-            android:enabled="false"
-            android:gravity="center_horizontal"
-            android:layout_height="wrap_content"/>
-    </TableRow>
-    <TableRow>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/horaRealizada"/>
-        <EditText android:id="@+id/editHoraRealizada"
-            android:inputType="text"
-            android:layout_width="fill_parent"
-            android:enabled="false"
-            android:gravity="center_horizontal"
-            android:layout_height="wrap_content"/>
-    </TableRow>
-    <TableRow>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/motivos"/>
-        <Spinner android:id="@+id/spinMotivos"
-            android:layout_height="wrap_content"
-            android:layout_width="250dip"
-            android:entries="@array/motivos"
-            android:textAlignment="center"
-            android:gravity="center_horizontal" />
+            android:layout_height="wrap_content">
 
-    </TableRow>
-    <TableRow>
-        <TextView
-            android:id="@+id/lblOtro"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/motivosOtro"/>
-        <EditText android:id="@+id/editMotivo"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:gravity="center_horizontal"
-            android:enabled="false"
-            android:layout_width="fill_parent"/>
-    </TableRow>
-    <TableRow>
-        <TextView android:id="@+id/lblJustificante"
-            android:text="@string/justificante"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
-        <ImageView android:layout_width="match_parent"
-            android:layout_height="200dip"
-            android:id="@+id/justificante"/>
-    </TableRow>
-    <TableRow>
-        <TextView android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/estadoSolic"/>
-        <Spinner android:id="@+id/estadoSolicitud"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/carnet" />
+
+            <EditText
+                android:id="@+id/editCarnet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:gravity="center_horizontal"
+                android:inputType="text"
+                android:maxLength="7" />
+        </TableRow>
+
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:textAlignment="center"
-            android:entries="@array/estadoSoli" />
-    </TableRow>
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/codAsignatura" />
+
+            <EditText
+                android:id="@+id/editAsignatura"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:gravity="center_horizontal"
+                android:inputType="text"
+                android:maxLength="6" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/codciclo" />
+
+            <EditText
+                android:id="@+id/editCodciclo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:gravity="center_horizontal"
+                android:inputType="number"
+                android:maxLength="5" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/GrupoTeorico" />
+
+            <EditText
+                android:id="@+id/editGrupoTeorico"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:gravity="center_horizontal"
+                android:inputType="number"
+                android:maxLength="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/grupoDiscusion" />
+
+            <EditText
+                android:id="@+id/editGrupoDiscusion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:gravity="center_horizontal"
+                android:inputType="number"
+                android:maxLength="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/grupoLab" />
+
+            <EditText
+                android:id="@+id/editGrupoLab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:gravity="center_horizontal"
+                android:inputType="number"
+                android:maxLength="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/tipoEval" />
+
+            <Spinner
+                android:id="@+id/spinTipoEval"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:entries="@array/codTipoEval"
+                android:gravity="center_horizontal"
+                android:spinnerMode="dropdown"
+                android:textAlignment="center" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/evaluacion" />
+
+            <EditText
+                android:id="@+id/editCodEva"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:gravity="center_horizontal"
+                android:inputType="number"
+                android:maxLength="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/fechaRealizada" />
+
+            <EditText
+                android:id="@+id/editFechaRealizada"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:gravity="center_horizontal"
+                android:inputType="text" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/horaRealizada" />
+
+            <EditText
+                android:id="@+id/editHoraRealizada"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:gravity="center_horizontal"
+                android:inputType="text" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/motivos" />
+
+            <Spinner
+                android:id="@+id/spinMotivos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:entries="@array/motivos"
+                android:gravity="center_horizontal"
+                android:textAlignment="center" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/lblOtro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/motivosOtro" />
+
+            <EditText
+                android:id="@+id/editMotivo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:gravity="center_horizontal"
+                android:inputType="text" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/lblJustificante"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/justificante" />
+
+            <ImageView
+                android:id="@+id/justificante"
+                android:layout_width="match_parent"
+                android:layout_height="200dip"
+                android:layout_weight="1" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/estadoSolic" />
+
+            <Spinner
+                android:id="@+id/estadoSolicitud"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:entries="@array/estadoSoli"
+                android:gravity="center_horizontal"
+                android:textAlignment="center" />
+        </TableRow>
     </TableLayout>
 </ScrollView>

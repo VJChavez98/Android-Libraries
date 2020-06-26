@@ -190,7 +190,7 @@
 
             <EditText
                 android:id="@+id/editObservaciones"
-                android:layout_width="230dp"
+                android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:gravity="top|left"
                 android:inputType="textMultiLine"

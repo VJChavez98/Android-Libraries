@@ -6,53 +6,71 @@
     android:stretchColumns="1"
     android:paddingTop="4dip">
     <TableRow>
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/coddocente"/>
+            android:layout_weight="1"
+            android:text="@string/coddocente" />
+
         <EditText
             android:id="@+id/editCoddocente"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
-            android:maxLength="7"/>
+            android:maxLength="7" />
     </TableRow>
     <TableRow>
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/nombredocente"/>
+            android:layout_weight="1"
+            android:text="@string/nombredocente" />
+
         <EditText
             android:id="@+id/editNombredocente"
-            android:layout_width="fill_parent"
-            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="text"
-            android:maxLength="30"/>
+            android:maxLength="30" />
     </TableRow>
     <TableRow>
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/apellidodocente"/>
+            android:layout_weight="1"
+            android:text="@string/apellidodocente" />
+
         <EditText
             android:id="@+id/editApellidodocente"
-            android:layout_width="fill_parent"
-            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="text"
-            android:maxLength="30"/>
+            android:maxLength="30" />
 
     </TableRow>
     <TableRow>
+
         <Button
-            android:layout_width="wrap_content"
-            android:text="@string/eliminar"
-            android:onClick="eliminarDocente"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="eliminarDocente"
+            android:text="@string/eliminar" />
+
         <Button
-            android:layout_width="wrap_content"
-            android:text="@string/limpiar"
-            android:onClick="limpiar"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="limpiar"
+            android:text="@string/limpiar" />
     </TableRow>
 </TableLayout>

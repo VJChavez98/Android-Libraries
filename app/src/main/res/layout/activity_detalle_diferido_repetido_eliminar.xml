@@ -6,66 +6,96 @@
     android:layout_height="match_parent"
     tools:context=".DetalleDiferidoRepetido_eliminar">
     <TableRow>
-        <TextView android:text="@string/codAsignatura"
+
+        <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip" />
-        <EditText android:id="@+id/editAsignatura"
+            android:layout_marginLeft="10dip"
+            android:layout_weight="1"
+            android:text="@string/codAsignatura" />
+
+        <EditText
+            android:id="@+id/editAsignatura"
             android:layout_width="280dip"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
-            android:maxLength="6"/>
+            android:maxLength="6" />
     </TableRow>
 
     <TableRow>
-        <TextView android:text="@string/tipoEval"
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
-            android:layout_marginLeft="10dip"/>
-        <Spinner android:id="@+id/spinTipoEval"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:gravity="center_horizontal"/>
-    </TableRow>
 
-    <TableRow>
-        <TextView android:text="@string/evaluacion_numero"
+        <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"/>
-        <EditText android:id="@+id/editNumeval"
+            android:layout_marginLeft="10dip"
+            android:layout_weight="1"
+            android:text="@string/tipoEval" />
+
+        <Spinner
+            android:id="@+id/spinTipoEval"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:maxLength="2"/>
+            android:textAlignment="center" />
     </TableRow>
 
     <TableRow>
-        <TextView android:text="@string/tipo"
+
+        <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"/>
-        <Spinner android:id="@+id/spinTipoDifRep"
+            android:layout_marginLeft="10dip"
+            android:layout_weight="1"
+            android:text="@string/evaluacion_numero" />
+
+        <EditText
+            android:id="@+id/editNumeval"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:inputType="number"
+            android:maxLength="2" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_weight="1"
+            android:text="@string/tipo" />
+
+        <Spinner
+            android:id="@+id/spinTipoDifRep"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:entries="@array/tipoDifRep"
-            android:textAlignment="center"
-            android:gravity="center_horizontal" />
+            android:gravity="center_horizontal"
+            android:textAlignment="center" />
     </TableRow>
     <TableRow>
-        <Button android:id="@+id/cancelarBtn"
-            android:text="@string/cancelarBtn"
+
+        <Button
+            android:id="@+id/cancelarBtn"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:onClick="limpiarTexto"/>
-        <Button android:id="@+id/EliminarBtn"
-            android:text="@string/eliminarBtn"
+            android:layout_weight="1"
+            android:onClick="limpiarTexto"
+            android:text="@string/cancelarBtn" />
+
+        <Button
+            android:id="@+id/EliminarBtn"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:onClick="eliminarDetalle"/>
+            android:layout_weight="1"
+            android:onClick="eliminarDetalle"
+            android:text="@string/eliminarBtn" />
     </TableRow>
 
 </TableLayout>

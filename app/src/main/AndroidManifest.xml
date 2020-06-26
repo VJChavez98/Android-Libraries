@@ -151,7 +151,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <provider
+            android:authorities="sv.edu.ues.eisi.fia.procesosadministrativosfia.fileprovider"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCkdHND9Z_lNhooQC2w0iLAqB6-hdtuwt4" />

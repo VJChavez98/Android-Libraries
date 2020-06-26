@@ -6,39 +6,53 @@
     android:paddingTop="4dip"
     >
     <TableRow >
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Id Docente Director"/>
+            android:layout_weight="1"
+            android:text="Id Docente Director" />
+
         <EditText
             android:id="@+id/editIdDocenteDirector"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
-            android:maxLength="10"/>
+            android:maxLength="10" />
     </TableRow>
     <TableRow>
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Id Escuela"/>
+            android:layout_weight="1"
+            android:text="Id Escuela" />
+
         <EditText
             android:id="@+id/editIdEscuela"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
-            android:maxLength="10"/>
+            android:maxLength="10" />
     </TableRow>
     <TableRow>
+
         <Button
-            android:layout_width="wrap_content"
-            android:text="@string/eliminar"
-            android:onClick="eliminarDocDirector"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="eliminarDocDirector"
+            android:text="@string/eliminar" />
+
         <Button
-            android:layout_width="wrap_content"
-            android:text="@string/limpiar"
-            android:onClick="limpiar"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="limpiar"
+            android:text="@string/limpiar" />
     </TableRow>
 </TableLayout>

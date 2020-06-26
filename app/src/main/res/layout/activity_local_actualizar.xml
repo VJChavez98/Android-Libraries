@@ -6,44 +6,60 @@
     android:stretchColumns="1" >
 
     <TableRow>
+
         <TextView
+            android:layout_weight="1"
             android:text="@string/codlocal" />
+
         <EditText
             android:id="@+id/editCodlocal"
-            android:inputType="text"
+            android:layout_weight="1"
             android:gravity="center_horizontal"
+            android:inputType="text"
             android:maxLength="10" />
     </TableRow>
 
     <TableRow>
+
         <TextView
+            android:layout_weight="1"
             android:text="@string/nomlocal" />
+
         <EditText
             android:id="@+id/editNomlocal"
-            android:inputType="text"
+            android:layout_weight="1"
             android:gravity="center_horizontal"
+            android:inputType="text"
             android:maxLength="50" />
     </TableRow>
 
     <TableRow>
+
         <TextView
+            android:layout_weight="1"
             android:text="@string/ubicacionLocal" />
+
         <EditText
             android:id="@+id/editUbicacionlocal"
-            android:inputType="text"
+            android:layout_weight="1"
             android:gravity="center_horizontal"
+            android:inputType="text"
             android:maxLength="50" />
     </TableRow>
 
     <TableRow>
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:onClick="actualizarLocal"
             android:text="@string/actualizar" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:onClick="limpiarTexto"
             android:text="@string/limpiar" />
     </TableRow>

@@ -18,37 +18,55 @@
             android:gravity="center"/>
     </TableRow>-->
     <TableRow>
-        <TextView android:text="@string/codAsignatura"
+
+        <TextView
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
-        <EditText android:id="@+id/editCodasignatura"
-            android:inputType="text"
-            android:maxLength="6"
-            android:gravity="center_horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
-    </TableRow>
-    <TableRow>
-        <TextView android:text="@string/tipoEval"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
-        <Spinner android:id="@+id/spinTipoEval"
-            android:layout_width="280dip"
             android:layout_height="wrap_content"
-            android:entries="@array/codTipoEval"
-            android:textAlignment="center"
-            android:gravity="center_horizontal" />
+            android:layout_weight="1"
+            android:text="@string/codAsignatura" />
+
+        <EditText
+            android:id="@+id/editCodasignatura"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:inputType="text"
+            android:maxLength="6" />
     </TableRow>
     <TableRow>
-        <TextView android:text="@string/evaluacion_numero"
+
+        <TextView
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
-        <EditText android:id="@+id/editNumeval"
-            android:inputType="number"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/tipoEval" />
+
+        <Spinner
+            android:id="@+id/spinTipoEval"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:entries="@array/codTipoEval"
             android:gravity="center_horizontal"
-            android:maxLength="2"
+            android:textAlignment="center" />
+    </TableRow>
+    <TableRow>
+
+        <TextView
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/evaluacion_numero" />
+
+        <EditText
+            android:id="@+id/editNumeval"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:inputType="number"
+            android:maxLength="2" />
     </TableRow>
     <!--<TableRow>
         <TextView android:text="@string/fechaInscripcion"
@@ -61,16 +79,22 @@
             android:layout_height="wrap_content"/>
     </TableRow>-->
     <TableRow>
-        <Button android:id="@+id/cancelarBtn"
+
+        <Button
+            android:id="@+id/cancelarBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:onClick="limpiarTexto"
-            android:text="@string/cancelarBtn"
+            android:text="@string/cancelarBtn" />
+
+        <Button
+            android:id="@+id/botonConsultar"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
-        <Button android:id="@+id/botonConsultar"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:onClick="consultarDetalle"
-            android:text="@string/consultar"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
+            android:text="@string/consultar" />
     </TableRow>
     <FrameLayout android:visibility="visible"
         android:id="@+id/frameConsulta">
