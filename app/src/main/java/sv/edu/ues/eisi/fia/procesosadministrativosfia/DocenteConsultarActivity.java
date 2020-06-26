@@ -29,17 +29,15 @@ public class DocenteConsultarActivity extends Activity {
             Toast.makeText(this,"Docente con Código"+editCoddocente.getText().toString()+"no encontrado",Toast.LENGTH_SHORT).show();
 
         else{
-            findViewById(R.id.detalle).setVisibility(View.VISIBLE);
             editCoddocente.setText(docente.getCoddocente());
             editNombredocente.setText(docente.getNomdocente());
             editApellidodocente.setText(docente.getApellidodocente());
         }
     }
-    public void limpiar(View v){
+    public void limpiarTexto(View v){
 
         editCoddocente.setText("");
         editNombredocente.setText("");
         editApellidodocente.setText("");
-        findViewById(R.id.detalle).setVisibility(View.GONE);
     }
 }
