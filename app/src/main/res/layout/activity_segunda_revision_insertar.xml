@@ -16,6 +16,7 @@
             <EditText
                 android:id="@+id/editCodasignatura"
                 android:layout_weight="1"
+                android:gravity="center_horizontal"
                 android:inputType="text"
                 android:maxLength="6" />
         </TableRow>
@@ -43,6 +44,7 @@
             <EditText
                 android:id="@+id/editNumeval"
                 android:layout_weight="1"
+                android:gravity="center_horizontal"
                 android:inputType="number"
                 android:maxLength="1" />
         </TableRow>
@@ -54,6 +56,7 @@
             <EditText
                 android:id="@+id/editCodciclo"
                 android:layout_weight="1"
+                android:gravity="center_horizontal"
                 android:inputType="number"
                 android:maxLength="5" />
         </TableRow>
@@ -81,6 +84,7 @@
             <EditText
                 android:id="@+id/editCoddocente"
                 android:layout_weight="1"
+                android:gravity="center_horizontal"
                 android:inputType="text"
                 android:maxLength="10" />
         </TableRow>
@@ -92,6 +96,7 @@
             <EditText
                 android:id="@+id/editCarnet"
                 android:layout_weight="1"
+                android:gravity="center_horizontal"
                 android:inputType="text"
                 android:maxLength="7" />
         </TableRow>
@@ -103,6 +108,7 @@
             <EditText
                 android:id="@+id/editNotaDespues"
                 android:layout_weight="1"
+                android:gravity="center_horizontal"
                 android:inputType="numberDecimal"
                 android:maxLength="4" />
         </TableRow>
@@ -131,7 +137,7 @@
                 android:id="@+id/editObservaciones"
                 android:layout_width="230dp"
                 android:layout_weight="1"
-                android:gravity="top|left"
+                android:gravity="center_horizontal"
                 android:inputType="textMultiLine"
                 android:lines="5"
                 android:maxLength="200"

@@ -76,6 +76,7 @@
             android:layout_marginLeft="0dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="6" />
     </TableRow>
@@ -93,6 +94,7 @@
             android:layout_marginLeft="0dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="2" />
     </TableRow>
@@ -110,6 +112,7 @@
             android:layout_marginLeft="0dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="5" />
     </TableRow>
@@ -128,6 +131,7 @@
             android:layout_marginLeft="0dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="7" />
     </TableRow>
@@ -182,6 +186,7 @@
             android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:focusable="false"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="4" />
 
@@ -202,6 +207,7 @@
             android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:focusable="false"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="2" />
 
@@ -222,6 +228,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:focusable="false"
+            android:gravity="center_horizontal"
             android:inputType="textPersonName" />
     </TableRow>
 

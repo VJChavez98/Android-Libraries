@@ -7,55 +7,79 @@
     android:paddingTop="10dip"
     android:stretchColumns="1">
     <TableRow>
+
         <TextView
-            android:text="@string/idcargaacademica"/>
+            android:layout_weight="1"
+            android:text="@string/idcargaacademica" />
+
         <EditText
             android:id="@+id/editIdcargaacademica"
-            android:inputType="text"
+            android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:maxLength="5"/>
+            android:inputType="text"
+            android:maxLength="5" />
     </TableRow>
     <TableRow>
+
         <TextView
-            android:text="@string/codciclo"/>
+            android:layout_weight="1"
+            android:text="@string/codciclo" />
+
         <EditText
             android:id="@+id/editCodciclo"
-            android:inputType="text"
+            android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:maxLength="5"/>
+            android:inputType="text"
+            android:maxLength="5" />
     </TableRow>
     <TableRow>
+
         <TextView
-            android:text="@string/coddocente"/>
+            android:layout_weight="1"
+            android:text="@string/coddocente" />
+
         <EditText
             android:id="@+id/editCoddocente"
+            android:layout_weight="1"
             android:inputType="text"
-            android:maxLength="7"/>
+            android:maxLength="7" />
     </TableRow>
     <TableRow>
+
         <TextView
-            android:text="@string/codasignatura"/>
+            android:layout_weight="1"
+            android:text="@string/codasignatura" />
+
         <EditText
             android:id="@+id/editCodasignatura"
-            android:inputType="text"
+            android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:maxLength="6"/>
+            android:inputType="text"
+            android:maxLength="6" />
     </TableRow>
     <TableRow>
+
         <TextView
-            android:text="@string/idtipodocenteciclo"/>
+            android:layout_weight="1"
+            android:text="@string/idtipodocenteciclo" />
+
         <EditText
             android:id="@+id/editIdtipodocenteciclo"
-            android:inputType="text"
+            android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:maxLength="6"/>
+            android:inputType="text"
+            android:maxLength="6" />
     </TableRow>
     <TableRow>
+
         <Button
+            android:layout_weight="1"
             android:onClick="actualizarCargaacademica"
-            android:text="@string/actualizar"/>
+            android:text="@string/actualizar" />
+
         <Button
+            android:layout_weight="1"
             android:onClick="limpiarTexto"
-            android:text="@string/limpiar"/>
+            android:text="@string/limpiar" />
     </TableRow>
 </TableLayout>

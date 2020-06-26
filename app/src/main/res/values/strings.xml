@@ -210,4 +210,6 @@
 
     <string name="validar">Validar</string>
     <string name="verJustificante">Ver justificante</string>
+    <string name="Imprimir">Imprimir</string>
+    <string name="printSol">Imprimir solicitud</string>
 </resources>

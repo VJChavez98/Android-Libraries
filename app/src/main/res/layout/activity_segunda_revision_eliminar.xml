@@ -10,12 +10,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/codasignatura" />
+
         <EditText
             android:id="@+id/editCodasignatura"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="text"
-            android:maxLength="6"/>
+            android:maxLength="6" />
     </TableRow>
 
     <TableRow>
@@ -23,12 +26,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/codtipoeval"/>
-        <Spinner android:id="@+id/spinTipoEval"
-            android:layout_height="wrap_content"
+
+        <Spinner
+            android:id="@+id/spinTipoEval"
             android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:entries="@array/tipoEval"
-            android:textAlignment="center"
-            android:gravity="center_horizontal" />
+            android:gravity="center_horizontal"
+            android:textAlignment="center" />
     </TableRow>
 
     <TableRow>
@@ -36,12 +42,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/codciclo" />
+
         <EditText
             android:id="@+id/editCodciclo"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="number"
-            android:maxLength="5"/>
+            android:maxLength="5" />
     </TableRow>
 
     <TableRow>
@@ -49,12 +58,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/evaluacion_numero" />
+
         <EditText
             android:id="@+id/editNumeval"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="number"
-            android:maxLength="1"/>
+            android:maxLength="1" />
     </TableRow>
 
     <TableRow>
@@ -62,12 +74,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/carnet" />
+
         <EditText
             android:id="@+id/editCarnet"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="text"
-            android:maxLength="7"/>
+            android:maxLength="7" />
     </TableRow>
 
     <TableRow>
@@ -80,6 +95,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:onClick="limpiarTexto"
             android:text="Limpiar" />
     </TableRow>

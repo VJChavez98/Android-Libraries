@@ -6,71 +6,109 @@
     android:stretchColumns="1">
 
     <TableRow>
+
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/codasignatura" />
+
         <EditText
             android:id="@+id/editCodasignatura"
-            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:maxLength="6"/>
+            android:inputType="text"
+            android:maxLength="6" />
     </TableRow>
 
     <TableRow>
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/codtipoeval"/>
-        <Spinner android:id="@+id/spinTipoEval"
+            android:layout_weight="1"
+            android:text="@string/codtipoeval" />
+
+        <Spinner
+            android:id="@+id/spinTipoEval"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
+            android:layout_weight="1"
             android:entries="@array/tipoEval"
-            android:textAlignment="center"
-            android:gravity="center_horizontal" />
+            android:gravity="center_horizontal"
+            android:textAlignment="center" />
     </TableRow>
 
     <TableRow>
+
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/codciclo" />
+
         <EditText
             android:id="@+id/editCodciclo"
-            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:maxLength="5"/>
+            android:inputType="number"
+            android:maxLength="5" />
     </TableRow>
 
     <TableRow>
+
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/evaluacion_numero" />
+
         <EditText
             android:id="@+id/editNumeval"
-            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:maxLength="1"/>
+            android:inputType="number"
+            android:maxLength="1" />
     </TableRow>
 
     <TableRow>
+
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/fecha" />
+
         <EditText
             android:id="@+id/editFechaeval"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:gravity="center_horizontal"
+            android:layout_weight="1"
             android:ems="10"
-            android:focusable="false"/>
+            android:focusable="false"
+            android:gravity="center_horizontal"
+            android:inputType="textPersonName" />
     </TableRow>
 
     <TableRow>
+
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:onClick="actualizarEvaluacion"
             android:text="@string/actualizar" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:onClick="limpiarTexto"
             android:text="Limpiar" />
     </TableRow>
