@@ -67,8 +67,13 @@
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:onClick="limpiarTexto"
-            android:text="@string/limpiar" />
+            android:text="@string/limpiarTexto"
+            android:onClick="limpiar"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:id="@+id/btnText2SpeechPlay"
+            android:text="@string/escuchar"
+            android:layout_weight="1"/>
     </TableRow>
 </TableLayout>

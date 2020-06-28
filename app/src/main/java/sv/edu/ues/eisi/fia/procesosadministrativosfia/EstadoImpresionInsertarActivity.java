@@ -2,15 +2,20 @@ package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class EstadoImpresionInsertarActivity extends AppCompatActivity {
 
@@ -23,6 +28,10 @@ public class EstadoImpresionInsertarActivity extends AppCompatActivity {
     EditText editObservaciones;
     Spinner spinner3;
 
+    TextToSpeech tts;
+    TextView Texto, Texto1, Texto2,Texto3, Texto4, Texto5;
+    Button BtnPlay;
+    private int numarch=0;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +46,16 @@ public class EstadoImpresionInsertarActivity extends AppCompatActivity {
         editObservaciones = (EditText) findViewById(R.id.editObservaciones);
         spinner3 = (Spinner) findViewById(R.id.spinner3);
         cargaSpinner();
+
+        Texto=(TextView) findViewById(R.id.editIdEstadoImpresion);
+        Texto1=(TextView) findViewById(R.id.editIdSolicitudImpresion);
+        Texto2=(TextView) findViewById(R.id.editIdEncargado);
+        Texto3=(TextView) findViewById(R.id.editIdMotivoImpresion);
+        Texto4=(TextView) findViewById(R.id.editRealizado);
+        Texto5=(TextView) findViewById(R.id.editObservaciones);
+        BtnPlay = (Button) findViewById(R.id.btnText2SpeechPlay);
+        tts = new TextToSpeech(this,OnInit);
+        BtnPlay.setOnClickListener(onClick);
     }
 
     private void cargaSpinner(){
@@ -116,5 +135,33 @@ public class EstadoImpresionInsertarActivity extends AppCompatActivity {
         editIdEncargado.setText("");
         editIdMotivoImpresion.setText("");
         editObservaciones.setText("");
+    }
+    TextToSpeech.OnInitListener OnInit= new TextToSpeech.OnInitListener(){
+        @Override
+        public void onInit(int status){
+            if (TextToSpeech.SUCCESS==status){
+                tts.setLanguage(new Locale("spa","ESP"));
+            }
+            else{
+                Toast.makeText(getApplicationContext(), "TTS No Disponible", Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
+    View.OnClickListener onClick=new View.OnClickListener(){
+        @SuppressLint("SdCardPath")
+        public void onClick(View v){
+            if (v.getId()==R.id.btnText2SpeechPlay){
+                tts.speak(Texto.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto1.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto2.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto3.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto4.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto5.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+            }
+        }
+    };
+    public void onDestroy(){
+        tts.shutdown();
+        super.onDestroy();
     }
 }

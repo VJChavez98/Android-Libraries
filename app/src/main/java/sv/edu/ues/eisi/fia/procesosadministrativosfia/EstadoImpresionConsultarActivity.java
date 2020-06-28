@@ -1,11 +1,21 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
+import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Locale;
 
 public class EstadoImpresionConsultarActivity extends Activity {
 
@@ -16,6 +26,15 @@ public class EstadoImpresionConsultarActivity extends Activity {
     EditText editIdMotivoImpresion;
     EditText editRealizado;
     EditText editObservaciones;
+
+    TextToSpeech tts;
+    TextView Texto, Texto1, Texto2,Texto3, Texto4, Texto5;
+    Button BtnPlay;
+    private int numarch=0;
+
+    private static final int REQ_CODE_SPEECH_INPUT=100;
+    private TextView mEntradaVoz;
+    private Button mBotonhablar;
 
     /** Called when the activity is first created. */
     @Override
@@ -30,6 +49,51 @@ public class EstadoImpresionConsultarActivity extends Activity {
         editIdMotivoImpresion = (EditText) findViewById(R.id.editIdMotivoImpresion);
         editRealizado = (EditText) findViewById(R.id.editRealizado);
         editObservaciones = (EditText) findViewById(R.id.editObservaciones);
+
+        Texto=(TextView) findViewById(R.id.editIdEstadoImpresion);
+        Texto1=(TextView) findViewById(R.id.editIdSolicitudImpresion);
+        Texto2=(TextView) findViewById(R.id.editIdEncargado);
+        Texto3=(TextView) findViewById(R.id.editIdMotivoImpresion);
+        Texto4=(TextView) findViewById(R.id.editRealizado);
+        Texto5=(TextView) findViewById(R.id.editObservaciones);
+        BtnPlay = (Button) findViewById(R.id.btnText2SpeechPlay);
+        tts = new TextToSpeech(this,OnInit);
+        BtnPlay.setOnClickListener(onClick);
+
+        mEntradaVoz=findViewById(R.id.editIdEstadoImpresion);
+        mBotonhablar=findViewById(R.id.bvoice);
+        mBotonhablar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iniciarEntradaVoz();
+            }
+        });
+    }
+
+    private void iniciarEntradaVoz(){
+        Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        i.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        i.putExtra(RecognizerIntent.EXTRA_PROMPT, "Diga el ID ");
+        try {
+            startActivityForResult(i, REQ_CODE_SPEECH_INPUT);
+        }catch (ActivityNotFoundException e){
+
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode){
+            case REQ_CODE_SPEECH_INPUT:{
+                if (resultCode==RESULT_OK && null!=data){
+                    ArrayList<String> result=data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    mEntradaVoz.setText(result.get(0));
+                }
+                break;
+            }
+        }
     }
     public void consultarEstadoImpresion(View v) {
 
@@ -89,5 +153,33 @@ public class EstadoImpresionConsultarActivity extends Activity {
         editRealizado.setText("");
         editObservaciones.setText("");
         findViewById(R.id.detalle).setVisibility(View.GONE);
+    }
+    TextToSpeech.OnInitListener OnInit= new TextToSpeech.OnInitListener(){
+        @Override
+        public void onInit(int status){
+            if (TextToSpeech.SUCCESS==status){
+                tts.setLanguage(new Locale("spa","ESP"));
+            }
+            else{
+                Toast.makeText(getApplicationContext(), "TTS No Disponible", Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
+    View.OnClickListener onClick=new View.OnClickListener(){
+        @SuppressLint("SdCardPath")
+        public void onClick(View v){
+            if (v.getId()==R.id.btnText2SpeechPlay){
+                tts.speak(Texto.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto1.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto2.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto3.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto4.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto5.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+            }
+        }
+    };
+    public void onDestroy(){
+        tts.shutdown();
+        super.onDestroy();
     }
 }

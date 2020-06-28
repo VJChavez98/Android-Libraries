@@ -217,4 +217,9 @@
             android:text="@string/insertar"
             android:textAlignment="center" />
     </TableRow>
+    <TableRow>
+        <Button
+            android:id="@+id/btnText2SpeechPlay"
+            android:text="@string/escuchar"/>
+    </TableRow>
 </TableLayout>

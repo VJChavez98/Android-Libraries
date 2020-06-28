@@ -112,5 +112,10 @@
             android:onClick="limpiarTexto"
             android:text="Limpiar" />
     </TableRow>
+    <TableRow>
+        <Button
+            android:id="@+id/btnText2SpeechPlay"
+            android:text="@string/escuchar"/>
+    </TableRow>
 
 </TableLayout>

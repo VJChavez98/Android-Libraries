@@ -1,12 +1,18 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,6 +25,11 @@ public class DocDirectorInsertarActivity extends Activity {
     EditText editCorreoDirector;
     EditText editTelefono;
 
+    TextToSpeech tts;
+    TextView Texto, Texto1, Texto2, Texto3, Texto4, Texto5;
+    Button BtnPlay;
+    private int numarch=0;
+
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +41,17 @@ public class DocDirectorInsertarActivity extends Activity {
         editApellidoDirector = (EditText) findViewById(R.id.editApellidoDirector);
         editCorreoDirector = (EditText) findViewById(R.id.editCorreoDirector);
         editTelefono = (EditText) findViewById(R.id.editTelefono);
+
+        Texto=(TextView) findViewById(R.id.editIdDocenteDirector);
+        Texto1=(TextView) findViewById(R.id.editIdEscuela);
+        Texto2=(TextView) findViewById(R.id.editNombreDirector);
+        Texto3=(TextView) findViewById(R.id.editApellidoDirector);
+        Texto4=(TextView) findViewById(R.id.editCorreoDirector);
+        Texto5=(TextView) findViewById(R.id.editTelefono);
+        BtnPlay = (Button) findViewById(R.id.btnText2SpeechPlay);
+        tts = new TextToSpeech(this,OnInit);
+        BtnPlay.setOnClickListener(onClick);
+
     }
 
 
@@ -142,5 +164,33 @@ public class DocDirectorInsertarActivity extends Activity {
         editApellidoDirector.setText("");
         editCorreoDirector.setText("");
         editTelefono.setText("");
+    }
+    TextToSpeech.OnInitListener OnInit= new TextToSpeech.OnInitListener(){
+        @Override
+        public void onInit(int status){
+            if (TextToSpeech.SUCCESS==status){
+                tts.setLanguage(new Locale("spa","ESP"));
+            }
+            else{
+                Toast.makeText(getApplicationContext(), "TTS No Disponible", Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
+    View.OnClickListener onClick=new View.OnClickListener(){
+        @SuppressLint("SdCardPath")
+        public void onClick(View v){
+            if (v.getId()==R.id.btnText2SpeechPlay){
+                tts.speak(Texto.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto1.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto2.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto3.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto4.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto5.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+            }
+        }
+    };
+    public void onDestroy(){
+        tts.shutdown();
+        super.onDestroy();
     }
 }

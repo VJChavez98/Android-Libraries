@@ -94,6 +94,11 @@
             android:layout_weight="1"
             android:onClick="consultarRepetido"
             android:text="@string/consultar" />
+        <Button
+            android:id="@+id/bvoice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btnTalk" />
     </TableRow>
     <FrameLayout android:visibility="gone"
         android:id="@+id/layoutDetail">

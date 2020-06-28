@@ -285,5 +285,10 @@
                 android:layout_weight="1"
                 android:text="@string/Imprimir" />
         </TableRow>
+    <TableRow>
+    <Button
+        android:id="@+id/btnText2SpeechPlay"
+        android:text="@string/escuchar"/>
+    </TableRow>
     </TableLayout>
 </ScrollView>
