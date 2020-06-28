@@ -21,6 +21,7 @@ import android.provider.MediaStore;
 import android.speech.tts.TextToSpeech;
 import android.text.InputType;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -64,17 +65,15 @@ public class Diferido_insertar extends AppCompatActivity {
 
     ControladorBase DBHelper;
     EditText editCarnet, editMateria, editGrupoTeorico, editGrupoDiscusion, editGrupoLab, editFechaEval, editHoraEval, editMotivo, editEva, ciclo;
-    EditText editCarnet, editMateria, editGrupoTeorico, editGrupoDiscusion, editGrupoLab, editFechaEval, editHoraEval, editMotivo, editEva;
 
     TextToSpeech tts;
-    TextView Texto, Texto1, Texto2, Texto3, Texto4, Texto5, Texto6, Texto7, Texto8;
+    TextView Texto, Texto1, Texto2, Texto3, Texto4, Texto5, Texto6, Texto7, Texto8, Texto9;
     Button BtnPlay;
     private int numarch=0;
 
     Spinner motivos, spinTipo;
     private int nYearIni, nMonthIni, nDayIni, sYearIni, sMonthIni, sDayIni, sHour, nHour, sMinute, nMinute;
     static final int DATE_ID = 0, HOUR_ID = 1;
-    String[] tipos = {"Seleccione el tipo de evaluacion", "EP", "ED", "EL"};
     Calendar c = Calendar.getInstance();
     Button mOptions;
     final int FOTOGRAFIA = 0;
@@ -104,20 +103,21 @@ public class Diferido_insertar extends AppCompatActivity {
         editHoraEval.setInputType(InputType.TYPE_NULL);
 
         Texto=(TextView) findViewById(R.id.editCarnet);
-        Texto1=(TextView) findViewById(R.id.editAsignatura);
-        Texto2=(TextView) findViewById(R.id.editGrupoTeorico);
-        Texto3=(TextView) findViewById(R.id.editGrupoDiscusion);
-        Texto4=(TextView) findViewById(R.id.editGrupoLab);
-        Texto5=(TextView) findViewById(R.id.editCodEva);
-        Texto6=(TextView) findViewById(R.id.editFechaRealizada);
-        Texto7=(TextView) findViewById(R.id.editHoraRealizada);
-        Texto8=(TextView) findViewById(R.id.editMotivo);
+        Texto1 = (TextView) findViewById(R.id.editCodciclo);
+        Texto2=(TextView) findViewById(R.id.editAsignatura);
+        Texto3=(TextView) findViewById(R.id.editGrupoTeorico);
+        Texto4=(TextView) findViewById(R.id.editGrupoDiscusion);
+        Texto5=(TextView) findViewById(R.id.editGrupoLab);
+        Texto6=(TextView) findViewById(R.id.editCodEva);
+        Texto7=(TextView) findViewById(R.id.editFechaRealizada);
+        Texto8=(TextView) findViewById(R.id.editHoraRealizada);
+        Texto9=(TextView) findViewById(R.id.editMotivo);
+
         BtnPlay = (Button) findViewById(R.id.btnText2SpeechPlay);
         tts = new TextToSpeech(this,OnInit);
         BtnPlay.setOnClickListener(onClick);
 
         srcImg = findViewById(R.id.rutaSolic);
-        spinTipo.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, tipos));
         mOptions = findViewById(R.id.option);
         mOptions.setOnClickListener(mostrarOpciones);
         imprimir = findViewById(R.id.crearPdf);
@@ -525,6 +525,7 @@ public class Diferido_insertar extends AppCompatActivity {
                 tts.speak(Texto6.getText().toString(), TextToSpeech.QUEUE_ADD, null);
                 tts.speak(Texto7.getText().toString(), TextToSpeech.QUEUE_ADD, null);
                 tts.speak(Texto8.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto9.getText().toString(), TextToSpeech.QUEUE_ADD, null);
             }
         }
     };

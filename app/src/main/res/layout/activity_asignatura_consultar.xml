@@ -1,44 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<TableLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/codasignatura"/>
+    <TableRow>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/codasignatura" />
     <EditText
         android:id="@+id/editCodasignatura"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:inputType="text"
         android:maxLength="6"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/nombreasignatura"/>
+    </TableRow>
+    <TableRow>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nombreasignatura" />
 
     <EditText
         android:id="@+id/editNombreasignatura"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
+        android:layout_weight="1"
         android:maxLength="30"
         android:focusable="false"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/unidadesval"/>
+        </TableRow>
+    <TableRow>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/unidadesval" />
     <EditText
         android:id="@+id/editUnidadesval"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:inputType="text"
         android:maxLength="1"
         android:focusable="false"/>
-    <LinearLayout
+    </TableRow>
+    <TableRow
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
@@ -64,5 +75,5 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/btnTalk" />
-    </LinearLayout>
-</LinearLayout>
+    </TableRow>
+</TableLayout>

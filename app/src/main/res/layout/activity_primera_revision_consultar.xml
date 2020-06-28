@@ -9,189 +9,210 @@
         android:orientation="vertical" >
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/codasignatura" />
+
         <EditText
             android:id="@+id/editCodasignatura"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:maxLength="6"/>
+            android:maxLength="6" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/codtipogrupo"/>
+            android:text="@string/codtipogrupo" />
+
         <Spinner
             android:id="@+id/spinTipoGrupo"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
             android:entries="@array/tipoGrupo"
-            android:textAlignment="center"
-            android:gravity="center_horizontal" />
+            android:gravity="center_horizontal"
+            android:textAlignment="center" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/codciclo" />
+
         <EditText
             android:id="@+id/editCodciclo"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:maxLength="5"/>
+            android:maxLength="5" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/codtipoeval"/>
+            android:text="@string/codtipoeval" />
+
         <Spinner
             android:id="@+id/spinTipoEval"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
             android:entries="@array/tipoEval"
-            android:textAlignment="center"
-            android:gravity="center_horizontal" />
+            android:gravity="center_horizontal"
+            android:textAlignment="center" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/evaluacion_numero" />
+
         <EditText
             android:id="@+id/editNumeval"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:maxLength="1"/>
+            android:maxLength="1" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/carnet" />
+
         <EditText
             android:id="@+id/editCarnet"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:maxLength="7"/>
+            android:maxLength="7" />
 
-        <LinearLayout
+        <TableLayout
             android:id="@+id/linearLayout1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
+            <TableRow>
 
-            <Button
-                android:id="@+id/botonConsultar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="consultarPrimeraRevision"
-                android:text="@string/consultar" />
+                <Button
+                    android:id="@+id/botonConsultar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="consultarPrimeraRevision"
+                    android:text="@string/consultar" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="limpiarTexto"
-                android:text="Limpiar" />
-            <Button
-                android:id="@+id/bvoice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/btnTalk" />
-        </LinearLayout>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="limpiarTexto"
+                    android:text="Limpiar" />
+            </TableRow>
+            <TableRow>
+
+                <Button
+                    android:id="@+id/bvoice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/btnTalk" />
+            </TableRow>
+        </TableLayout>
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:visibility="gone"
     android:id="@+id/detalle">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/estadoPrimRev" />
-        <EditText
-            android:id="@+id/editEstado"
-            android:layout_width="330dp"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:cursorVisible="false"
-            android:longClickable="false" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/nomDocente" />
-        <EditText
-            android:id="@+id/editNomdocente"
-            android:layout_width="330dp"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:cursorVisible="false"
-            android:longClickable="false" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/estadoPrimRev" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/asistio" />
-        <EditText
-            android:id="@+id/editAsitencia"
-            android:layout_width="330dp"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:cursorVisible="false"
-            android:longClickable="false" />
+    <EditText
+        android:id="@+id/editEstado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:inputType="text"
+        android:longClickable="false" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/notaDespRev" />
-        <EditText
-            android:id="@+id/editNotaFinal"
-            android:layout_width="330dp"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:cursorVisible="false"
-            android:longClickable="false" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/nomDocente" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/moCambioNota" />
-        <EditText
-            android:id="@+id/editMotivoCambio"
-            android:layout_width="330dp"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:cursorVisible="false"
-            android:longClickable="false" />
+    <EditText
+        android:id="@+id/editNomdocente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:inputType="text"
+        android:longClickable="false" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/observaciones" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/asistio" />
+
+    <EditText
+        android:id="@+id/editAsitencia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:inputType="text"
+        android:longClickable="false" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/notaDespRev" />
+
+    <EditText
+        android:id="@+id/editNotaFinal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:inputType="numberDecimal"
+        android:longClickable="false" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/moCambioNota" />
+
+    <EditText
+        android:id="@+id/editMotivoCambio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:inputType="text"
+        android:longClickable="false" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/observaciones" />
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <EditText
-                android:layout_width="330dp"
-                android:layout_height="wrap_content"
                 android:id="@+id/editObservaciones"
-                android:inputType="textMultiLine"
-                android:scrollbars="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:cursorVisible="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                android:cursorVisible="false"
-                android:longClickable="false" />
+                android:inputType="textMultiLine"
+                android:longClickable="false"
+                android:scrollbars="vertical" />
         </ScrollView>
 
     </LinearLayout>

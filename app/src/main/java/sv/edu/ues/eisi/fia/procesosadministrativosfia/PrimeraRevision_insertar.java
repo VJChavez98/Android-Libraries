@@ -24,7 +24,6 @@ public class PrimeraRevision_insertar extends Activity {
     Button BtnPlay;
     private int numarch=0;
 
-    Spinner spinTipoEval, spinEstado, spinMotCambNota;
     RadioGroup radioEstado, radioAsistencia;
     RadioButton radioSi, radioNo, radioPendiente, radioTerminada;
     ControladorBase helper;

@@ -9,10 +9,9 @@
     <TableRow>
 
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
-            android:layout_weight="1"
             android:text="@string/codAsignatura" />
 
         <EditText
@@ -29,10 +28,9 @@
     <TableRow>
 
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
-            android:layout_weight="1"
             android:text="@string/tipoEval" />
 
         <Spinner
@@ -48,15 +46,14 @@
     <TableRow>
 
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
-            android:layout_weight="1"
             android:text="@string/evaluacion_numero" />
 
         <EditText
             android:id="@+id/editNumeval"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
@@ -67,10 +64,9 @@
     <TableRow>
 
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
-            android:layout_weight="1"
             android:text="@string/tipo" />
 
         <Spinner
@@ -85,15 +81,14 @@
     <TableRow>
 
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
-            android:layout_weight="1"
             android:text="@string/codlocal" />
 
         <EditText
             android:id="@+id/editCodlocal"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
@@ -104,15 +99,14 @@
     <TableRow>
 
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
-            android:layout_weight="1"
             android:text="@string/codDocente" />
 
         <EditText
             android:id="@+id/editDocente"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
@@ -123,15 +117,14 @@
     <TableRow>
 
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
-            android:layout_weight="1"
             android:text="@string/fechaDesde" />
 
         <EditText
             android:id="@+id/editFechaDesde"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:focusable="false"
@@ -142,15 +135,14 @@
     <TableRow>
 
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
-            android:layout_weight="1"
             android:text="@string/fechaHasta" />
 
         <EditText
             android:id="@+id/editFechaHasta"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:focusable="false"
@@ -161,15 +153,14 @@
     <TableRow>
 
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
-            android:layout_weight="1"
             android:text="@string/fecha" />
 
         <EditText
             android:id="@+id/editFechaeval"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:focusable="false"
@@ -180,15 +171,14 @@
     <TableRow>
 
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
-            android:layout_weight="1"
             android:text="@string/horaRealizada" />
 
         <EditText
             android:id="@+id/editHoraRealizada"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:focusable="false"
@@ -200,26 +190,27 @@
 
         <Button
             android:id="@+id/cancelarBtn"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dip"
-            android:layout_weight="1"
             android:onClick="limpiarTexto"
             android:text="@string/cancelarBtn" />
 
         <Button
             android:id="@+id/insertarBtn"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center_horizontal"
             android:onClick="insertarDetalle"
             android:text="@string/insertar"
             android:textAlignment="center" />
     </TableRow>
     <TableRow>
+
         <Button
             android:id="@+id/btnText2SpeechPlay"
-            android:text="@string/escuchar"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/escuchar" />
     </TableRow>
 </TableLayout>

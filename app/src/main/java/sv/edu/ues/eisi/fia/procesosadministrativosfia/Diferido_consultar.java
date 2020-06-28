@@ -41,6 +41,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FileDownloadTask;
@@ -60,11 +61,12 @@ public class Diferido_consultar extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     EditText editNumEval, editCarnet, editCodMateria, editGT, editGD, editGL, editFechaEval, editHoraEval, editOtroMotivo, estadoSoli, ciclo;
-    EditText editNumEval, editCarnet, editCodMateria, editGT, editGD, editGL, editFechaEval, editHoraEval, editOtroMotivo, estadoSoli;
+
 
     TextToSpeech tts;
     TextView Texto, Texto1, Texto2, Texto3, Texto4, Texto5, Texto6, Texto7;
     Button BtnPlay;
+    File ultima;
     private int numarch=0;
 
     private static final int REQ_CODE_SPEECH_INPUT=100;
@@ -79,7 +81,6 @@ public class Diferido_consultar extends AppCompatActivity {
     private int nYearIni, nMonthIni, nDayIni, sYearIni, sMonthIni, sDayIni, sHour, nHour, sMinute, nMinute;
     static final int DATE_ID = 0, HOUR_ID = 1;
     Calendar c = Calendar.getInstance();
-    String[] tipos = {"Seleccione el tipo de evaluacion", "EP", "ED", "EL"};
     Button mOptions;
     final int FOTOGRAFIA = 0;
     final int GALLERY = 1;
@@ -138,6 +139,7 @@ public class Diferido_consultar extends AppCompatActivity {
 
         mEntradaVoz=findViewById(R.id.editCarnet);
         mBotonhablar=findViewById(R.id.bvoice);
+        mBotonhablar.setVisibility(View.GONE);
         mBotonhablar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -190,7 +192,6 @@ public class Diferido_consultar extends AppCompatActivity {
         editOtroMotivo.setEnabled(false);
         eliminarBtn.setEnabled(false);
         modificarBtn.setEnabled(false);
-        tipoEval.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, tipos));
         tipoEval.setVisibility(View.VISIBLE);
         tipoEval.setEnabled(true);
         motivos.setVisibility(View.GONE);
@@ -274,6 +275,7 @@ public class Diferido_consultar extends AppCompatActivity {
                 tipoEval.setSelection(tipoEval(solicitudDiferido.getTipoEva()));
                 motivos.setSelection(colocarMotivo(solicitudDiferido.getMotivo()));
                 motivos.setEnabled(true);
+                mBotonhablar.setVisibility(View.VISIBLE);
                 editOtroMotivo.setEnabled(true);
                 if (solicitudDiferido.getOtroMotivo().isEmpty()) {
                     editOtroMotivo.setVisibility(View.GONE);
@@ -317,20 +319,6 @@ public class Diferido_consultar extends AppCompatActivity {
             startActivityForResult(i, REQ_CODE_SPEECH_INPUT);
         }catch (ActivityNotFoundException e){
 
-        }
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-
-        switch (requestCode){
-            case REQ_CODE_SPEECH_INPUT:{
-                if (resultCode==RESULT_OK && null!=data){
-                    ArrayList<String> result=data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    mEntradaVoz.setText(result.get(0));
-                }
-                break;
-            }
         }
     }
 
@@ -436,6 +424,7 @@ public class Diferido_consultar extends AppCompatActivity {
         ciclo.setText("");
         srcImg.setVisibility(View.GONE);
         lblJustificante.setVisibility(View.GONE);
+        mBotonhablar.setVisibility(View.GONE);
     }
 
     public void EliminarSolicitud(View view) {
@@ -446,6 +435,7 @@ public class Diferido_consultar extends AppCompatActivity {
         solicitudDiferido.setCodMateria(String.valueOf(editCodMateria.getText()));
         solicitudDiferido.setCiclo(ciclo.getText().toString());
         solicitudDiferido.setTipoEva(String.valueOf(tipoEval.getSelectedItem()));
+        mStorage.child(ruta).delete();
         helper.abrir();
         String regAfectados = helper.eliminar(solicitudDiferido);
         helper.cerrar();
@@ -570,8 +560,16 @@ public class Diferido_consultar extends AppCompatActivity {
             }
         } else if (requestCode == GALLERY) {
             if (resultCode == RESULT_OK) {
+                mStorage.child(ruta).delete();
                 file = data.getData();
                 srcImg.setImageURI(file);
+            }
+        } else if (requestCode == REQ_CODE_SPEECH_INPUT) {
+            if (resultCode == RESULT_OK && data != null) {
+                ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                if (result != null) {
+                    mEntradaVoz.setText(result.get(0));
+                }
             }
         }
     }

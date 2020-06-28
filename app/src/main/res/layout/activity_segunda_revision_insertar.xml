@@ -10,11 +10,16 @@
         android:stretchColumns="1">
 
         <TableRow>
+
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/codasignatura" />
 
             <EditText
                 android:id="@+id/editCodasignatura"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:inputType="text"
@@ -22,14 +27,15 @@
         </TableRow>
 
         <TableRow>
+
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/codtipoeval"/>
+                android:text="@string/codtipoeval" />
 
             <Spinner
                 android:id="@+id/spinTipoEval"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:entries="@array/tipoEval"
@@ -38,11 +44,16 @@
         </TableRow>
 
         <TableRow>
+
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/evaluacion_numero" />
 
             <EditText
                 android:id="@+id/editNumeval"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:inputType="number"
@@ -50,11 +61,16 @@
         </TableRow>
 
         <TableRow>
+
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/codciclo" />
 
             <EditText
                 android:id="@+id/editCodciclo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:inputType="number"
@@ -62,14 +78,15 @@
         </TableRow>
 
         <TableRow>
+
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/codtipogrupo"/>
+                android:text="@string/codtipogrupo" />
 
             <Spinner
                 android:id="@+id/spinTipoGrupo"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:entries="@array/tipoGrupo"
@@ -78,11 +95,16 @@
         </TableRow>
 
         <TableRow>
+
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/codDocente" />
 
             <EditText
                 android:id="@+id/editCoddocente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:inputType="text"
@@ -90,11 +112,16 @@
         </TableRow>
 
         <TableRow>
+
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/carnet" />
 
             <EditText
                 android:id="@+id/editCarnet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:inputType="text"
@@ -102,11 +129,16 @@
         </TableRow>
 
         <TableRow>
+
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/notaDespRev" />
 
             <EditText
                 android:id="@+id/editNotaDespues"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:inputType="numberDecimal"
@@ -114,14 +146,15 @@
         </TableRow>
 
         <TableRow>
+
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/moCambioNota"/>
+                android:text="@string/moCambioNota" />
 
             <Spinner
                 android:id="@+id/spinMotCambioNota"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:entries="@array/motCambNot"
@@ -130,12 +163,16 @@
         </TableRow>
 
         <TableRow>
+
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/observaciones" />
 
             <EditText
                 android:id="@+id/editObservaciones"
-                android:layout_width="230dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:inputType="textMultiLine"
@@ -147,14 +184,15 @@
         </TableRow>
 
         <TableRow>
+
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="insertarSegundaRevision"
                 android:text="@string/insertar" />
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="limpiarTexto"

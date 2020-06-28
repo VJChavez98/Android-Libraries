@@ -10,7 +10,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="@string/codasignatura" />
 
         <EditText
@@ -28,7 +27,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="@string/codtipoeval" />
 
         <Spinner
@@ -46,7 +44,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="@string/codciclo" />
 
         <EditText
@@ -64,7 +61,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="@string/evaluacion_numero" />
 
         <EditText
@@ -82,7 +78,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="@string/fecha" />
 
         <EditText
@@ -101,7 +96,6 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:onClick="actualizarEvaluacion"
             android:text="@string/actualizar" />
 
@@ -113,9 +107,13 @@
             android:text="Limpiar" />
     </TableRow>
     <TableRow>
+
         <Button
             android:id="@+id/btnText2SpeechPlay"
-            android:text="@string/escuchar"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/escuchar" />
     </TableRow>
 
 </TableLayout>

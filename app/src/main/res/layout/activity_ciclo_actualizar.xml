@@ -7,11 +7,15 @@
     <TableRow>
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/codciclo" />
 
         <EditText
             android:id="@+id/editCodciclo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
@@ -20,11 +24,15 @@
     <TableRow>
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/fechadesde" />
 
         <EditText
             android:id="@+id/editFechadesde"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
@@ -33,11 +41,15 @@
     <TableRow>
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/fechahasta" />
 
         <EditText
             android:id="@+id/editFechahasta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
@@ -46,11 +58,15 @@
     <TableRow>
 
         <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="actualizarCiclo"
             android:text="@string/actualizar" />
 
         <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="limpiarTexto"
             android:text="@string/limpiar" />
@@ -58,6 +74,9 @@
     <TableRow>
         <Button
             android:id="@+id/btnText2SpeechPlay"
-            android:text="@string/escuchar"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/escuchar" />
     </TableRow>
 </TableLayout>

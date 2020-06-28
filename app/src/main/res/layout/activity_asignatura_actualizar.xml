@@ -6,43 +6,78 @@
     android:paddingTop="10dip"
     android:stretchColumns="1">
     <TableRow>
+
         <TextView
-            android:text="@string/codasignatura"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/codasignatura" />
+
         <EditText
             android:id="@+id/editCodasignatura"
-            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:maxLength="6"/>
+            android:inputType="text"
+            android:maxLength="6" />
     </TableRow>
     <TableRow>
+
         <TextView
-            android:text="@string/nombreasignatura"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nombreasignatura" />
+
         <EditText
             android:id="@+id/editNombreasignatura"
-            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:maxLength="30"/>
+            android:inputType="text"
+            android:maxLength="30" />
     </TableRow>
     <TableRow>
+
         <TextView
-            android:text="@string/unidadesval"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/unidadesval" />
+
         <EditText
             android:id="@+id/editUnidadesval"
-            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:maxLength="1"/>
+            android:inputType="text"
+            android:maxLength="1" />
     </TableRow>
     <TableRow>
+
         <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:onClick="actualizarAsignatura"
-            android:text="@string/actualizar"/>
+            android:text="@string/actualizar" />
+
         <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:onClick="limpiarTexto"
-            android:text="@string/limpiar"/>
+            android:text="@string/limpiar" />
     </TableRow>
-    <TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
         <Button
             android:id="@+id/btnText2SpeechPlay"
-            android:text="@string/escuchar"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/escuchar" />
     </TableRow>
 </TableLayout>

@@ -8,9 +8,8 @@
     <TableRow>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="@string/codtiporev" />
 
         <Spinner
@@ -26,9 +25,8 @@
     <TableRow>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="@string/codasignatura" />
 
         <EditText
@@ -44,9 +42,8 @@
     <TableRow>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="@string/codtipoeval" />
 
         <Spinner
@@ -62,9 +59,8 @@
     <TableRow>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="@string/codciclo" />
 
         <EditText
@@ -80,9 +76,8 @@
     <TableRow>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="@string/evaluacion_numero" />
 
         <EditText
@@ -98,9 +93,8 @@
     <TableRow>
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:onClick="eliminarPeriodoRevision"
             android:text="@string/eliminar" />
 

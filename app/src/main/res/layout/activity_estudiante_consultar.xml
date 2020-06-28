@@ -9,14 +9,13 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="@string/carnet" />
 
         <EditText
             android:id="@+id/editCarnet"
-            android:layout_width="300dip"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
@@ -27,41 +26,47 @@
 
         <Button
             android:id="@+id/cancelarBtn"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:onClick="limpiarTexto"
             android:text="@string/cancelarBtn" />
 
         <Button
             android:id="@+id/botonConsultar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="consultarEstudiante"
             android:text="@string/consultar" />
     </TableRow>
     <TableRow>
+
         <Button
             android:id="@+id/btnText2SpeechPlay"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/escuchar"/>
+            android:text="@string/escuchar" />
+
         <Button
             android:id="@+id/bvoice"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/btnTalk" />
     </TableRow>
     <TableRow>
+
         <TextView
             android:id="@+id/lblNombre"
-            android:layout_width="58dp"
-            android:layout_height="23dp"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/estudianteNombre"
             tools:layout_editor_absoluteX="16dp" />
 
         <EditText
             android:id="@+id/editNombreEstudiante"
-            android:layout_width="310dp"
-            android:layout_height="43dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
@@ -73,14 +78,13 @@
 
         <TextView
             android:id="@+id/lblApellido"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="@string/estudianteApellido" />
 
         <EditText
             android:id="@+id/editApellidoEstudiante"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
@@ -92,14 +96,13 @@
 
         <TextView
             android:id="@+id/lblCarrera"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="@string/estudianteCarrera" />
 
         <EditText
             android:id="@+id/editCarreraEstudiante"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
@@ -111,12 +114,15 @@
 
         <Button
             android:id="@+id/EliminarBtn"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:onClick="EliminarEstudiante"
             android:text="@string/eliminarBtn" />
 
         <Button
             android:id="@+id/ModificarBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="actualizarEstudiante"
             android:text="@string/modificarBtn" />

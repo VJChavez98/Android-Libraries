@@ -73,8 +73,12 @@
             android:text="@string/limpiar" />
     </TableRow>
     <TableRow>
+
         <Button
             android:id="@+id/btnText2SpeechPlay"
-            android:text="@string/escuchar"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/escuchar" />
     </TableRow>
 </TableLayout>

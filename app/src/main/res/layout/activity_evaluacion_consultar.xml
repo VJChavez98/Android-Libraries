@@ -5,115 +5,134 @@
     android:orientation="vertical" >
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/codasignatura"/>
+        android:text="@string/codasignatura" />
+
     <EditText
         android:id="@+id/editCodasignatura"
-        android:layout_width="260dp"
-        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:inputType="text"
         android:maxLength="6" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/codtipoeval"/>
-    <Spinner android:id="@+id/spinTipoEval"
+        android:text="@string/codtipoeval" />
+
+    <Spinner
+        android:id="@+id/spinTipoEval"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="260dp"
         android:entries="@array/tipoEval"
-        android:textAlignment="center"
-        android:gravity="center_horizontal" />
+        android:gravity="center_horizontal"
+        android:textAlignment="center" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/codciclo" />
+
     <EditText
         android:id="@+id/editCodciclo"
-        android:layout_width="260dp"
-        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:inputType="number"
-        android:maxLength="5"/>
+        android:maxLength="5" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/evaluacion_numero" />
+
     <EditText
         android:id="@+id/editNumeval"
-        android:layout_width="260dp"
-        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:inputType="number"
-        android:maxLength="1"/>
+        android:maxLength="1" />
 
-    <LinearLayout
+    <TableLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
+    <TableRow>
 
         <Button
             android:id="@+id/botonConsultar"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:onClick="consultarEvaluacion"
             android:text="@string/consultar" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:onClick="limpiarTexto"
             android:text="Limpiar" />
+    </TableRow>
+    <TableRow>
+
         <Button
             android:id="@+id/btnText2SpeechPlay"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/escuchar"/>
+            android:layout_weight="1"
+            android:text="@string/escuchar" />
+
         <Button
             android:id="@+id/bvoice"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/btnTalk" />
-    </LinearLayout>
+    </TableRow>
+
+</TableLayout>
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:visibility="gone"
     android:id="@+id/detalle">
+
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/nomasignatura" />
+
     <EditText
         android:id="@+id/editNomasignatura"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
-        android:gravity="center_horizontal"
+        android:cursorVisible="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:cursorVisible="false"
+        android:gravity="center_horizontal"
+        android:inputType="text"
         android:longClickable="false" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/fecha" />
+
     <EditText
         android:id="@+id/editFechaeval"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:focusable="false"
-        android:gravity="center_horizontal"
-        android:focusableInTouchMode="false"
         android:cursorVisible="false"
-        android:longClickable="false"
+        android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:gravity="center_horizontal"
         android:inputType="textPersonName"
-        android:ems="10"/>
+        android:longClickable="false" />
 </LinearLayout>
 </LinearLayout>

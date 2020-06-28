@@ -2,43 +2,70 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="30dip"
-    android:stretchColumns="1" >
+    android:stretchColumns="1">
+
     <TableRow>
-        <TextView android:text="ID Solicitud Impresion"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ID Solicitud Impresion" />
 
         <EditText
             android:id="@+id/editIdSolicitudImpresion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="10" />
     </TableRow>
+
     <TableRow>
-        <TextView android:text="ID Docente" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ID Docente" />
 
         <EditText
             android:id="@+id/editIdDocente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="10" />
     </TableRow>
+
     <TableRow>
-        <TextView android:text="ID Docente Director" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ID Docente Director" />
 
         <EditText
             android:id="@+id/editIdDocenteDirector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="10" />
     </TableRow>
+
     <TableRow>
-        <TextView android:text="Cantidad de Examenes" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cantidad de Examenes" />
 
         <EditText
             android:id="@+id/editCantidadExamenes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="number"
@@ -46,11 +73,15 @@
     </TableRow>
 
     <TableRow>
-        <TextView android:text="Hojas Empaque" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hojas Empaque" />
 
         <Spinner
             android:id="@+id/spinner"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
@@ -58,33 +89,50 @@
     </TableRow>
 
     <TableRow>
-        <TextView android:text="Estado de Aprobacion" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Estado de Aprobacion" />
 
         <Spinner
             android:id="@+id/spinner2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:textAlignment="center" />
     </TableRow>
+
     <TableRow>
-        <TextView android:text="@string/opciones" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/opciones" />
     </TableRow>
+
     <TableRow>
-        <Button
-            android:onClick="insertarSolicitudImpresion"
-            android:text="@string/insertar"
-            android:id="@+id/buttonValidar"/>
 
         <Button
+            android:id="@+id/buttonValidar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="insertarSolicitudImpresion"
+            android:text="@string/insertar" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="limpiarTexto"
             android:text="@string/limpiar" />
+
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/btnText2SpeechPlay"
-            android:text="@string/escuchar"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/escuchar" />
     </TableRow>
 </TableLayout>

@@ -10,7 +10,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="@string/coddocente" />
 
         <EditText
@@ -27,7 +26,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="@string/nombredocente" />
 
         <EditText
@@ -44,7 +42,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="@string/apellidodocente" />
 
         <EditText
@@ -61,7 +58,6 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:onClick="actualizarDocente"
             android:text="@string/actualizar" />
 
@@ -73,8 +69,12 @@
             android:text="@string/limpiar" />
     </TableRow>
     <TableRow>
-    <Button
-        android:id="@+id/btnText2SpeechPlay"
-        android:text="@string/escuchar"/>
+
+        <Button
+            android:id="@+id/btnText2SpeechPlay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/escuchar" />
     </TableRow>
 </TableLayout>
