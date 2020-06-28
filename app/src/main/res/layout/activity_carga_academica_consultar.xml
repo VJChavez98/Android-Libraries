@@ -72,33 +72,43 @@
         android:gravity="center_horizontal"
         android:inputType="text"
         android:maxLength="5" />
-    <LinearLayout
+    <TableLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
+        <TableRow>
 
-        <Button
-            android:id="@+id/botonConsultar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="consultarCargaacademica"
-            android:text="@string/consultar" />
+            <Button
+                android:id="@+id/botonConsultar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="consultarCargaacademica"
+                android:text="@string/consultar" />
 
-        <Button
-            android:id="@+id/botonLimpiar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/limpiar"
-            android:onClick="limpiarTexto"/>
-        <Button
-            android:id="@+id/btnText2SpeechPlay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/escuchar"/>
-        <Button
-            android:id="@+id/bvoice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btnTalk" />
-    </LinearLayout>
+            <Button
+                android:id="@+id/botonLimpiar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="limpiarTexto"
+                android:text="@string/limpiar" />
+        </TableRow>
+        <TableRow>
+
+            <Button
+                android:id="@+id/btnText2SpeechPlay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/escuchar" />
+
+            <Button
+                android:id="@+id/bvoice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/btnTalk" />
+        </TableRow>
+    </TableLayout>
 </LinearLayout>

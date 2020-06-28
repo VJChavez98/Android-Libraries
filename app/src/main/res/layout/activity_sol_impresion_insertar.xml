@@ -9,6 +9,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="ID Solicitud Impresion" />
 
         <EditText
@@ -26,6 +27,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="ID Docente" />
 
         <EditText
@@ -43,6 +45,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="ID Docente Director" />
 
         <EditText
@@ -60,6 +63,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Cantidad de Examenes" />
 
         <EditText
@@ -77,6 +81,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Hojas Empaque" />
 
         <Spinner
@@ -93,6 +98,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Estado de Aprobacion" />
 
         <Spinner
@@ -109,6 +115,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/opciones" />
     </TableRow>
 
@@ -118,6 +125,7 @@
             android:id="@+id/buttonValidar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:onClick="insertarSolicitudImpresion"
             android:text="@string/insertar" />
 
@@ -127,6 +135,8 @@
             android:layout_weight="1"
             android:onClick="limpiarTexto"
             android:text="@string/limpiar" />
+    </TableRow>
+    <TableRow>
 
         <Button
             android:id="@+id/btnText2SpeechPlay"
