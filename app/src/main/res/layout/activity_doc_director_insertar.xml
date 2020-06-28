@@ -8,7 +8,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="ID DocenteDirector" />
 
         <EditText
@@ -25,7 +24,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="ID Escuela" />
 
         <EditText
@@ -42,7 +40,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="Nombre Director" />
 
         <EditText
@@ -59,7 +56,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="Apellido Director" />
 
         <EditText
@@ -76,7 +72,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="Correo Director" />
 
         <EditText
@@ -93,7 +88,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="Telefono Director" />
 
         <EditText
@@ -110,7 +104,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:text="@string/opciones" />
     </TableRow>
     <TableRow>
@@ -118,7 +112,6 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:onClick="insertarDocDirector"
             android:text="@string/insertar" />
 
@@ -128,5 +121,12 @@
             android:layout_weight="1"
             android:onClick="limpiarTexto"
             android:text="@string/limpiar" />
+
+        <Button
+            android:id="@+id/btnText2SpeechPlay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/escuchar" />
     </TableRow>
 </TableLayout>

@@ -5,54 +5,80 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     tools:context=".DocenteConsultarActivity">
+
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/coddocente"/>
+        android:text="@string/coddocente" />
+
     <EditText
         android:id="@+id/editCoddocente"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:maxLength="7"/>
+        android:maxLength="7" />
+
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/nombredocente"/>
+        android:text="@string/nombredocente" />
+
     <EditText
         android:id="@+id/editNombredocente"
-        android:layout_width="200dip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:enabled="false"
-        android:layout_height="wrap_content"
         android:inputType="text"
-        android:maxLength="30"/>
+        android:maxLength="30" />
+
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/apellidodocente"/>
+        android:text="@string/apellidodocente" />
+
     <EditText
         android:id="@+id/editApellidodocente"
-        android:layout_width="200dp"
-        android:enabled="false"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:enabled="false"
         android:inputType="text"
-        android:maxLength="30"/>
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="fill_parent"
+        android:maxLength="30" />
+    <TableLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/botonConsultar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/consultar"
-            android:onClick="consultarDocente"/>
-        <Button
-            android:id="@+id/botonLimpiar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/limpiar"
-            android:onClick="limpiarTexto"/>
-    </LinearLayout>
+        <TableRow>
 
+            <Button
+                android:id="@+id/botonConsultar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="consultarDocente"
+                android:text="@string/consultar" />
+
+            <Button
+                android:id="@+id/botonLimpiar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="limpiarTexto"
+                android:text="@string/limpiar" />
+        </TableRow>
+        <TableRow>
+
+            <Button
+                android:id="@+id/btnText2SpeechPlay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/escuchar" />
+
+            <Button
+                android:id="@+id/bvoice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/btnTalk" />
+        </TableRow>
+    </TableLayout>
 </LinearLayout>

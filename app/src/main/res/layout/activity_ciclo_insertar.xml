@@ -7,11 +7,14 @@
     <TableRow>
 
         <TextView
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/codciclo" />
 
         <EditText
             android:id="@+id/editCodciclo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
@@ -21,11 +24,14 @@
     <TableRow>
 
         <TextView
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/fechadesde" />
 
         <EditText
             android:id="@+id/editFechadesde"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
@@ -35,11 +41,14 @@
     <TableRow>
 
         <TextView
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/fechahasta" />
 
         <EditText
             android:id="@+id/editFechahasta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
@@ -49,21 +58,32 @@
     <TableRow>
 
         <TextView
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/opciones" />
     </TableRow>
 
     <TableRow>
 
         <Button
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:onClick="insertarCiclo"
             android:text="@string/insertar" />
 
         <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="limpiarTexto"
             android:text="@string/limpiar" />
+
+        <Button
+            android:id="@+id/btnText2SpeechPlay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/escuchar" />
     </TableRow>
 </TableLayout>
 

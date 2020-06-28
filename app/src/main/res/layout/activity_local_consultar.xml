@@ -1,35 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-
+<TableLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/codlocal" />
+
     <EditText
         android:id="@+id/editCodlocal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="200dp"
         android:inputType="text"
         android:maxLength="10" />
 
-    <LinearLayout
+    <TableLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="consultarLocal"
-            android:text="@string/consultar" />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="limpiarTexto"
-            android:text="@string/limpiar" />
-    </LinearLayout>
+        <TableRow>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="consultarLocal"
+                android:text="@string/consultar" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="limpiarTexto"
+                android:text="@string/limpiar" />
+        </TableRow>
+        <TableRow>
+
+            <Button
+                android:id="@+id/btnText2SpeechPlay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/escuchar" />
+
+            <Button
+                android:id="@+id/bvoice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/btnTalk" />
+    </TableRow>
+    </TableLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -40,52 +65,57 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nomlocal" />
-    <EditText
-        android:id="@+id/editNomlocal"
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:cursorVisible="false"
-        android:longClickable="false"
-        android:inputType="text"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ubicacionLocal" />
-    <EditText
-        android:id="@+id/editUbicacionlocal"
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:cursorVisible="false"
-        android:longClickable="false"
-        android:inputType="text"/>
+        <EditText
+            android:id="@+id/editNomlocal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:inputType="text"
+            android:longClickable="false" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ubicacionLocal" />
+
+        <EditText
+            android:id="@+id/editUbicacionlocal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:inputType="text"
+            android:longClickable="false" />
 
     <LinearLayout android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_width="match_parent">
+
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#CB3234"
             android:onClick="consultarUbicacion"
-            android:textStyle="bold"
-            android:textSize="15dp"
+            android:text="@string/ubicacion"
             android:textColor="#ffffff"
-            android:backgroundTint="#CB3234"
-            android:layout_centerHorizontal="true"
-            android:text="@string/ubicacion" />
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="consultarPosicion"
-            android:textStyle="bold"
-            android:textSize="15dp"
-            android:textColor="#ffffff"
-            android:backgroundTint="#CB3234"
             android:layout_centerHorizontal="true"
-            android:text="@string/posicion" />
+            android:backgroundTint="#CB3234"
+            android:onClick="consultarPosicion"
+            android:text="@string/posicion"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -96,50 +126,51 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/latitud" >
-        </TextView>
+            android:text="@string/latitud"/>
+
         <EditText
             android:id="@+id/edtLatitud"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:enabled="false"
-            android:width="1dp" />
+            android:width="1dp"
+            android:enabled="false" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/longitud" >
-        </TextView>
+            android:text="@string/longitud"/>
+
         <EditText
             android:id="@+id/edtLongitud"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:enabled="false"
-            android:width="1dp" />
+            android:width="1dp"
+            android:enabled="false" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/altitud" >
-        </TextView>
+            android:text="@string/altitud"/>
+
         <EditText
             android:id="@+id/edtAltitud"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:enabled="false"
-            android:width="1dp" />
+            android:width="1dp"
+            android:enabled="false" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/direccion" >
-        </TextView>
+            android:text="@string/direccion"/>
+
         <EditText
             android:id="@+id/edtDireccion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:enabled="false"
-            android:width="1dp" />
+            android:width="1dp"
+            android:enabled="false" />
     </LinearLayout>
     </LinearLayout>
 </TableLayout>
+</ScrollView>

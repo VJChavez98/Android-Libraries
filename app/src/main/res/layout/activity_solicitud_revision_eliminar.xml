@@ -6,10 +6,11 @@
     android:paddingTop="4dip">
 
     <TableRow android:layout_marginBottom="10dp">
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/codtiporev"/>
+            android:text="@string/codtiporev" />
 
         <Spinner
             android:id="@+id/spinTipoRev"
@@ -22,10 +23,11 @@
     </TableRow>
 
     <TableRow android:layout_marginBottom="10dp">
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/codtipoeval"/>
+            android:text="@string/codtipoeval" />
 
         <Spinner
             android:id="@+id/spinTipoEval"
@@ -38,10 +40,11 @@
     </TableRow>
 
     <TableRow>
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/codtipogrupo"/>
+            android:text="@string/codtipogrupo" />
 
         <Spinner
             android:id="@+id/spinTipoGrupo"
@@ -55,8 +58,9 @@
 
 
     <TableRow>
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/codasignatura" />
 
@@ -73,8 +77,9 @@
 
 
     <TableRow>
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/codciclo" />
 
@@ -89,8 +94,9 @@
     </TableRow>
 
     <TableRow>
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/evaluacion_numero" />
 
@@ -105,8 +111,9 @@
     </TableRow>
 
     <TableRow>
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/carnet" />
 
@@ -120,15 +127,17 @@
     </TableRow>
 
     <TableRow>
+
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="eliminarSolicitudRevision"
             android:text="@string/eliminar" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:onClick="limpiarTexto"
             android:text="Limpiar" />
     </TableRow>

@@ -9,11 +9,15 @@
     <TableRow>
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/idcargaacademica" />
 
         <EditText
             android:id="@+id/editIdcargaacademica"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
@@ -22,11 +26,15 @@
     <TableRow>
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/codciclo" />
 
         <EditText
             android:id="@+id/editCodciclo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
@@ -35,11 +43,15 @@
     <TableRow>
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/coddocente" />
 
         <EditText
             android:id="@+id/editCoddocente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:inputType="text"
             android:maxLength="7" />
@@ -47,11 +59,15 @@
     <TableRow>
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/codasignatura" />
 
         <EditText
             android:id="@+id/editCodasignatura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
@@ -60,11 +76,15 @@
     <TableRow>
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/idtipodocenteciclo" />
 
         <EditText
             android:id="@+id/editIdtipodocenteciclo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
@@ -73,13 +93,29 @@
     <TableRow>
 
         <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="actualizarCargaacademica"
             android:text="@string/actualizar" />
 
         <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="limpiarTexto"
             android:text="@string/limpiar" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnText2SpeechPlay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/escuchar" />
     </TableRow>
 </TableLayout>

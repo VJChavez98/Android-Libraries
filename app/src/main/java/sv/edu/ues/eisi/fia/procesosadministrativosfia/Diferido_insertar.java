@@ -1,6 +1,8 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
 import android.Manifest;
+import android.app.Activity;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -16,8 +18,10 @@ import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintManager;
 import android.provider.MediaStore;
+import android.speech.tts.TextToSpeech;
 import android.text.InputType;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -26,6 +30,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -48,27 +53,27 @@ import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 import com.itextpdf.text.pdf.draw.VerticalPositionMark;
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
-import com.karumi.dexter.listener.PermissionGrantedResponse;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class Diferido_insertar extends AppCompatActivity {
 
     ControladorBase DBHelper;
     EditText editCarnet, editMateria, editGrupoTeorico, editGrupoDiscusion, editGrupoLab, editFechaEval, editHoraEval, editMotivo, editEva, ciclo;
+
+    TextToSpeech tts;
+    TextView Texto, Texto1, Texto2, Texto3, Texto4, Texto5, Texto6, Texto7, Texto8, Texto9;
+    Button BtnPlay;
+    private int numarch=0;
+
     Spinner motivos, spinTipo;
     private int nYearIni, nMonthIni, nDayIni, sYearIni, sMonthIni, sDayIni, sHour, nHour, sMinute, nMinute;
     static final int DATE_ID = 0, HOUR_ID = 1;
-    String[] tipos = {"Seleccione el tipo de evaluacion", "EP", "ED", "EL"};
     Calendar c = Calendar.getInstance();
     Button mOptions;
     final int FOTOGRAFIA = 0;
@@ -96,8 +101,23 @@ public class Diferido_insertar extends AppCompatActivity {
         motivos = (Spinner) findViewById(R.id.spinMotivos);
         editFechaEval.setInputType(InputType.TYPE_NULL);
         editHoraEval.setInputType(InputType.TYPE_NULL);
+
+        Texto=(TextView) findViewById(R.id.editCarnet);
+        Texto1 = (TextView) findViewById(R.id.editCodciclo);
+        Texto2=(TextView) findViewById(R.id.editAsignatura);
+        Texto3=(TextView) findViewById(R.id.editGrupoTeorico);
+        Texto4=(TextView) findViewById(R.id.editGrupoDiscusion);
+        Texto5=(TextView) findViewById(R.id.editGrupoLab);
+        Texto6=(TextView) findViewById(R.id.editCodEva);
+        Texto7=(TextView) findViewById(R.id.editFechaRealizada);
+        Texto8=(TextView) findViewById(R.id.editHoraRealizada);
+        Texto9=(TextView) findViewById(R.id.editMotivo);
+
+        BtnPlay = (Button) findViewById(R.id.btnText2SpeechPlay);
+        tts = new TextToSpeech(this,OnInit);
+        BtnPlay.setOnClickListener(onClick);
+
         srcImg = findViewById(R.id.rutaSolic);
-        spinTipo.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, tipos));
         mOptions = findViewById(R.id.option);
         mOptions.setOnClickListener(mostrarOpciones);
         imprimir = findViewById(R.id.crearPdf);
@@ -133,32 +153,15 @@ public class Diferido_insertar extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mStorage = FirebaseStorage.getInstance().getReference();
-        Dexter.withActivity(this)
-                .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                .withListener(new PermissionListener() {
-                    @Override
-                    public void onPermissionGranted(PermissionGrantedResponse response) {
-                        imprimir.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                createPDFfile(Common.getAppPath(getApplicationContext())+"sol_dif.pdf");
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void onPermissionDenied(PermissionDeniedResponse response) {
-
-                    }
-
-                    @Override
-                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
-
-                    }
-                })
-                .check();
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE
+                    , Manifest.permission.CAMERA},1000);
+        }
+        imprimir.setOnClickListener(imprimirPDF);
     }
-
     private void createPDFfile(String path) {
         if(new File(path).exists())
             new File(path).delete();
@@ -403,8 +406,8 @@ public class Diferido_insertar extends AppCompatActivity {
             if(ActivityCompat.checkSelfPermission(v.getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
                     && ActivityCompat.checkSelfPermission(v.getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
                     && ActivityCompat.checkSelfPermission(v.getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
-            {
-                ActivityCompat.requestPermissions(getParent(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE
+             {
+                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE
                         , Manifest.permission.CAMERA},1000);
             }
             AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
@@ -484,5 +487,50 @@ public class Diferido_insertar extends AppCompatActivity {
                 editHoraEval.getText().toString().isEmpty() || motivos.getSelectedItem().toString().equals(motivos.getItemAtPosition(0).toString())
                 ||file == null || file.getLastPathSegment() == null);
     }
-
+    public Activity getActivity(){
+        return this;
+    }
+    View.OnClickListener imprimirPDF = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if(ActivityCompat.checkSelfPermission(v.getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                    && ActivityCompat.checkSelfPermission(v.getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+            {
+                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE},1000);
+            }
+            createPDFfile(Common.getAppPath(v.getContext())+"sol_dif.pdf");
+        }
+    };
+    TextToSpeech.OnInitListener OnInit= new TextToSpeech.OnInitListener(){
+        @Override
+        public void onInit(int status){
+            if (TextToSpeech.SUCCESS==status){
+                tts.setLanguage(new Locale("spa","ESP"));
+            }
+            else{
+                Toast.makeText(getApplicationContext(), "TTS No Disponible", Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
+    View.OnClickListener onClick=new View.OnClickListener(){
+        @SuppressLint("SdCardPath")
+        public void onClick(View v){
+            if (v.getId()==R.id.btnText2SpeechPlay){
+                tts.speak(Texto.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto1.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto2.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto3.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto4.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto5.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto6.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto7.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto8.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto9.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+            }
+        }
+    };
+    public void onDestroy(){
+        tts.shutdown();
+        super.onDestroy();
+    }
 }

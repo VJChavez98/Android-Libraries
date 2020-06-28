@@ -3,62 +3,83 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
+
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ID Solicitud Impresion"/>
-    <EditText
-        android:id="@+id/editIdSolicitudImpresion"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:maxLength="10"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ID Docente"/>
+        android:text="ID Solicitud Impresion" />
 
     <EditText
-        android:id="@+id/editIdDocente"
-        android:layout_width="200dip"
+        android:id="@+id/editIdSolicitudImpresion"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:maxLength="10" />
+
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ID Docente Director" />
+        android:text="ID Docente" />
+
     <EditText
-        android:id="@+id/editIdDocenteDirector"
-        android:layout_width="100dp"
+        android:id="@+id/editIdDocente"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:maxLength="10"/>
-    <LinearLayout
+        android:maxLength="10" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ID Docente Director" />
+
+    <EditText
+        android:id="@+id/editIdDocenteDirector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:maxLength="10" />
+    <TableLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/botonConsultar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/consultar"
-            android:onClick="consultarSolImpresion"/>
-        <Button
-            android:id="@+id/botonLimpiar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/limpiar"
-            android:onClick="limpiarTexto"/>
-    </LinearLayout>
+        <TableRow>
+
+            <Button
+                android:id="@+id/botonConsultar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="consultarSolImpresion"
+                android:text="@string/consultar" />
+
+            <Button
+                android:id="@+id/botonLimpiar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="limpiarTexto"
+                android:text="@string/limpiar" />
+        </TableRow>
+        <TableRow>
+
+            <Button
+                android:id="@+id/bvoice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/btnTalk" />
+        </TableRow>
+    </TableLayout>
+
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Cantidad de Examenes" />
 
     <EditText
         android:id="@+id/editCantidadExamenes"
-        android:layout_width="200dip"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:cursorVisible="false"
         android:enabled="false"
@@ -66,14 +87,15 @@
         android:focusableInTouchMode="false"
         android:inputType="text"
         android:longClickable="false" />
+
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Hojas de Empaque" />
 
     <EditText
         android:id="@+id/editHojasEmpaque"
-        android:layout_width="200dip"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:cursorVisible="false"
         android:enabled="false"
@@ -81,14 +103,15 @@
         android:focusableInTouchMode="false"
         android:inputType="text"
         android:longClickable="false" />
+
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Estado de Aprobacion" />
 
     <EditText
         android:id="@+id/editEstadoAprobacion"
-        android:layout_width="200dip"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:cursorVisible="false"
         android:enabled="false"

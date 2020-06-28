@@ -11,10 +11,8 @@
     <TableRow>
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
             android:text="@string/carnet" />
 
         <EditText
@@ -30,10 +28,8 @@
 
         <TextView
             android:id="@+id/lblCodMat"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
             android:text="@string/codAsignatura" />
 
         <EditText
@@ -49,10 +45,8 @@
 
         <TextView
             android:id="@+id/lblTipoEval"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
             android:text="@string/tipoEval" />
 
         <Spinner
@@ -60,15 +54,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:entries="@array/codTipoEval"
             android:gravity="center_horizontal" />
     </TableRow>
     <TableRow>
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
             android:text="@string/evaluacion_numero" />
 
         <EditText
@@ -83,10 +76,8 @@
     <TableRow>
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
             android:text="@string/codciclo" />
 
         <EditText
@@ -94,6 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="number"
             android:maxLength="5" />
     </TableRow>
@@ -101,9 +93,8 @@
 
         <Button
             android:id="@+id/cancelarBtn"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:gravity="center_horizontal"
             android:onClick="limpiarTexto"
             android:text="@string/cancelarBtn" />
@@ -117,16 +108,23 @@
             android:onClick="consultarSolicitudDiferido"
             android:text="@string/buscarBtn" />
     </TableRow>
+    <TableRow>
+        <Button
+            android:id="@+id/bvoice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="@string/btnTalk" />
+    </TableRow>
 
 
     <TableRow>
 
         <TextView
             android:id="@+id/lblGT"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
             android:text="@string/GrupoTeorico" />
 
         <EditText
@@ -142,10 +140,8 @@
 
         <TextView
             android:id="@+id/lblGD"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
             android:text="@string/grupoDiscusion" />
 
         <EditText
@@ -161,10 +157,8 @@
 
         <TextView
             android:id="@+id/lblGL"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
             android:text="@string/grupoLab" />
 
         <EditText
@@ -180,10 +174,8 @@
 
         <TextView
             android:id="@+id/lblFecha"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
             android:text="@string/fechaRealizada" />
 
         <EditText
@@ -199,10 +191,8 @@
 
         <TextView
             android:id="@+id/lblHora"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
             android:text="@string/horaRealizada" />
 
         <EditText
@@ -218,10 +208,8 @@
 
         <TextView
             android:id="@+id/lblMotivo"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
             android:text="@string/motivos" />
 
         <Spinner
@@ -238,10 +226,8 @@
 
         <TextView
             android:id="@+id/lblOtro"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
             android:text="@string/motivosOtro" />
 
         <EditText
@@ -249,16 +235,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="textMultiLine" />
     </TableRow>
     <TableRow>
 
         <TextView
             android:id="@+id/lblEstadoSoli"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
             android:text="@string/estadoSolic" />
 
         <EditText
@@ -274,10 +259,8 @@
 
         <TextView
             android:id="@+id/lblJustificante"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
             android:text="@string/justificante" />
 
         <ImageView
@@ -290,9 +273,8 @@
 
         <Button
             android:id="@+id/EliminarBtn"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:gravity="center_horizontal"
             android:onClick="EliminarSolicitud"
             android:text="@string/eliminarBtn" />
@@ -301,10 +283,19 @@
             android:id="@+id/ModificarBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
             android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:onClick="ModificarSolicitudDiferido"
             android:text="@string/modificarBtn" />
+        </TableRow>
+        <TableRow>
+        <Button
+            android:id="@+id/btnText2SpeechPlay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="@string/escuchar" />
     </TableRow>
     </TableLayout>
 </ScrollView>

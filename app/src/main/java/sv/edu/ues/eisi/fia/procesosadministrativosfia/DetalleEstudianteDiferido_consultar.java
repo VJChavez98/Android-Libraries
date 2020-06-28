@@ -1,16 +1,26 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+import java.util.HashMap;
+import java.util.Locale;
+import android.annotation.SuppressLint;
+import android.os.Environment;
+import android.speech.tts.TextToSpeech;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +29,16 @@ import java.util.ArrayList;
 
 public class DetalleEstudianteDiferido_consultar extends AppCompatActivity {
     EditText editMateria, editNumEval, editFecha;
+
+    TextToSpeech tts;
+    TextView Texto, Texto1, Texto2;
+    Button BtnPlay;
+    private int numarch=0;
+
+    private static final int REQ_CODE_SPEECH_INPUT=100;
+    private TextView mEntradaVoz;
+    private Button mBotonhablar;
+
     Spinner spinTipoEval;
     FrameLayout frame;
     ListView listaDetalle;
@@ -32,8 +52,51 @@ public class DetalleEstudianteDiferido_consultar extends AppCompatActivity {
         spinTipoEval = findViewById(R.id.spinTipoEval);
         editNumEval = findViewById(R.id.editNumeval);
         editFecha = findViewById(R.id.editFechaInscrip);
+
+        Texto=(TextView) findViewById(R.id.editCodasignatura);
+        Texto1=(TextView) findViewById(R.id.editNumeval);
+        Texto2=(TextView) findViewById(R.id.editFechaInscrip);
+        BtnPlay = (Button) findViewById(R.id.btnText2SpeechPlay);
+        tts = new TextToSpeech(this,OnInit);
+        BtnPlay.setOnClickListener(onClick);
+
+        mEntradaVoz=findViewById(R.id.editCodasignatura);
+        mBotonhablar=findViewById(R.id.bvoice);
+        mBotonhablar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iniciarEntradaVoz();
+            }
+        });
+
         frame = findViewById(R.id.frameConsulta);
         listaDetalle = findViewById(R.id.listDetalles);
+    }
+
+    private void iniciarEntradaVoz(){
+        Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        i.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        i.putExtra(RecognizerIntent.EXTRA_PROMPT, "Diga el Código de la Asignatura ");
+        try {
+            startActivityForResult(i, REQ_CODE_SPEECH_INPUT);
+        }catch (ActivityNotFoundException e){
+
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode){
+            case REQ_CODE_SPEECH_INPUT:{
+                if (resultCode==RESULT_OK && null!=data){
+                    ArrayList<String> result=data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    mEntradaVoz.setText(result.get(0));
+                }
+                break;
+            }
+        }
     }
 
     public void consultarDetalle(View view) {
@@ -93,5 +156,32 @@ public class DetalleEstudianteDiferido_consultar extends AppCompatActivity {
         spinTipoEval.setSelection(0);
         editNumEval.setText("");
         frame.setVisibility(View.GONE);
+    }
+
+    TextToSpeech.OnInitListener OnInit= new TextToSpeech.OnInitListener(){
+        @Override
+        public void onInit(int status){
+            if (TextToSpeech.SUCCESS==status){
+                tts.setLanguage(new Locale("spa","ESP"));
+            }
+            else{
+                Toast.makeText(getApplicationContext(), "TTS No Disponible", Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
+    View.OnClickListener onClick=new View.OnClickListener(){
+        @SuppressLint("SdCardPath")
+        public void onClick(View v){
+            if (v.getId()==R.id.btnText2SpeechPlay){
+                tts.speak(Texto.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto1.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto2.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+
+            }
+        }
+    };
+    public void onDestroy(){
+        tts.shutdown();
+        super.onDestroy();
     }
 }

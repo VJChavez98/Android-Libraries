@@ -7,50 +7,78 @@
     android:stretchColumns="1"
     tools:context=".SolImpresionActualizarActivity">
     <TableRow>
-        <TextView android:text="@string/idsolicitudimpresion" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/idsolicitudimpresion" />
 
         <EditText
             android:id="@+id/editIdSolicitudImpresion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="10" />
     </TableRow>
     <TableRow>
-        <TextView android:text="@string/iddocente" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/iddocente" />
 
         <EditText
             android:id="@+id/editIdDocente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="10" />
     </TableRow>
     <TableRow>
-        <TextView android:text="@string/iddocentedirector" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/iddocentedirector" />
 
         <EditText
             android:id="@+id/editIdDocenteDirector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="10" />
     </TableRow>
     <TableRow>
-        <TextView android:text="@string/cantidadexamenes" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cantidadexamenes" />
 
         <EditText
             android:id="@+id/editCantidadExamenes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="number" />
     </TableRow>
     <TableRow>
-        <TextView android:text="Hojas Empaque" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hojas Empaque" />
 
         <Spinner
             android:id="@+id/spinner"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
@@ -58,18 +86,25 @@
     </TableRow>
 
     <TableRow>
-        <TextView android:text="Estado de Aprobacion" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Estado de Aprobacion" />
 
         <Spinner
             android:id="@+id/spinner2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:textAlignment="center" />
     </TableRow>
     <TableRow>
+
         <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:onClick="actualizarSolImpresion"
             android:text="@string/actualizar" />
 

@@ -92,11 +92,14 @@
     <string name="longitud">Longitud</string>
     <string name="altitud">Altitud</string>
     <string name="direccion">Dirección</string>
+    <string name="escuchar">Escuchar</string>
     <string name="exportar"><b>Exportar Tabla</b></string>
     <string name="fechaSolicitud">Fecha Solicitud</string>
     <string name="notaAntesRev">Nota Actual</string>
     <string name="numerogrupo">Numero Grupo</string>
     <string name="motivorev">Motivo Revision</string>
+    <string name="btnTalk">Hable</string>
+
 
     <string-array name="tipoRevision">
         <item>Seleccione el Tipo de Revisión</item>

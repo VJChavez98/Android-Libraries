@@ -14,9 +14,13 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.speech.RecognizerIntent;
+import android.speech.tts.TextToSpeech;
 import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -37,6 +41,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FileDownloadTask;
@@ -47,13 +52,28 @@ import com.google.firebase.storage.UploadTask;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.zip.Inflater;
+import java.util.Locale;
 
 public class Diferido_consultar extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     EditText editNumEval, editCarnet, editCodMateria, editGT, editGD, editGL, editFechaEval, editHoraEval, editOtroMotivo, estadoSoli, ciclo;
+
+
+    TextToSpeech tts;
+    TextView Texto, Texto1, Texto2, Texto3, Texto4, Texto5, Texto6, Texto7;
+    Button BtnPlay;
+    File ultima;
+    private int numarch=0;
+
+    private static final int REQ_CODE_SPEECH_INPUT=100;
+    private TextView mEntradaVoz;
+    private Button mBotonhablar;
+
+
     ControladorBase helper;
     TextView lblMateria, lblTipoEva, lblGT, lblGD, lblGL, lblFecha, lblHora, lblMotivo, lblOtro, lblEstado, lblJustificante;
     Button eliminarBtn, modificarBtn;
@@ -61,7 +81,6 @@ public class Diferido_consultar extends AppCompatActivity {
     private int nYearIni, nMonthIni, nDayIni, sYearIni, sMonthIni, sDayIni, sHour, nHour, sMinute, nMinute;
     static final int DATE_ID = 0, HOUR_ID = 1;
     Calendar c = Calendar.getInstance();
-    String[] tipos = {"Seleccione el tipo de evaluacion", "EP", "ED", "EL"};
     Button mOptions;
     final int FOTOGRAFIA = 0;
     final int GALLERY = 1;
@@ -105,6 +124,28 @@ public class Diferido_consultar extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mStorage = FirebaseStorage.getInstance().getReference().child("Justificante");
+
+        Texto=(TextView) findViewById(R.id.editCarnet);
+        Texto1=(TextView) findViewById(R.id.editAsignatura);
+        Texto2=(TextView) findViewById(R.id.editGrupoTeorico);
+        Texto3=(TextView) findViewById(R.id.editGrupoDiscusion);
+        Texto4=(TextView) findViewById(R.id.editGrupoLab);
+        Texto5=(TextView) findViewById(R.id.editFechaRealizada);
+        Texto6=(TextView) findViewById(R.id.editHoraRealizada);
+        Texto7=(TextView) findViewById(R.id.editMotivo);
+        BtnPlay = (Button) findViewById(R.id.btnText2SpeechPlay);
+        tts = new TextToSpeech(this,OnInit);
+        BtnPlay.setOnClickListener(onClick);
+
+        mEntradaVoz=findViewById(R.id.editCarnet);
+        mBotonhablar=findViewById(R.id.bvoice);
+        mBotonhablar.setVisibility(View.GONE);
+        mBotonhablar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iniciarEntradaVoz();
+            }
+        });
 
 
         lblMateria = (TextView) findViewById(R.id.lblCodMat);
@@ -151,7 +192,6 @@ public class Diferido_consultar extends AppCompatActivity {
         editOtroMotivo.setEnabled(false);
         eliminarBtn.setEnabled(false);
         modificarBtn.setEnabled(false);
-        tipoEval.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, tipos));
         tipoEval.setVisibility(View.VISIBLE);
         tipoEval.setEnabled(true);
         motivos.setVisibility(View.GONE);
@@ -235,6 +275,7 @@ public class Diferido_consultar extends AppCompatActivity {
                 tipoEval.setSelection(tipoEval(solicitudDiferido.getTipoEva()));
                 motivos.setSelection(colocarMotivo(solicitudDiferido.getMotivo()));
                 motivos.setEnabled(true);
+                mBotonhablar.setVisibility(View.VISIBLE);
                 editOtroMotivo.setEnabled(true);
                 if (solicitudDiferido.getOtroMotivo().isEmpty()) {
                     editOtroMotivo.setVisibility(View.GONE);
@@ -267,6 +308,18 @@ public class Diferido_consultar extends AppCompatActivity {
             }
         }else Toast.makeText(getApplicationContext(), "Hay campos vacios", Toast.LENGTH_SHORT).show();
 
+    }
+
+    private void iniciarEntradaVoz(){
+        Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        i.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        i.putExtra(RecognizerIntent.EXTRA_PROMPT, "Diga el Carné");
+        try {
+            startActivityForResult(i, REQ_CODE_SPEECH_INPUT);
+        }catch (ActivityNotFoundException e){
+
+        }
     }
 
     private void colocar_fecha() {
@@ -371,6 +424,7 @@ public class Diferido_consultar extends AppCompatActivity {
         ciclo.setText("");
         srcImg.setVisibility(View.GONE);
         lblJustificante.setVisibility(View.GONE);
+        mBotonhablar.setVisibility(View.GONE);
     }
 
     public void EliminarSolicitud(View view) {
@@ -381,6 +435,7 @@ public class Diferido_consultar extends AppCompatActivity {
         solicitudDiferido.setCodMateria(String.valueOf(editCodMateria.getText()));
         solicitudDiferido.setCiclo(ciclo.getText().toString());
         solicitudDiferido.setTipoEva(String.valueOf(tipoEval.getSelectedItem()));
+        mStorage.child(ruta).delete();
         helper.abrir();
         String regAfectados = helper.eliminar(solicitudDiferido);
         helper.cerrar();
@@ -505,8 +560,16 @@ public class Diferido_consultar extends AppCompatActivity {
             }
         } else if (requestCode == GALLERY) {
             if (resultCode == RESULT_OK) {
+                mStorage.child(ruta).delete();
                 file = data.getData();
                 srcImg.setImageURI(file);
+            }
+        } else if (requestCode == REQ_CODE_SPEECH_INPUT) {
+            if (resultCode == RESULT_OK && data != null) {
+                ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                if (result != null) {
+                    mEntradaVoz.setText(result.get(0));
+                }
             }
         }
     }
@@ -551,5 +614,35 @@ public class Diferido_consultar extends AppCompatActivity {
     }
     public boolean areEmpty2(){
         return (editGT.getText().toString().isEmpty() || editGD.getText().toString().isEmpty() || editFechaEval.getText().toString().isEmpty() || editHoraEval.getText().toString().isEmpty() || file == null || file.getLastPathSegment().isEmpty()|| motivos.getSelectedItem().toString().equals(motivos.getItemAtPosition(0).toString()));
+    }
+    TextToSpeech.OnInitListener OnInit= new TextToSpeech.OnInitListener(){
+        @Override
+        public void onInit(int status){
+            if (TextToSpeech.SUCCESS==status){
+                tts.setLanguage(new Locale("spa","ESP"));
+            }
+            else{
+                Toast.makeText(getApplicationContext(), "TTS No Disponible", Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
+    View.OnClickListener onClick=new View.OnClickListener(){
+        @SuppressLint("SdCardPath")
+        public void onClick(View v){
+            if (v.getId()==R.id.btnText2SpeechPlay){
+                tts.speak(Texto.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto1.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto2.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto3.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto4.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto5.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto6.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto7.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+            }
+        }
+    };
+    public void onDestroy(){
+        tts.shutdown();
+        super.onDestroy();
     }
 }

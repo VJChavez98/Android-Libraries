@@ -6,14 +6,15 @@
     android:paddingTop="4dip"
     >
     <TableRow >
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/idsolicitudimpresion"/>
+            android:text="@string/idsolicitudimpresion" />
 
         <EditText
             android:id="@+id/editIdSolicitudImpresion"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
@@ -21,14 +22,15 @@
             android:maxLength="10" />
     </TableRow>
     <TableRow>
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/iddocente"/>
+            android:text="@string/iddocente" />
 
         <EditText
             android:id="@+id/editIdDocente"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
@@ -36,14 +38,15 @@
             android:maxLength="10" />
     </TableRow>
     <TableRow>
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/iddocentedirector"/>
+            android:text="@string/iddocentedirector" />
 
         <EditText
             android:id="@+id/editIdDocenteDirector"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
@@ -51,13 +54,16 @@
             android:maxLength="10" />
     </TableRow>
     <TableRow>
-        <Button
-            android:layout_width="wrap_content"
-            android:text="@string/eliminar"
-            android:onClick="eliminarSolImpresion"/>
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="eliminarSolImpresion"
+            android:text="@string/eliminar" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="limpiar"
             android:text="@string/limpiar" />

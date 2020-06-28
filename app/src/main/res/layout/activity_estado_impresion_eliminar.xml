@@ -10,7 +10,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="ID Estado Impresion" />
 
         <EditText
@@ -27,7 +26,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="ID Solicitud Impresion" />
 
         <EditText
@@ -44,7 +42,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="ID Encargado" />
 
         <EditText
@@ -61,7 +58,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="ID Motivo Impresion" />
 
         <EditText
@@ -78,7 +74,6 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:onClick="eliminarEstadoImpresion"
             android:text="Eliminar" />
 
@@ -86,7 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="limpiar"
+            android:onClick="limpiarTexto"
             android:text="Limpiar" />
     </TableRow>
 </TableLayout>

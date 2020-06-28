@@ -1,17 +1,29 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Locale;
 
 public class PrimeraRevision_insertar extends Activity {
     EditText editAsignatura, editCiclo, editNumEval, editDocente, editCarnet, editNotaFinal, editObservaciones;
     Spinner spinTipoEval, spinTipoGrupo, spinMotCambNota;
+
+    TextToSpeech tts;
+    TextView Texto, Texto1, Texto2, Texto3, Texto4, Texto5, Texto6;
+    Button BtnPlay;
+    private int numarch=0;
+
     RadioGroup radioEstado, radioAsistencia;
     RadioButton radioSi, radioNo, radioPendiente, radioTerminada;
     ControladorBase helper;
@@ -37,6 +49,17 @@ public class PrimeraRevision_insertar extends Activity {
         radioAsistencia = (RadioGroup) findViewById(R.id.opciones_estado);
         radioPendiente = (RadioButton) findViewById(R.id.radio_Pendiente);
         radioTerminada = (RadioButton) findViewById(R.id.radio_Terminada);
+
+        Texto=(TextView) findViewById(R.id.editCodasignatura);
+        Texto1=(TextView) findViewById(R.id.editCodciclo);
+        Texto2=(TextView) findViewById(R.id.editNumeval);
+        Texto3=(TextView) findViewById(R.id.editCoddocente);
+        Texto4=(TextView) findViewById(R.id.editCarnet);
+        Texto5=(TextView) findViewById(R.id.editNotaDespues);
+        Texto6=(TextView) findViewById(R.id.editObservaciones);
+        BtnPlay = (Button) findViewById(R.id.btnText2SpeechPlay);
+        tts = new TextToSpeech(this,OnInit);
+        BtnPlay.setOnClickListener(onClick);
     }
 
     public void insertarPrimeraRevision(View v){
@@ -148,5 +171,34 @@ public class PrimeraRevision_insertar extends Activity {
         radioNo.setChecked(false);
         radioTerminada.setChecked(true);
         radioPendiente.setChecked(false);
+    }
+    TextToSpeech.OnInitListener OnInit= new TextToSpeech.OnInitListener(){
+        @Override
+        public void onInit(int status){
+            if (TextToSpeech.SUCCESS==status){
+                tts.setLanguage(new Locale("spa","ESP"));
+            }
+            else{
+                Toast.makeText(getApplicationContext(), "TTS No Disponible", Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
+    View.OnClickListener onClick=new View.OnClickListener(){
+        @SuppressLint("SdCardPath")
+        public void onClick(View v){
+            if (v.getId()==R.id.btnText2SpeechPlay){
+                tts.speak(Texto.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto1.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto2.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto3.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto4.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto5.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto6.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+            }
+        }
+    };
+    public void onDestroy(){
+        tts.shutdown();
+        super.onDestroy();
     }
 }

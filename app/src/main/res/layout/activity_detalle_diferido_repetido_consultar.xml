@@ -9,15 +9,15 @@
     <TableRow>
 
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
-            android:layout_weight="1"
+            android:gravity="start"
             android:text="@string/codAsignatura" />
 
         <EditText
             android:id="@+id/editAsignatura"
-            android:layout_width="280dip"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
@@ -28,15 +28,15 @@
     <TableRow>
 
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
-            android:layout_weight="1"
+            android:gravity="start"
             android:text="@string/tipoEval" />
 
         <Spinner
             android:id="@+id/spinTipoEval"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
@@ -46,15 +46,15 @@
     <TableRow>
 
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
-            android:layout_weight="1"
+            android:gravity="start"
             android:text="@string/evaluacion_numero" />
 
         <EditText
             android:id="@+id/editNumeval"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
@@ -65,15 +65,15 @@
     <TableRow>
 
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
-            android:layout_weight="1"
+            android:gravity="start"
             android:text="@string/tipo" />
 
         <Spinner
             android:id="@+id/spinTipoDifRep"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:entries="@array/tipoDifRep"
@@ -84,9 +84,8 @@
 
         <Button
             android:id="@+id/cancelarBtn"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:onClick="limpiarTexto"
             android:text="@string/cancelarBtn" />
 
@@ -102,18 +101,18 @@
 
         <TextView
             android:id="@+id/lblLocal"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
+            android:gravity="start"
             android:text="@string/codlocal" />
 
         <EditText
             android:id="@+id/editCodlocal"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="4" />
     </TableRow>
@@ -121,15 +120,15 @@
 
         <TextView
             android:id="@+id/lblDocente"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
-            android:layout_weight="1"
+            android:gravity="start"
             android:text="@string/codDocente" />
 
         <EditText
             android:id="@+id/editDocente"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
@@ -141,15 +140,15 @@
 
         <TextView
             android:id="@+id/lblFechaDesde"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
-            android:layout_weight="1"
+            android:gravity="start"
             android:text="@string/fechaDesde" />
 
         <EditText
             android:id="@+id/editFechaDesde"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:focusable="false"
@@ -160,15 +159,15 @@
 
         <TextView
             android:id="@+id/lblFechaHasta"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
-            android:layout_weight="1"
+            android:gravity="start"
             android:text="@string/fechaHasta" />
 
         <EditText
             android:id="@+id/editFechaHasta"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:focusable="false"
@@ -179,15 +178,15 @@
 
         <TextView
             android:id="@+id/lblFecha"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
-            android:layout_weight="1"
+            android:gravity="start"
             android:text="@string/fecha" />
 
         <EditText
             android:id="@+id/editFechaeval"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:focusable="false"
@@ -198,15 +197,15 @@
 
         <TextView
             android:id="@+id/lblHora"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
-            android:layout_weight="1"
+            android:gravity="start"
             android:text="@string/horaRealizada" />
 
         <EditText
             android:id="@+id/editHoraRealizada"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:focusable="false"
@@ -218,4 +217,14 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:onClick="actualizarDetalle"/>
+    <Button
+        android:id="@+id/btnText2SpeechPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/escuchar"/>
+    <Button
+        android:id="@+id/bvoice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnTalk" />
 </TableLayout>
