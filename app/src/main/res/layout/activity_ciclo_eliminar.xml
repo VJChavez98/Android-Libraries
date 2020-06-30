@@ -6,50 +6,74 @@
     android:stretchColumns="1"
     android:paddingTop="4dip">
     <TableRow>
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/codciclo"/>
+            android:text="@string/codciclo" />
+
         <EditText
             android:id="@+id/editCodciclo"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="text"
-            android:maxLength="5"/>
+            android:maxLength="5" />
     </TableRow>
     <TableRow>
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/fechadesde"/>
+            android:text="@string/fechadesde" />
+
         <EditText
             android:id="@+id/editFechadesde"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="text"
-            android:maxLength="10"/>
+            android:maxLength="10" />
     </TableRow>
     <TableRow>
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/fechahasta"/>
+            android:text="@string/fechahasta" />
+
         <EditText
             android:id="@+id/editFechahasta"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="text"
-            android:maxLength="10"/>
+            android:maxLength="10" />
 
     </TableRow>
     <TableRow>
+
         <Button
-            android:layout_width="wrap_content"
-            android:text="@string/eliminar"
-            android:onClick="eliminarCiclo"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="eliminarCiclo"
+            android:text="@string/eliminar" />
+
         <Button
-            android:layout_width="wrap_content"
-            android:text="@string/limpiar"
-            android:onClick="limpiar"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="limpiarTexto"
+            android:text="@string/limpiar" />
+
+        <Button
+            android:id="@+id/btnText2SpeechPlay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/escuchar" />
     </TableRow>
 </TableLayout>

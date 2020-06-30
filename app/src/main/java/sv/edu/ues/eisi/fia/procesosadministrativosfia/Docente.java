@@ -1,6 +1,8 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
-public class Docente {
+import java.io.Serializable;
+
+public class Docente implements Serializable {
     String coddocente;
     String nomdocente;
     String apellidodocente;

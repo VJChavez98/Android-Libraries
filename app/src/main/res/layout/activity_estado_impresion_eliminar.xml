@@ -6,61 +6,82 @@
     android:paddingTop="4dip"
     >
     <TableRow >
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ID Estado Impresion"/>
+            android:text="ID Estado Impresion" />
+
         <EditText
             android:id="@+id/editIdEstadoImpresion"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="text"
-            android:maxLength="10"/>
+            android:maxLength="10" />
     </TableRow>
     <TableRow>
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ID Solicitud Impresion"/>
+            android:text="ID Solicitud Impresion" />
+
         <EditText
             android:id="@+id/editIdSolicitudImpresion"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="text"
-            android:maxLength="10"/>
+            android:maxLength="10" />
     </TableRow>
     <TableRow>
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ID Encargado"/>
+            android:text="ID Encargado" />
+
         <EditText
             android:id="@+id/editIdEncargado"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="text"
-            android:maxLength="10"/>
+            android:maxLength="10" />
     </TableRow>
     <TableRow>
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ID Motivo Impresion"/>
+            android:text="ID Motivo Impresion" />
+
         <EditText
             android:id="@+id/editIdMotivoImpresion"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="text"
-            android:maxLength="10"/>
+            android:maxLength="10" />
     </TableRow>
     <TableRow>
+
         <Button
-            android:layout_width="wrap_content"
-            android:text="Eliminar"
-            android:onClick="eliminarEstadoImpresion"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="eliminarEstadoImpresion"
+            android:text="Eliminar" />
+
         <Button
-            android:layout_width="wrap_content"
-            android:text="Limpiar"
-            android:onClick="limpiar"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="limpiarTexto"
+            android:text="Limpiar" />
     </TableRow>
 </TableLayout>

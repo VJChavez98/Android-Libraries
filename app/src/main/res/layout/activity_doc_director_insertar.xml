@@ -2,60 +2,131 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="30dip"
     android:stretchColumns="1" >
     <TableRow>
-        <TextView android:text="ID DocenteDirector"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ID DocenteDirector" />
+
         <EditText
             android:id="@+id/editIdDocenteDirector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="10" />
     </TableRow>
     <TableRow>
-        <TextView android:text="ID Escuela" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ID Escuela" />
+
         <EditText
             android:id="@+id/editIdEscuela"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="10" />
     </TableRow>
     <TableRow>
-        <TextView android:text="Nombre Director" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre Director" />
 
         <EditText
             android:id="@+id/editNombreDirector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="textPersonName"
             android:maxLength="50" />
     </TableRow>
     <TableRow>
-        <TextView android:text="Apellido Director" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Apellido Director" />
+
         <EditText
             android:id="@+id/editApellidoDirector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="50" />
     </TableRow>
     <TableRow>
-        <TextView android:text="Correo Director" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Correo Director" />
+
         <EditText
             android:id="@+id/editCorreoDirector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="50" />
     </TableRow>
     <TableRow>
-        <TextView android:text="Telefono Director" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Telefono Director" />
+
         <EditText
             android:id="@+id/editTelefono"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="number"
             android:maxLength="8" />
     </TableRow>
     <TableRow>
-        <TextView android:text="@string/opciones" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/opciones" />
     </TableRow>
     <TableRow>
+
         <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:onClick="insertarDocDirector"
             android:text="@string/insertar" />
+
         <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:onClick="limpiarTexto"
             android:text="@string/limpiar" />
+
+        <Button
+            android:id="@+id/btnText2SpeechPlay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/escuchar" />
     </TableRow>
 </TableLayout>

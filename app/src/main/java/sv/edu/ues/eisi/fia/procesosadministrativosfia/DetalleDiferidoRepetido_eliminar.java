@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 public class DetalleDiferidoRepetido_eliminar extends AppCompatActivity {
     EditText editMateria, editNumEval;
+
     Spinner spinTipoEval, spinTipoDifRep;
     ControladorBase helper;
     String[] tipos ={"Seleccione el tipo de evaluacion","EP","ED","EL"};

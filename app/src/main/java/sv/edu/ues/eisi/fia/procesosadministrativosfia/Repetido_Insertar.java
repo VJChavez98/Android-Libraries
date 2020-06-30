@@ -2,16 +2,26 @@ package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 public class Repetido_Insertar extends AppCompatActivity {
     EditText carnet, materia, numEval;
+
+    TextToSpeech tts;
+    TextView Texto, Texto1, Texto2;
+    Button BtnPlay;
+    private int numarch=0;
     Spinner spinTipoEval;
     ControladorBase helper;
     Calendar c;
@@ -32,9 +42,21 @@ public class Repetido_Insertar extends AppCompatActivity {
         sYearIni = c.get(Calendar.YEAR);
         sHour = c.get(Calendar.HOUR_OF_DAY);
         sMinute = c.get(Calendar.MINUTE);
+
+        Texto=(TextView) findViewById(R.id.editCarnet);
+        Texto1=(TextView) findViewById(R.id.editAsignatura);
+        Texto2=(TextView) findViewById(R.id.editNumeval);
+        BtnPlay = (Button) findViewById(R.id.btnText2SpeechPlay);
+        tts = new TextToSpeech(this,OnInit);
+        BtnPlay.setOnClickListener(onClick);
     }
 
     public void limpiarTexto(View view){
+        carnet.setText("");
+        materia.setText("");
+        spinTipoEval.setSelection(0);
+        numEval.setText("");
+        carnet.requestFocus();
 
     }
     public void insertarRepetido(View view) {
@@ -73,5 +95,30 @@ public class Repetido_Insertar extends AppCompatActivity {
             fecha = sYearIni + "-" + sMonthIni + "-" + sDayIni ;
         }
         return fecha;
+    }
+    TextToSpeech.OnInitListener OnInit= new TextToSpeech.OnInitListener(){
+        @Override
+        public void onInit(int status){
+            if (TextToSpeech.SUCCESS==status){
+                tts.setLanguage(new Locale("spa","ESP"));
+            }
+            else{
+                Toast.makeText(getApplicationContext(), "TTS No Disponible", Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
+    View.OnClickListener onClick=new View.OnClickListener(){
+        @SuppressLint("SdCardPath")
+        public void onClick(View v){
+            if (v.getId()==R.id.btnText2SpeechPlay){
+                tts.speak(Texto.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto1.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                tts.speak(Texto2.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+            }
+        }
+    };
+    public void onDestroy(){
+        tts.shutdown();
+        super.onDestroy();
     }
 }

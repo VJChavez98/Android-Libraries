@@ -6,22 +6,28 @@
     android:paddingTop="4dip"
     >
     <TableRow >
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Id Encargado Impresiones"/>
+            android:text="Id Encargado Impresiones" />
+
         <EditText
             android:id="@+id/editIdEncarImpresiones"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="text"
-            android:maxLength="10"/>
+            android:maxLength="10" />
     </TableRow>
     <TableRow>
+
         <Button
-            android:layout_width="wrap_content"
-            android:text="Eliminar"
-            android:onClick="eliminarEncImpresiones"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="eliminarEncImpresiones"
+            android:text="Eliminar" />
         <Button
             android:layout_width="wrap_content"
             android:text="@string/limpiar"
