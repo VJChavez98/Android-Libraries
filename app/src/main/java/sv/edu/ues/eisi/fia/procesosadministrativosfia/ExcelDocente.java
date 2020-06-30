@@ -1,6 +1,7 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -37,6 +38,9 @@ public class ExcelDocente extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 exportarCSV();
+
+                Intent intent = new Intent(ExcelDocente.this, BluetoothActivity.class);
+                startActivity(intent);
             }
         });
     }

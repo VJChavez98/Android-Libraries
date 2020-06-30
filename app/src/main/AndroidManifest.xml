@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="sv.edu.ues.eisi.fia.procesosadministrativosfia">
+    <!-- Permisos Bluetoth -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /> <!-- Permisos Almacenamiento -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!--
           The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
           Google Maps Android API v2, but you must specify either coarse or fine
           location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -20,7 +24,8 @@
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" /> <!-- External storage for caching. -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Maps API needs OpenGL ES 2.0. -->
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
@@ -32,7 +37,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ListaPerInsRevActivity_docente"/>
+        <activity android:name=".adaptadores.BluetoothActivity"></activity>
+        <activity android:name=".ListaPerInsRevActivity_docente" />
         <activity android:name=".SegundaRevisionMenu" />
         <activity android:name=".SegundaRevisionInsertar" />
         <activity android:name=".SegundaRevisionEliminar" />
@@ -47,7 +53,7 @@
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <activity android:name=".Diferido_actualizar" />
-        <activity android:name=".SolicitudRevision_consultar"/>
+        <activity android:name=".SolicitudRevision_consultar" />
         <activity android:name=".ExcelDocente" />
         <activity android:name=".ExcelEstudiante" />
         <activity android:name=".MapaConsultarE" />
@@ -145,21 +151,27 @@
         <activity android:name=".SolImpresionEliminarActivity" />
         <activity android:name=".SolImpresionInsertarActivity" />
         <activity android:name=".SolImpresionMenuActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".BluetoothActivity"/>
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <provider
-            android:authorities="sv.edu.ues.eisi.fia.procesosadministrativosfia.fileprovider"
             android:name="androidx.core.content.FileProvider"
+            android:authorities="sv.edu.ues.eisi.fia.procesosadministrativosfia.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
-            <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
         </provider>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCkdHND9Z_lNhooQC2w0iLAqB6-hdtuwt4" />
