@@ -10,9 +10,9 @@ import android.widget.ListView;
 
 public class DocenteMenuActivity extends ListActivity {
 
-    String[] menu={"Insertar Registro","Eliminar Registro","Actualizar Registro", "Consultar Registro"};
+    String[] menu={"Insertar Registro","Eliminar Registro","Actualizar Registro", "Consultar Registro","Exportar registros"};
     String[] activities={"DocenteInsertarActivity","DocenteEliminarActivity",
-            "DocenteActualizarActivity", "DocenteConsultarActivity"};
+            "DocenteActualizarActivity", "DocenteConsultarActivity", "ExcelDocente"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
