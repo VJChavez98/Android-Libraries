@@ -1,74 +1,34 @@
 {
   "project_info": {
-    "project_number": "364552890006",
-    "firebase_url": "https://procesos-administrativos-fia.firebaseio.com",
-    "project_id": "procesos-administrativos-fia",
-    "storage_bucket": "procesos-administrativos-fia.appspot.com"
+    "project_number": "849957268315",
+    "firebase_url": "https://notificaciones-53ca5.firebaseio.com",
+    "project_id": "notificaciones-53ca5",
+    "storage_bucket": "notificaciones-53ca5.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:364552890006:android:23e2ca666ee2631f71c4b7",
+        "mobilesdk_app_id": "1:849957268315:android:b5944d9d435c73e9f3c87e",
         "android_client_info": {
           "package_name": "sv.edu.ues.eisi.fia.procesosadministrativosfia"
         }
       },
       "oauth_client": [
         {
-          "client_id": "364552890006-1mhilloup3too19e8okn6vck8uobp9i1.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "sv.edu.ues.eisi.fia.procesosadministrativosfia",
-            "certificate_hash": "4079ec80aa70b7ae564dcf67823147abbb5249a6"
-          }
-        },
-        {
-          "client_id": "364552890006-ug0acfnvlvei7okbo6f1qjokf28ru662.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "sv.edu.ues.eisi.fia.procesosadministrativosfia",
-            "certificate_hash": "902df81342aee713fa3eac0f21fcf4f6504aef44"
-          }
-        },
-        {
-          "client_id": "364552890006-7ousvulh0ougi5corkp69du3je9alllk.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "sv.edu.ues.eisi.fia.procesosadministrativosfia",
-            "certificate_hash": "160742052b382e23c9ded7d2d0db6addcb5dcb6e"
-          }
-        },
-        {
-          "client_id": "364552890006-e30ro1l3s979jacf057koo016hcivd91.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "sv.edu.ues.eisi.fia.procesosadministrativosfia",
-            "certificate_hash": "64612111e8b62f2a226ba84099e094b110639720"
-          }
-        },
-        {
-          "client_id": "364552890006-4j9m4jt65ef7b9g8dnodscvvmvkrv3a3.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "sv.edu.ues.eisi.fia.procesosadministrativosfia",
-            "certificate_hash": "6e4f582467e84020dbe78b5b33a54a4945e8326a"
-          }
-        },
-        {
-          "client_id": "364552890006-bv9g5f7s8dvvi8odafp8d7mphvl1v489.apps.googleusercontent.com",
+          "client_id": "849957268315-8dtt79g7t4f3vgcd7pcjq6vgl864mbeo.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCkdHND9Z_lNhooQC2w0iLAqB6-hdtuwt4"
+          "current_key": "AIzaSyDHm0kJnTlz4bPEWk9x_yRrwNCz8vDoxrs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "364552890006-bv9g5f7s8dvvi8odafp8d7mphvl1v489.apps.googleusercontent.com",
+              "client_id": "849957268315-8dtt79g7t4f3vgcd7pcjq6vgl864mbeo.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

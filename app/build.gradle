@@ -1,5 +1,7 @@
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
+
 
 android {
     signingConfigs {
@@ -28,6 +30,12 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.release
+
+        manifestPlaceholders = [
+                onesignal_app_id: '4a764027-7d8e-42f4-895d-54cc4612b0c1',
+                // Project number pulled from dashboard, local value is ignored.
+                onesignal_google_project_number: 'REMOTE'
+        ]
     }
 
     buildTypes {
@@ -57,4 +65,13 @@ dependencies {
     //implementation 'com.ajts.androidmads.SQLite2Excel: library: 1.0.2'
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'com.google.firebase:firebase-analytics:17.2.2'
+    implementation 'com.google.firebase:firebase-core:17.0.0'
+    implementation 'com.onesignal:OneSignal:[3.15.0, 3.99.99]'
+
+}
+
+apply plugin: 'com.google.gms.google-services'
+
+repositories {
+    maven { url 'https://maven.google.com' }
 }
