@@ -1,7 +1,5 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -17,7 +15,6 @@ public class Local_menu extends ListActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, menu);
         setListAdapter(adapter);
     }
@@ -25,7 +22,6 @@ public class Local_menu extends ListActivity{
     protected void onListItemClick(ListView l, View v, int position, long id){
         super.onListItemClick(l, v, position, id);
         String nombreValue = activities[position];
-        l.getChildAt(position).setBackgroundColor(Color.rgb(100, 100, 230));
         try {
             Class<?> clase = Class.forName("sv.edu.ues.eisi.fia.procesosadministrativosfia." + nombreValue);
             Intent inte = new Intent(this, clase);

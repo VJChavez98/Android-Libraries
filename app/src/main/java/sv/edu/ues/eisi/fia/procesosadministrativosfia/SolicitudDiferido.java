@@ -1,16 +1,15 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
 public class SolicitudDiferido {
-    private String idSolicitud,carnet, codMateria, GT, GD, GL, tipoEva, fechaEva, horaEva, motivo, otroMotivo, estado;
+    private String carnet, codMateria, GT, GD, GL, tipoEva, fechaEva, horaEva, motivo, otroMotivo, estado, ciclo,rutaJustificante;
     private int numeroEval;
-    public String getIdSolicitud() {
-        return idSolicitud;
+
+    public String getCiclo() {
+        return ciclo;
     }
-    public void setIdSolicitud(String idSolicitud) {
-        this.idSolicitud = idSolicitud;
-    }
-    public void setIdSolicitud() {
-        this.idSolicitud = carnet+codMateria+tipoEva+numeroEval ;
+
+    public void setCiclo(String ciclo) {
+        this.ciclo = ciclo;
     }
 
     public String getCarnet() {
@@ -103,5 +102,13 @@ public class SolicitudDiferido {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String getRutaJustificante() {
+        return rutaJustificante;
+    }
+
+    public void setRutaJustificante(String rutaJustificante) {
+        this.rutaJustificante = rutaJustificante;
     }
 }

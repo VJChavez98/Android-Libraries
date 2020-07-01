@@ -3,140 +3,226 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingTop="10dip"
         android:stretchColumns="1">
 
         <TableRow>
+
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/codtiporev"/>
-            <Spinner android:id="@+id/spinTipoRev"
+                android:text="@string/codtiporev" />
+
+            <Spinner
+                android:id="@+id/spinTipoRev"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="fill_parent"
+                android:layout_weight="1"
                 android:entries="@array/tipoRevision"
-                android:textAlignment="center"
-                android:gravity="center_horizontal" />
+                android:gravity="center_horizontal"
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow>
+
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/codasignatura" />
+
             <EditText
                 android:id="@+id/editCodasignatura"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
                 android:inputType="text"
-                android:maxLength="6"/>
+                android:maxLength="6" />
         </TableRow>
 
         <TableRow>
+
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/codtipoeval"/>
-            <Spinner android:id="@+id/spinTipoEval"
+                android:text="@string/codtipoeval" />
+
+            <Spinner
+                android:id="@+id/spinTipoEval"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="fill_parent"
+                android:layout_weight="1"
                 android:entries="@array/tipoEval"
-                android:textAlignment="center"
-                android:gravity="center_horizontal" />
+                android:gravity="center_horizontal"
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow>
+
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/codciclo" />
+
             <EditText
                 android:id="@+id/editCodciclo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
                 android:inputType="number"
-                android:maxLength="5"/>
+                android:maxLength="5" />
         </TableRow>
 
         <TableRow>
+
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/evaluacion_numero" />
+
             <EditText
                 android:id="@+id/editNumeval"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
                 android:inputType="number"
-                android:maxLength="1"/>
+                android:maxLength="1" />
         </TableRow>
 
         <TableRow>
+
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/codDocente" />
+
             <EditText
                 android:id="@+id/editCoddocente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
                 android:inputType="text"
-                android:maxLength="10"/>
+                android:maxLength="10" />
         </TableRow>
 
         <TableRow>
+
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/codlocal" />
+
             <EditText
                 android:id="@+id/editCodlocal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
                 android:inputType="text"
-                android:maxLength="10"/>
+                android:maxLength="10" />
         </TableRow>
 
         <TableRow>
+
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/fechaDesde" />
+
             <EditText
                 android:id="@+id/editFechaDesdeRev"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
+                android:layout_weight="1"
                 android:ems="10"
-                android:focusable="false"/>
+                android:focusable="false"
+                android:gravity="center_horizontal"
+                android:inputType="textPersonName" />
         </TableRow>
 
         <TableRow>
+
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/fechaHasta" />
+
             <EditText
                 android:id="@+id/editFechaHastaRev"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:focusable="false"/>
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:ems="20"
+                android:focusable="false"
+                android:gravity="center_horizontal"
+                android:inputType="textPersonName" />
         </TableRow>
 
         <TableRow>
+
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/fechaRevision" />
+
             <EditText
                 android:id="@+id/editFechaRev"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
+                android:layout_weight="1"
                 android:ems="10"
-                android:focusable="false"/>
+                android:focusable="false"
+                android:gravity="center_horizontal"
+                android:inputType="textPersonName" />
         </TableRow>
 
         <TableRow>
+
             <TextView
-                android:text="@string/horaRevision"/>
-            <EditText android:id="@+id/editHoraRevision"
-                android:inputType="text"
-                android:focusable="false"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/horaRevision" />
+
+            <EditText
+                android:id="@+id/editHoraRevision"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:focusable="false"
+                android:gravity="center_horizontal"
+                android:inputType="text" />
         </TableRow>
 
         <TableRow>
+
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="insertarPeriodoRevision"
                 android:text="@string/insertar" />
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:onClick="limpiarTexto"
                 android:text="Limpiar" />
         </TableRow>
+        <TableRow>
 
+            <Button
+                android:id="@+id/btnText2SpeechPlay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/escuchar" />
+    </TableRow>
     </TableLayout>
 </ScrollView>

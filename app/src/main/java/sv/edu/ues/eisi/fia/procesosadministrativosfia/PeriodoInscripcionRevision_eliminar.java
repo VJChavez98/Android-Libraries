@@ -1,7 +1,5 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -63,7 +61,7 @@ public class PeriodoInscripcionRevision_eliminar extends Activity {
         if(spinTiporev.getSelectedItem().toString().equals("Primer Revisión")){
             String tipoEval = "PR";
             perInscRev.setTipoRevision(tipoEval);
-        }else if(spinTipoeval.getSelectedItem().toString().equals("Segunda Revisión")){
+        }else if(spinTiporev.getSelectedItem().toString().equals("Segunda Revisión")){
             String tipoEval = "SR";
             perInscRev.setTipoRevision(tipoEval);
         }else{

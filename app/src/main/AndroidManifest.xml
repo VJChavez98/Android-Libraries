@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="sv.edu.ues.eisi.fia.procesosadministrativosfia">
-    <!-- Copied from Google Maps Library/AndroidManifest.xml. -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--
+          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+          Google Maps Android API v2, but you must specify either coarse or fine
+          location permissions for the 'MyLocation' functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" /> <!-- External storage for caching. -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- My Location -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.Camera" />
+
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" /> <!-- External storage for caching. -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Maps API needs OpenGL ES 2.0. -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
@@ -20,7 +32,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ExcelDocente"></activity>
+        <activity android:name=".ListaPerInsRevActivity_docente"/>
+        <activity android:name=".SegundaRevisionMenu" />
+        <activity android:name=".SegundaRevisionInsertar" />
+        <activity android:name=".SegundaRevisionEliminar" />
+        <activity android:name=".SegundaRevisionConsultar" />
+        <activity android:name=".SegundaRevisionActualizar" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <activity android:name=".Diferido_actualizar" />
+        <activity android:name=".SolicitudRevision_consultar"/>
+        <activity android:name=".ExcelDocente" />
         <activity android:name=".ExcelEstudiante" />
         <activity android:name=".MapaConsultarE" />
         <activity android:name=".MapaConsultarBIB" />
@@ -28,10 +56,8 @@
         <activity android:name=".MapaConsultarB" />
         <activity android:name=".MapaConsultarD" />
         <activity android:name=".MapaConsultarC" />
-        <activity android:name=".Diferido_actualizar" />
         <activity android:name=".SolicitudDiferido_consultarDocente" />
         <activity android:name=".DetalleEstudianteDiferido_consultar" />
-        <activity android:name=".DetalleEstudianteRepetido_eliminar" />
         <activity android:name=".DetalleEstudianteRepetido_consultar" />
         <activity android:name=".DetalleEstudianteRepetido_menu" />
         <activity android:name=".DetalleEstudianteRepetido_insertar" />
@@ -46,10 +72,14 @@
         <activity android:name=".Estudiante_insertar" />
         <activity android:name=".PeriodoInscripcionRevision_menu" />
         <activity android:name=".PrimeraRevision_eliminar" />
+        <activity android:name=".SolicitudRevision_actualizar" />
+        <activity android:name=".SolicitudRevision_eliminar" />
+        <activity android:name=".SolicitudRevision_menu" />
+        <activity android:name=".SolicitudRevisionActivity" />
+        <activity android:name=".ListaPerInsRevActivity" />
         <activity android:name=".PrimeraRevision_actualizar" />
         <activity android:name=".PrimeraRevision_consultar" />
         <activity android:name=".PrimeraRevision_insertar" />
-        <activity android:name=".PeriodoInscripcionRevision_menu" />
         <activity android:name=".PeriodoInscripcionRevision_eliminar" />
         <activity android:name=".PeriodoInscripcionRevision_actualizar" />
         <activity android:name=".PeriodoInscripcionRevision_consultar" />
@@ -59,7 +89,6 @@
         <activity android:name=".Local_eliminar" />
         <activity android:name=".Local_consultar" />
         <activity android:name=".Local_insertar" />
-        <activity android:name=".DatePickerFragment" />
         <activity android:name=".Evaluacion_actualizar" />
         <activity android:name=".Evaluacion_consultar" />
         <activity android:name=".Evaluacion_eliminar" />
@@ -72,10 +101,50 @@
         <activity android:name=".Diferido_consultar" />
         <activity android:name=".Diferido_menu" />
         <activity android:name=".Repetido_Eliminar" />
-        <activity android:name=".Repetido_modificar" />
         <activity android:name=".Repetido_Insertar" />
         <activity android:name=".Repetido_Consultar" />
         <activity android:name=".Repetido_menu" />
+        <activity android:name=".AsignaturaConsultarActivity" />
+        <activity android:name=".AsignaturaActualizarActivity" />
+        <activity android:name=".AsignaturaEliminarActivity" />
+        <activity android:name=".AsignaturaInsertarActivity" />
+        <activity android:name=".DocenteConsultarActivity" />
+        <activity android:name=".DocenteActualizarActivity" />
+        <activity android:name=".DocenteEliminarActivity" />
+        <activity android:name=".DocenteInsertarActivity" />
+        <activity android:name=".CargaAcademicaConsultarActivity" />
+        <activity android:name=".CargaAcademicaActualizarActivity" />
+        <activity android:name=".CargaAcademicaEliminarActivity" />
+        <activity android:name=".CargaAcademicaInsertarActivity" />
+        <activity android:name=".CicloConsultarActivity" />
+        <activity android:name=".CicloActualizarActivity" />
+        <activity android:name=".CicloEliminarActivity" />
+        <activity android:name=".CicloInsertarActivity" />
+        <activity android:name=".TipoDocenteMenuActivity" />
+        <activity android:name=".AsignaturaMenuActivity" />
+        <activity android:name=".DocenteMenuActivity" />
+        <activity android:name=".CargaAcademicaMenuActivity" />
+        <activity android:name=".CicloMenuActivity" />
+        <activity android:name=".EstadoImpresionInsertarActivity" />
+        <activity android:name=".EstadoImpresionEliminarActivity" />
+        <activity android:name=".EstadoImpresionConsultarActivity" />
+        <activity android:name=".EstadoImpresionActualizarActivity" />
+        <activity android:name=".EstadoImpresionMenuActivity" />
+        <activity android:name=".EncarImpresionesInsertarActivity" />
+        <activity android:name=".EncarImpresionesEliminarActivity" />
+        <activity android:name=".EncarImpresionesConsultarActivity" />
+        <activity android:name=".EncarImpresionesActualizarActivity" />
+        <activity android:name=".EncarImpresionesMenuActivity" />
+        <activity android:name=".DocDirectorActualizarActivity" />
+        <activity android:name=".DocDirectorMenuActivity" />
+        <activity android:name=".DocDirectorInsertarActivity" />
+        <activity android:name=".DocDirectorEliminarActivity" />
+        <activity android:name=".DocDirectorConsultarActivity" />
+        <activity android:name=".SolImpresionConsultarActivity" />
+        <activity android:name=".SolImpresionActualizarActivity" />
+        <activity android:name=".SolImpresionEliminarActivity" />
+        <activity android:name=".SolImpresionInsertarActivity" />
+        <activity android:name=".SolImpresionMenuActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -83,7 +152,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <provider
+            android:authorities="sv.edu.ues.eisi.fia.procesosadministrativosfia.fileprovider"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCkdHND9Z_lNhooQC2w0iLAqB6-hdtuwt4" />

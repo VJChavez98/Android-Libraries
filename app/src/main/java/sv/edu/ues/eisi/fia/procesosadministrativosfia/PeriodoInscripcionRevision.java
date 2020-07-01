@@ -1,6 +1,8 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
-public class PeriodoInscripcionRevision {
+import java.io.Serializable;
+
+public class PeriodoInscripcionRevision implements Serializable {
     private String tipoRevision;
     private String codDocente;
     private String codLocal;

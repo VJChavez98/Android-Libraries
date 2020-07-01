@@ -6,43 +6,79 @@
     android:stretchColumns="1" >
 
     <TableRow>
+
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/codlocal" />
+
         <EditText
             android:id="@+id/editCodlocal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="10" />
     </TableRow>
 
     <TableRow>
+
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/nomlocal" />
+
         <EditText
             android:id="@+id/editNomlocal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="50" />
     </TableRow>
 
     <TableRow>
+
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/ubicacionLocal" />
+
         <EditText
             android:id="@+id/editUbicacionlocal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="50" />
     </TableRow>
 
     <TableRow>
+
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="actualizarLocal"
             android:text="@string/actualizar" />
+
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:onClick="limpiarTexto"
             android:text="@string/limpiar" />
+    </TableRow>
+    <TableRow>
+
+        <Button
+            android:id="@+id/btnText2SpeechPlay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/escuchar" />
     </TableRow>
 
 </TableLayout>

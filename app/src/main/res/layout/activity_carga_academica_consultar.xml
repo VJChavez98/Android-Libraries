@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/idcargaacademica" />
+
+    <EditText
+        android:id="@+id/editIdcargaacademica"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:inputType="text"
+        android:maxLength="5" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/codciclo" />
+
+    <EditText
+        android:id="@+id/editCodciclo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:gravity="center_horizontal"
+        android:inputType="text" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/coddocente" />
+
+    <EditText
+        android:id="@+id/editCoddocente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:gravity="center_horizontal"
+        android:inputType="text"
+        android:maxLength="7" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/codasignatura" />
+
+    <EditText
+        android:id="@+id/editCodasignatura"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:gravity="center_horizontal"
+        android:inputType="text"
+        android:maxLength="6" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/idtipodocenteciclo" />
+
+    <EditText
+        android:id="@+id/editIdtipodocenteciclo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:gravity="center_horizontal"
+        android:inputType="text"
+        android:maxLength="5" />
+    <TableLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <TableRow>
+
+            <Button
+                android:id="@+id/botonConsultar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="consultarCargaacademica"
+                android:text="@string/consultar" />
+
+            <Button
+                android:id="@+id/botonLimpiar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="limpiarTexto"
+                android:text="@string/limpiar" />
+        </TableRow>
+        <TableRow>
+
+            <Button
+                android:id="@+id/btnText2SpeechPlay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/escuchar" />
+
+            <Button
+                android:id="@+id/bvoice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/btnTalk" />
+        </TableRow>
+    </TableLayout>
+</LinearLayout>

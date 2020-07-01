@@ -1,7 +1,5 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
-import java.sql.Date;
-
 public class SolicitudRevision {
     private String fechasolicitudrevision;
     private float notaantesrevision;
@@ -18,11 +16,11 @@ public class SolicitudRevision {
     public SolicitudRevision() {
     }
 
-    public SolicitudRevision(String fechasolicitudrevision, float notaantesrevision, String codtipogrupo, int numerogrupo, String motivorevision, String carnet, String codasignatura, String codciclo, String codtipoeval, int numeroeval, String codtiporevision) {
+    public SolicitudRevision(String fechasolicitudrevision, float notaantesrevision, int numerogrupo, String codtipogrupo, String motivorevision, String carnet, String codasignatura, String codciclo, String codtipoeval, int numeroeval, String codtiporevision) {
         this.fechasolicitudrevision = fechasolicitudrevision;
         this.notaantesrevision = notaantesrevision;
-        this.codtipogrupo = codtipogrupo;
         this.numerogrupo = numerogrupo;
+        this.codtipogrupo = codtipogrupo;
         this.motivorevision = motivorevision;
         this.carnet = carnet;
         this.codasignatura = codasignatura;
@@ -32,13 +30,6 @@ public class SolicitudRevision {
         this.codtiporevision = codtiporevision;
     }
 
-    public String getFechasolicitudrevision() {
-        return fechasolicitudrevision;
-    }
-
-    public void setFechasolicitudrevision(String fechasolicitudrevision) {
-        this.fechasolicitudrevision = fechasolicitudrevision;
-    }
 
     public float getNotaantesrevision() {
         return notaantesrevision;
@@ -48,13 +39,6 @@ public class SolicitudRevision {
         this.notaantesrevision = notaantesrevision;
     }
 
-    public String getCodtipogrupo() {
-        return codtipogrupo;
-    }
-
-    public void setCodtipogrupo(String codtipogrupo) {
-        this.codtipogrupo = codtipogrupo;
-    }
 
     public int getNumerogrupo() {
         return numerogrupo;
@@ -62,6 +46,14 @@ public class SolicitudRevision {
 
     public void setNumerogrupo(int numerogrupo) {
         this.numerogrupo = numerogrupo;
+    }
+
+    public String getCodtipogrupo() {
+        return codtipogrupo;
+    }
+
+    public void setCodtipogrupo(String codtipogrupo) {
+        this.codtipogrupo = codtipogrupo;
     }
 
     public String getMotivorevision() {
@@ -118,5 +110,13 @@ public class SolicitudRevision {
 
     public void setCodtiporevision(String codtiporevision) {
         this.codtiporevision = codtiporevision;
+    }
+
+    public String getFechasolicitudrevision() {
+        return fechasolicitudrevision;
+    }
+
+    public void setFechasolicitudrevision(String fechasolicitudrevision) {
+        this.fechasolicitudrevision = fechasolicitudrevision;
     }
 }

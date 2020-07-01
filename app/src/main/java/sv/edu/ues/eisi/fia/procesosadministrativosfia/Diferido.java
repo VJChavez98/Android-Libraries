@@ -5,6 +5,7 @@ public class Diferido {
     MotivoDiferido motivo;
     Estudiante estudiante;
     Evaluacion evaluacion;
+    String rutaJustificante;
 
     public String getIdDiferido() {
         return idDiferido;
@@ -45,4 +46,11 @@ public class Diferido {
         evaluacion.setCodCiclo(ciclo);
     }
 
+    public String getRutaJustificante() {
+        return rutaJustificante;
+    }
+
+    public void setRutaJustificante(String rutaJustificante) {
+        this.rutaJustificante = rutaJustificante;
+    }
 }

@@ -5,6 +5,12 @@ public class Asignatura {
     private String nomasignatura;
     private String unidadesval;
 
+    //No me sale este Pus Mega F
+
+    //No me sale este Pus Mega F
+
+
+
     public Asignatura(){
     }
 
@@ -38,3 +44,4 @@ public class Asignatura {
         this.unidadesval = unidadesval;
     }
 }
+
