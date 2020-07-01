@@ -78,6 +78,6 @@ dependencies {
     //Libreria Selector de Archivos
     implementation 'com.github.codekidX:storage-chooser:2.0.4.4'
     //Libreria Calendario
-    implementation 'com.applandeo:material-calendar-view:1.4.0'
+    implementation 'com.applandeo:material-calendar-view:1.7.0'
 
 }

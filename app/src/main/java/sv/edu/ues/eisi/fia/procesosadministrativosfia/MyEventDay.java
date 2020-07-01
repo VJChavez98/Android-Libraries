@@ -1,5 +1,8 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
+import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -36,12 +39,13 @@ class MyEventDay extends EventDay implements Parcelable {
         }
     };
 
+    @SuppressLint("RestrictedApi")
     @Override
     public void writeToParcel(Parcel parcel, int i) {
 
 
         parcel.writeSerializable(getCalendar());
-        parcel.writeInt(getImageResource());
+        parcel.writeInt((Integer) getImageDrawable());
         parcel.writeString(mNote);
     }
 
