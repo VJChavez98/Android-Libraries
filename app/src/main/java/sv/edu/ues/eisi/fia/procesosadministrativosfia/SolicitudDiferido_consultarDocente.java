@@ -170,7 +170,7 @@ public class SolicitudDiferido_consultarDocente extends AppCompatActivity {
                         public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                             Toast.makeText(getApplicationContext(),"Se descargo correctamente",Toast.LENGTH_SHORT).show();
                             Bitmap b = BitmapFactory.decodeFile(file.getAbsolutePath());
-                            Glide.with(view.getContext()).load(b).centerCrop().into(srcImg);
+//                            Glide.with(view.getContext()).load(b).centerCrop().into(srcImg);
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override

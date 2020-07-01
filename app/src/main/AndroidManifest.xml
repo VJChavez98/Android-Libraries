@@ -3,7 +3,9 @@
     package="sv.edu.ues.eisi.fia.procesosadministrativosfia">
     <!-- Permisos Bluetoth -->
     <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /> <!-- Permisos Almacenamiento -->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <!-- Permisos Almacenamiento -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!--
@@ -37,7 +39,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".adaptadores.BluetoothActivity"></activity>
+
+        <activity android:name=".CalendarioActivity"/>
+        <activity android:name=".CalendarioAddNoteActivity" />
+        <activity android:name=".CalendarioNotePreviewActivity" />
         <activity android:name=".ListaPerInsRevActivity_docente" />
         <activity android:name=".SegundaRevisionMenu" />
         <activity android:name=".SegundaRevisionInsertar" />
@@ -151,7 +156,7 @@
         <activity android:name=".SolImpresionEliminarActivity" />
         <activity android:name=".SolImpresionInsertarActivity" />
         <activity android:name=".SolImpresionMenuActivity" />
-        <activity android:name=".BluetoothActivity"/>
+        <activity android:name=".BluetoothActivity" />
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize">
