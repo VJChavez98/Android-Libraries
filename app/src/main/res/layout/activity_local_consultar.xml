@@ -25,6 +25,11 @@
         <TableRow>
 
             <Button
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="#CB3234"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -32,6 +37,11 @@
                 android:text="@string/consultar" />
 
             <Button
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="#CB3234"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -41,6 +51,11 @@
         <TableRow>
 
             <Button
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="#CB3234"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 android:id="@+id/btnText2SpeechPlay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -48,6 +63,11 @@
                 android:text="@string/escuchar" />
 
             <Button
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="#CB3234"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 android:id="@+id/bvoice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

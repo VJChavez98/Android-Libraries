@@ -226,6 +226,11 @@
                 android:text="@string/justificante" />
 
             <Button
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="#CB3234"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 android:id="@+id/rutaSolic"
                 style="@style/Widget.AppCompat.Button.Borderless.Colored"
                 android:layout_width="match_parent"
@@ -234,6 +239,11 @@
                 android:visibility="gone" />
 
             <Button
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="#CB3234"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 android:id="@+id/option"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -244,6 +254,11 @@
         <TableRow>
 
             <Button
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="#CB3234"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 android:id="@+id/cancelarBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -251,6 +266,11 @@
                 android:text="@string/cancelarBtn" />
 
             <Button
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="#CB3234"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 android:id="@+id/ingresarBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -268,6 +288,11 @@
                 android:text="@string/printSol" />
 
             <Button
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="#CB3234"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 android:id="@+id/crearPdf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -277,6 +302,11 @@
     <TableRow>
 
         <Button
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#CB3234"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:textStyle="bold"
             android:id="@+id/btnText2SpeechPlay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

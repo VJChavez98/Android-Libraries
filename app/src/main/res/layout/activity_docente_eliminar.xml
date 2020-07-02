@@ -57,18 +57,33 @@
     <TableRow>
 
         <Button
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#CB3234"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="eliminarDocente"
             android:text="@string/eliminar" />
 
         <Button
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#CB3234"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="limpiarTexto"
             android:text="@string/limpiar" />
         <Button
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#CB3234"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:id="@+id/btnText2SpeechPlay"
             android:text="@string/escuchar"/>

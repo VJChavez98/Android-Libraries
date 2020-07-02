@@ -83,6 +83,11 @@
     <TableRow>
 
         <Button
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#CB3234"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:textStyle="bold"
             android:id="@+id/cancelarBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -90,6 +95,11 @@
             android:text="@string/cancelarBtn" />
 
         <Button
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#CB3234"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:textStyle="bold"
             android:id="@+id/botonConsultar"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -212,17 +222,33 @@
             android:gravity="center_horizontal"
             android:inputType="text" />
     </TableRow>
-        <Button android:id="@+id/ModificarBtn"
+        <Button
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#CB3234"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:id="@+id/ModificarBtn"
             android:text="@string/modificarBtn"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:onClick="actualizarDetalle"/>
     <Button
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="#CB3234"
+        android:textColor="#ffffff"
+        android:textSize="15sp"
+        android:textStyle="bold"
         android:id="@+id/btnText2SpeechPlay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/escuchar"/>
     <Button
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="#CB3234"
+        android:textColor="#ffffff"
+        android:textSize="15sp"
+        android:textStyle="bold"
         android:id="@+id/bvoice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

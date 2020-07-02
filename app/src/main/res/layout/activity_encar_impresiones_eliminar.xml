@@ -24,11 +24,21 @@
     <TableRow>
 
         <Button
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#CB3234"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="eliminarEncImpresiones"
             android:text="Eliminar" />
         <Button
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#CB3234"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:text="@string/limpiar"
             android:onClick="limpiar"/>

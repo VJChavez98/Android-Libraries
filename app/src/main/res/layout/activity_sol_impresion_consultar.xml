@@ -46,6 +46,11 @@
         <TableRow>
 
             <Button
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="#CB3234"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 android:id="@+id/botonConsultar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -54,6 +59,11 @@
                 android:text="@string/consultar" />
 
             <Button
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="#CB3234"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 android:id="@+id/botonLimpiar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -64,6 +74,11 @@
         <TableRow>
 
             <Button
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="#CB3234"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 android:id="@+id/bvoice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

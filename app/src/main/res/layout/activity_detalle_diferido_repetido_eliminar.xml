@@ -78,6 +78,11 @@
     <TableRow>
 
         <Button
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#CB3234"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:textStyle="bold"
             android:id="@+id/cancelarBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -85,6 +90,11 @@
             android:text="@string/cancelarBtn" />
 
         <Button
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#CB3234"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:textStyle="bold"
             android:id="@+id/EliminarBtn"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
