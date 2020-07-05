@@ -9,8 +9,9 @@
     <com.applandeo.materialcalendarview.CalendarView
         android:id="@+id/calendarView"
         android:layout_width="0dp"
+        android:backgroundTint="#CB3234"
         android:layout_height="0dp"
-        app:headerColor="@color/defaultColor"
+        app:headerColor="#CB3234"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -22,6 +23,7 @@
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#CB3234"
         android:layout_margin="20dp"
         android:src="@drawable/ic_add"
         app:layout_constraintBottom_toBottomOf="parent"
