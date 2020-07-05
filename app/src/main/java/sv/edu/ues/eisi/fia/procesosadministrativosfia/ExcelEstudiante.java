@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -33,11 +34,12 @@ public class ExcelEstudiante extends Activity {
         pedirPermisos();
 
         Button btnExportar = findViewById(R.id.buttonExp);
-
         btnExportar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 exportarCSV();
+                Intent intent = new Intent(ExcelEstudiante.this, BluetoothActivity.class);
+                startActivity(intent);
             }
         });
     }

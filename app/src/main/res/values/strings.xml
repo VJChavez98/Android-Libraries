@@ -215,4 +215,8 @@
     <string name="verJustificante">Ver justificante</string>
     <string name="Imprimir">Imprimir</string>
     <string name="printSol">Imprimir solicitud</string>
+    <string name="enviar_por_bluetooth">Enviar Por Bluetooth</string>
+    <string name="guardar">Guardar</string>
+    <string name="escribir_nota">Escribir Nota</string>
+    <string name="no_tienes_eventos_para_este_dia">No Tienes Eventos para este Dia</string>
 </resources>

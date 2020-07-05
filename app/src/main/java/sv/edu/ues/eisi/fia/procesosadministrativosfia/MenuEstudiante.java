@@ -242,6 +242,10 @@ public class MenuEstudiante extends ListActivity{
                     menu[i] = "Lista de Revisiones Docente";
                     i++;
                 }
+                case "024":{
+                    menu[i] = "Calendario";
+                    i++;
+                }
             }
             menu[id.size()] = "Cerrar sesión";
         }
