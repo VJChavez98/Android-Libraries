@@ -3,229 +3,274 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-
+    android:layout_height="wrap_content"
+    android:paddingTop="20dip"
     tools:context=".DetalleDiferidoRepetido_insertar">
-    <TableRow>
 
-        <TextView
+    <ScrollView>
+        <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:text="@string/codAsignatura" />
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/editAsignatura"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:inputType="text"
-            android:maxLength="6"
-            android:textAlignment="center" />
-    </TableRow>
+            <TableRow android:layout_marginBottom="15dp">
 
-    <TableRow>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/codAsignatura" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:text="@string/tipoEval" />
+                <EditText
+                    android:id="@+id/editAsignatura"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:inputType="text"
+                    android:maxLength="6"
+                    android:textAlignment="center" />
+            </TableRow>
 
-        <Spinner
-            android:id="@+id/spinTipoEval"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:entries="@array/codTipoEval"
-            android:gravity="center_horizontal"
-            android:textAlignment="center" />
-    </TableRow>
+            <TableRow android:layout_marginBottom="15dp">
 
-    <TableRow>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/tipoEval" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:text="@string/evaluacion_numero" />
+                <Spinner
+                    android:id="@+id/spinTipoEval"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:entries="@array/codTipoEval"
+                    android:gravity="center_horizontal"
+                    android:textAlignment="center" />
+            </TableRow>
 
-        <EditText
-            android:id="@+id/editNumeval"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:inputType="number"
-            android:maxLength="2"
-            android:textAlignment="center" />
-    </TableRow>
-    <TableRow>
+            <TableRow android:layout_marginBottom="15dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:text="@string/tipo" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/evaluacion_numero" />
 
-        <Spinner
-            android:id="@+id/spinTipoDifRep"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:entries="@array/tipoDifRep"
-            android:gravity="center_horizontal"
-            android:textAlignment="center" />
-    </TableRow>
-    <TableRow>
+                <EditText
+                    android:id="@+id/editNumeval"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:textAlignment="center" />
+            </TableRow>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:text="@string/codlocal" />
+            <TableRow android:layout_marginBottom="15dp">
 
-        <EditText
-            android:id="@+id/editCodlocal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:inputType="text"
-            android:maxLength="4"
-            android:textAlignment="center" />
-    </TableRow>
-    <TableRow>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/tipo" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:text="@string/codDocente" />
+                <Spinner
+                    android:id="@+id/spinTipoDifRep"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:entries="@array/tipoDifRep"
+                    android:gravity="center_horizontal"
+                    android:textAlignment="center" />
+            </TableRow>
 
-        <EditText
-            android:id="@+id/editDocente"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:inputType="text"
-            android:maxLength="10"
-            android:textAlignment="center" />
-    </TableRow>
-    <TableRow>
+            <TableRow android:layout_marginBottom="15dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:text="@string/fechaDesde" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/codlocal" />
 
-        <EditText
-            android:id="@+id/editFechaDesde"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:focusable="false"
-            android:gravity="center_horizontal"
-            android:inputType="text"
-            android:textAlignment="center" />
-    </TableRow>
-    <TableRow>
+                <EditText
+                    android:id="@+id/editCodlocal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:inputType="text"
+                    android:maxLength="4"
+                    android:textAlignment="center" />
+            </TableRow>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:text="@string/fechaHasta" />
+            <TableRow android:layout_marginBottom="15dp">
 
-        <EditText
-            android:id="@+id/editFechaHasta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:focusable="false"
-            android:gravity="center_horizontal"
-            android:inputType="text"
-            android:textAlignment="center" />
-    </TableRow>
-    <TableRow>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/codDocente" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:text="@string/fecha" />
+                <EditText
+                    android:id="@+id/editDocente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:inputType="text"
+                    android:maxLength="10"
+                    android:textAlignment="center" />
+            </TableRow>
 
-        <EditText
-            android:id="@+id/editFechaeval"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:focusable="false"
-            android:gravity="center_horizontal"
-            android:inputType="text"
-            android:textAlignment="center" />
-    </TableRow>
-    <TableRow>
+            <TableRow android:layout_marginBottom="15dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:text="@string/horaRealizada" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/fechaDesde" />
 
-        <EditText
-            android:id="@+id/editHoraRealizada"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:focusable="false"
-            android:gravity="center_horizontal"
-            android:inputType="text"
-            android:textAlignment="center" />
-    </TableRow>
-    <TableRow>
+                <EditText
+                    android:id="@+id/editFechaDesde"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:focusable="false"
+                    android:gravity="center_horizontal"
+                    android:inputType="text"
+                    android:textAlignment="center" />
+            </TableRow>
 
-        <Button
-            android:layout_centerHorizontal="true"
-            android:backgroundTint="#CB3234"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:id="@+id/cancelarBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="limpiarTexto"
-            android:text="@string/cancelarBtn" />
+            <TableRow android:layout_marginBottom="15dp">
 
-        <Button
-            android:layout_centerHorizontal="true"
-            android:backgroundTint="#CB3234"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:id="@+id/insertarBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="insertarDetalle"
-            android:text="@string/insertar"
-            android:textAlignment="center" />
-    </TableRow>
-    <TableRow>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/fechaHasta" />
 
-        <Button
-            android:layout_centerHorizontal="true"
-            android:backgroundTint="#CB3234"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:id="@+id/btnText2SpeechPlay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/escuchar" />
-    </TableRow>
+                <EditText
+                    android:id="@+id/editFechaHasta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:focusable="false"
+                    android:gravity="center_horizontal"
+                    android:inputType="text"
+                    android:textAlignment="center" />
+            </TableRow>
+
+            <TableRow android:layout_marginBottom="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/fecha" />
+
+                <EditText
+                    android:id="@+id/editFechaeval"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:focusable="false"
+                    android:gravity="center_horizontal"
+                    android:inputType="text"
+                    android:textAlignment="center" />
+            </TableRow>
+
+            <TableRow android:layout_marginBottom="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/horaRealizada" />
+
+                <EditText
+                    android:id="@+id/editHoraRealizada"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:focusable="false"
+                    android:gravity="center_horizontal"
+                    android:inputType="text"
+                    android:textAlignment="center" />
+            </TableRow>
+
+            <TableRow android:layout_marginBottom="15dp">
+
+                <Button
+                    android:layout_centerHorizontal="true"
+                    android:backgroundTint="#CB3234"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:id="@+id/cancelarBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:onClick="limpiarTexto"
+                    android:text="@string/cancelarBtn" />
+
+                <Button
+                    android:layout_centerHorizontal="true"
+                    android:backgroundTint="#CB3234"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:id="@+id/insertarBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="insertarDetalle"
+                    android:text="@string/insertar"
+                    android:textAlignment="center" />
+
+
+            </TableRow>
+
+
+            <TableRow android:layout_marginBottom="30dp">
+
+                <Button
+                    android:layout_centerHorizontal="true"
+                    android:backgroundTint="#CB3234"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:id="@+id/btnText2SpeechPlay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/escuchar" />
+            </TableRow>
+
+
+        </TableLayout>
+    </ScrollView>
+
+
 </TableLayout>

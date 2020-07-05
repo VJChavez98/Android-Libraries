@@ -6,6 +6,8 @@
     android:orientation="vertical">
 
     <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/idcargaacademica" />
@@ -14,11 +16,15 @@
         android:id="@+id/editIdcargaacademica"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:gravity="center_horizontal"
         android:inputType="text"
         android:maxLength="5" />
 
     <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/codciclo" />
@@ -27,11 +33,15 @@
         android:id="@+id/editCodciclo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:focusable="false"
         android:gravity="center_horizontal"
         android:inputType="text" />
 
     <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/coddocente" />
@@ -40,12 +50,16 @@
         android:id="@+id/editCoddocente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:focusable="false"
         android:gravity="center_horizontal"
         android:inputType="text"
         android:maxLength="7" />
 
     <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/codasignatura" />
@@ -54,12 +68,16 @@
         android:id="@+id/editCodasignatura"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:focusable="false"
         android:gravity="center_horizontal"
         android:inputType="text"
         android:maxLength="6" />
 
     <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/idtipodocenteciclo" />
@@ -68,15 +86,21 @@
         android:id="@+id/editIdtipodocenteciclo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:focusable="false"
         android:gravity="center_horizontal"
         android:inputType="text"
         android:maxLength="5" />
+
     <TableLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
-        <TableRow>
+
+        <TableRow
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="20dp">
 
             <Button
                 android:layout_centerHorizontal="true"
@@ -85,7 +109,7 @@
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:id="@+id/botonConsultar"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="consultarCargaacademica"
@@ -98,12 +122,13 @@
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:id="@+id/botonLimpiar"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="limpiarTexto"
                 android:text="@string/limpiar" />
         </TableRow>
+
         <TableRow>
 
             <Button
@@ -113,7 +138,7 @@
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:id="@+id/btnText2SpeechPlay"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/escuchar" />
@@ -125,10 +150,12 @@
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:id="@+id/bvoice"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/btnTalk" />
         </TableRow>
+
     </TableLayout>
+
 </LinearLayout>

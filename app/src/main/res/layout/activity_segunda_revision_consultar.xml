@@ -9,6 +9,8 @@
         android:orientation="vertical" >
 
         <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/codasignatura" />
@@ -17,10 +19,14 @@
             android:id="@+id/editCodasignatura"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:inputType="text"
             android:maxLength="6" />
 
         <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/codciclo" />
@@ -29,10 +35,15 @@
             android:id="@+id/editCodciclo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:inputType="number"
             android:maxLength="5" />
 
         <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/codtipoeval" />
@@ -41,11 +52,15 @@
             android:id="@+id/spinTipoEval"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:entries="@array/tipoEval"
             android:gravity="center_horizontal"
             android:textAlignment="center" />
 
         <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/evaluacion_numero" />
@@ -54,10 +69,14 @@
             android:id="@+id/editNumeval"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:inputType="number"
             android:maxLength="1" />
 
         <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/carnet" />
@@ -66,6 +85,8 @@
             android:id="@+id/editCarnet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:inputType="text"
             android:maxLength="7" />
 
@@ -103,6 +124,8 @@
         </TableLayout>
 
         <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/nomDocente" />
@@ -111,6 +134,8 @@
             android:id="@+id/editNomdocente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:cursorVisible="false"
             android:focusable="false"
             android:focusableInTouchMode="false"
@@ -118,6 +143,8 @@
             android:longClickable="false" />
 
         <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/notaDespRev" />
@@ -126,6 +153,8 @@
             android:id="@+id/editNotaFinal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:cursorVisible="false"
             android:focusable="false"
             android:focusableInTouchMode="false"
@@ -133,6 +162,8 @@
             android:longClickable="false" />
 
         <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/moCambioNota" />
@@ -141,6 +172,8 @@
             android:id="@+id/editMotivoCambio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:cursorVisible="false"
             android:focusable="false"
             android:focusableInTouchMode="false"
@@ -148,6 +181,8 @@
             android:longClickable="false" />
 
         <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/observaciones" />
@@ -159,6 +194,9 @@
                 android:id="@+id/editObservaciones"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="50dp"
                 android:cursorVisible="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"

@@ -7,7 +7,18 @@
     android:orientation="vertical"
     android:layout_gravity="center_vertical"
     tools:context=".MainActivity">
-    <TextView
+
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="53dp"
+        android:layout_marginBottom="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/logo_ues" />
+
+    <!--<TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/ingresarBtn"
@@ -24,18 +35,49 @@
         android:textStyle="bold"
         android:textSize="50px"
         android:text="@string/iniciarSesion"
-        android:gravity="center_horizontal" />
+        android:gravity="center_horizontal" />-->
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ingresarBtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="13dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginBottom="55dp"
+        android:gravity="center_horizontal"
+        android:text="FIA"
+        android:textSize="50px"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ingresarBtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="13dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginBottom="2dp"
+        android:gravity="center_horizontal"
+        android:text="@string/iniciarSesion"
+        android:textSize="50px"
+        android:textStyle="bold" />
 
     <com.google.android.gms.common.SignInButton
+        android:id="@+id/ingresarBtn"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
         android:backgroundTint="#CB3234"
         android:textColor="#ffffff"
         android:textSize="15sp"
-        android:textStyle="bold"
-        android:id="@+id/ingresarBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"/>
+        android:textStyle="bold" />
     <!--<Button
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
@@ -49,6 +91,7 @@
     android:id="@+id/relativeLayout"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
+
     <Button
         android:backgroundTint="#CB3234"
         style="@style/Widget.AppCompat.Button.Borderless.Colored"
@@ -58,6 +101,7 @@
         android:layout_centerVertical="true"
         android:onClick="llenar"
         android:text="@string/LlenarBase"
-        android:textColor="@color/colorPrimaryDark" />
+        android:textColor="#CB3234"/>
+
 </RelativeLayout>
 </RelativeLayout>

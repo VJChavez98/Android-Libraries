@@ -2,137 +2,128 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:stretchColumns="1">
+    android:paddingTop="20dip">
 
-    <TableRow>
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
             android:text="ID Solicitud Impresion" />
 
         <EditText
             android:id="@+id/editIdSolicitudImpresion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="10" />
     </TableRow>
 
-    <TableRow>
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
             android:text="ID Docente" />
 
         <EditText
             android:id="@+id/editIdDocente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="10" />
     </TableRow>
 
-    <TableRow>
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
             android:text="ID Docente Director" />
 
         <EditText
             android:id="@+id/editIdDocenteDirector"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="10" />
     </TableRow>
 
-    <TableRow>
+    <TableRow android:layout_marginBottom="30dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
             android:text="Cantidad de Examenes" />
 
         <EditText
             android:id="@+id/editCantidadExamenes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="number"
             android:maxLength="4" />
     </TableRow>
 
-    <TableRow>
+    <TableRow android:layout_marginBottom="30dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
             android:text="Hojas Empaque" />
 
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:textAlignment="center" />
     </TableRow>
 
-    <TableRow>
+    <TableRow android:layout_marginBottom="30dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
             android:text="Estado de Aprobacion" />
 
         <Spinner
             android:id="@+id/spinner2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:textAlignment="center" />
     </TableRow>
 
-    <TableRow>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/opciones" />
-    </TableRow>
-
-    <TableRow>
-
-        <Button
-            android:layout_centerHorizontal="true"
-            android:backgroundTint="#CB3234"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:id="@+id/buttonValidar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="insertarSolicitudImpresion"
-            android:text="@string/insertar" />
+    <TableRow android:layout_marginBottom="15dp">
 
         <Button
             android:layout_centerHorizontal="true"
@@ -145,6 +136,20 @@
             android:layout_weight="1"
             android:onClick="limpiarTexto"
             android:text="@string/limpiar" />
+
+        <Button
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#CB3234"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:id="@+id/buttonValidar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:onClick="insertarSolicitudImpresion"
+            android:text="@string/insertar" />
+
     </TableRow>
     <TableRow>
 

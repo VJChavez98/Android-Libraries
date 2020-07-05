@@ -3,58 +3,67 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    android:stretchColumns="1"
-    android:paddingTop="4dip">
-    <TableRow>
+    android:paddingTop="20dp">
+
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="@string/coddocente" />
 
         <EditText
             android:id="@+id/editCoddocente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="7" />
     </TableRow>
-    <TableRow>
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="@string/nombredocente" />
 
         <EditText
             android:id="@+id/editNombredocente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="30" />
     </TableRow>
-    <TableRow>
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="@string/apellidodocente" />
 
         <EditText
             android:id="@+id/editApellidodocente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="30" />
 
     </TableRow>
-    <TableRow>
+    <TableRow android:layout_marginBottom="15dp">
 
         <Button
             android:layout_centerHorizontal="true"
@@ -64,6 +73,7 @@
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:onClick="eliminarDocente"
             android:text="@string/eliminar" />
 
@@ -75,17 +85,24 @@
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:onClick="limpiarTexto"
             android:text="@string/limpiar" />
+
+    </TableRow>
+
+    <TableRow>
         <Button
             android:layout_centerHorizontal="true"
             android:backgroundTint="#CB3234"
             android:textColor="#ffffff"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:id="@+id/btnText2SpeechPlay"
             android:text="@string/escuchar"/>
     </TableRow>
+
 </TableLayout>

@@ -4,72 +4,86 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="20dip"
     tools:context="sv.edu.ues.eisi.fia.procesosadministrativosfia.Repetido_Consultar">
-    <TableRow>
+
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="@string/carnet" />
 
         <EditText
             android:id="@+id/editCarnet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="7" />
     </TableRow>
-    <TableRow>
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="@string/codAsignatura" />
 
         <EditText
             android:id="@+id/editAsignatura"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="6" />
     </TableRow>
-    <TableRow>
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="@string/tipoEval" />
 
         <Spinner
             android:id="@+id/spinTipoEval"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:entries="@array/codTipoEval"
             android:gravity="center_horizontal"
             android:textAlignment="center" />
     </TableRow>
-    <TableRow>
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="@string/evaluacion_numero" />
 
         <EditText
             android:id="@+id/editNumeval"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="number"
             android:maxLength="2" />
     </TableRow>
-    <TableRow>
+    <TableRow android:layout_marginBottom="15dp">
 
         <Button
             android:layout_centerHorizontal="true"
@@ -96,7 +110,7 @@
             android:onClick="consultarRepetido"
             android:text="@string/consultar" />
     </TableRow>
-    <TableRow>
+    <TableRow android:layout_marginBottom="15dp">
         <Button
             android:layout_centerHorizontal="true"
             android:backgroundTint="#CB3234"
@@ -118,17 +132,20 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TableRow>
+            <TableRow android:layout_marginBottom="15dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
                     android:text="@string/codlocal" />
 
                 <EditText
                     android:id="@+id/editCodlocal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:enabled="false"
                     android:gravity="center_horizontal"
@@ -137,17 +154,20 @@
                     android:textAlignment="center" />
             </TableRow>
 
-            <TableRow>
+            <TableRow android:layout_marginBottom="15dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
                     android:text="@string/codDocente" />
 
                 <EditText
                     android:id="@+id/editDocente"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:enabled="false"
                     android:gravity="center_horizontal"
@@ -156,17 +176,20 @@
                     android:textAlignment="center" />
             </TableRow>
 
-            <TableRow>
+            <TableRow android:layout_marginBottom="15dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
                     android:text="@string/fecha" />
 
                 <EditText
                     android:id="@+id/editFechaeval"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:enabled="false"
                     android:focusable="false"
@@ -175,17 +198,20 @@
                     android:textAlignment="center" />
             </TableRow>
 
-            <TableRow>
+            <TableRow android:layout_marginBottom="15dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
                     android:text="@string/horaRealizada" />
 
                 <EditText
                     android:id="@+id/editHoraRealizada"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:enabled="false"
                     android:focusable="false"

@@ -2,72 +2,80 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:stretchColumns="1">
+    android:paddingTop="20dip">
 
-    <TableRow>
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="@string/codciclo" />
 
         <EditText
             android:id="@+id/editCodciclo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="5" />
     </TableRow>
 
-    <TableRow>
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="@string/fechadesde" />
 
         <EditText
             android:id="@+id/editFechadesde"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="30" />
     </TableRow>
 
-    <TableRow>
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="@string/fechahasta" />
 
         <EditText
             android:id="@+id/editFechahasta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="30" />
     </TableRow>
 
-    <TableRow>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/opciones" />
-    </TableRow>
-
-    <TableRow>
+    <TableRow android:layout_marginBottom="15dp">
 
         <Button
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#CB3234"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:onClick="insertarCiclo"
             android:text="@string/insertar" />
 
@@ -83,6 +91,9 @@
             android:onClick="limpiarTexto"
             android:text="@string/limpiar" />
 
+    </TableRow>
+
+    <TableRow>
         <Button
             android:layout_centerHorizontal="true"
             android:backgroundTint="#CB3234"
@@ -95,5 +106,6 @@
             android:layout_weight="1"
             android:text="@string/escuchar" />
     </TableRow>
+
 </TableLayout>
 

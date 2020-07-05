@@ -3,97 +3,114 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="20dip"
     tools:context=".DetalleEstudianteRepetido_insertar">
-    <TableRow>
+
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
             android:text="@string/carnet" />
 
         <EditText
             android:id="@+id/editCarnet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="7"
             android:textAlignment="center" />
     </TableRow>
-    <TableRow>
+
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
             android:text="@string/codAsignatura" />
 
         <EditText
             android:id="@+id/editCodasignatura"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="6"
             android:textAlignment="center" />
     </TableRow>
-    <TableRow>
+
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
             android:text="@string/tipoEval" />
 
         <Spinner
             android:id="@+id/spinTipoEval"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:entries="@array/codTipoEval"
             android:gravity="center_horizontal"
             android:textAlignment="center" />
     </TableRow>
-    <TableRow>
+
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
             android:text="@string/evaluacion_numero" />
 
         <EditText
             android:id="@+id/editNumeval"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="number"
             android:maxLength="2"
             android:textAlignment="center" />
     </TableRow>
-    <TableRow>
+
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
             android:text="@string/fechaInscripcion" />
 
         <EditText
             android:id="@+id/editFechaInscrip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:focusable="false"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:textAlignment="center" />
     </TableRow>
-    <TableRow>
+
+    <TableRow android:layout_marginBottom="15dp">
 
         <Button
             android:layout_centerHorizontal="true"
@@ -104,7 +121,6 @@
             android:id="@+id/cancelarBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:onClick="limpiarTexto"
             android:text="@string/cancelarBtn" />
 

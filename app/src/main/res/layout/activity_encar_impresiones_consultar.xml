@@ -5,6 +5,8 @@
     android:orientation="vertical">
 
     <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Id Encargado" />
@@ -13,6 +15,8 @@
         android:id="@+id/editIdEncarImpresiones"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:inputType="text"
         android:maxLength="10" />
 
@@ -23,6 +27,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nombre Encargado" />
@@ -30,6 +36,8 @@
             android:id="@+id/editNombreEncargado"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:inputType="text"
             android:enabled ="false"
             android:layout_gravity=""
@@ -38,6 +46,8 @@
             android:cursorVisible="false"
             android:longClickable="false" />
         <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Apellido Encargado" />
@@ -45,6 +55,8 @@
             android:id="@+id/editApellidoEncargado"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:inputType="text"
             android:enabled="false"
             android:focusable="false"
@@ -52,6 +64,7 @@
             android:cursorVisible="false"
             android:longClickable="false"/>
     </LinearLayout>
+
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

@@ -1,88 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
-    <TableRow>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="20dip">
+
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="@string/carnet" />
 
         <EditText
             android:id="@+id/editCarnet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="50" />
     </TableRow>
-    <TableRow>
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:id="@+id/lblNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="@string/estudianteNombre" />
 
         <EditText
             android:id="@+id/editNombreEstudiante"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="50" />
     </TableRow>
-    <TableRow>
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:id="@+id/lblApellido"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="@string/estudianteApellido" />
 
         <EditText
             android:id="@+id/editApellidoEstudiante"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="50" />
     </TableRow>
 
-    <TableRow>
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:id="@+id/lblCarrera"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="@string/estudianteCarrera" />
 
         <EditText
             android:id="@+id/editCarreraEstudiante"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="50" />
     </TableRow>
-    <TableRow>
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="@string/fechaInscripcion" />
 
         <EditText
             android:id="@+id/editFechaInscrip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text" />
     </TableRow>
+
 </TableLayout>

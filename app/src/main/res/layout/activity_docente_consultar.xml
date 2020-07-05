@@ -7,6 +7,8 @@
     tools:context=".DocenteConsultarActivity">
 
     <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/coddocente" />
@@ -15,10 +17,14 @@
         android:id="@+id/editCoddocente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:inputType="text"
         android:maxLength="7" />
 
     <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/nombredocente" />
@@ -27,11 +33,15 @@
         android:id="@+id/editNombredocente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:enabled="false"
         android:inputType="text"
         android:maxLength="30" />
 
     <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/apellidodocente" />
@@ -40,13 +50,18 @@
         android:id="@+id/editApellidodocente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:enabled="false"
         android:inputType="text"
         android:maxLength="30" />
+
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TableRow>
+        <TableRow
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="20dp">
 
             <Button
                 android:layout_centerHorizontal="true"

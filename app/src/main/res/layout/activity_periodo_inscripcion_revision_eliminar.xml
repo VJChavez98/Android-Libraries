@@ -2,88 +2,102 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:stretchColumns="1"
-    android:paddingTop="4dip">
+    android:paddingTop="20dip">
 
-    <TableRow>
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="@string/codtiporev" />
 
         <Spinner
             android:id="@+id/spinTipoRev"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:entries="@array/tipoRevision"
             android:gravity="center_horizontal"
             android:textAlignment="center" />
     </TableRow>
 
-    <TableRow>
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="@string/codasignatura" />
 
         <EditText
             android:id="@+id/editCodasignatura"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="6" />
     </TableRow>
 
-    <TableRow>
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="@string/codtipoeval" />
 
         <Spinner
             android:id="@+id/spinTipoEval"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:entries="@array/tipoEval"
             android:gravity="center_horizontal"
             android:textAlignment="center" />
     </TableRow>
 
-    <TableRow>
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="@string/codciclo" />
 
         <EditText
             android:id="@+id/editCodciclo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="number"
             android:maxLength="5" />
     </TableRow>
 
-    <TableRow>
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="@string/evaluacion_numero" />
 
         <EditText
             android:id="@+id/editNumeval"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="number"
@@ -98,10 +112,11 @@
             android:textColor="#ffffff"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="eliminarPeriodoRevision"
-            android:text="@string/eliminar" />
+            android:onClick="limpiarTexto"
+            android:text="Limpiar" />
+
 
         <Button
             android:layout_centerHorizontal="true"
@@ -109,11 +124,11 @@
             android:textColor="#ffffff"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="limpiarTexto"
-            android:text="Limpiar" />
+            android:onClick="eliminarPeriodoRevision"
+            android:text="@string/eliminar" />
     </TableRow>
 
 </TableLayout>

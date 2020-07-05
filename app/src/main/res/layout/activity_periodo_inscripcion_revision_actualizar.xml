@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:paddingTop="20dip">
 
     <TableLayout
         android:layout_width="fill_parent"
@@ -9,136 +10,160 @@
         android:paddingTop="10dip"
         android:stretchColumns="1">
 
-        <TableRow>
+        <TableRow android:layout_marginBottom="15dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:text="@string/codtiporev" />
 
             <Spinner
                 android:id="@+id/spinTipoRev"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:entries="@array/tipoRevision"
                 android:gravity="center_horizontal"
                 android:textAlignment="center" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:layout_marginBottom="15dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:text="@string/codasignatura" />
 
             <EditText
                 android:id="@+id/editCodasignatura"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:inputType="text"
                 android:maxLength="6" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:layout_marginBottom="15dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:text="@string/codtipoeval" />
 
             <Spinner
                 android:id="@+id/spinTipoEval"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:entries="@array/tipoEval"
                 android:gravity="center_horizontal"
                 android:textAlignment="center" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:layout_marginBottom="15dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:text="@string/codciclo" />
 
             <EditText
                 android:id="@+id/editCodciclo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:inputType="number"
                 android:maxLength="5" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:layout_marginBottom="15dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:text="@string/evaluacion_numero" />
 
             <EditText
                 android:id="@+id/editNumeval"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:inputType="number"
                 android:maxLength="1" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:layout_marginBottom="15dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:text="@string/codDocente" />
 
             <EditText
                 android:id="@+id/editCoddocente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:inputType="text"
                 android:maxLength="10" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:layout_marginBottom="15dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:text="@string/codlocal" />
 
             <EditText
                 android:id="@+id/editCodlocal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:inputType="text"
                 android:maxLength="10" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:layout_marginBottom="15dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:text="@string/fechaDesde" />
 
             <EditText
                 android:id="@+id/editFechaDesdeRev"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:ems="10"
                 android:focusable="false"
@@ -146,17 +171,20 @@
                 android:inputType="textPersonName" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:layout_marginBottom="15dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:text="@string/fechaHasta" />
 
             <EditText
                 android:id="@+id/editFechaHastaRev"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:ems="10"
                 android:focusable="false"
@@ -164,17 +192,20 @@
                 android:inputType="textPersonName" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:layout_marginBottom="15dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:text="@string/fechaRevision" />
 
             <EditText
                 android:id="@+id/editFechaRev"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:ems="10"
                 android:focusable="false"
@@ -182,24 +213,27 @@
                 android:inputType="textPersonName" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:layout_marginBottom="15dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:text="@string/horaRevision" />
 
             <EditText
                 android:id="@+id/editHoraRevision"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:focusable="false"
                 android:gravity="center_horizontal"
                 android:inputType="text" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:layout_marginBottom="50dp">
 
             <Button
                 android:layout_centerHorizontal="true"
@@ -209,8 +243,9 @@
                 android:textStyle="bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="actualizarPeriodoRevision"
-                android:text="@string/actualizar" />
+                android:onClick="limpiarTexto"
+                android:text="Limpiar" />
+
 
             <Button
                 android:layout_centerHorizontal="true"
@@ -221,8 +256,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="limpiarTexto"
-                android:text="Limpiar" />
+                android:onClick="actualizarPeriodoRevision"
+                android:text="@string/actualizar" />
         </TableRow>
 
     </TableLayout>

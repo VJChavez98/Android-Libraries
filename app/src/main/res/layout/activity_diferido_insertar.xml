@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="20dip"
     android:paddingLeft="20dip"
     android:paddingRight="20dip"
     android:scrollbars="none"
@@ -13,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TableRow>
+        <TableRow android:layout_marginBottom="15dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -30,7 +31,7 @@
                 android:maxLength="7" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:layout_marginBottom="15dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -47,7 +48,7 @@
                 android:maxLength="5" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:layout_marginBottom="15dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -64,7 +65,7 @@
                 android:maxLength="6" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:layout_marginBottom="15dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -81,7 +82,7 @@
                 android:maxLength="2" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:layout_marginBottom="15dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -98,7 +99,7 @@
                 android:maxLength="2" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:layout_marginBottom="15dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -115,7 +116,7 @@
                 android:maxLength="2" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:layout_marginBottom="15dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -132,7 +133,7 @@
                 android:textAlignment="center" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:layout_marginBottom="15dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -149,7 +150,7 @@
                 android:maxLength="2" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:layout_marginBottom="15dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -166,7 +167,7 @@
                 android:inputType="text" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:layout_marginBottom="15dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -183,7 +184,7 @@
                 android:inputType="text" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:layout_marginBottom="15dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -201,7 +202,7 @@
 
         </TableRow>
 
-        <TableRow>
+        <TableRow android:layout_marginBottom="15dp">
 
             <TextView
                 android:id="@+id/lblOtro"
@@ -218,7 +219,7 @@
                 android:inputType="text" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:layout_marginBottom="15dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -251,7 +252,7 @@
                 android:text="@string/adjuntarFoto" />
         </TableRow>
 
-        <TableRow>
+        <TableRow android:layout_marginBottom="15dp">
 
             <Button
                 android:layout_centerHorizontal="true"
@@ -280,7 +281,7 @@
 
         </TableRow>
 
-        <TableRow>
+        <TableRow android:layout_marginBottom="15dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -299,19 +300,19 @@
                 android:layout_weight="1"
                 android:text="@string/Imprimir" />
         </TableRow>
-    <TableRow>
+        <TableRow android:layout_marginBottom="50dp">
 
-        <Button
-            android:layout_centerHorizontal="true"
-            android:backgroundTint="#CB3234"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:id="@+id/btnText2SpeechPlay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/escuchar" />
-    </TableRow>
+            <Button
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="#CB3234"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:id="@+id/btnText2SpeechPlay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/escuchar" />
+        </TableRow>
     </TableLayout>
 </ScrollView>

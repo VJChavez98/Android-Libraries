@@ -4,37 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
+    android:paddingTop="20dip"
     tools:context=".Estudiante_insertar">
-<TableRow>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/carnet" />
+    <TableRow android:layout_marginBottom="15dp">
 
-    <EditText
-        android:id="@+id/editCarnet"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center_horizontal"
-        android:inputType="text"
-        android:maxLength="7" />
-</TableRow>
-    <TableRow>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="@string/carnet" />
+
+        <EditText
+            android:id="@+id/editCarnet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:inputType="text"
+            android:maxLength="7" />
+    </TableRow>
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="@string/estudianteNombre" />
 
         <EditText
             android:id="@+id/editNombreEstudiante"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
@@ -42,41 +49,47 @@
             tools:layout_editor_absoluteX="80dp"
             tools:layout_editor_absoluteY="94dp" />
     </TableRow>
-    <TableRow>
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="@string/estudianteApellido" />
 
         <EditText
             android:id="@+id/editApellidoEstudiante"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="50" />
     </TableRow>
 
-    <TableRow>
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="@string/estudianteCarrera" />
 
         <EditText
             android:id="@+id/editCarreraEstudiante"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="50" />
     </TableRow>
 
-    <TableRow>
+    <TableRow android:layout_marginBottom="15dp">
 
         <Button
             android:backgroundTint="#CB3234"
@@ -85,6 +98,7 @@
             android:id="@+id/cancelarBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:onClick="limpiarTexto"
             android:text="@string/cancelarBtn" />
 

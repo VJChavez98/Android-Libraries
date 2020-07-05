@@ -4,253 +4,305 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="20dip"
     tools:context=".DetalleDiferidoRepetido_consultar">
 
-    <TableRow>
+    <ScrollView>
 
-        <TextView
+        <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:gravity="start"
-            android:text="@string/codAsignatura" />
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/editAsignatura"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:inputType="text"
-            android:maxLength="6" />
-    </TableRow>
+            <TableRow android:layout_marginBottom="15dp">
 
-    <TableRow>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="start"
+                    android:text="@string/codAsignatura" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:gravity="start"
-            android:text="@string/tipoEval" />
+                <EditText
+                    android:id="@+id/editAsignatura"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:inputType="text"
+                    android:maxLength="6" />
+            </TableRow>
 
-        <Spinner
-            android:id="@+id/spinTipoEval"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:textAlignment="center" />
-    </TableRow>
+            <TableRow android:layout_marginBottom="15dp">
 
-    <TableRow>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="start"
+                    android:text="@string/tipoEval" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:gravity="start"
-            android:text="@string/evaluacion_numero" />
+                <Spinner
+                    android:id="@+id/spinTipoEval"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:textAlignment="center" />
+            </TableRow>
 
-        <EditText
-            android:id="@+id/editNumeval"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:inputType="number"
-            android:maxLength="2" />
-    </TableRow>
+            <TableRow android:layout_marginBottom="15dp">
 
-    <TableRow>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="start"
+                    android:text="@string/evaluacion_numero" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:gravity="start"
-            android:text="@string/tipo" />
+                <EditText
+                    android:id="@+id/editNumeval"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:inputType="number"
+                    android:maxLength="2" />
+            </TableRow>
 
-        <Spinner
-            android:id="@+id/spinTipoDifRep"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:entries="@array/tipoDifRep"
-            android:gravity="center_horizontal"
-            android:textAlignment="center" />
-    </TableRow>
-    <TableRow>
+            <TableRow android:layout_marginBottom="15dp">
 
-        <Button
-            android:layout_centerHorizontal="true"
-            android:backgroundTint="#CB3234"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:id="@+id/cancelarBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="limpiarTexto"
-            android:text="@string/cancelarBtn" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="start"
+                    android:text="@string/tipo" />
 
-        <Button
-            android:layout_centerHorizontal="true"
-            android:backgroundTint="#CB3234"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:id="@+id/botonConsultar"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="consultarDetalle"
-            android:text="@string/consultar" />
-    </TableRow>
-    <TableRow>
+                <Spinner
+                    android:id="@+id/spinTipoDifRep"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:entries="@array/tipoDifRep"
+                    android:gravity="center_horizontal"
+                    android:textAlignment="center" />
+            </TableRow>
 
-        <TextView
-            android:id="@+id/lblLocal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:gravity="start"
-            android:text="@string/codlocal" />
+            <TableRow android:layout_marginBottom="15dp">
 
-        <EditText
-            android:id="@+id/editCodlocal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:inputType="text"
-            android:maxLength="4" />
-    </TableRow>
-    <TableRow>
+                <Button
+                    android:layout_centerHorizontal="true"
+                    android:backgroundTint="#CB3234"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:id="@+id/botonConsultar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:onClick="consultarDetalle"
+                    android:text="@string/consultar" />
 
-        <TextView
-            android:id="@+id/lblDocente"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:gravity="start"
-            android:text="@string/codDocente" />
+                <Button
+                    android:layout_centerHorizontal="true"
+                    android:backgroundTint="#CB3234"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:id="@+id/cancelarBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:onClick="limpiarTexto"
+                    android:text="@string/cancelarBtn" />
 
-        <EditText
-            android:id="@+id/editDocente"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:inputType="text"
-            android:maxLength="10" />
-    </TableRow>
+            </TableRow>
 
-    <TableRow>
+            <TableRow android:layout_marginBottom="15dp">
 
-        <TextView
-            android:id="@+id/lblFechaDesde"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:gravity="start"
-            android:text="@string/fechaDesde" />
+                <TextView
+                    android:id="@+id/lblLocal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="start"
+                    android:text="@string/codlocal" />
 
-        <EditText
-            android:id="@+id/editFechaDesde"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:focusable="false"
-            android:gravity="center_horizontal"
-            android:inputType="text" />
-    </TableRow>
-    <TableRow>
+                <EditText
+                    android:id="@+id/editCodlocal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:inputType="text"
+                    android:maxLength="4" />
+            </TableRow>
 
-        <TextView
-            android:id="@+id/lblFechaHasta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:gravity="start"
-            android:text="@string/fechaHasta" />
+            <TableRow android:layout_marginBottom="15dp">
 
-        <EditText
-            android:id="@+id/editFechaHasta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:focusable="false"
-            android:gravity="center_horizontal"
-            android:inputType="text" />
-    </TableRow>
-    <TableRow>
+                <TextView
+                    android:id="@+id/lblDocente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="start"
+                    android:text="@string/codDocente" />
 
-        <TextView
-            android:id="@+id/lblFecha"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:gravity="start"
-            android:text="@string/fecha" />
+                <EditText
+                    android:id="@+id/editDocente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:inputType="text"
+                    android:maxLength="10" />
+            </TableRow>
 
-        <EditText
-            android:id="@+id/editFechaeval"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:focusable="false"
-            android:gravity="center_horizontal"
-            android:inputType="text" />
-    </TableRow>
-    <TableRow>
+            <TableRow android:layout_marginBottom="15dp">
 
-        <TextView
-            android:id="@+id/lblHora"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:gravity="start"
-            android:text="@string/horaRealizada" />
+                <TextView
+                    android:id="@+id/lblFechaDesde"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="start"
+                    android:text="@string/fechaDesde" />
 
-        <EditText
-            android:id="@+id/editHoraRealizada"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:focusable="false"
-            android:gravity="center_horizontal"
-            android:inputType="text" />
-    </TableRow>
-        <Button
-            android:layout_centerHorizontal="true"
-            android:backgroundTint="#CB3234"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:id="@+id/ModificarBtn"
-            android:text="@string/modificarBtn"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:onClick="actualizarDetalle"/>
-    <Button
-        android:layout_centerHorizontal="true"
-        android:backgroundTint="#CB3234"
-        android:textColor="#ffffff"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        android:id="@+id/btnText2SpeechPlay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/escuchar"/>
-    <Button
-        android:layout_centerHorizontal="true"
-        android:backgroundTint="#CB3234"
-        android:textColor="#ffffff"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        android:id="@+id/bvoice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btnTalk" />
+                <EditText
+                    android:id="@+id/editFechaDesde"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:focusable="false"
+                    android:gravity="center_horizontal"
+                    android:inputType="text" />
+            </TableRow>
+
+            <TableRow android:layout_marginBottom="15dp">
+
+                <TextView
+                    android:id="@+id/lblFechaHasta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="start"
+                    android:text="@string/fechaHasta" />
+
+                <EditText
+                    android:id="@+id/editFechaHasta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:focusable="false"
+                    android:gravity="center_horizontal"
+                    android:inputType="text" />
+            </TableRow>
+
+            <TableRow android:layout_marginBottom="15dp">
+
+                <TextView
+                    android:id="@+id/lblFecha"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="start"
+                    android:text="@string/fecha" />
+
+                <EditText
+                    android:id="@+id/editFechaeval"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:focusable="false"
+                    android:gravity="center_horizontal"
+                    android:inputType="text" />
+            </TableRow>
+
+            <TableRow android:layout_marginBottom="15dp">
+
+                <TextView
+                    android:id="@+id/lblHora"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="start"
+                    android:text="@string/horaRealizada" />
+
+                <EditText
+                    android:id="@+id/editHoraRealizada"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:focusable="false"
+                    android:gravity="center_horizontal"
+                    android:inputType="text" />
+            </TableRow>
+
+            <TableRow android:layout_marginBottom="15dp">
+                <Button
+                    android:layout_centerHorizontal="true"
+                    android:backgroundTint="#CB3234"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:id="@+id/ModificarBtn"
+                    android:text="@string/modificarBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="actualizarDetalle"/>
+            </TableRow>
+
+            <TableRow android:layout_marginBottom="30dp">
+                <Button
+                    android:layout_centerHorizontal="true"
+                    android:backgroundTint="#CB3234"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:id="@+id/btnText2SpeechPlay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:text="@string/escuchar"/>
+
+                <Button
+                    android:layout_centerHorizontal="true"
+                    android:backgroundTint="#CB3234"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:id="@+id/bvoice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/btnTalk" />
+
+            </TableRow>
+
+
+        </TableLayout>
+    </ScrollView>
+
+
 </TableLayout>

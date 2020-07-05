@@ -5,6 +5,8 @@
     android:orientation="vertical" >
 
     <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ID Docente Director" />
@@ -13,11 +15,15 @@
         android:id="@+id/editIdDocenteDirector"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:gravity="center_horizontal"
         android:inputType="text"
         android:maxLength="10" />
 
     <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ID Escuela" />
@@ -26,46 +32,67 @@
         android:id="@+id/editIdEscuela"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:gravity="center_horizontal"
         android:inputType="text"
         android:maxLength="10" />
+
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:layout_centerHorizontal="true"
-            android:backgroundTint="#CB3234"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:id="@+id/botonConsultar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Consultar"
-            android:onClick="consultarDocDirector"/>
-        <Button
-            android:layout_centerHorizontal="true"
-            android:backgroundTint="#CB3234"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:id="@+id/botonLimpiar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Limpiar"
-            android:onClick="limpiarTexto"/>
-        <Button
-            android:layout_centerHorizontal="true"
-            android:backgroundTint="#CB3234"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:id="@+id/bvoice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btnTalk" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <TableRow>
+                <Button
+                    android:layout_centerHorizontal="true"
+                    android:backgroundTint="#CB3234"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:id="@+id/botonConsultar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Consultar"
+                    android:onClick="consultarDocDirector"/>
+                <Button
+                    android:layout_centerHorizontal="true"
+                    android:backgroundTint="#CB3234"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:id="@+id/botonLimpiar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Limpiar"
+                    android:onClick="limpiarTexto"/>
+            </TableRow>
+
+            <TableLayout>
+                <Button
+                    android:layout_centerHorizontal="true"
+                    android:backgroundTint="#CB3234"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:id="@+id/bvoice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btnTalk" />
+            </TableLayout>
+
+        </TableLayout>
+
     </LinearLayout>
+
+
     <LinearLayout
         android:visibility="gone"
         android:id="@+id/detalle"
@@ -76,12 +103,16 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
             android:text="Nombre Director" />
 
         <EditText
             android:id="@+id/editNombreDirector"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:cursorVisible="false"
             android:enabled="false"
             android:focusable="false"
@@ -93,12 +124,16 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
             android:text="Apellidos Director" />
 
         <EditText
             android:id="@+id/editApellidoDirector"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:cursorVisible="false"
             android:enabled="false"
             android:focusable="false"
@@ -110,12 +145,16 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
             android:text="Correo Director" />
 
         <EditText
             android:id="@+id/editCorreoDirector"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:cursorVisible="false"
             android:enabled="false"
             android:focusable="false"
@@ -127,12 +166,16 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
             android:text="Telefono Director" />
 
         <EditText
             android:id="@+id/editTelefono"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:cursorVisible="false"
             android:enabled="false"
             android:focusable="false"

@@ -2,25 +2,25 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="10dip"
-    android:stretchColumns="1">
+    android:paddingTop="20dip">
 
 <TableLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
     <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:layout_marginLeft="20dp"
             android:text="@string/codtiporev" />
 
         <Spinner
             android:id="@+id/spinTipoRev"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:entries="@array/codTipoRevision"
@@ -34,14 +34,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:layout_marginLeft="20dp"
             android:text="@string/codasignatura" />
 
         <EditText
             android:id="@+id/editCodasignatura"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
@@ -56,14 +56,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:layout_marginLeft="20dp"
             android:text="@string/codtipoeval" />
 
         <Spinner
             android:id="@+id/spinTipoEval"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:entries="@array/codTipoEval"
@@ -77,14 +77,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:layout_marginLeft="20dp"
             android:text="@string/evaluacion_numero" />
 
         <EditText
             android:id="@+id/editNumeval"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
@@ -98,14 +98,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:layout_marginLeft="20dp"
             android:text="@string/codciclo" />
 
         <EditText
             android:id="@+id/editCodciclo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
@@ -120,14 +120,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:layout_marginLeft="20dp"
             android:text="@string/carnet" />
 
         <EditText
             android:id="@+id/editCarnet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
@@ -140,14 +140,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:layout_marginLeft="20dp"
             android:text="@string/notaAntesRev" />
 
         <EditText
             android:id="@+id/editNotaActual"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
@@ -161,14 +161,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:layout_marginLeft="20dp"
             android:text="@string/codtipogrupo" />
 
         <Spinner
             android:id="@+id/spinTipoGrupo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:entries="@array/tipoGrupo"
@@ -182,14 +182,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:layout_marginLeft="20dp"
             android:text="@string/numerogrupo" />
 
         <EditText
             android:id="@+id/editnumerogrupo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
@@ -204,14 +204,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:layout_marginLeft="20dp"
             android:text="@string/fechaSolicitud" />
 
         <EditText
             android:id="@+id/editFechaSolicitud"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:ems="10"
@@ -225,14 +225,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:layout_marginLeft="20dp"
             android:text="@string/motivorev" />
 
         <EditText
             android:id="@+id/editmotivorev"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
@@ -241,7 +241,7 @@
 
     </TableRow>
 
-    <TableRow>
+    <TableRow android:layout_marginBottom="50dp">
 
         <Button
             android:layout_centerHorizontal="true"
@@ -251,8 +251,8 @@
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="actualizarSolicitudRevision"
-            android:text="@string/actualizar" />
+            android:onClick="limpiarTexto"
+            android:text="Limpiar" />
 
         <Button
             android:layout_centerHorizontal="true"
@@ -263,8 +263,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="limpiarTexto"
-            android:text="Limpiar" />
+            android:onClick="actualizarSolicitudRevision"
+            android:text="@string/actualizar" />
     </TableRow>
 </TableLayout>
 </ScrollView>

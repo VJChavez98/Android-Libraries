@@ -3,329 +3,376 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="20dip"
     tools:context="sv.edu.ues.eisi.fia.procesosadministrativosfia.Diferido_consultar">
+
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <TableRow>
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/carnet" />
+        <TableRow android:layout_marginBottom="15dp">
 
-        <EditText
-            android:id="@+id/editCarnet"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:inputType="none"
-            android:maxLength="7" />
-    </TableRow>
-    <TableRow>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/carnet" />
 
-        <TextView
-            android:id="@+id/lblCodMat"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/codAsignatura" />
-
-        <EditText
-            android:id="@+id/editAsignatura"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:inputType="none"
-            android:maxLength="6" />
-    </TableRow>
-    <TableRow>
-
-        <TextView
-            android:id="@+id/lblTipoEval"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/tipoEval" />
-
-        <Spinner
-            android:id="@+id/spinTipoEval"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:entries="@array/codTipoEval"
-            android:gravity="center_horizontal" />
-    </TableRow>
-    <TableRow>
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/evaluacion_numero" />
-
-        <EditText
-            android:id="@+id/editNumeval"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:inputType="number"
-            android:maxLength="2" />
-    </TableRow>
-    <TableRow>
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/codciclo" />
-
-        <EditText
-            android:id="@+id/editCodciclo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:inputType="number"
-            android:maxLength="5" />
-    </TableRow>
-    <TableRow>
-
-        <Button
-            android:layout_centerHorizontal="true"
-            android:backgroundTint="#CB3234"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:id="@+id/cancelarBtn"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:onClick="limpiarTexto"
-            android:text="@string/cancelarBtn" />
-
-        <Button
-            android:layout_centerHorizontal="true"
-            android:backgroundTint="#CB3234"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:id="@+id/BuscarBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:onClick="consultarSolicitudDiferido"
-            android:text="@string/buscarBtn" />
-    </TableRow>
-    <TableRow>
-        <Button
-            android:layout_centerHorizontal="true"
-            android:backgroundTint="#CB3234"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:id="@+id/bvoice"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:text="@string/btnTalk" />
-    </TableRow>
-
-
-    <TableRow>
-
-        <TextView
-            android:id="@+id/lblGT"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/GrupoTeorico" />
-
-        <EditText
-            android:id="@+id/editGrupoTeorico"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:inputType="none"
-            android:maxLength="2" />
-    </TableRow>
-    <TableRow>
-
-        <TextView
-            android:id="@+id/lblGD"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/grupoDiscusion" />
-
-        <EditText
-            android:id="@+id/editGrupoDiscusion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:inputType="none"
-            android:maxLength="2" />
-    </TableRow>
-    <TableRow>
-
-        <TextView
-            android:id="@+id/lblGL"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/grupoLab" />
-
-        <EditText
-            android:id="@+id/editGrupoLab"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:inputType="none"
-            android:maxLength="2" />
-    </TableRow>
-    <TableRow>
-
-        <TextView
-            android:id="@+id/lblFecha"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/fechaRealizada" />
-
-        <EditText
-            android:id="@+id/editFechaRealizada"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:focusable="false"
-            android:gravity="center_horizontal"
-            android:inputType="none" />
-    </TableRow>
-    <TableRow>
-
-        <TextView
-            android:id="@+id/lblHora"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/horaRealizada" />
-
-        <EditText
-            android:id="@+id/editHoraRealizada"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:focusable="false"
-            android:gravity="center_horizontal"
-            android:inputType="none" />
-    </TableRow>
-    <TableRow>
-
-        <TextView
-            android:id="@+id/lblMotivo"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/motivos" />
-
-        <Spinner
-            android:id="@+id/spinMotivos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:entries="@array/motivos"
-            android:gravity="center_horizontal"
-            android:textAlignment="center" />
-
-    </TableRow>
-    <TableRow>
-
-        <TextView
-            android:id="@+id/lblOtro"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/motivosOtro" />
-
-        <EditText
-            android:id="@+id/editMotivo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:inputType="textMultiLine" />
-    </TableRow>
-    <TableRow>
-
-        <TextView
-            android:id="@+id/lblEstadoSoli"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/estadoSolic" />
-
-        <EditText
-            android:id="@+id/editEstadoSolicitud"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:enabled="false"
-            android:focusable="false"
-            android:gravity="center_horizontal" />
-    </TableRow>
-    <TableRow>
-
-        <TextView
-            android:id="@+id/lblJustificante"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/justificante" />
-
-        <ImageView
-            android:id="@+id/justificante"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-    </TableRow>
-    <TableRow>
-
-        <Button
-            android:layout_centerHorizontal="true"
-            android:backgroundTint="#CB3234"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:id="@+id/EliminarBtn"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:onClick="EliminarSolicitud"
-            android:text="@string/eliminarBtn" />
-
-        <Button
-            android:layout_centerHorizontal="true"
-            android:backgroundTint="#CB3234"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:id="@+id/ModificarBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:onClick="ModificarSolicitudDiferido"
-            android:text="@string/modificarBtn" />
+            <EditText
+                android:id="@+id/editCarnet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:inputType="none"
+                android:maxLength="7" />
         </TableRow>
-        <TableRow>
-        <Button
-            android:layout_centerHorizontal="true"
-            android:backgroundTint="#CB3234"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:id="@+id/btnText2SpeechPlay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:text="@string/escuchar" />
-    </TableRow>
+        <TableRow android:layout_marginBottom="15dp">
+
+            <TextView
+                android:id="@+id/lblCodMat"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/codAsignatura" />
+
+            <EditText
+                android:id="@+id/editAsignatura"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:inputType="none"
+                android:maxLength="6" />
+        </TableRow>
+        <TableRow android:layout_marginBottom="15dp">
+
+            <TextView
+                android:id="@+id/lblTipoEval"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/tipoEval" />
+
+            <Spinner
+                android:id="@+id/spinTipoEval"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:entries="@array/codTipoEval"
+                android:gravity="center_horizontal" />
+        </TableRow>
+        <TableRow android:layout_marginBottom="15dp">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/evaluacion_numero" />
+
+            <EditText
+                android:id="@+id/editNumeval"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:inputType="number"
+                android:maxLength="2" />
+        </TableRow>
+        <TableRow android:layout_marginBottom="15dp">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/codciclo" />
+
+            <EditText
+                android:id="@+id/editCodciclo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:inputType="number"
+                android:maxLength="5" />
+        </TableRow>
+        <TableRow android:layout_marginBottom="15dp">
+
+            <Button
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="#CB3234"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:id="@+id/cancelarBtn"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:onClick="limpiarTexto"
+                android:text="@string/cancelarBtn" />
+
+            <Button
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="#CB3234"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:id="@+id/BuscarBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:onClick="consultarSolicitudDiferido"
+                android:text="@string/buscarBtn" />
+        </TableRow>
+        <TableRow android:layout_marginBottom="15dp">
+            <Button
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="#CB3234"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:id="@+id/bvoice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="@string/btnTalk" />
+        </TableRow>
+
+
+        <TableRow android:layout_marginBottom="15dp">
+
+            <TextView
+                android:id="@+id/lblGT"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/GrupoTeorico" />
+
+            <EditText
+                android:id="@+id/editGrupoTeorico"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:inputType="none"
+                android:maxLength="2" />
+        </TableRow>
+        <TableRow android:layout_marginBottom="15dp">
+
+            <TextView
+                android:id="@+id/lblGD"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/grupoDiscusion" />
+
+            <EditText
+                android:id="@+id/editGrupoDiscusion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:inputType="none"
+                android:maxLength="2" />
+        </TableRow>
+        <TableRow android:layout_marginBottom="15dp">
+
+            <TextView
+                android:id="@+id/lblGL"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/grupoLab" />
+
+            <EditText
+                android:id="@+id/editGrupoLab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:inputType="none"
+                android:maxLength="2" />
+        </TableRow>
+        <TableRow android:layout_marginBottom="15dp">
+
+            <TextView
+                android:id="@+id/lblFecha"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/fechaRealizada" />
+
+            <EditText
+                android:id="@+id/editFechaRealizada"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:focusable="false"
+                android:gravity="center_horizontal"
+                android:inputType="none" />
+        </TableRow>
+        <TableRow android:layout_marginBottom="15dp">
+
+            <TextView
+                android:id="@+id/lblHora"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/horaRealizada" />
+
+            <EditText
+                android:id="@+id/editHoraRealizada"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:focusable="false"
+                android:gravity="center_horizontal"
+                android:inputType="none" />
+        </TableRow>
+        <TableRow android:layout_marginBottom="15dp">
+
+            <TextView
+                android:id="@+id/lblMotivo"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/motivos" />
+
+            <Spinner
+                android:id="@+id/spinMotivos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:entries="@array/motivos"
+                android:gravity="center_horizontal"
+                android:textAlignment="center" />
+
+        </TableRow>
+        <TableRow android:layout_marginBottom="15dp">
+
+            <TextView
+                android:id="@+id/lblOtro"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/motivosOtro" />
+
+            <EditText
+                android:id="@+id/editMotivo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:inputType="textMultiLine" />
+        </TableRow>
+        <TableRow android:layout_marginBottom="15dp">
+
+            <TextView
+                android:id="@+id/lblEstadoSoli"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/estadoSolic" />
+
+            <EditText
+                android:id="@+id/editEstadoSolicitud"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:focusable="false"
+                android:gravity="center_horizontal" />
+        </TableRow>
+        <TableRow android:layout_marginBottom="15dp">
+
+            <TextView
+                android:id="@+id/lblJustificante"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/justificante" />
+
+            <ImageView
+                android:id="@+id/justificante"
+                android:layout_width="match_parent"
+                android:layout_height="200dip"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1" />
+        </TableRow>
+        <TableRow android:layout_marginBottom="15dp">
+
+            <Button
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="#CB3234"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:id="@+id/EliminarBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:onClick="EliminarSolicitud"
+                android:text="@string/eliminarBtn" />
+
+            <Button
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="#CB3234"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:id="@+id/ModificarBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:onClick="ModificarSolicitudDiferido"
+                android:text="@string/modificarBtn" />
+        </TableRow>
+        <TableRow android:layout_marginBottom="50dp">
+            <Button
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="#CB3234"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:id="@+id/btnText2SpeechPlay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="@string/escuchar" />
+        </TableRow>
+
     </TableLayout>
+
 </ScrollView>

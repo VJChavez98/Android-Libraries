@@ -5,6 +5,8 @@
     android:orientation="vertical" >
 
     <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/codasignatura" />
@@ -13,11 +15,16 @@
         android:id="@+id/editCodasignatura"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:gravity="center_horizontal"
         android:inputType="text"
         android:maxLength="6" />
 
     <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/codtipoeval" />
@@ -26,11 +33,15 @@
         android:id="@+id/spinTipoEval"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:entries="@array/tipoEval"
         android:gravity="center_horizontal"
         android:textAlignment="center" />
 
     <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/codciclo" />
@@ -39,11 +50,15 @@
         android:id="@+id/editCodciclo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:gravity="center_horizontal"
         android:inputType="number"
         android:maxLength="5" />
 
     <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/evaluacion_numero" />
@@ -52,6 +67,8 @@
         android:id="@+id/editNumeval"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:gravity="center_horizontal"
         android:inputType="number"
         android:maxLength="1" />
@@ -60,99 +77,109 @@
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
-    <TableRow>
+        <TableRow>
 
-        <Button
-            android:layout_centerHorizontal="true"
-            android:backgroundTint="#CB3234"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:id="@+id/botonConsultar"
+            <Button
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="#CB3234"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:id="@+id/botonConsultar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="consultarEvaluacion"
+                android:text="@string/consultar" />
+
+            <Button
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="#CB3234"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="limpiarTexto"
+                android:text="Limpiar" />
+        </TableRow>
+        <TableRow>
+
+            <Button
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="#CB3234"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:id="@+id/btnText2SpeechPlay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/escuchar" />
+
+            <Button
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="#CB3234"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:id="@+id/bvoice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/btnTalk" />
+        </TableRow>
+
+    </TableLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:id="@+id/detalle">
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="consultarEvaluacion"
-            android:text="@string/consultar" />
+            android:text="@string/nomasignatura" />
 
-        <Button
-            android:layout_centerHorizontal="true"
-            android:backgroundTint="#CB3234"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:textStyle="bold"
+        <EditText
+            android:id="@+id/editNomasignatura"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="limpiarTexto"
-            android:text="Limpiar" />
-    </TableRow>
-    <TableRow>
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:gravity="center_horizontal"
+            android:inputType="text"
+            android:longClickable="false" />
 
-        <Button
-            android:layout_centerHorizontal="true"
-            android:backgroundTint="#CB3234"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:id="@+id/btnText2SpeechPlay"
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/escuchar" />
+            android:text="@string/fecha" />
 
-        <Button
-            android:layout_centerHorizontal="true"
-            android:backgroundTint="#CB3234"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:id="@+id/bvoice"
+        <EditText
+            android:id="@+id/editFechaeval"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/btnTalk" />
-    </TableRow>
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:cursorVisible="false"
+            android:ems="10"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:gravity="center_horizontal"
+            android:inputType="textPersonName"
+            android:longClickable="false" />
+    </LinearLayout>
 
-</TableLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:visibility="gone"
-    android:id="@+id/detalle">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/nomasignatura" />
-
-    <EditText
-        android:id="@+id/editNomasignatura"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:cursorVisible="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:gravity="center_horizontal"
-        android:inputType="text"
-        android:longClickable="false" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/fecha" />
-
-    <EditText
-        android:id="@+id/editFechaeval"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:cursorVisible="false"
-        android:ems="10"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:gravity="center_horizontal"
-        android:inputType="textPersonName"
-        android:longClickable="false" />
-</LinearLayout>
 </LinearLayout>

@@ -3,57 +3,69 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="10dip"
-    android:stretchColumns="1">
-    <TableRow>
+    android:paddingTop="20dip">
+
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="@string/codasignatura" />
 
         <EditText
             android:id="@+id/editCodasignatura"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="6" />
     </TableRow>
-    <TableRow>
+
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="@string/nombreasignatura" />
 
         <EditText
             android:id="@+id/editNombreasignatura"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="30" />
     </TableRow>
-    <TableRow>
+
+    <TableRow android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="@string/unidadesval" />
 
         <EditText
             android:id="@+id/editUnidadesval"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:inputType="text"
             android:maxLength="1" />
     </TableRow>
-    <TableRow>
+
+    <TableRow android:layout_marginBottom="15dp">
 
         <Button
             android:layout_centerHorizontal="true"
@@ -63,6 +75,7 @@
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:onClick="actualizarAsignatura"
             android:text="@string/actualizar" />
 
@@ -74,9 +87,11 @@
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:onClick="limpiarTexto"
             android:text="@string/limpiar" />
+
+
     </TableRow>
 
     <TableRow
