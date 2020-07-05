@@ -15,6 +15,8 @@ import java.util.ArrayList;
 
 public class ControladorBase {
 
+
+
     private static final String[] camposUsuario = {"username", "password", "nombre_usuario"};
     private static final String[] camposEvaluacion = {"codasignatura", "codciclo", "codtipoeval", "numeroeval", "fechaevaluacion"};
     private static final String[] camposLocal = {"codlocal", "nomlocal", "ubicacionlocal"};
@@ -61,6 +63,10 @@ public class ControladorBase {
         @Override
         public void onCreate(SQLiteDatabase db) {
             try {
+
+                db.execSQL("CREATE TABLE calendario(id INTEGER PRIMARY KEY AUTOINCREMENT,objFecha VARCHAR NOT NULL, evento VARCHAR NOT NULL);");
+
+
                 db.execSQL("CREATE TABLE asignatura(codasignatura VARCHAR(6) NOT NULL PRIMARY KEY, nomasignatura VARCHAR(30) NOT NULL, unidadesval VARCHAR(1));");
                 db.execSQL("CREATE TABLE docente(coddocente VARCHAR(10) NOT NULL PRIMARY KEY, nombredocente VARCHAR(50) NOT NULL, apellidodocente VARCHAR(50));");
                 db.execSQL("CREATE TABLE ciclo(codciclo VARCHAR(5) NOT NULL PRIMARY KEY, fechadesde DATE, fechahasta DATE);");
@@ -356,6 +362,41 @@ public class ControladorBase {
             return "Registro Actualizado Correctamente";
         } else return "Registro no existe";
     }
+
+    //Insertar Calendario
+    public String insertarCalendario(CalendarioN calendario) {
+        String regInsertados = "Registro No. = ";
+        long contador = 0;
+
+        ContentValues calen = new ContentValues();
+        calen.put("objFecha", calendario.getObjetoFecha());
+        calen.put("evento", calendario.getEvento());
+        contador = db.insert("calendario", null, calen);
+
+        if (contador == -1 || contador == 0) {
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar Insercion";
+        } else {
+            regInsertados = regInsertados + contador;
+        }
+
+        return regInsertados;
+    }
+
+    //Agregar a Lista para recuperar en el activity
+    public ArrayList<String> conInsertarCalendario() {
+
+        ArrayList<String> listCal = new ArrayList<>();
+
+        Cursor cursor = db.rawQuery("SELECT id, objFecha, evento FROM calendario", null);
+        if (cursor.moveToFirst()) {
+            do {
+
+                listCal.add(cursor.getString(1) +" "+ cursor.getString(2));
+            } while (cursor.moveToNext());
+        }
+        return listCal;
+    }
+
 
     public String insertar(DetalleEstudianteDiferido detalle) {
         String regAfectados = "Registro insertado Nº= ";
