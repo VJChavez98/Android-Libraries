@@ -28,9 +28,10 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-//        vectorDrawables.useSupportLibrary = true
+        vectorDrawables.useSupportLibrary = true
         applicationId "sv.edu.ues.eisi.fia.procesosadministrativosfia"
         minSdkVersion 20
+        //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 23
         versionCode 1
         multiDexEnabled true
