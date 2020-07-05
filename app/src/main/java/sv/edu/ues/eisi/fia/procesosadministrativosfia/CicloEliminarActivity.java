@@ -20,11 +20,11 @@ import java.util.Calendar;
 
 public class CicloEliminarActivity extends Activity {
 
-    EditText editCodciclo, editFechadesde, editFechahasta;
+    EditText editCodciclo;
     ControladorBase controlhelper;
 
     TextToSpeech tts;
-    TextView Texto, Texto1, Texto2;
+    TextView Texto;
     Button BtnPlay;
     private int numarch=0;
 
@@ -39,16 +39,12 @@ public class CicloEliminarActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ciclo_eliminar);
-        controlhelper=new ControladorBase(this);
-        editCodciclo=(EditText)findViewById(R.id.editCodciclo);
-        editFechadesde=(EditText)findViewById(R.id.editFechadesde);
-        editFechahasta=(EditText)findViewById(R.id.editFechahasta);
+        controlhelper = new ControladorBase(this);
+        editCodciclo = (EditText) findViewById(R.id.editCodciclo);
 
-        Texto=(TextView) findViewById(R.id.editCodciclo);
-        Texto1=(TextView) findViewById(R.id.editFechadesde);
-        Texto2=(TextView) findViewById(R.id.editFechahasta);
+        Texto = (TextView) findViewById(R.id.editCodciclo);
         BtnPlay = (Button) findViewById(R.id.btnText2SpeechPlay);
-        tts = new TextToSpeech(this,OnInit);
+        tts = new TextToSpeech(this, OnInit);
         BtnPlay.setOnClickListener(onClick);
 
         sdMonthIni = c.get(Calendar.MONTH);
@@ -59,83 +55,11 @@ public class CicloEliminarActivity extends Activity {
         shDayIni = c.get(Calendar.DAY_OF_MONTH);
         shYearIni = c.get(Calendar.YEAR);
 
-        editFechadesde.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                showDialog(DATE_ID);
-            }
-        });
-
-        editFechahasta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                showDialog(DATE_ID2);
-            }
-        });
-
-
-
-    }
-
-    private void colocar_fechaD() {
-        if (String.valueOf(dMonthIni).length() == 1 && String.valueOf(dDayIni).length() == 1){
-            editFechadesde.setText( dYearIni + "-0" + (dMonthIni + 1) + "-0" + dDayIni );
-        }else if (String.valueOf(dMonthIni).length() == 1){
-            editFechadesde.setText( dYearIni + "-0" + (dMonthIni + 1) + "-" + dDayIni );
-        }else if (String.valueOf(dDayIni).length() == 1) {
-            editFechadesde.setText( dYearIni + "-" + (dMonthIni + 1) + "-0" + dDayIni );
-        }else {
-            editFechadesde.setText( dYearIni + "-" + (dMonthIni + 1) + "-" + dDayIni );
-        }
-    }
-
-    private void colocar_fechaH() {
-        if (String.valueOf(hMonthIni).length() == 1 && String.valueOf(hDayIni).length() == 1){
-            editFechahasta.setText( hYearIni + "-0" + (hMonthIni + 1) + "-0" + hDayIni );
-        }else if (String.valueOf(hMonthIni).length() == 1){
-            editFechahasta.setText( hYearIni + "-0" + (hMonthIni + 1) + "-" + hDayIni );
-        }else if (String.valueOf(hDayIni).length() == 1) {
-            editFechahasta.setText( hYearIni + "-" + (hMonthIni + 1) + "-0" + hDayIni );
-        }else {
-            editFechahasta.setText( hYearIni + "-" + (hMonthIni + 1) + "-" + hDayIni );
-        }
-    }
-    private DatePickerDialog.OnDateSetListener dDateSetListener = new DatePickerDialog.OnDateSetListener() {
-        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            dYearIni = year;
-            dMonthIni = monthOfYear;
-            dDayIni = dayOfMonth;
-            colocar_fechaD();
-        }
-    };
-    private DatePickerDialog.OnDateSetListener hDateSetListener = new DatePickerDialog.OnDateSetListener() {
-        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            hYearIni = year;
-            hMonthIni = monthOfYear;
-            hDayIni = dayOfMonth;
-            colocar_fechaH();
-        }
-    };
-
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        switch (id) {
-            case DATE_ID:
-                return new DatePickerDialog(this, dDateSetListener, sdYearIni, sdMonthIni, sdDayIni);
-            case DATE_ID2:
-                return new DatePickerDialog(this, hDateSetListener, shYearIni, shMonthIni, shDayIni);
-
-        }
-        return null;
     }
     public void eliminarCiclo(View v){
         String regEliminadas;
         Ciclo ciclo= new Ciclo();
         ciclo.setCodciclo(editCodciclo.getText().toString());
-        ciclo.setFechadesde(editFechadesde.getText().toString());
-        ciclo.setFechahasta(editFechahasta.getText().toString());
         controlhelper.abrir();
         regEliminadas=controlhelper.eliminar(ciclo);
         controlhelper.cerrar();
@@ -160,8 +84,6 @@ public class CicloEliminarActivity extends Activity {
         public void onClick(View v){
             if (v.getId()==R.id.btnText2SpeechPlay){
                 tts.speak(Texto.getText().toString(), TextToSpeech.QUEUE_ADD, null);
-                tts.speak(Texto1.getText().toString(), TextToSpeech.QUEUE_ADD, null);
-                tts.speak(Texto2.getText().toString(), TextToSpeech.QUEUE_ADD, null);
             }
         }
     };
@@ -169,10 +91,8 @@ public class CicloEliminarActivity extends Activity {
         tts.shutdown();
         super.onDestroy();
     }
-    public void limpiar(View v){
+    public void limpiarTexto(View v){
         editCodciclo.setText("");
-        editFechadesde.setText("");
-        editFechahasta.setText("");
     }
 
 }

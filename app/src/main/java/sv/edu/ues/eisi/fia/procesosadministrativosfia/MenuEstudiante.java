@@ -246,6 +246,10 @@ public class MenuEstudiante extends ListActivity{
                     menu[i] = "Calendario";
                     i++;
                 }
+                case "025":{
+                    menu[i] = "Bluetooth";
+                    i++;
+                }
             }
             menu[id.size()] = "Cerrar sesión";
         }

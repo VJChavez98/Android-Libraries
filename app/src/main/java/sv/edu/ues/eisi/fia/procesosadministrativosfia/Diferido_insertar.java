@@ -6,11 +6,13 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -38,9 +40,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -82,6 +88,7 @@ public class Diferido_insertar extends AppCompatActivity {
     Button srcImg, imprimir;
     FirebaseAuth mAuth;
     StorageReference mStorage;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -367,7 +374,20 @@ public class Diferido_insertar extends AppCompatActivity {
             DBHelper.cerrar();
             Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
             StorageReference storageReference = mStorage.child("Justificante").child(file.getLastPathSegment());
-            storageReference.putFile(file);
+            progressDialog = ProgressDialog.show(this,"Subiendo justificante", "Subiendo archivo, por favor espere...",true);
+            storageReference.putFile(file).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                    progressDialog.dismiss();
+                    Toast.makeText(getApplicationContext(), "Se subió el archivo correctamente",Toast.LENGTH_SHORT).show();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    progressDialog.dismiss();
+                    Toast.makeText(getApplicationContext(), "Error al subir el archivo",Toast.LENGTH_SHORT).show();
+                }
+            });
         }else Toast.makeText(getApplicationContext(), "Hay campos vacios", Toast.LENGTH_SHORT).show();
     }
     public void limpiarTexto(View v) {

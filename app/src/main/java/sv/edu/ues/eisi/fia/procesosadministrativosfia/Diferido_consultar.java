@@ -295,7 +295,7 @@ public class Diferido_consultar extends AppCompatActivity {
                     public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                         Toast.makeText(getApplicationContext(), "Se descargo correctamente", Toast.LENGTH_SHORT).show();
                         Bitmap b = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                        Glide.with(getApplicationContext()).load(b).into(srcImg);
+                        Glide.with(getApplicationContext()).load(b).centerCrop().into(srcImg);
                         mProgress.dismiss();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -465,6 +465,7 @@ public class Diferido_consultar extends AppCompatActivity {
 
             mProgress.setTitle("Subiendo imagen");
             mProgress.setMessage("Espere por favor");
+            mProgress.setCancelable(false);
             mProgress.show();
             StorageReference storageReference = mStorage.child(file.getLastPathSegment());
             storageReference.putFile(file).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {

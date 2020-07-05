@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="20dip"
-    android:paddingLeft="20dip"
-    android:paddingRight="20dip"
+    android:paddingTop="10dip"
+    android:paddingLeft="10dip"
+    android:paddingRight="10dip"
     android:scrollbars="none"
     android:scrollbarStyle="outsideInset"
     tools:context="sv.edu.ues.eisi.fia.procesosadministrativosfia.Diferido_insertar">
@@ -229,8 +229,6 @@
 
             <Button
                 android:layout_centerHorizontal="true"
-                android:backgroundTint="#CB3234"
-                android:textColor="#ffffff"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:id="@+id/rutaSolic"
