@@ -39,6 +39,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -64,7 +65,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class Diferido_insertar extends AppCompatActivity {
@@ -459,6 +462,7 @@ public class Diferido_insertar extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 mOptions.setVisibility(View.GONE);
                 srcImg.setVisibility(View.VISIBLE);
+                srcImg.setGravity(Gravity.CENTER_HORIZONTAL);
                 srcImg.setText("Mostrar foto");
 
             } else {
@@ -483,10 +487,10 @@ public class Diferido_insertar extends AppCompatActivity {
             builder.setTitle("Justificante Diferido");
             ImageView justificante = dialogView.findViewById(R.id.mostarImagen);
             justificante.setImageURI(file);
-            builder.setNegativeButton("Seleccionar otra imagen", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton("Elegir otra imagen", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    selectImage();
+                    mostrarOpciones.onClick(v);
                 }
             });
             builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {

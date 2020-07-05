@@ -31,7 +31,7 @@ android {
 //        vectorDrawables.useSupportLibrary = true
         applicationId "sv.edu.ues.eisi.fia.procesosadministrativosfia"
         minSdkVersion 20
-        targetSdkVersion 29
+        targetSdkVersion 23
         versionCode 1
         multiDexEnabled true
         versionName "1.0"

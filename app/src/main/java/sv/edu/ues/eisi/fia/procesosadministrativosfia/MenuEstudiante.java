@@ -1,6 +1,7 @@
 package sv.edu.ues.eisi.fia.procesosadministrativosfia;
 
 import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,6 +35,7 @@ public class MenuEstudiante extends ListActivity{
     ControladorBase helper;
     private GoogleSignInClient mGoogleSignInClient;
     FirebaseAuth mAuth;
+    ProgressDialog dialog;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +55,9 @@ public class MenuEstudiante extends ListActivity{
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        dialog = new ProgressDialog(this);
+        dialog.setTitle("Autenticando");
+        dialog.setMessage("Por favor espere...");
     }
 
     protected void onListItemClick(ListView listView, View view, int position, long id){

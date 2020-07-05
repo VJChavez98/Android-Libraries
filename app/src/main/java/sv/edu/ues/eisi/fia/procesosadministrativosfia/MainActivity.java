@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ControladorBase DBHelper;
     FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
+    ProgressDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +49,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
                 .unsubscribeWhenNotificationsAreDisabled(true)
                 .init();
+        dialog = new ProgressDialog(this);
+        dialog.setTitle("Iniciando sesion");
+        dialog.setMessage("Por favor espere...");
     }
 
     // [START on_start_check_user]
@@ -99,7 +103,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void onClick(View v) {
-            signIn();
+        dialog.show();
+        signIn();
     }
     // [START signin]
     private void signIn() {
@@ -136,15 +141,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (user != null) {
             DBHelper.abrir();
             if (DBHelper.consultarUsuario(user.getEmail())) {
+                dialog.dismiss();
                 Intent intent = new Intent(this, MenuEstudiante.class);
                 intent.putExtra("correo", user.getEmail());
                 startActivity(intent);
                 DBHelper.cerrar();
             }else {
+                dialog.dismiss();
                 Toast.makeText(getApplicationContext(), "Usuario no valido, intente con una cuenta institucional",Toast.LENGTH_SHORT).show();
                 revokeAccess();
             }
         } else {
+            dialog.dismiss();
             Toast.makeText(getApplicationContext(), "No ha iniciado sesión", Toast.LENGTH_SHORT).show();
         }
     }
