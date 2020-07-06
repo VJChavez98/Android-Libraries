@@ -83,7 +83,7 @@
     <string name="asisSi">SI</string>
     <string name="asisNo">NO</string>
     <string name="signout">Cerrar Sesión</string>
-    <string name="iniciarSesion">Bienvenido, por favor inicie sesión con una cuenta institucional.</string>
+    <string name="iniciarSesion">Bienvenido, inicie sesión con una cuenta institucional.</string>
     <string name="justificante">Justificante</string>
     <string name="adjuntarFoto">Adjuntar imagen</string>
     <string name="ubicacion">Ubicación</string>
