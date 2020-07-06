@@ -140,9 +140,6 @@ public class SolImpresionInsertarActivity extends AppCompatActivity {
         editIdDocenteDirector.setText("");
         editIdDocente.setText("");
         editCantidadExamenes.setText("");
-        spinner.setSelection(0);
-        spinner2.setSelection(0);
-        editEstadoAprobacion.setText("");
     }
     TextToSpeech.OnInitListener OnInit= new TextToSpeech.OnInitListener(){
         @Override
@@ -159,18 +156,24 @@ public class SolImpresionInsertarActivity extends AppCompatActivity {
         @SuppressLint("SdCardPath")
         public void onClick(View v){
             if (v.getId()==R.id.btnText2SpeechPlay){
-                tts.speak(Texto.getText().toString(), TextToSpeech.QUEUE_ADD, null);
-                tts.speak(Texto1.getText().toString(), TextToSpeech.QUEUE_ADD, null);
-                tts.speak(Texto2.getText().toString(), TextToSpeech.QUEUE_ADD, null);
-                tts.speak(Texto3.getText().toString(), TextToSpeech.QUEUE_ADD, null);
-                tts.speak(Texto4.getText().toString(), TextToSpeech.QUEUE_ADD, null);
-                tts.speak(Texto5.getText().toString(), TextToSpeech.QUEUE_ADD, null);
-
+                if(!areEmpty()) {
+                    tts.speak(Texto.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                    tts.speak(Texto1.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                    tts.speak(Texto2.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                    tts.speak(Texto3.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                }else Toast.makeText(v.getContext(), "Por favor llene todos los campos", Toast.LENGTH_SHORT).show();
             }
         }
     };
     public void onDestroy(){
         tts.shutdown();
         super.onDestroy();
+    }
+    public boolean areEmpty(){
+        return (editIdSolicitudImpresion.getText().toString().isEmpty()
+                ||editIdDocenteDirector.getText().toString().isEmpty()
+                ||editIdDocente.getText().toString().isEmpty()
+                ||editCantidadExamenes.getText().toString().isEmpty()
+        );
     }
 }

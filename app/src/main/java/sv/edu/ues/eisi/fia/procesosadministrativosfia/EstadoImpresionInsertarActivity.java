@@ -150,18 +150,27 @@ public class EstadoImpresionInsertarActivity extends AppCompatActivity {
     View.OnClickListener onClick=new View.OnClickListener(){
         @SuppressLint("SdCardPath")
         public void onClick(View v){
-            if (v.getId()==R.id.btnText2SpeechPlay){
-                tts.speak(Texto.getText().toString(), TextToSpeech.QUEUE_ADD, null);
-                tts.speak(Texto1.getText().toString(), TextToSpeech.QUEUE_ADD, null);
-                tts.speak(Texto2.getText().toString(), TextToSpeech.QUEUE_ADD, null);
-                tts.speak(Texto3.getText().toString(), TextToSpeech.QUEUE_ADD, null);
-                tts.speak(Texto4.getText().toString(), TextToSpeech.QUEUE_ADD, null);
-                tts.speak(Texto5.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+            if (v.getId()==R.id.btnText2SpeechPlay) {
+                if (!areEmpty()) {
+                    tts.speak(Texto.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                    tts.speak(Texto1.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                    tts.speak(Texto2.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                    tts.speak(Texto3.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                    tts.speak(Texto5.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                }else Toast.makeText(getApplicationContext(),"Por favor llene todos los campos", Toast.LENGTH_SHORT).show();
             }
         }
     };
     public void onDestroy(){
         tts.shutdown();
         super.onDestroy();
+    }
+    public boolean areEmpty(){
+        return (editIdEncargado.getText().toString().isEmpty()
+                ||editIdEstadoImpresion.getText().toString().isEmpty()
+                ||editIdMotivoImpresion.getText().toString().isEmpty()
+                ||editIdSolicitudImpresion.getText().toString().isEmpty()
+                ||editObservaciones.getText().toString().isEmpty()
+                );
     }
 }

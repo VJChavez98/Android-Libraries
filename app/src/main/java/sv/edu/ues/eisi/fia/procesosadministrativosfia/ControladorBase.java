@@ -2601,7 +2601,7 @@ public class ControladorBase {
         final String[] VEsIobservaciones= {"PARCIAL", "EVALUADO", "FOTOCOPIAS", "INTERNOS"};
 
         final String[] idOpcion = {"001","002","003","004","005","006","007","008","009","010","011","012","013","014","015","016","017","018","019","020","021","022","023","024"};
-        final String[] idOpcionEstudiante ={"001","002", "003", "010","020", "024"};
+        final String[] idOpcionEstudiante ={"001","002", "003","007", "010","020", "024"};
         final String[] idOpcionDocente = {"004","005","006","008","009","010","011","016","022","023", "024"};
         final String[] idDocenteDirector = {"005","006","008","016","022","023", "024"};
         final String[] idEncargado = {"016","019", "024"};

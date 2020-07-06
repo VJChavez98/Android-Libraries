@@ -139,7 +139,6 @@ public class Diferido_consultar extends AppCompatActivity {
 
         mEntradaVoz=findViewById(R.id.editCarnet);
         mBotonhablar=findViewById(R.id.bvoice);
-        mBotonhablar.setVisibility(View.GONE);
         mBotonhablar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -275,7 +274,6 @@ public class Diferido_consultar extends AppCompatActivity {
                 tipoEval.setSelection(tipoEval(solicitudDiferido.getTipoEva()));
                 motivos.setSelection(colocarMotivo(solicitudDiferido.getMotivo()));
                 motivos.setEnabled(true);
-                mBotonhablar.setVisibility(View.VISIBLE);
                 editOtroMotivo.setEnabled(true);
                 if (solicitudDiferido.getOtroMotivo().isEmpty()) {
                     editOtroMotivo.setVisibility(View.GONE);
@@ -424,7 +422,6 @@ public class Diferido_consultar extends AppCompatActivity {
         ciclo.setText("");
         srcImg.setVisibility(View.GONE);
         lblJustificante.setVisibility(View.GONE);
-        mBotonhablar.setVisibility(View.GONE);
     }
 
     public void EliminarSolicitud(View view) {
@@ -583,15 +580,12 @@ public class Diferido_consultar extends AppCompatActivity {
             builder.setView(dialogView);
             builder.setTitle("Justificante Diferido");
             final ImageView justificante = dialogView.findViewById(R.id.mostarImagen);
-            Log.d("RUTAA", ruta);
-            Log.d("LOCALFILE", localFile.getAbsolutePath());
-            Log.d("FILEEE", file.toString());
             if (localFile.getAbsolutePath().contains(ruta)&& ruta.equals(file.toString())) {
                 Glide.with(getApplicationContext()).load(localFile).into(justificante);
             } else {
                 justificante.setImageURI(file);
             }
-            builder.setNegativeButton("Seleccionar otra imagen", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton("Elegir otra imagen", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     mostrarOpciones.onClick(v);

@@ -64,16 +64,16 @@
     <TableRow android:layout_marginBottom="15dp">
 
         <Button
-            android:layout_centerHorizontal="true"
-            android:backgroundTint="#CB3234"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:layout_weight="1"
-            android:onClick="limpiar"
-            android:text="@string/limpiar" />
+            android:backgroundTint="#CB3234"
+            android:onClick="limpiarTexto"
+            android:text="@string/limpiar"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
 
         <Button

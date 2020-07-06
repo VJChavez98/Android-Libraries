@@ -79,7 +79,7 @@ public class EstadoImpresionEliminarActivity extends Activity {
         controlhelper.cerrar();
         Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
     }
-    public void limpiar(View v){
+    public void limpiarTexto(View v){
         editIdEstadoImpresion.setText("");
         editIdSolicitudImpresion.setText("");
         editIdEncargado.setText("");
